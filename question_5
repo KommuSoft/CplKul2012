@@ -1,0 +1,4 @@
+Coherent design
+	C++: lot of possibilities (up to 4 (?) ways to create an element on the stack, creation on heap has many more possibilities)
+	Lua: simple design, most of the things can only be done in a few ways
+	Python: between both (more like Lua than C++)

@@ -1,0 +1,4 @@
+Good language for beginners
+	C++: of course (just kidding :p)
+	Lua: yep, but you have to move to another language if you're getting familiar with the language (e.g. need for more complex data structures)
+	Python: yep, good trade-off. Contains a lot of already implemented functionality (batteries included principle, e.g. "python -m SimpleHTTPServer" creates a webserver)

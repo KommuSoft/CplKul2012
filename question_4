@@ -1,0 +1,4 @@
+Discussion type system
+	Lua: dynamic, duck, weaker [coercion (not for ifs)]
+	Python: dynamic, duck, strong
+	C++: static, strong, unsafe

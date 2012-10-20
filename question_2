@@ -1,0 +1,3 @@
+Although C++ and Lua are both "portable" languages, it is still easier to port Lua to another system. Why is that, how is the design of the language influenced by that.
+	Lua: small language (keep the language small, don't be afraid to break backwards compatibility), only one data structure, small group of designers
+	C++: ginormous language => compiler writers don't understand the language

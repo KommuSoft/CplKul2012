@@ -1,0 +1,2 @@
+In almost every language there is something that is easy but difficult to write in another. In what can Lua distinguish itself from the other languages.
+	Lua is very easy to write scripts (define script as a small program) and it has a very good C api. This makes Lua an excellent extension language (see games).
