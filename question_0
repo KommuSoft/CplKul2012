@@ -1,6 +1,9 @@
 What's the target audience of Lua?
-	Lua: Not only programmers, but also engineers, researchers, data analysts, game designers. 
-		=> garbage collection
-		=> no "{" and "}" but "do" and "end"
-	C++: people who want performance but more expressiveness than C, masochists
-	Python: people who want to program fast, have high expressiveness and easy-to-use, portability
+	Lua: Lua was designed so it could be used by engineers, geologists and so forth. This visible through the fact that Lua doesn't have an intimidating syntax. Instead of using curly braces, Lua uses "do" and "end". Also Lua does have a garbage collector which results in a less steeper learning curve. In retrospect, Lua is currently used a lot in games, which wasn't a specific aim for the designers of Lua. There is even a book for writing Lua in combination with World of Warcraft. This suggests that Lua has achieved this goal very well. [TODO: portable vermelden?]
+
+	C++: In contrast to Lua, C++ isn't designed for end users (i.e. geologists, game designers). It's designed for people who want to write high performance systems but need object orientation, which isn't available in C (a highly popular language at that time), hence the original name "C with classes". Although C++ has changed so much in the last years and thereby also its audience, the audience of Lua and C++ is very different. This doesn't mean they have a connection with each other. For example World of Warcraft has a C++ core with a layer of Lua for the user interface. 
+
+	Python: The audience of Python is more like the audience of Lua. Everyone who wants to automate a certain task can use Python. This is why Python is very readable. Instead of using curly braces, Python uses indentation. An approach which is very similar to Lua's one. Like Lua Python also has a garbage collector. It's a language for everyone who wants to have fun, as long as you like Monty Python's Flying Circus. [TODO: portable vermelden?]
+	
+Source: The evolution of Lua; Amazon; Stroustrup's FAQ; Effective C++; Python tutorial
+http://gamedev.stackexchange.com/questions/4872/what-languages-are-used-to-develop-mmorpgs-like-eve-online-and-wow
