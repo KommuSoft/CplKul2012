@@ -1,1 +1,193 @@
-One of the most popular paradigm is "Object oriented programming". Why is the support in Lua pretty hacky for "object oriented programming"?
+One of the most popular paradigm is "Object oriented programming". How is it implemented in your language?
+	C++: C++ has good support for object oriented programming, in fact C++ is an object oriented language. For example, Strings are classes with their own member functions and such. However some functionality is available with nonmember functions and member functions. E.g.
+		int main(){
+			std::vector<int> v = {1,2,3,4,5,6};
+			auto it0 = std::begin(v);
+			auto it1 = v.begin();
+		}
+Both it0 and it1 return an iterator that points to the begin of vector v. This introduces "ambiguity" in the language.
+
+	Lua: Lua isn't an object oriented language like Java [TODO: tell Java is object oriented; C++ is bad example because it can have nonmember functions so a non object oriented design is possible] but Lua provides the possibility to program in an object oriented way. This was done to keep the language simple [TODO: is this really so?] (Lua 5.0 contains only 8 types). Lua has the following philosophy: "Provide mechanisms, not policies" The way you use object oriented programming in Lua is via tables. Tables are the most important type in Lua and are therefore highly optimised. For example: a table has a hybrid implementation, it is an array and a hash table. Depending on the needs the according version is used. This efficiency is needed because tables can be objects. Different from tables, objects are most of the times small. A hybrid implementation makes sure that a table can succesfully used as an object. [TODO: mention this in question 3] In Lua you create an table and use extensible semantics to simulate inheritance and such. See code example 1. This is much more difficult than the C++ equivalent (see code example 2). Especially the function inheritsFrom is complex. Because you have to create object oriented programming by yourself, you can use different ways to implement object oriented programming. For example, you can use a prototype-based approach.
+
+	Python: Pyhon is also an object oriented language. Actually the class mechanism is based on C++ and Modula-3. A simple example using inheritance is provided in code example 3. Python provides a very clean syntax for creating classes (and their hierarchies). Unfortunately constructors introduce uglier syntax (lots of underscores). Although Python doesn't have prototype-based object oriented programming, it can redefine functions at runtime. Just add the following code to code example 3
+	def bar():
+		print("bar")
+	b.foo = bar;
+This would be very cumbersome to do in C++, see code example 4 (remark: g++-4.7 or clang++ 3.1 is needed to compile this.). Although usage isn't that complicated, the design is. Another interesting point is that Python has multiple inheritance, but in a different way then C++. Python tries resolve ambiguity itself, whereas in C++ the programmer must resolve the ambiguity. See code example 5 and 6.
+	
+Sources: http://docs.python.org/3/tutorial/classes.html; http://lua-users.org/wiki/InheritanceTutorial
+
+
+---------------Code example 1----------------------
+-- Base class
+Base = {}
+Base_mt = {__index = Base}
+
+function Base:create()
+    local object = {}
+    setmetatable(object, Base_mt)
+    return object
+end
+
+function Base:className()
+    print("Base")
+end
+
+function Base:foo()
+    print("foo")
+end
+
+-- Create inheritance
+function inheritsFrom(baseClass)
+    local derivedClass = {}
+    local derivedClass_mt = {__index = derivedClass}
+
+    function derivedClass:create()
+        local object = {}
+        setmetatable(object, derivedClass_mt)
+        return object
+    end
+
+    if baseClass then
+        setmetatable(derivedClass, {__index = baseClass})
+    end
+
+    return derivedClass
+end
+
+-- Derived class
+Derived = inheritsFrom(Base)
+function Derived:className()
+	print("Derived")
+end
+
+base = Base:create()
+base:className()
+base:foo()
+
+derived = Derived:create()
+derived:className()
+derived:foo()
+
+---------------Code example 2----------------------
+#include <iostream>
+
+struct Base{
+	virtual void className(){
+		std::cout << "Base" << std::endl;
+	}
+	virtual void foo(){
+		std::cout << "foo" << std::endl;
+	}
+};
+
+struct Derived : public Base {
+	virtual void className(){
+		std::cout << "Derived" << std::endl;
+	}
+};
+
+int main() {
+	Base b;
+	b.className();
+	b.foo();
+
+	Derived d;
+	d.className();
+	d.foo();
+}
+
+---------------Code example 3----------------------
+class Base:
+	def className(self):
+		print("Base")
+	def foo(self):
+		print("foo")
+
+class Derived(Base):
+	def className(self):
+		print("Derived")
+
+b = Base()
+b.className()
+b.foo()
+
+d = Derived()
+d.className()
+d.foo()
+
+---------------Code example 4----------------------
+#include <iostream>
+#include <functional>
+
+struct Base{
+	std::function<void()> className_ = [](){std::cout << "Base" << std::endl;};
+	std::function<void()> foo_ = [](){std::cout << "foo" << std::endl;};
+	virtual void className(){
+		className_();
+	}
+	virtual void foo(){
+		foo_();
+	}
+};
+
+struct Derived : public Base {
+	std::function<void()> className_ = [](){std::cout << "Derived" << std::endl;};
+	virtual void className(){
+		className_();
+	}
+};
+
+void bar(){
+	std::cout << "bar" << std::endl;
+}
+
+int main() {
+	Base b;
+	b.className();
+	b.foo();
+
+	Derived d;
+	d.className();
+	d.foo();
+	
+	b.foo_ = bar;
+	b.foo();
+}
+
+---------------Code example 5----------------------
+class Base1:
+	def foo(self):
+		print("foo1")
+		
+class Base2:
+	def foo(self):
+		print("foo2")
+
+class Derived(Base1, Base2):
+	pass
+	
+d = Derived()
+d.foo()
+
+---------------Code example 6----------------------
+#include <iostream>
+
+struct Base1{
+	void foo() {
+		std::cout << "foo1" << std::endl;
+	}
+};
+		
+struct Base2{
+	void foo() {
+		std::cout << "foo2" << std::endl;
+	}
+};
+
+struct Derived : public Base1, public Base2 {};
+
+int main(){
+	Derived d;
+	d.Base1::foo(); // <-- difference: specify base class otherwise ambiguous name
+}; 
