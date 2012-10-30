@@ -14,6 +14,8 @@ Both it0 and it1 return an iterator that points to the begin of vector v. This i
 		print("bar")
 	b.foo = bar;
 This would be very cumbersome to do in C++, see code example 4 (remark: g++-4.7 or clang++ 3.1 is needed to compile this.). Although usage isn't that complicated, the design is. Another interesting point is that Python has multiple inheritance, but in a different way then C++. Python tries resolve ambiguity itself, whereas in C++ the programmer must resolve the ambiguity. See code example 5 and 6.
+
+	C#: C# was basically an object-oriented language since it was based on Java. However one can say that the language itself is currenlty moving towards for instance the functional paradigm. One has to construct at least a class to locate the main class (however one can hardly argue this makes the language inherently Object-oriented). However C# has a lot of structures besides classes like structs, enums, delegates (the method pointers) and events (implementation of the visitor pattern). Therefore the user can choose implement his program in a more functional style. C# doesn't support pure multiple inheritance. It uses the same strategy like Java: a class can inherit from only one other class and a set of interfaces. Furthermore it tries to solve the potential overloading clashes in an elegant way: the programmer can consider them as different methods. This is done by specifying through which interface the method is currently accessed (see code example 7). Furthermore one can of course give a definition for that method if the method is accessed by through the class interface itself. The functional programming aspect in C# creates some problems: one problem is the Liskov substition principle. Since we can point to eacht method through a delegate and these delegates can be generic, we can't simply use the Liskov substition principle, therefore it's not supported in C#. The result is that if we have a method called A is overridden, it can't make the types of their arguments more broader and the return type more narrow. Of course one can define another method A' and instead over overriding the A method redirect it to that method A.
 	
 Sources: http://docs.python.org/3/tutorial/classes.html; http://lua-users.org/wiki/InheritanceTutorial
 
@@ -191,3 +193,29 @@ int main(){
 	Derived d;
 	d.Base1::foo(); // <-- difference: specify base class otherwise ambiguous name
 }; 
+---------------Code example 7----------------------
+public interface IAdd {
+
+	int Compute (int a, int b);
+
+}
+
+public interface IMul {
+
+	int Compute (int a, int b);
+
+}
+
+public class Field : IAdd, IMul {
+
+	public int IAdd.Compute (int a, int b) {
+		return a+b;
+	}
+	public int IMul.Compute (int a, int b) {
+		return a*b;
+	}
+	public int Compute (int a, int b) {
+		return a-b;
+	}
+
+}
