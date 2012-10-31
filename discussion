@@ -1,1 +1,26 @@
 [Willem: indien een bron vermeld wordt, dienen we mss een referentie te leggen?]
+[Pieter-Jan: lineage vermelden van Lua (Scheme Icon Python volgens Concepts of Programming Languages)]
+
+Talen: C, C#, C++, Java, Python, Haskell
+
+Syntax bespreken
+	Lua zo eenvoudig mogelijk
+	C++ en C# uit dezelfde familie (C)
+	Java imiteert superieure talen zoals C# en C++
+	C# heeft ook invloed gehad van SQL (zie LINQ)
+	
+Operator overloading
+	Lua, C#, C++ ondersteunen dit
+	Java niet
+	
+Constructie van objecten
+	Lua heap {see Sebesta}
+	C# heap
+	Java heap
+	C++ waar de programmeur zin in heeft
+	
+	
+Limitations
+	http://lua-users.org/wiki/FeatureProposals
+	++ en +=
+	Lua unicode {lua-users.org/wiki/LuaUnicode}
