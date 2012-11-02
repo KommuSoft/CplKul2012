@@ -193,7 +193,7 @@ int main(){
 	Derived d;
 	d.Base1::foo(); // <-- difference: specify base class otherwise ambiguous name
 }; 
----------------Code example 7----------------------
+---------------Code example 7-(C#)---------------------
 public interface IAdd {
 
 	int Compute (int a, int b);
@@ -208,14 +208,20 @@ public interface IMul {
 
 public class Field : IAdd, IMul {
 
-	public int IAdd.Compute (int a, int b) {
-		return a+b;
+	int IAdd.Compute (int a, int b) {
+		return Compute(a,b);
 	}
-	public int IMul.Compute (int a, int b) {
+	int IMul.Compute (int a, int b) {
 		return a*b;
 	}
 	public int Compute (int a, int b) {
-		return a-b;
+		return a+b;
 	}
+        public static void Main () {
+               Field f = new Field();
+               Console.WriteLine(f.Compute(4,-5)); //-1
+               Console.WriteLine(((IAdd) f).Compute(4,-5)); //-1
+               Console.WriteLine(((IMul) f).Compute(4,-5)); //-20
+        }
 
 }
