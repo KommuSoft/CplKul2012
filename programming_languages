@@ -1,0 +1,24 @@
+[Willem: mss is het een goed idee eerst een facts-pagina te maken voor de talen die we zullen beschouwen?]
+
+C#:
+Paradigm: multiparadigm (mainly imperative, object-orientied and functional)
+Typing: weak typing and duck typing
+Code style: C family
+Inheritance: partly multiple inheritance (interfaces like java, but more advanced)
+Modifiers: public, private, protected, internal, internal protected
+
+C++:
+Paradigm:
+Typing:
+Code style: C family
+Inheritance: multiple inheritance
+
+Python
+
+Haskell
+
+Java
+
+Lua
+
+...
