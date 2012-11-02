@@ -1,0 +1,4 @@
+How does syntax of Lua compares to the syntax of other languages?
+	Lua: Lua is designed so it is as simple as possible. This also means that a program in Lua should be readable by a user who can't program. For this reason Lua doen't contain many braces and other special characters. [TODO: voorbeeld do...end] [TODO: vermelden Lua is free format]
+	C++: Because C++ has its origin in C, the language looks like C. [TODO: vertellen]
+	Python: [TODO: vermelden in python indentation based]
