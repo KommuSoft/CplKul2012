@@ -1,2 +1,4 @@
 [Willem] Formatting van de bibliografie moet wss beter (momenteel enkel de titel, kdenk dat ze ons hier op kunnen afrekenen)
 [Willem] HTML layout beter ondersteunen (<c> werkt bijvoorbeeld niet. Eventueel automatisch formatten van programmeertalen).
+[Willem] Is een socratische dialoog geen "dialoog"? Hier is het eerder een opsomming. Ik had hierbij meer het idee dat de talen zeg maar in debat met elkaar gingen en een soort van gesprek voerden.
+[Willem] We dienen de website in te dienen als een .tar van .html pagina's (!) In dat geval moeten we de php omzetten naar HTML.
