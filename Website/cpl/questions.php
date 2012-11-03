@@ -5,11 +5,17 @@
 	include_once("questions/expressiveness.php");
 	include_once("questions/typing.php");
 	include_once("questions/languageDesign.php");
+	include_once("questions/learning.php");
+	include_once("questions/libraries.php");
+	include_once("questions/syntax.php");
 	
 	new Audience();
 	new OOP();
 	new Portability();
 	new Expressiveness();
-//	include_once("questions/typing.php");
-//	include_once("questions/languageDesign.php");
+	new Typing();
+	new LanguageDesign();
+	new Learning();
+	new Libraries();
+	new Syntax();
 ?>

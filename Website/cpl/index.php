@@ -5,8 +5,22 @@
 	
 	include_once("questions/audience.php");
 	include_once("questions/oop.php");
+	include_once("questions/portability.php");
+	include_once("questions/expressiveness.php");
+	include_once("questions/typing.php");
+	include_once("questions/languageDesign.php");
+	include_once("questions/learning.php");
+	include_once("questions/libraries.php");
+	include_once("questions/syntax.php");
 	$audience = new Audience();
 	$oop = new OOP();
+	$por = new Portability();
+	$exp = new Expressiveness();
+	$typ = new Typing();
+	$lan = new LanguageDesign();
+	$lea = new Learning();
+	$lib = new Libraries();
+	$syn = new Syntax();
 	
 	include_once("sidebar.php");
 	include_once("overview.php");
@@ -25,18 +39,18 @@
 						<p>Lua isn't a language that is very well known. With some questions an answers we try to tell the strengths and weakness of Lua in comparison with other languages (C++, C#, Haskell, Java, Python)</p>
 					</div>
 						<?php echo(Overview::create()); ?>
-					<div class="row-fluid">
+<!--					<div class="row-fluid">
 						<div class="span4">
 							<h2>Heading</h2>
 							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 							<p><a class="btn" href="#">View details &raquo;</a></p>
 						</div><!--/span-->
-						<div class="span4">
+<!--						<div class="span4">
 							<h2>Heading</h2>
 							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 							<p><a class="btn" href="#">View details &raquo;</a></p>
 						</div><!--/span-->
-						<div class="span4">
+<!--						<div class="span4">
 							<h2>Heading</h2>
 							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 							<p><a class="btn" href="#">View details &raquo;</a></p>
