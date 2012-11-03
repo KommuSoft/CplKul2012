@@ -2,8 +2,8 @@
 	<meta charset="utf-8">
 	<title>Lua</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="A comparative study of the Lua programming language">
+	<meta name="author" content="Willem Van Onsem, Jonas Vanthornhout, Pieter-Jan Vuylsteke">
 
 	<!-- Le styles -->
 	<link href="css/bootstrap.css" rel="stylesheet">

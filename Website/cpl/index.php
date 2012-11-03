@@ -48,7 +48,7 @@
 			<hr>
 
 			<footer>
-				<p>&copy; Company 2012</p>
+				<p>&copy; Willem Van Onsem, Jonas Vanthornhout, Pieter-Jan Vuylsteke 2012</p>
 			</footer>
 
 		</div><!--/.fluid-container-->
