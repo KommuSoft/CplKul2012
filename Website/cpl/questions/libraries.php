@@ -18,10 +18,19 @@ class Libraries extends Question {
 	}
 	
 	public function answers(){
-		$lua = parent::luaSays("");
-		$cpp = parent::cppSays("");
+		$popoverQt = parent::popover("Qt", "Qt framework", "Qt is actually a framework. It's main purpose is to make programs more portable. It also provides nice elements for creating GUIs. Because of the high popularity, Qt is also ported to a lot of other programming languages.");
+	
+		$popoverBoost = parent::popover("Boost", "Boost", "The Boost library is a collection of files that just must be included. This reduces the problems that occur at the linking step. Boost is so good that some parts are included in the C++11 standard.");
+	
+		$lua = parent::luaSays("Lua is a less known language, so the libary support is a bit less than those of the big ones. The fact that Lua is very small language, so not a lot of functionality is included doesn't really help. On the other hand, Lua has a good integration with C. So for popular C libraries, their is a good chance that someone already made a wrapper for it. If this is not the case you can write easily one yourself.");
+		
+		$cpp = parent::cppSays("Because C++ is a language that is widely used, a lot of libraries are available. Also helpful is the fact that C++ is pretty much compatible with C, which increases the range of libraries a lot. A disadvantage is that linking to libraries isn't always very easy. On the other hand there are some high quality libraries available. For example: " . $popoverQt . ", " . $popoverBoost . ", Intel Threading Building Blocks.");
+
 		$cSharp = parent::cSharpSays("");
-		return $lua.$cpp.$cSharp;
+		
+		$python = parent::pythonSays("Python has very support for libraries. First of all Python uses the philosophy \"Batteries included\", so a lot of functionality is already present in Python. It also has a third-party software repository called PyPI which hosts a lot of libraries. Must of these libraries are very easy to install. However there are some compability problems between Python 2 and Python 3");
+		
+		return $lua.$cpp.$cSharp.$python;
 	}
 	
 	public function link(){
