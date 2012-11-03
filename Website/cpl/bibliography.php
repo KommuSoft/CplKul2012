@@ -42,7 +42,10 @@ class Bibliography{
 	private static function fetch($hash){
 		$bib = array();
 		$bib[0] = new Item('The evolution of Lua', 'Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes', '2007');
+		$bib[1] = new Item('Programming Languages - C++ N3290', 'ANSI', '11/04/2011');
+		$bib[2] = new Item("The design and evolution of C++", "Bjarne Stroustrup", "1994");
 		$bib[3] = new Website("http://www.gamedev.net/page/resources/_/technical/game-programming/using-lua-with-c-r2275", "03/10/2012");
+		$bib[4] = new Website("http://www.lua.org/manual/2.1/subsection3_4_2.html", "03/10/2012");
 		return $bib[$hash];
 	}
 	
