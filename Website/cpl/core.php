@@ -18,6 +18,9 @@
 	</style>
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/own.css" rel="stylesheet">
+	
+	<link href="js/prettify/prettify.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>

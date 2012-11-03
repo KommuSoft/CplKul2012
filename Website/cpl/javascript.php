@@ -15,3 +15,4 @@
 <script src="js/bootstrap-carousel.js"></script>
 <script src="js/bootstrap-typeahead.js"></script>
 <script src="js/own.js"></script>
+<script src="js/jp-prettify.js"></script>

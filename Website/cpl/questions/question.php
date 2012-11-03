@@ -13,6 +13,13 @@ abstract class Question {
 	protected static function cSharpSays($stuff){
 		return '<div class="CSharpContainer"><div class="LanguageName">C#</div> <div class="Quote">' . $stuff . '</div></div></p>';
 	}
+	private static function languages($language){
+		$langs = array();
+		$langs["c++"] =  "language-cpp";
+		
+		return $langs[$language];
+	}
+	
 	
 	protected $bib_;
 	public function __construct($child){
@@ -37,6 +44,15 @@ abstract class Question {
 	}
 	public function popover($display, $title, $content){
 		return '<a class="myPopover" rel="popover" data-content="' . $content . '" data-original-title="' . $title . '">' . $display . '</a>';
+	}
+	public function codeInline($code, $language, $linenums=1){
+		return '<pre class="prettyprint linenums:' . $linenums . '"><code class="'. self::languages($language) . '">' . $code . '</code></pre>';
+	}
+	public function code($code, $language, $linenums=1){
+		return '<div class="CodeContainer"><div class="LanguageName">' . $language . '</div> <div class="Quote"><pre class="prettyprint linenums:' . $linenums . '"><code class="'. self::languages($language) . '">' . $code . '</code></pre></div></div></p>';
+	}
+	public function readFromFile($file){
+		return htmlspecialchars(file_get_contents($file));
 	}
 }
 ?>
