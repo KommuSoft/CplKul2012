@@ -1,4 +1,35 @@
 <?php
+
+class Item{
+	private $title;
+	private $author;
+	private $date;	
+
+	public function __construct($title, $author, $date){
+		$this->title = $title;
+		$this->author = $author;
+		$this->date = $date;
+	}
+	
+	public function format(){
+		return '<strong>' . $this->title . '</strong> by ' . $this->author . ' (' . $this->date . ')';
+	}
+}
+
+class Website {
+	private $url;
+	private $date;
+	
+	public function __construct($url, $date){
+		$this->url = $url;
+		$this->date = $date;
+	}
+	
+	public function format(){
+		return '<a href="' . $this->url . '">' . $this->url . "</a> (" . $this->date . ')';
+	}
+}
+
 class Bibliography{
 	private $counter;
 	private $map;
@@ -10,8 +41,8 @@ class Bibliography{
 	
 	private static function fetch($hash){
 		$bib = array();
-		$bib[0] = 'The evolution of Lua';
-		$bib[3] = '<a href="http://www.gamedev.net/page/resources/_/technical/game-programming/using-lua-with-c-r2275">http://www.gamedev.net/page/resources/_/technical/game-programming/using-lua-with-c-r2275</a>';
+		$bib[0] = new Item('The evolution of Lua', 'Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes', '2007');
+		$bib[3] = new Website("http://www.gamedev.net/page/resources/_/technical/game-programming/using-lua-with-c-r2275", "03/10/2012");
 		return $bib[$hash];
 	}
 	
@@ -28,7 +59,7 @@ class Bibliography{
 		$html = '<ul id="bib">';
 		
 		foreach($this->map as $key => $value){
-			$html = $html . '<li id="bib' . $key . '">['. $key . "]: " . $value . '</li>';
+			$html = $html . '<li id="bib' . $key . '">['. $key . "]: " . $value->format() . '</li>';
 		}
 		
 		return $html . "</ul>";
