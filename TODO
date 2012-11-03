@@ -1,4 +1,11 @@
 [Willem] Formatting van de bibliografie moet wss beter (momenteel enkel de titel, kdenk dat ze ons hier op kunnen afrekenen)
+[Jonas] Ik dacht aan titel, auteur en datum (voor boek/paper: datum van publicatie, voor website: datum van raadplegen), dit is heel eenvoudig aan te passen in bibliography.php en vertelt genoeg info volgens mij.
+	
 [Willem] HTML layout beter ondersteunen (<c> werkt bijvoorbeeld niet. Eventueel automatisch formatten van programmeertalen).
+[Jonas] Wat is <c>? Ik vind daar niets over op de html5: http://www.w3.org/TR/2012/WD-html5-20121025/section-index.html#elements-1. Formatting van code zal ik straks doen, zoals gezegd heb ik daar al iets voor (ik denk wel dat haskell niet ondersteund wordt, maar het is moeilijk om iets te vinden dat lua, python, C++, java, C# kan formatten).
+	
 [Willem] Is een socratische dialoog geen "dialoog"? Hier is het eerder een opsomming. Ik had hierbij meer het idee dat de talen zeg maar in debat met elkaar gingen en een soort van gesprek voerden. Dit is technisch mogelijk met de implementatie van de site indien men erna variabelen als "$lua2" declareert (zie OOP.php voor voorbeeld).
+[Jonas] Volledig akkoord, kwestie van tekst wat meer op te delen.
+	
 [Willem] We dienen de website in te dienen als een .tar van .html pagina's (!) In dat geval moeten we de php omzetten naar HTML.
+[Jonas] Als de website af is: alle pagina's met Firefox/Chrome/... opslaan als .html; overal find-and-replace doen van .php naar .html; javascript en css map erbij en dan is de website in html. Klein uurtje werk, of mis ik nog iets? Alles direct schrijven in html zou meer problemen opgeleverd hebben met consistentie en ik ken te weinig javascript dus vandaar de keuze voor php (mijn excuses).
