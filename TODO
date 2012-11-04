@@ -15,5 +15,13 @@
 	2) Wat bedoel je met performance boost? 'var' wordt @ compile-time berekend? Dus waar kun je een performance boost halen?
 	3) 'debatable' is hier het belangrijke woord. Wat is de definitie van weakly typed? Misschien dat we dat ergens kunnen uitleggen. C# zou zou dan wat weaker zijn, maar niet volledig weakly. Ik veronderstel dat je die type conversions ook explicit kunt zetten, zoals in C++ (standaard is het implicit, als je het explicit wil zet je er het explicit keyword voor :p). Dus we zouden kunnen zeggen dat een programmeur in C# en C++ zelf beslist of hij weakly/weaker of niet wil werken.
 	
+[Willem] 
+	1) Het stuk over C++ zal ik weglaten. 'var' is idd equivalent aan 'auto' maar volgens mij kan men we een performance boost halen als men unificieert naar het meest concrete type. Indien een programmeer het type nog niet helemaal kent maar een testtype heeft aangemaakt zal hij iets schrijven als:
+Foo a = new FooA();
+	2) Indien hij var gebruikt en later het type wijzigt naar FooB bijvoorbeeld blijft de compiler het meest concrete type unificeren, wat een voordeel kan opleveren.
+	3) Zelf vind ik dat het neigt naar weak typing maar Wiki vermeld C# onder strong static typed. Maar men zou natuurlijk kunnen zeggen dat er gradaties in weakly typed zijn. C# kent bijvoorbeeld geen automatische conversie tussen string en int. En een programmeur kan enkel conversies voorstellen waar ofwel de bron ofwel het doel tot de klasse behoren die hij aan het definieren is. In die zin is het maar beperkt weakly typed.
+
 [Jonas] Over het tweede deel van C# in typing.php.
 	1) The compiler uses duck typing. Er geen consensus over duck typing maar vaak wordt duck typing gebruikt in een dynamisch context. Dus een compiler (=statisch) gebruikt iets dynamisch, dan kan dan niet. Zoals het weakly typed probleem, is het handig om duck typing uit te leggen zodat die zin dan wel correct is.
+
+[Willem]Opnieuw is er hier een probleem van categorisiatie. Het typesysteem is statisch, anderzijds dien je bij een methode niet te specificeren tot welke delegates het allemaal zal behoren. De compiler gebruikt een pattern matching systeem om dit uit te voeren. Tot slot ondersteund C# sinds 4.0 dynamische typering via het dynamic keyword. Hierbij worden argumenten slechts gecontroleerd at runtime en bovendien werkt het systeem enigzinds met ducktyping: je roept gewoon methodes aan en de code zal slagen indien alle opgeroepen methodes beschikbaar zijn
