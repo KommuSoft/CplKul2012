@@ -9,3 +9,11 @@
 	
 [Willem] We dienen de website in te dienen als een .tar van .html pagina's (!) In dat geval moeten we de php omzetten naar HTML.
 [Jonas] Als de website af is: alle pagina's met Firefox/Chrome/... opslaan als .html; overal find-and-replace doen van .php naar .html; javascript en css map erbij en dan is de website in html. Klein uurtje werk, of mis ik nog iets? Alles direct schrijven in html zou meer problemen opgeleverd hebben met consistentie en ik ken te weinig javascript dus vandaar de keuze voor php (mijn excuses).
+
+[Jonas] Over het eerste deel van C# in typing.php.
+	1) Wat bedoel je met 'won't have a problem', C++ heeft 'auto' wat gelijkaardig is aan 'var'. Dus C++ zal er zeker geen probleem mee hebben want ze hebben het al.
+	2) Wat bedoel je met performance boost? 'var' wordt @ compile-time berekend? Dus waar kun je een performance boost halen?
+	3) 'debatable' is hier het belangrijke woord. Wat is de definitie van weakly typed? Misschien dat we dat ergens kunnen uitleggen. C# zou zou dan wat weaker zijn, maar niet volledig weakly. Ik veronderstel dat je die type conversions ook explicit kunt zetten, zoals in C++ (standaard is het implicit, als je het explicit wil zet je er het explicit keyword voor :p). Dus we zouden kunnen zeggen dat een programmeur in C# en C++ zelf beslist of hij weakly/weaker of niet wil werken.
+	
+[Jonas] Over het tweede deel van C# in typing.php.
+	1) The compiler uses duck typing. Er geen consensus over duck typing maar vaak wordt duck typing gebruikt in een dynamisch context. Dus een compiler (=statisch) gebruikt iets dynamisch, dan kan dan niet. Zoals het weakly typed probleem, is het handig om duck typing uit te leggen zodat die zin dan wel correct is.
