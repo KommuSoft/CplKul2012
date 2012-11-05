@@ -19,8 +19,15 @@ class Expressiveness extends Question {
 	
 	public function answers(){
 		$lua = parent::luaSays("Lua has a very interesting feature: all of it's method calls are basically implemented in libraries. Since version 4, no standard built-in functions are available anyomore.");
-		$cpp = parent::cppSays("That's not true. Take for instance a for loop: one can say it's a language construct, on the other hand one can see it as a higher-order function call where the programmer gives the for-method the initializer, comparison, iterator and the loop-statements. Furthermore print ");
-		$cSharp = parent::cSharpSays("");
+		
+		$cpp = parent::cppSays("That's not true. Take for instance a for loop: one can say it's a language construct, on the other hand one can see it as a higher-order function call where the programmer gives the for-method the initializer, comparison, iterator and the loop-statements. The same can be said for addition, ... Furthermore print and assert are builtins. For example these functions are hidden in C++ in the std namespace.");
+		
+		$cSharp = parent::cSharpSays("C# follow the same strategy as C++.");
+		
+		$python = parent::pythonSays("In Python there are a couple of builtin functions.");
+		
+		$haskell = parent::haskellSays("Haskell has builtin functions however they are in the prelude package, a package that is by default imported.");
+
 		return $lua.$cpp.$cSharp;
 	}
 	

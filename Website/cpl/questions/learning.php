@@ -18,9 +18,12 @@ class Learning extends Question {
 	}
 	
 	public function answers(){
-		$lua = parent::luaSays("");
-		$cpp = parent::cppSays("");
+		$lua = parent::luaSays("[Vertellen dat het voor end-users is en dus vanaf het begin al eenvoudig moest zijn.]");
+		
+		$cpp = parent::cppSays("Whereas Lua is designed for end-users, C++ was originally made for programmers. One of the requirements was that it must be easy to use for C programmers. In this perspective, C++ is easy to learn. But as time passed C++ changed and differs more and more from C.");
+
 		$cSharp = parent::cSharpSays("");
+		
 		return $lua.$cpp.$cSharp;
 	}
 	

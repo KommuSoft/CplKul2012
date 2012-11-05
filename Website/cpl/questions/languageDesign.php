@@ -18,9 +18,12 @@ class LanguageDesign extends Question {
 	}
 	
 	public function answers(){
-		$lua = parent::luaSays("");
-		$cpp = parent::cppSays("");
+		$lua = parent::luaSays("[Requirement: geen OOP, embeddable, portable, simple]");
+		
+		$cpp = parent::cppSays("[Requirement: wel OOP]");
+		
 		$cSharp = parent::cSharpSays("");
+		
 		return $lua.$cpp.$cSharp;
 	}
 	
