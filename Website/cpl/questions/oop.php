@@ -29,9 +29,9 @@ class OOP extends Question {
 		
 		$lua = parent::luaSays("Lua uses a quite special paradigm: the only real datastructure is a table. Lua itself contains only 8 types: nil, number, string, table, function, userdata, boolean and threads. Therefore one can argue Lua isn't a real object-oriented language. The authors of Lua are of course aware of the object-oriented paradigm and see it benefits. However in their opinion the language should remain simple and small. Lua however allows object-oriented programming since objects can be represented by the tables (where the keys are the names of the fields and methods). Inheritance in tables is supported by the so called ''fallback'' mechanism. This mechanism allows the programmer to propose a way to proceed if the basic execution mechanism fails. One can use this mechanism for instance when an index of a table doesn't exist by looking at the parent's table. Since inheritance is widely used one doesn't need to define these fallbacks manually. Lua offers an __index entry a pointer to the parent table. One can easily see the fallback mechanism gives birth to more dynamic typing: an object can change it's parent on the fly while keeping it's own specific attributes.");
 		
-		$cpp = parent::cppSays("C++ has good support for object oriented programming, in fact C++ is an object oriented language. For example, Strings are classes with their own member functions and such.");
+		$cpp = parent::cppSays("C++ has good support for object oriented programming, in fact C++ is an object oriented language. For example, Strings are classes with their own member functions and such. Multiple inheritance is available"); //afgeleid van SIMULA
 		
-		$cSharp = parent::cSharpSays("C# is a language with clear structures supporting the object-oriented programming paradigm. It has classes quite similar to Java. A class can only have one parent. Furthermore a class can have fields, properties, methods, ".$pop_events.", constructors, destructors and ".$pop_operators.". Most of these structures are quite similar to other object-oriented languages. The language forces one to structure his or her classes. The advantage is that the compiler can check a lot of issues. Resulting in more failsafe code.");
+		$cSharp = parent::cSharpSays("C# is a language with clear structures supporting the object-oriented programming paradigm. It has classes quite similar to Java. A class can only have one parent. Furthermore a class can have fields, properties, methods, ".$pop_events.", constructors, destructors and ".$pop_operators.". Most of these structures are quite similar to other object-oriented languages. The language forces one to structure his or her classes. The advantage is that the compiler can check a lot of issues. Resulting in more failsafe code."); //interfaces voor multiple inheritance vermelden
 		
 		$python = parent::pythonSays("Pyhon is also an object oriented language. Actually the class mechanism is based on C++ and Modula-3. Python provides a very clean syntax for creating classes (and their hierarchies). Unfortunately constructors introduce uglier syntax (lots of underscores).");
 		
@@ -39,9 +39,11 @@ class OOP extends Question {
 		
 		$cpp2 = parent::cppSays("C++ doesn't force you to use objects either. You can freely write some code outside a class, in fact a \"Main\" class isn't needed like some other languages. Also some functionality is available with nonmember functions and member functions. E.g." . $this->codeInline($codeEx1, "c++") . 'However this introduces "ambiguity" in the language.');
 		
+		$java = parent::javaSays("Afgeleid van Smalltalk, multiple inheritance door interfaces");
+		
 		$code = $this->code($this->readFromFile("code/cppInheritance.cpp"), "c++");
 		
-		return $lua.$cpp.$cSharp.$python.$lua2.$cpp2.$code;
+		return $lua.$cpp.$cSharp.$python.$lua2.$cpp2.$java.$code;
 	}
 	
 	public function link(){

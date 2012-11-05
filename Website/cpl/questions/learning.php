@@ -18,11 +18,18 @@ class Learning extends Question {
 	}
 	
 	public function answers(){
+		//Experiment doen met het aantal geactiveerde features voor een Hello World programma
+	
 		$lua = parent::luaSays("[Vertellen dat het voor end-users is en dus vanaf het begin al eenvoudig moest zijn.]");
 		
 		$cpp = parent::cppSays("Whereas Lua is designed for end-users, C++ was originally made for programmers. One of the requirements was that it must be easy to use for C programmers. In this perspective, C++ is easy to learn. But as time passed C++ changed and differs more and more from C.");
 
+		//C# en Java niet geschikt om te leren (class nodig, ...)
 		$cSharp = parent::cSharpSays("");
+		
+		//Python heel goed geschikt om te leren
+		
+		//Haskell goed wanneer je nog geen programmeertaal kent
 		
 		return $lua.$cpp.$cSharp;
 	}

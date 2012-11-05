@@ -18,17 +18,20 @@ class Expressiveness extends Question {
 	}
 	
 	public function answers(){
-		$lua = parent::luaSays("Lua has a very interesting feature: all of it's method calls are basically implemented in libraries. Since version 4, no standard built-in functions are available anyomore.");
+		//GUI, data serializeren, SQL
+		$lua = parent::luaSays("Lua has builtin functionality for matching regular expressions and file I/O. Lambda, XML library bestaat maar niet standaard meegeleverd, Library nodig");
 		
-		$cpp = parent::cppSays("That's not true. Take for instance a for loop: one can say it's a language construct, on the other hand one can see it as a higher-order function call where the programmer gives the for-method the initializer, comparison, iterator and the loop-statements. The same can be said for addition, ... Furthermore print and assert are builtins. For example these functions are hidden in C++ in the std namespace.");
+		$cSharp = parent::cSharpSays("C# doesn't have such functionalities. However it has the LINQ framework, this framework comes with additional syntax to write queries to objects. Furthermore, like C++ it has operator overloading. Everything in classes, lambda, XML (na system.xml import)");
 		
-		$cSharp = parent::cSharpSays("C# follow the same strategy as C++.");
+		$cpp = parent::cppSays("Operator overloading, lambda, alles in library die niet meegeleverd is");
 		
-		$python = parent::pythonSays("In Python there are a couple of builtin functions.");
+		$python = parent::pythonSays("Operator overloading, regular expressions, file I/O, lambda, standaard support xml");
 		
-		$haskell = parent::haskellSays("Haskell has builtin functions however they are in the prelude package, a package that is by default imported.");
+		$haskell = parent::haskellSays("Easy to write statements that can be easily parallellised. lambda :), ");
+		
+		$java = parent::javaSays("not expressive (geen operator overloading, ... + decorator file input vb), lambda (wss in java 8), xml zit er standaard in maar is lelijk en niet echt expressief");
 
-		return $lua.$cpp.$cSharp;
+		return $lua.$cpp.$cSharp.$python.$haskell.$java;
 	}
 	
 	public function link(){

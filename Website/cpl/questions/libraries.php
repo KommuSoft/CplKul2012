@@ -22,15 +22,19 @@ class Libraries extends Question {
 	
 		$popoverBoost = parent::popover("Boost", "Boost", "The Boost library is a collection of files that just must be included. This reduces the problems that occur at the linking step. Boost is so good that some parts are included in the C++11 standard.");
 	
-		$lua = parent::luaSays("Lua is a less known language, so the libary support is a bit less than those of the big ones. The fact that Lua is very small language, so not a lot of functionality is included doesn't really help. On the other hand, Lua has a good integration with C. So for popular C libraries, their is a good chance that someone already made a wrapper for it. If this is not the case you can write easily one yourself.");
+		$lua = parent::luaSays("Lua is a less known language, so the libary support is a bit less than those of the big ones. The fact that Lua is very small language, so not a lot of functionality is included doesn't really help. On the other hand, Lua has a good integration with C. So for popular C libraries, their is a good chance that someone already made a wrapper for it. If this is not the case you can write easily one yourself. Game industry gebruikt veel Lua, dus er is bijdrage van game ontwikkelaars. Ook is er niet veel functionaliteit nodig want Lua wordt vaak als embedded language gebruikt, dus moet de host language maar de functionaliteit aanbieden.");
 		
-		$cpp = parent::cppSays("Because C++ is a language that is widely used, a lot of libraries are available. Also helpful is the fact that C++ is pretty much compatible with C, which increases the range of libraries a lot. A disadvantage is that linking to libraries isn't always very easy. On the other hand there are some high quality libraries available. For example: " . $popoverQt . ", " . $popoverBoost . ", Intel Threading Building Blocks.");
+		$cpp = parent::cppSays("Because C++ is a language that is widely used, a lot of libraries are available (not a lot of functionality in the STL). Also helpful is the fact that C++ is pretty much compatible with C, which increases the range of libraries a lot. A disadvantage is that linking to libraries isn't always very easy. On the other hand there are some high quality libraries available. For example: " . $popoverQt . ", " . $popoverBoost . ", Intel Threading Building Blocks.");
 
-		$cSharp = parent::cSharpSays("");
+		$cSharp = parent::cSharpSays(".Net framework is standaard meegeleverd :=:=> heel veel features standaard in de taal. Er zijn ook systemen beschikbaar die bijvoorbeeld java libraries kunnen importen. Heel modulair opgebouwd (voordeel: consistent, nadeel: veel using statements)");
 		
 		$python = parent::pythonSays("Python has very support for libraries. First of all Python uses the philosophy \"Batteries included\", so a lot of functionality is already present in Python. It also has a third-party software repository called PyPI which hosts a lot of libraries. Must of these libraries are very easy to install. However there are some compability problems between Python 2 and Python 3");
 		
-		return $lua.$cpp.$cSharp.$python;
+		$java = parent::javaSays("A lot of libraries available. Standaard veel beschikbaar in de taal. (vaak slechte kwaliteit van libraries). Ook modulair opgebouwd.");
+		
+		$haskell = parent::haskellSays("Dependencies zijn een hel. Maar sommige libraries zijn heel goed (vb. parsers), sommige vakgebieden liggen braak.");
+		
+		return $lua.$cpp.$cSharp.$python.$java.$haskell;
 	}
 	
 	public function link(){

@@ -13,6 +13,12 @@ abstract class Question {
 	protected static function cSharpSays($stuff){
 		return '<div class="CSharpContainer"><div class="LanguageName">C#</div> <div class="Quote">' . $stuff . '</div></div></p>';
 	}
+	protected static function haskellSays($stuff){
+		return '<div class="HaskellContainer"><div class="LanguageName">Haskell</div> <div class="Quote">' . $stuff . '</div></div></p>';
+	}
+	protected static function javaSays($stuff){
+		return '<div class="JavaContainer"><div class="LanguageName">Java</div> <div class="Quote">' . $stuff . '</div></div></p>';
+	}
 	private static function languages($language){
 		$langs = array();
 		$langs["c++"] =  "language-cpp";

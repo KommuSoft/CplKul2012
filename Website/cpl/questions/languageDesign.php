@@ -18,13 +18,19 @@ class LanguageDesign extends Question {
 	}
 	
 	public function answers(){
-		$lua = parent::luaSays("[Requirement: geen OOP, embeddable, portable, simple]");
+		//aligneert Lua zijn arrays? Worden er bijvoorbeeld referenties gebruikt ipv de data zelf zodat alles in 64 bit past?
+	
+		$lua = parent::luaSays("[Requirement: geen OOP, embeddable, portable (geen veronderstelling onderliggende hardware), simple (alles is tables), functioneel, tables in lua mogen verschillende types hebben => cache problemen, table highly optimized (can be array or associative array internally)]");
 		
-		$cpp = parent::cppSays("[Requirement: wel OOP]");
+		$cpp = parent::cppSays("Wel OOP. Gaandeweg functioneel programmeren invloed. Niet zo portable, tuples mogen verschillende type hebben (anders strikt)");
 		
-		$cSharp = parent::cSharpSays("");
+		$cSharp = parent::cSharpSays("Kloon java, dus vereist OOP & portable. Gaandeweg functioneel programmeren invloed. Vorm van dynamic typing, strikt type");
 		
-		return $lua.$cpp.$cSharp;
+		$java = parent::javaSays("OOP, portable");
+		
+		$haskell = parent::haskellSays("Pure lambda calculus implementatie, portable (geen veronderstelling onderliggende hardware maar geen cross compiler)");
+		
+		return $lua.$cpp.$cSharp.$java.$haskell;
 	}
 	
 	public function link(){

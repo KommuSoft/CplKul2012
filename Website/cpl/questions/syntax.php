@@ -18,10 +18,19 @@ class Syntax extends Question {
 	}
 	
 	public function answers(){
-		$lua = parent::luaSays("");
-		$cpp = parent::cppSays("");
-		$cSharp = parent::cSharpSays("");
-		return $lua.$cpp.$cSharp;
+		$lua = parent::luaSays("Verbose syntax");
+		
+		$cpp = parent::cppSays("Matig verbose (curly braces, )");
+		
+		$cSharp = parent::cSharpSays("Matig verbose");
+		
+		$java = parent::javaSays("quasi verbose");
+		
+		$python = parent::pythonSays("niet verbose");
+		
+		$haskell = parent::haskellSays("niet verbose");
+		
+		return $lua.$cpp.$cSharp.$java.$python.$haskell;
 	}
 	
 	public function link(){
