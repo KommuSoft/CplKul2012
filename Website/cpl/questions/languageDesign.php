@@ -19,8 +19,11 @@ class LanguageDesign extends Question {
 	
 	public function answers(){
 		//aligneert Lua zijn arrays? Worden er bijvoorbeeld referenties gebruikt ipv de data zelf zodat alles in 64 bit past?
+		$lua0 = parent::luaSays("as simple as possible +voorbeelden");
+		$cpp0 = parent::cppSays("not good for performance, because it is to general +voorbeelden. How is your design, c#?");
+		$cShahrp0 = parent::cSharpSays("multiparadigm and oo");
 	
-		$lua = parent::luaSays("[Requirement: geen OOP, embeddable, portable (geen veronderstelling onderliggende hardware), simple (alles is tables), functioneel, tables in lua mogen verschillende types hebben => cache problemen, table highly optimized (can be array or associative array internally)]");
+		$lua = parent::luaSays("multiparadigm\n[Requirement: geen OOP, embeddable, portable (geen veronderstelling onderliggende hardware), simple (alles is tables), functioneel, tables in lua mogen verschillende types hebben => cache problemen, table highly optimized (can be array or associative array internally)]");
 		
 		$cpp = parent::cppSays("Wel OOP. Gaandeweg functioneel programmeren invloed. Niet zo portable, tuples mogen verschillende type hebben (anders strikt)");
 		
