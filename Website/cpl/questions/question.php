@@ -22,6 +22,8 @@ abstract class Question {
 	private static function languages($language){
 		$langs = array();
 		$langs["c++"] =  "language-cpp";
+		$langs["lua"] =  "language-lua";
+		$langs["python"] =  "language-python";		
 		
 		return $langs[$language];
 	}
