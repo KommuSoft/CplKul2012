@@ -3,8 +3,7 @@ using System.Collections.Generic;
 	
 public class coroutineExample {
 		
-	public static IEnumerable<int> Fibonacci ()
-	{
+	public static IEnumerable<int> Fibonacci () {
 		yield return 1;
 		int a = 0;
 		int b = 1;
@@ -17,8 +16,7 @@ public class coroutineExample {
 		}
 	}
 	
-	public static void Main ()
-	{
+	public static void Main () {
 		int n = 10;
 		foreach (int f in Fibonacci ()) {
 			n--;
