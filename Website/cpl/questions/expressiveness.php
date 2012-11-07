@@ -22,8 +22,8 @@ class Expressiveness extends Question {
 		$code0 = $this->code($this->readFromFile("code/LinqExample.cs"), "c#");
 		$code1 = $this->code($this->readFromFile("code/templateProgramming.cpp"), "c++");
 		$code2 = $this->code($this->readFromFile("code/coroutines.lua"), "lua");
-		$code3 = $this->code($this->readFromFile("code/yieldExample.cs"), "c#");
-		$code4 = $this->code($this->readFromFile("code/yieldExample.java"), "java");
+		$code3 = $this->code($this->readFromFile("code/YieldExample.cs"), "c#");
+		$code4 = $this->code($this->readFromFile("code/YieldExample.java"), "java");
 		$cSharp0 = parent::cSharpSays("In C# expressiveness is mainly supported by introducing special syntax for domain specific features. As an example take for instance the LINQ framework. It enables one to write object-oriented queries in SQL-style:".$code0);
 		$lua0 = parent::luaSays("I don't see the importance of this syntactical sugar. It's a nice feature that eliminates a lot of noise, but one can't argue by using LINQ the amount of code is reduced signifcantly since one can write this by method calls. In my opinion the expressiveness of a language is more determined by the ability of the compiler to modify simple lines of code into a complex structure. Since this reduces the amount of work the programmer needs to do.");
 		$cpp0 = parent::cppSays("I agree with Lua. The syntactical sugar of LINQ is very nice, but it doesn't yield that much gain. C++ has for instance template programming. It is a powerfull mechanism to generalize code and reduces the amount of code significantly.");
@@ -34,14 +34,14 @@ class Expressiveness extends Question {
 		$lua1 = parent::luaSays("My question to C++ is: do you see any advantage of this if you run code by an interpreter. Since the interpreter is working at runtime, such optimizations will probably don't yield any benefit. However even Lua has some structures to make the language more expressive, but keep in mind since the language is interpreted, we can't go that far. A powerful principle are coroutines.");
 		$java2 = parent::javaSays("What are coroutines?");
 		$lua2 = parent::luaSays("Coroutines are methods who work in a collaborative fashion with the main program. They have their own stack and local variables, but are used for instance for data manipulation. One can think of the like threads. However coroutines work sequentially.");
-		$java2 = parent::javaSays("I don't really understand what you mean? How do you work with these methods and how to they know when they should be executed? Can you give a minimal example?");
+		$java3 = parent::javaSays("I don't really understand what you mean? How do you work with these methods and how to they know when they should be executed? Can you give a minimal example?");
 		$lua3 = parent::luaSays("Well as I already said a typical application is data generation or data modification. So take a look at the following code: ".$code2."You see a function who returns the chemical symbols of all noble gasses. No we can turn this method into a coroutine and use that method in a loop. As long as their are still symbols, the coroutine is still alive and we can print symbols. Now i guess one can imagine a method where we simple generate all prime numbers. One can this function as a coroutine to generate for instance all prime numbers smaller than 42.");
 		$cSharp1 = parent::cSharpSays("C# has a similar feature: however the fact that you are working with a coroutine doesn't has to be specified. One simply uses the yield statement in order to emit an element of the list.");
 		$lua4 = parent::luaSays("I'm not entirely sure we this feature is exactly the same. Can you give me an example?");
 		$cSharp2 = parent::cSharpSays("Sure:".$code3);
 		$java2 = parent::javaSays("That looks nice, but again it's more syntactical sugar. In Java you can emulate those coroutines in the following way:".$code4);
 		$lua5 = parent::luaSays("True, but I don't see why that's relevant Java? Of course everything can be emulated since all languages here are turing complete. But we are talking about expressiveness. In C# you can write in 30 lines what requires 50 in Java. Since this is only a minimal example, I expect the difference to grow more significant with more complicated examples.");
-		$java3 = parent::javaSays("But I guess internally the compiler or the runtime environment will modify the code to an object-oriented pattern.");
+		$java4 = parent::javaSays("But I guess internally the compiler or the runtime environment will modify the code to an object-oriented pattern.");
 		$cpp3 = parent:cppSays("");
 		//$lua0 = parent::luaSays("Lua aims to be an expressive language. A proof of this expressiveness is for instance coroutine support.");
 		//$cSharp0 = parent::cSharpSays("What makes coroutines actually an expressive part of the language? C# itself has coroutine support too. Of course it helps the programmer to specify better list generation, but it doesn't but let's say that it adds only little expressiveness to the language.");
@@ -61,7 +61,7 @@ class Expressiveness extends Question {
 		
 		//$java = parent::javaSays("not expressive (geen operator overloading, ... + decorator file input vb), lambda (wss in java 8), xml zit er standaard in maar is lelijk en niet echt expressief");
 
-		return $cSharp0.$lua0.$lua1;
+		return $cSharp0.$lua0.$cpp0.$java1.$cpp1.$lua1.$java2.$lua2.$java3.$lua3.$cSharp1.$lua4.$cSharp2.$java2.$lua5.$java4.$cpp3;
 	}
 	
 	public function link(){
