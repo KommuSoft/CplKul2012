@@ -1,0 +1,14 @@
+Items kunnen meerdere keren in de bibliografie verschijnen. Zie typing.php.
+Bij tjolders met een lage schermresolutie overlapt De naam van de taal met de tekst. Zie alles wat Haskell/Python zegt.
+Stuff@right vervangen door iets nuttigs.
+About toevoegen, uitleg project en het feit dat we een expert over de taal laten spreken.
+Contact verwijderen?
+Popover moet verdwijnen wanneer er geklikt wordt op iets anders. Andere oplossing (eenvoudiger): popover niet laten verschijnen bij klikken maar bij een hover.
+Popovers iets breder maken.
+Plaatsing popover kan beter.
+	UC:
+		scroll website naar beneden tot popover link quasi bovenaan staat.
+		klik op popover
+		scroll naar boven op popover te lezen
+	Het openen van een popover zou er moeten voor zorgen dat de popover direct leesbaar is
+text justify gebruiken?
