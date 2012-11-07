@@ -24,6 +24,9 @@ abstract class Question {
 		$langs["c++"] =  "language-cpp";
 		$langs["lua"] =  "language-lua";
 		$langs["python"] =  "language-python";		
+		$langs["c#"] =  "language-csharp";	
+		$langs["java"] =  "language-java";	
+		$langs["haskell"] =  "language-hs";		
 		
 		return $langs[$language];
 	}
