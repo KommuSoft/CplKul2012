@@ -41,6 +41,8 @@ class Expressiveness extends Question {
 		$cSharp2 = parent::cSharpSays("Sure:".$code3);
 		$java2 = parent::javaSays("That looks nice, but again it's more syntactical sugar. In Java you can emulate those coroutines in the following way:".$code4);
 		$lua5 = parent::luaSays("True, but I don't see why that's relevant Java? Of course everything can be emulated since all languages here are turing complete. But we are talking about expressiveness. In C# you can write in 30 lines what requires 50 in Java. Since this is only a minimal example, I expect the difference to grow more significant with more complicated examples.");
+		$java3 = parent::javaSays("But I guess internally the compiler or the runtime environment will modify the code to an object-oriented pattern.");
+		$cpp3 = parent:cppSays("");
 		//$lua0 = parent::luaSays("Lua aims to be an expressive language. A proof of this expressiveness is for instance coroutine support.");
 		//$cSharp0 = parent::cSharpSays("What makes coroutines actually an expressive part of the language? C# itself has coroutine support too. Of course it helps the programmer to specify better list generation, but it doesn't but let's say that it adds only little expressiveness to the language.");
 		//$lua1 = parent::luaSays("That's partly because the coroutine support in C# is somehow limited to list generation.");
