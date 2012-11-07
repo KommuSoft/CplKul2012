@@ -1,0 +1,3 @@
+Out of the box, Lua does not have a class system, but its powerful metaprogramming facilities makes defining classic objects straightforward -> http://lua-users.org/wiki/SimpleLuaClasses
+
+Lua has no built-in notion of "classes" for use in object-oriented programming. However, we can simulate many features of the classes of other languages by using just the tables and metamethods discussed previously (MetamethodsTutorial). To declare a class in Lua, we will need (1) a constructor (String:new below), (2) a class method table (String), and (3) a ''class metatable' (mt). -> http://lua-users.org/wiki/ObjectOrientationTutorial
