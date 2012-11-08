@@ -48,6 +48,7 @@ class Bibliography{
 		$bib[4] = new Website("http://www.lua.org/manual/2.1/subsection3_4_2.html", "03/10/2012");
 		$bib[5] = new Item("Functional Programming for Everyday .NET Development", "Jeremy Miller", '2009');
 		$bib[6] = new Item("Haskell and C++ Template Metaprogramming", "Bartosz Milewski", "2011");
+		//$bib[7] = new Item("Concepts of Programming Languages, Tenth Edition", "Robert W. Sebesta", "2012");
 		return $bib[$hash];
 	}
 	
