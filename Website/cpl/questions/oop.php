@@ -46,10 +46,25 @@ function Car:accelerate(speedIncrement)
 end
 
 --Creation of a new car
-a = Car:new()
-a:accelerate(50)
-print(a.speed) --The output is 100, so a takes the speed of Car at the time of creation
+nCar = Car:new()
+nCar:accelerate(70)
+print(nCar.speed) --The output is 120, so a takes the speed of Car at the time of creation
+
+--Adding inheritance
+FastCar = Car:new();
+
+function FastCar:accelerate(speedincrement)
+	self.speed = self.speed+2*speedincrement
+end
+
+fCar = FastCar:new() --When new executes here, its self parameter will refer to FastCar. This implies that the metatable of fCar will be FastCar.
+print(fCar.speed) --The output is 50, so the value of Car is used.
+
+fCar:accelerate(70)
+print(fCar.speed) --The output is 190, because the implementation of the method of FastCar is used.
 ";
+
+//er moet nog wat extra uitleg komen over metamethods.
 
 		$lua = parent::luaSays("Lua uses a quite special paradigm: the only real datastructure is a table. Lua itself contains only 8 types: nil, number, string, table, function, userdata, boolean and threads. Therefore one can argue Lua isn't a real object-oriented language. The authors of Lua are of course aware of the object-oriented paradigm and see it benefits. However in their opinion the language should remain simple and small. Lua however allows object-oriented programming since objects can be represented by the tables (where the keys are the names of the fields and methods). Inheritance in tables is supported by the so called ''fallback'' mechanism. This mechanism allows the programmer to propose a way to proceed if the basic execution mechanism fails. One can use this mechanism for instance when an index of a table doesn't exist by looking at the parent's table. Since inheritance is widely used one doesn't need to define these fallbacks manually. Lua offers an __index entry a pointer to the parent table. One can easily see the fallback mechanism gives birth to more dynamic typing: an object can change it's parent on the fly while keeping it's own specific attributes.".$this->codeInline($codeEx2, "lua"));
 		
