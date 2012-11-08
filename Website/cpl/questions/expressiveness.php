@@ -45,6 +45,9 @@ class Expressiveness extends Question {
 		$cpp3 = parent::cppSays("Of course: C++ has coroutines too, but they are already handled at precompiler level since they are nothing more than macro's. However I think we should move further into the discussion. Another important aspect where some language aims to be more expressive is serialization: storing data of object in your program into an a file or transmit it over the network. Are their some languages who support this?");
 		$java5 = parent::javaSays("Thats one of the cool features of Java: one simply needs to let the class implement the serialization interface and serialization is handled by the runtime itself. Whether one wants to store that object into a file or send it over a network doesn't matter: Java simply converts the object into a binary stream.");
 		$cSharp3 = parent::cSharpSays("And how does Java knows the format of your class? Since you store the fields of your objects one has to know in which order you serialize them.");
+		$java6 = parent::javaSays("The structure of the class is also encoded (of course with it's superclasses).");
+		$cpp4 = parent::cppSays("And this doesn't result in bloated files and bandwidth usage? C++ doesn't has this form of serialization (of course their are libraries to help programmers write their serializers). The main reason is that C++ compiles to machine code. Therefore there is no virtual machine who can take a look into the objects at runtime. One can of course argue that the precompiler could write serialization functions. But event then there are problems: what if an object has a method pointer. Their is a chance for instance that the program on the other side of the network doesn't use the same program, or is written in a different machine language. Therefore there is no straightforward solution to automatic serialization. However I guess most languages who run in virtual machines don't suffer from this problems?");
+		$lua6 = parent::luaSays("That's true: Lua has no built-in functionalities to serialize objects. However since each object is a table, it's not that hard to built a generic method to do the job. And methods aren't a problem either: the virtual machine can send code through the network.");
 		//$lua0 = parent::luaSays("Lua aims to be an expressive language. A proof of this expressiveness is for instance coroutine support.");
 		//$cSharp0 = parent::cSharpSays("What makes coroutines actually an expressive part of the language? C# itself has coroutine support too. Of course it helps the programmer to specify better list generation, but it doesn't but let's say that it adds only little expressiveness to the language.");
 		//$lua1 = parent::luaSays("That's partly because the coroutine support in C# is somehow limited to list generation.");
@@ -63,7 +66,7 @@ class Expressiveness extends Question {
 		
 		//$java = parent::javaSays("not expressive (geen operator overloading, ... + decorator file input vb), lambda (wss in java 8), xml zit er standaard in maar is lelijk en niet echt expressief");
 
-		return $cSharp0.$lua0.$cpp0.$java1.$cpp1.$lua1.$java2.$lua2.$java3.$lua3.$cSharp1.$lua4.$cSharp2.$java2.$lua5.$java4.$cpp3;
+		return $cSharp0.$lua0.$cpp0.$java1.$cpp1.$lua1.$java2.$lua2.$java3.$lua3.$cSharp1.$lua4.$cSharp2.$java2.$lua5.$java4.$cpp3.$java5.$cSharp3.$java6.$cpp4.$lua6;
 	}
 	
 	public function link(){
