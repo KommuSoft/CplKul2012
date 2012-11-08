@@ -49,6 +49,7 @@ class Bibliography{
 		$bib[5] = new Item("Functional Programming for Everyday .NET Development", "Jeremy Miller", '2009');
 		$bib[6] = new Item("Haskell and C++ Template Metaprogramming", "Bartosz Milewski", "2011");
 		//$bib[7] = new Item("Concepts of Programming Languages, Tenth Edition", "Robert W. Sebesta", "2012");
+		$bib[10] = new Website("http://www.crytek.com/cryengine/cryengine2/overview", "08/11/2012");
 		return $bib[$hash];
 	}
 	
