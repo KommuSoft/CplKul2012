@@ -37,11 +37,17 @@ class Portability extends Question {
 		$java2 = parent::javaSays("Well if you compile your system to machine code, you have to make assumptions about the system. With a virtual machine, you postpone this decisions until you run the program. If the processor for instance supports the MMX or SSE, the virtual machine can optimize the code in order to take advantage of this extended instruction set. The same holds for instance for GPU's with OpenCL support.");
 		$cpp3 = parent::cppSays("Most C++ compilers support a lot of popular instruction set extensions. Therefore the virtual machines will not increase performance.");
 		$cSharp2 = parent::cSharpSays("Probably true. However this requires the code to be compiled on the target machine. Therefore the source code should be available. Most software developers tend to hide the source code in order to protect their technology. Compiling the code to virtual machine instructions is a first step to hide the source code.");
-		$lua5 = parent::luaSays("Probably true. An open question however is if backwards compatibility is really necessary.");
-		$cpp4 = parent::cppSays("In C++ backwards compatibility is an important issue. More than 1'300 pages were written in order to keep the language backwards compatbile".parent::bib()->cite(1).".");
+		$lua5 = parent::luaSays("Probably true. An open question however is if backwards compatibility is really necessary. I don't see what backwards compatibility has to do with portability?");
+		$cpp4 = parent::cppSays("Since you can't ship each possible driver and library with your code, backwards compatibility is somehow related to portability. If your code is not backwards compatible, you have a large chance stuff will break at the client side. In C++ backwards compatibility is an important issue. More than 1'300 pages were written in order to keep the language backwards compatbile".parent::bib()->cite(1).". I agree that's a huge cost to achieve compatibility. However C++ has a lot of legacy code what makes the effort justified. However a glue language like Lua probably doesn't need to be backwards compatible since the glue logic is used for only one application.");
+		$lua6 = parent::luaSays("True, another reason I think is that Lua remains an interpreted language. The more complex the runtime compiler, the slower the program will run. Therefore legacy features probably imply a bloated language and thus bloated programs.");
+		$cSharp3 = parent::cSharpSays("But hasn't Lua got a compiler? As far as I know one can already preprocess the programming code into byte code for a Lua virtual machine. In that aspect Lua doesn't have to worry about a bloated language.");
+		$lua7 = parent::luaSays("Lua has a compiler, but keep in mind even the virtual machine instructions are not backwards compatible. For instance until version 4, the virtual machine was stack-based. Now Lua uses a register based approach. Furthermore the number of instructions has been reduced: the first version had more than sixty instructions, now their are less than fourty.");
+		$cSharp4 = parent::cSharpSays("That's quite small. C# has more than 230 virtual machine instructions. However that's probably reasonable since the language has more programming concepts. Furthermore in response to C++: I think a virtual machine approach can at least partly solve backwards compatibility issues. Of course the virtual machine can process different versions of the language by implementing their proper virtual machines. Furthermore C# uses a system called Global Assembly Cache: a repository where different versions of each library are stored. Each version of each library has a unique identifier called GUID. When you include a library into a C# project, one has to specify this GUID. Therefore the virtual machine can load the proper version of that library.");
+
+		//TODO: add haskell and python?
 
 
-		$lua = parent::luaSays("Lua is very portable. There are a couple reasons for this. Like I said before Lua was designed to be used by a lot of different people. This means that a lot of different systems can be used. So Lua wa designed with portability in mind. Another point is that Lua was (and is) designed to be a small language. The designers say it's easier to add a feature than removing an excessive one. Also they aren't afraid to break backwards compatibility. This results in a small language. For example: the reference manual is less than 100 pages. How big is the C++ reference?, VM => portable");
+		/*$lua = parent::luaSays("Lua is very portable. There are a couple reasons for this. Like I said before Lua was designed to be used by a lot of different people. This means that a lot of different systems can be used. So Lua wa designed with portability in mind. Another point is that Lua was (and is) designed to be a small language. The designers say it's easier to add a feature than removing an excessive one. Also they aren't afraid to break backwards compatibility. This results in a small language. For example: the reference manual is less than 100 pages. How big is the C++ reference?, VM => portable");
 		
 		$cpp = parent::cppSays("More than 1300 pages." . parent::bib()->cite(1) . " But C++ can't permit to break backwards compatibility. The language is used very intensively. Also Lua users can download the interpreter and support it themselves, something that is much much more difficult to do with C++. The reason why C++ isn't that portable in real life, is that compiler writers and library designers create stuff that is useful but not portable. For example the following code isn't valid C++" . $this->codeInline($codeEx1, "c++") . "Although some compilers accept it and make a C++ extension of it.");
 		
@@ -53,9 +59,9 @@ class Portability extends Question {
 		
 		$java = parent::javaSays("Goede portabiliteit, zolang het geen low level stuff is zoals drivers. JVM zorgt er voor dat het portable is.");
 
-		$haskell = parent::haskellSays("Geen vm, compileert naar C-- (of een C variant, afhankelijk van de compiler).");
+		$haskell = parent::haskellSays("Geen vm, compileert naar C-- (of een C variant, afhankelijk van de compiler).");*/
 		
-		return $lua0.$cSharp0.$lua1.$cpp0.$lua2.$java0.$lua3.$cSharp1.$lua4.$cpp1.$java1.$cpp2.$java2.$cpp3.$cSharp2.$lua5.$cpp4;
+		return $lua0.$cSharp0.$lua1.$cpp0.$lua2.$java0.$lua3.$cSharp1.$lua4.$cpp1.$java1.$cpp2.$java2.$cpp3.$cSharp2.$lua5.$cpp4.$lua6.$cSharp3.$lua7.$cSharp4;
 	}
 	
 	public function link(){
