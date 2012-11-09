@@ -30,31 +30,31 @@ x = 4 y = 2*x
 
 x = 4; y = 2*x;";
 
-		$codeEx2 =
-"x,y = 100,200"; 
+		$codeEx2 = "x,y = 100,200"; 
 
 		$codeEx3 = 
 "int a,b;
 a = b = 100;"; 
 
-		$codeEx4 = 
-"x,y = y,x";
+		$codeEx4 =  "x,y = y,x";
+		
+		$codeEx5 = "int a,b;
+a,b = 5,10; // a is undefined, b is 5
+(a,b) = (5,10); //a is undefined, b is 10"; 
 
-		$lua0 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua. To illustrate this, all following groups of statements are valid and equivalent." . $this->codeInline($codeEx1, "lua"));
+		$lua0 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua, Lua is a so called free format language. To illustrate this, all following groups of statements are valid and equivalent." . $this->codeInline($codeEx1, "lua"));
 
 		$java0 = parent::javaSays("In Java, you can put multiple statements on the same line, but the semicolon is necessary. It makes the code more readable by using it. Are there other unusual things that can be written in Lua?");
 
 		$lua1 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$this->codeInline($codeEx2, "lua"). "The result is that the variable x gets the value 100 and the variable y gets the value 200.");
-
-		$python0 = parent::pythonSays("Python can do a similar thing");
 		
-		$cpp0 = parent::cppSays("C++ can do the same thing syntactically. But semantically it's very different. It's even funier with parentheses.");
+		$cpp0 = parent::cppSays("C++ can do something that looks the same. Although is's syntactically the same thing, semantically it's very different. It's even funier with parentheses. Here is an example." . $this->codeInline($codeEx5, "cpp") . "This so because this is'n a list like in Lua, the ',' is actually an operator.");
 
-		$java1 = parent::javaSays("Java can do something similar. The same value can be assigned to different variables in one statement. For example,". $this->codeInline($codeEx3, "java") . "But I have to admit that this is more limited. I was also wondering what happens if the number of elements isn't the same on both sides. Does this result in an error?");
+		$java1 = parent::javaSays("Java can also do something similar. The same value can be assigned to different variables in one statement. For example,". $this->codeInline($codeEx3, "java") . "But I have to admit that this is more limited. I was also wondering what happens if the number of elements isn't the same on both sides. Does this result in an error?");
 
 		$lua2 = parent::luaSays("Surprisingly no. If the number of elements on the right is less than the number of elements on the left, then the extra variables on the left will receive nil as their value. But if the number of elements on the left are less than the number of elements on the right, then the extra values will be discarded.");
 
-		$python1 = parent::pythonSays("Python is more strict, the number of elements have to match.");
+		$python1 = parent::pythonSays("Python also supports multiple assignments. But Python is more strict, the number of value on both sides of the '=' have to match.");
 
 		$java2 = parent::javaSays("Ok, now I think I have a good understanding of how it works. But I am missing a good example where this construct really proves its usefulness");
 
@@ -102,7 +102,7 @@ a = b = 100;";
 		
 		$haskell = parent::haskellSays("niet verbose");
 		
-		return $lua0.$java0.$lua1.$python0.$cpp0.$java1.$lua2.$python1.$java2.$lua3.$lua4.$cpp1.$java3.$lua5;
+		return $lua0.$java0.$lua1.$cpp0.$java1.$lua2.$python1.$java2.$lua3.$lua4.$cpp1.$java3.$lua5;
 	}
 	
 	public function link(){
