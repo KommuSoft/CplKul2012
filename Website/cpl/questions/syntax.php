@@ -40,22 +40,29 @@ a = b = 100;";
 		$codeEx4 = 
 "x,y = y,x";
 
-		$lua0_1 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua.
-To illustrate this, all following groups of statemens are valid and equivalent." . $this->codeInline($codeEx1, "lua"));
+		$lua0 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua. To illustrate this, all following groups of statements are valid and equivalent." . $this->codeInline($codeEx1, "lua"));
 
-		$java0_1 = parent::javaSays("In Java, you can put multiple statements on the same line, but the semicolon is necessary. It makes the code more readable by using it. Are there other unusual things that can be written in Lua?");
+		$java0 = parent::javaSays("In Java, you can put multiple statements on the same line, but the semicolon is necessary. It makes the code more readable by using it. Are there other unusual things that can be written in Lua?");
 
-		$lua0_2 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$this->codeInline($codeEx2, "lua"). "The result is that the variable x gets the value 100 and the variable y gets the value 200.");
+		$lua1 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$this->codeInline($codeEx2, "lua"). "The result is that the variable x gets the value 100 and the variable y gets the value 200.");
 
-		$java0_2 = parent::javaSays("Java can do something similar. The same value can be assigned to different variables in one statement. For example,". $this->codeInline($codeEx3, "java") . "But I have to admit that this is more limited. I was also wondering what happens if the number of elements isn't the same on both sides. Does this result in an error?");
+		$python0 = parent::pythonSays("Python can do a similar thing");
+		
+		$cpp0 = parent::cppSays("C++ can do the same thing syntactically. But semantically it's very different. It's even funier with parentheses.");
 
-		$lua0_3 = parent::luaSays("Surprisingly no. If the number of elements on the right is less than the number of elements on the left, then the extra variables on the left will receive nil as their value. But if the number of elements on the left are less than the number of elements on the right, then the extra values will be discarded.");
+		$java1 = parent::javaSays("Java can do something similar. The same value can be assigned to different variables in one statement. For example,". $this->codeInline($codeEx3, "java") . "But I have to admit that this is more limited. I was also wondering what happens if the number of elements isn't the same on both sides. Does this result in an error?");
 
-		$java0_3 = parent::javaSays("Ok, now I think I have a good understanding of how it works. But I am missing a good example where this construct really proves its usefulness");
+		$lua2 = parent::luaSays("Surprisingly no. If the number of elements on the right is less than the number of elements on the left, then the extra variables on the left will receive nil as their value. But if the number of elements on the left are less than the number of elements on the right, then the extra values will be discarded.");
 
-		$lua0_4 = parent::luaSays("Let's think. Ok, I know. When you need to swap two values, just one expression is needed." .$this->codeInline($codeEx4, "lua"). "So no explicit temporary variable is used. Here, Lua evaluates all the values on the right side and then performs the assignment. To refer to my second example, multiple assignment doesn't work faster than when you had put that expression on two lines."); 
+		$python1 = parent::pythonSays("Python is more strict, the number of elements have to match.");
+
+		$java2 = parent::javaSays("Ok, now I think I have a good understanding of how it works. But I am missing a good example where this construct really proves its usefulness");
+
+		$lua3 = parent::luaSays("Let's think. Ok, I know. When you need to swap two values, just one expression is needed." .$this->codeInline($codeEx4, "lua"). "So no explicit temporary variable is used. Here, Lua evaluates all the values on the right side and then performs the assignment. To refer to my second example, multiple assignment doesn't work faster than when you had put that expression on two lines."); //Jonas: moet die "Let's think. Ok, I know" er in? Dat klinkt zo geforceerd.
 //Bron van het bovenstaande: vooral het boek Programming in Lua (2de editie) van ROBERTO IERUSALIMSCHY
 
+
+//Jonas: Syntax en semantiek zijn soms aan elkaar gekoppeld maar toch heb ik het moeilijk met "length" en "maxn". Een goede plaats weet ik niet echt, ze vallen volgens mij tussen syntax en language design. Aangezien er bij language design zeker wat verteld zal worden over tables, zou ik het dan daar plaatsen.
 //the length operator werkt niet correct bij tabellen waarin nil elementen zitten. In alle andere talen werkt dit wel vermoed ik. Een vb.
 //x = {}
 //x[1] = "begin"
@@ -68,6 +75,14 @@ To illustrate this, all following groups of statemens are valid and equivalent."
 //print(table.maxn(a))
 //uitvoer --> 10000
 
+		$lua4 = parent::luaSays("Lua has also very few keywords. Only 22. How much keywords do the other languages have?"); //TODO: misschien vraag specieker maken (bv rechtstreeks aan C++ vragen)
+		
+		$cpp1 = parent::cppSays("86" . parent::bib()->cite(15));
+		
+		$java3 = parent::javaSays("50 but two of them are unused and only reserverd" . parent::bib()->cite(20) . "But how does this correspond to the syntax");
+		
+		$lua5 = parent::luaSays("Designed for end users => they are not able to learn a programming language => as simple as possible but not simpler => few keywords is good");
+		
 //ook slechts 22 keywords in lua
 //and       break     do        else      elseif    end
 //false     for       function  goto      if        in
@@ -87,8 +102,7 @@ To illustrate this, all following groups of statemens are valid and equivalent."
 		
 		$haskell = parent::haskellSays("niet verbose");
 		
-		return $lua0_1.$java0_1.$lua0_2.$java0_2.$lua0_3.$java0_3.$lua0_4;
-		//return $lua.$cpp.$cSharp.$java.$python.$haskell;
+		return $lua0.$java0.$lua1.$python0.$cpp0.$java1.$lua2.$python1.$java2.$lua3.$lua4.$cpp1.$java3.$lua5;
 	}
 	
 	public function link(){
