@@ -38,7 +38,7 @@ class Portability extends Question {
 		$cpp3 = parent::cppSays("Most C++ compilers support a lot of popular instruction set extensions. Therefore the virtual machines will not increase performance.");
 		$cSharp2 = parent::cSharpSays("Probably true. However this requires the code to be compiled on the target machine. Therefore the source code should be available. Most software developers tend to hide the source code in order to protect their technology. Compiling the code to virtual machine instructions is a first step to hide the source code.");
 		$lua5 = parent::luaSays("Probably true. An open question however is if backwards compatibility is really necessary.");
-		$cpp4 = parent:cppSays("In C++ backwards compatibility is an important issue. More than 1'300 pages were written in order to keep the language backwards compatbile".parent::bib()->cite(1).".");
+		$cpp4 = parent::cppSays("In C++ backwards compatibility is an important issue. More than 1'300 pages were written in order to keep the language backwards compatbile".parent::bib()->cite(1).".");
 
 
 		$lua = parent::luaSays("Lua is very portable. There are a couple reasons for this. Like I said before Lua was designed to be used by a lot of different people. This means that a lot of different systems can be used. So Lua wa designed with portability in mind. Another point is that Lua was (and is) designed to be a small language. The designers say it's easier to add a feature than removing an excessive one. Also they aren't afraid to break backwards compatibility. This results in a small language. For example: the reference manual is less than 100 pages. How big is the C++ reference?, VM => portable");
