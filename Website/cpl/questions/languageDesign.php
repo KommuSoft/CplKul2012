@@ -33,8 +33,13 @@ class LanguageDesign extends Question {
 		$lua2 = parent::luaSays("I don't understand what you mean by nominal programming?");
 		$java1 = parent::javaSays("Well take for instance the following function:".parent::codeInline($clua0, "lua")."By writing this function you make a contract that you only will use this method on with values of types where the plus operator is defined. This case is of course simply. But if you have a lot of functions and an entire team of people working on that system, things can become pretty complicated. Having a compiler to check if you didn't make mistakes is than a necessity. Why was dynamic typing introduced as a language concept of Lua in the first place?");
 		$lua3 = parent::luaSays("The main reason is it's simplicity".parent::bib()->cite(0).". However there are other factors: first of all Lua was and still is a scripting language. That means their is no compiler step. Since the program is also lazy loaded doing type checking would not discover that much issues.");
-		$cSharp1 = parent::cSharpSays("Yeah, but Lua has a compiler now, and since I recall Lua doesn't think that much about backward compatibility, Lua could abandon the dynamic typing idea. C# tries to navigate in the middle of dynamic and static typing: in the earlier versions of C# variables had to be stricly typed. Since 2010 however one can use the 'dynamic' keyword. By using dynamic, one can call methods where the compiler is not sure wether these methods exist. Perhaps Lua could become more static typed by allowing the programmer to annotate variables with types who are then checked by the compiler.");
-		$haskell1 = parent:cppSays("");
+		$cSharp1 = parent::cSharpSays("Yeah, but Lua has a compiler now, and since I recall Lua doesn't think that much about backward compatibility, Lua could abandon the dynamic typing idea. C# tries to navigate in the middle of dynamic and static typing: in the earlier versions of C# variables had to be stricly typed. Since 2010 however one can use the 'dynamic' keyword. By using dynamic, one can call methods where the compiler is not sure wether these methods exist. Perhaps Lua could become more static typed by allowing the programmer to annotate variables with types who are then checked by the compiler?");
+		$haskell1 = parent::haskellSays("I propose we look for other aspects of language design, since we will also have another discussion about typing. An important decision in a programming language is it's execution machanism. I think Haskell is the only lazy language here. Why isn't lazyness implemented in Lua, C++,...?");
+		$cSharp2 = parent::cSharpSays("First I think you overgeneralize Haskell. Both Lua and C# have Lazyness available in some way. Coroutines are handled with a lazy approach in mind: only calculate the next item if one asks for it. Furthermore object-oriented languages can perfectly emulate lazyness by using a proxy: let an object maintain pointers two the objects from which it's originates and calculate the result of a query on demand.");
+		$cpp1 = parent::cppSays("I agree with C# one can emulate lazyness with a proxy approach. The proxy can also maintain a buffer where calculated items are stored to prevent items from being calculated a second time. However as a performance language, I personally don't think lazy programs will yield much performance gain.");
+		$haskell2 = parent::haskellSays("Why do you say that? Lazy programs only evaluates items if they are really needed and thus saves cycles on calculations who turn out to be useless.");
+		$cpp2 = parent::cppSays("You don't always save cycles since maintaining which aspects were already evaluated also burns cycles. A second aspect is the nature of lazyness itself. Functions are only evaluated when one needs the result. A problem I see however is that lazy programs will be executed in bursts. When one yields a query a lot of evaluation is done. Some of these evaluations could already have been done while the machine was idling. Isn't this a problem for typical applications with a lot of idle time like web servers?");
+		$haskell3 = parent::haskellSays("Haskell has some operators for this who force the execution environment to evaluate a function in a non-lazy way.");
 		
 		
 		
@@ -62,7 +67,7 @@ class LanguageDesign extends Question {
 		$haskell = parent::haskellSays("Pure lambda calculus implementatie, portable (geen veronderstelling onderliggende hardware maar geen cross compiler)");*/
 		
 //		return $lua0.$cSharp0.$lua1.$cpp0.$java0.$lua2.$haskell0.$cSharp1.$haskell1.$lua3;
-		return $lua0.$cSharp0.$lua1.$haskell0.$cpp0.$java0.$lua2.$java1.$lua3.$cSharp1.$haskell1;
+		return $lua0.$cSharp0.$lua1.$haskell0.$cpp0.$java0.$lua2.$java1.$lua3.$cSharp1.$haskell1.$cSharp2.$cpp1.$haskell2.$cpp2.$haskell3;
 	}
 	
 	public function link(){
