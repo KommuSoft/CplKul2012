@@ -46,7 +46,7 @@ a,b = 5,10; // a is undefined, b is 5
 
 		$java0 = parent::javaSays("In Java, you can put multiple statements on the same line, but the semicolon is necessary. It makes the code more readable by using it. Are there other unusual things that can be written in Lua?");
 
-		$lua1 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$this->codeInline($codeEx2, "lua"). "The result is that the variable x gets the value 100 and the variable y gets the value 200.");
+		$lua1 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$this->codeInline($codeEx2, "lua"). "The result is that the variable x gets the value 100 and the variable y gets the value 200.");//Java heeft wel een expressie int x=100,y=100 (alleen werkt dit niet met lijsten)!
 		
 		$cpp0 = parent::cppSays("C++ can do something that looks the same. Although is's syntactically the same thing, semantically it's very different. It's even funier with parentheses. Here is an example." . $this->codeInline($codeEx5, "cpp") . "This so because this is'n a list like in Lua, the ',' is actually an operator.");
 

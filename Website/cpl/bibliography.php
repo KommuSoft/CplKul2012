@@ -50,6 +50,7 @@ class Bibliography{
 		$bib[6] = new Item("Haskell and C++ Template Metaprogramming", "Bartosz Milewski", "2011");
 		//$bib[7] = new Item("Concepts of Programming Languages, Tenth Edition", "Robert W. Sebesta", "2012");
 		$bib[8] = new Website("http://math.andrej.com/2009/04/11/on-programming-language-design/","10/11/2012");
+		$bib[9] = new Website("http://www.redmountainsw.com/wordpress/2007/06/11/considerations-when-designing-your-own-programmingscripting-language/");
 		$bib[10] = new Website("http://www.crytek.com/cryengine/cryengine2/overview", "08/11/2012");
 		$bib[15] = new Website("http://en.cppreference.com/w/cpp/keyword", "09/11/2012");
 		$bib[20] = new Website("http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html", "09/11/2012");
