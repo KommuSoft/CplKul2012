@@ -22,7 +22,7 @@ abstract class Question {
 	private static function languages($language){
 		$langs = array();
 		$langs["c++"] =  "language-cpp";
-		$langs["lua"] =  "prettyprint lang-lua";
+		$langs["lua"] =  "lang-lua";
 		$langs["python"] =  "language-python";		
 		$langs["c#"] =  "language-csharp";	
 		$langs["java"] =  "language-java";	
@@ -57,10 +57,10 @@ abstract class Question {
 		return '<a class="myPopover" rel="popover" data-content="' . $content . '" data-original-title="' . $title . '">' . $display . '</a>';
 	}
 	public function codeInline($code, $language, $linenums=1){
-		return '<pre class="prettyprint linenums:' . $linenums . '"><code class="'. self::languages($language) . '">' . $code . '</code></pre>';
+		return '<pre class="prettyprint ' . self::languages($language) . ' linenums:' . $linenums . '"><code>' . $code . '</code></pre>';
 	}
 	public function code($code, $language, $linenums=1){
-		return '<div class="CodeContainer"><div class="LanguageName">' . $language . '</div> <div class="Quote"><pre class="prettyprint linenums:' . $linenums . '"><code class="'. self::languages($language) . '">' . $code . '</code></pre></div></div></p>';
+		return '<div class="CodeContainer"><div class="LanguageName">' . $language . '</div><div class="Quote"><pre class="prettyprint ' . self::languages($language) . ' linenums:' . $linenums . '"><code>' . $code . '</code></pre></div></div></p>';
 	}
 	public function readFromFile($file){
 		return htmlspecialchars(file_get_contents($file));
