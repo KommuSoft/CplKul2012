@@ -16,3 +16,4 @@
 <script src="js/bootstrap-typeahead.js"></script>
 <script src="js/own.js"></script>
 <script src="js/jp-prettify.js"></script>
+<script src="js/prettify/lang-lua.js"></script>

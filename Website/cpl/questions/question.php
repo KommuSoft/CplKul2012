@@ -22,7 +22,7 @@ abstract class Question {
 	private static function languages($language){
 		$langs = array();
 		$langs["c++"] =  "language-cpp";
-		$langs["lua"] =  "language-lua";
+		$langs["lua"] =  "prettyprint lang-lua";
 		$langs["python"] =  "language-python";		
 		$langs["c#"] =  "language-csharp";	
 		$langs["java"] =  "language-java";	
