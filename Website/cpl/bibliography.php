@@ -62,7 +62,10 @@ class Bibliography{
 	}
 	
 	public function cite($hash){
-		$this->map[$this->counter] = self::fetch($hash);
+		if(array_key_exists($hash, $this->map)){
+			return '<a href="#bib" onclick="showBib(\'bib' . $this->map[$hash] . '\')">[' . ($this->map[$hash]) . ']</a>';		
+		}
+		$this->map[$hash] = $this->counter;
 		return '<a href="#bib" onclick="showBib(\'bib' . $this->counter . '\')">[' . ($this->counter++) . ']</a>';
 	}
 	
@@ -70,7 +73,7 @@ class Bibliography{
 		$html = '<ul id="bib">';
 		
 		foreach($this->map as $key => $value){
-			$html = $html . '<li id="bib' . $key . '">['. $key . "]: " . $value->format() . '</li>';
+			$html = $html . '<li id="bib' . $value . '">['. $value . "]: " . $this->fetch($key)->format() . '</li>';
 		}
 		
 		return $html . "</ul>";
