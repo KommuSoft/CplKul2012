@@ -12,5 +12,5 @@ struct Factorial<0>
 };
 
 int main() {
-    std::cout << Factorial<4>::val << "\n";
+    std::cout << Factorial<4>::val << std::endl;
 }
