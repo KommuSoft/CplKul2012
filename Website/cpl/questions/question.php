@@ -54,7 +54,7 @@ abstract class Question {
 		return $this->bib_;
 	}
 	public function popover($display, $title, $content){
-		return '<a class="myPopover" rel="popover" data-content="' . $content . '" data-original-title="' . $title . '">' . $display . '</a>';
+		return '<a class="myPopover" rel="popover" data-content="' . $content . '" data-original-title="' . $title . '" data-trigger="hover" data-delay="200">' . $display . '</a>';
 	}
 	public function codeInline($code, $language, $linenums=1){
 		return '<pre class="prettyprint ' . self::languages($language) . ' linenums:' . $linenums . '"><code>' . $code . '</code></pre>';
