@@ -12,3 +12,5 @@ Plaatsing popover kan beter.
 		scroll naar boven op popover te lezen
 	Het openen van een popover zou er moeten voor zorgen dat de popover direct leesbaar is
 text justify gebruiken?
+
+ervoor zorgen dat commentaar in lua juist 'gekleurd' wordt
