@@ -45,7 +45,7 @@ class Bibliography{
 		$bib[1] = new Item('Programming Languages - C++ N3290', 'ANSI', '11/04/2011');
 		$bib[2] = new Item("The design and evolution of C++", "Bjarne Stroustrup", "1994");
 		$bib[3] = new Website("http://www.gamedev.net/page/resources/_/technical/game-programming/using-lua-with-c-r2275", "03/10/2012");
-		$bib[4] = new Website("http://www.lua.org/manual/2.1/subsection3_4_2.html", "03/10/2012");
+		$bib[4] = new Website("http://www.lua.org/manual/5.2/manual.html", "19/11/2012");
 		$bib[5] = new Item("Functional Programming for Everyday .NET Development", "Jeremy Miller", '2009');
 		$bib[6] = new Item("Haskell and C++ Template Metaprogramming", "Bartosz Milewski", "2011");
 		//$bib[7] = new Item("Concepts of Programming Languages, Tenth Edition", "Robert W. Sebesta", "2012");

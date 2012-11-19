@@ -38,7 +38,7 @@ print(type(x[1])) -- output: number";
 		//Weaker: int -> string but not string -> int
 		//Duck: [uitleg] + most of the duck type definitions use duck typing in a dynamic environment. We eliminate this constraint because some constructs that use types are run at compile time.
 		
-		$lua0 = parent::luaSays("Lua has a dynamic type sytem. One of the advantages is that a dynamic type system reduces the code-compile-test cycle because the compile step is shorter. This is because the type is infered at run-time which is less noticeable and can be done in a more lazy way. Another advantage is that a dynamic type system is simpler than a static system" . parent::bib()->cite(0) . ".");
+		$lua0 = parent::luaSays("Lua has a dynamic type sytem. One of the advantages is that a dynamic type system reduces the code-compile-test cycle because the compile step is shorter. This is because the type is inferred at run-time which is less noticeable and can be done in a more lazy way. Another advantage is that a dynamic type system is simpler than a static system" . parent::bib()->cite(0) . ".");
 		
 		$cpp0 = parent::cppSays("But don't you introduce an extra burden for the programmer? Some problems will only be detected at run-time while they could be prevented because the compiler would have spotted them. Also for compiled languages it's cheaper to do compile-time type checking" . parent::bib()->cite(2) . ".");
 		
@@ -54,11 +54,11 @@ print(type(x[1])) -- output: number";
 		
 		$python0 = parent::pythonSays("Although weakly typed can be easy to use, it can also introduce ambiguity in the language. This makes is harder for beginners. A beginner doesn't always understand that a program does what you write, not wat you want.");
 		
-		$lua3 = parent::luaSays("I agree. In retrospect, we could have removed this" . parent::bib()->cite(0) . ". The automatic conversion from strings to numbers can indeed be troublesome. But the automatic conversion from numbers to strings doesn't really lead to problems.");
+		$lua3 = parent::luaSays("I agree. In retrospect, the designers could have removed this" . parent::bib()->cite(0) . ". The automatic conversion from strings to numbers can indeed be troublesome. But the automatic conversion from numbers to strings doesn't really lead to problems.");
 		
 		$cSharp2 = parent::cSharpSays("I want to react on argument of higher-order programming: it's not that difficult to implement it in the static typing paradigm: C# is a higher-order programming language. Methods can be stored as variables. These methods are then stored in a ''delegate'' structure. The delegate structure specifies the signature of the function. The compiler uses duck typing to check if the selected function matches with the given signature.");
 		
-		$lua4 = parent::luaSays("I know C# has some elegant structures to deal with higher-order programming. But the Lua support is even more elegant: use first-class values. However Lua is still a interpreted scripting language. That means code is compiled and checked at runtime. In order to make the run-time compiler fast, we needs small and simple code. C# is way too complex to be a fast scripting language. You also mentioned duck typing, this system is also used by Lua.");		
+		$lua4 = parent::luaSays("I know C# has some elegant structures to deal with higher-order programming. But the Lua support is even more elegant: use first-class values. However Lua is still an interpreted scripting language. That means code is compiled and checked at runtime. In order to make the run-time compiler fast, we needs small and simple code. C# is way too complex to be a fast scripting language. You also mentioned duck typing, this system is also used by Lua.");		
 
 		$cpp2 = parent::cppSays("Something different. Lua is an embeddable language, this means that Lua should be compatible with the type system of the host language. How does Lua do this?");
 
