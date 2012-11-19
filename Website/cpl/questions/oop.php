@@ -21,82 +21,11 @@ class OOP extends Question {
 		$pop_events = $this->popover("events","Events","Events are a language structure in C# and is used as a syntactical sugar for the Visitor pattern. An event is basically a table of delegates (method pointers). By adding and removing, the programmer can register delegates to a certain event. The programmer can than call the event with the proper arguments resulting in a multicast of these arguments to the registered methods.");
 		$pop_operators = $this->popover("operators","Operators","C# supports operator overloading. Therefore one can define a + operator on a custom class (for instance complex numbers).");
 
-		$codeEx0Java = 
-"public class Car{
-	//attributes
-	private int speed;
-	
-	//constructor
-	public Car(){
-		this.speed = 0;
-	}
-
-	//other methods
-	public void accelerate(int speedIncrement){
-		this.speed += speedIncrement;
-	}
-}";
-
-		$codeEx0Lua = 
-"--attribute
-Car = {speed = 0}
-
---constructor
-function Car.new(self,o)
-	o = o or {}
-	setmetatable(o,self)
-	self.__index = self
-	return o
-end
-
---other methods
-function Car.accelerate(self,speedIncrement)
-	self.speed = self.speed+speedIncrement
-end
-";
-		
-		$codeEx1 = "int main(){
-	std::vector<int> v = {1,2,3,4,5,6};
-	auto it0 = std::begin(v);
-	auto it1 = v.begin();
-}";
-
-		$codeEx2 = 
-"--We 'emulate' a class Car
---attribute
-Car = {speed = 50}
-
---constructor
-function Car:new(o)
-	o = o or {}
-	setmetatable(o,self)
-	self.__index = self
-	return o
-end
-
---other methods
-function Car:accelerate(speedIncrement)
-	self.speed = self.speed+speedIncrement
-end
-
---Creation of a new car
-nCar = Car:new()
-nCar:accelerate(70)
-print(nCar.speed) --The output is 120, so a takes the speed of Car at the time of creation
-
---Adding inheritance
-FastCar = Car:new();
-
-function FastCar:accelerate(speedincrement)
-	self.speed = self.speed+2*speedincrement
-end
-
-fCar = FastCar:new() --When new executes here, its self parameter will refer to FastCar. This implies that the metatable of fCar will be FastCar.
-print(fCar.speed) --The output is 50, so the value of Car is used.
-
-fCar:accelerate(70)
-print(fCar.speed) --The output is 190, because the implementation of the method of FastCar is used.
-";
+		$code0 = $this->codeInline($this->readFromFile("code/JavaClassExample.java"), "java");
+		$code1 = $this->codeInline($this->readFromFile("code/LuaClassExample.lua"), "lua");
+		$code2 = $this->codeInline($this->readFromFile("code/LuaClassExampleAlternative.lua"), "lua");
+		$code3 = $this->codeInline($this->readFromFile("code/LuaClassExampleWithInheritance.lua"), "lua");
+		$code4 = $this->codeInline($this->readFromFile("code/Functionality.cpp"), "c++");
 
 //er moet nog wat extra uitleg komen over metamethods.
 //metamethods.
@@ -104,9 +33,9 @@ print(fCar.speed) --The output is 190, because the implementation of the method 
 //JavaScript is perhaps the best known prototype-based programming language, which employs cloning from prototypes rather than inheriting from a class. Another scripting language that takes this approach is Lua.
 //Prototype-based programming is a style of object-oriented programming in which classes are not present, and behavior reuse (known as inheritance in class-based languages) is performed via a process of cloning existing objects that serve as prototypes. This model can also be known as classless, prototype-oriented or instance-based programming. Delegation is the language feature that supports prototype-based programming.
 
-		$lua0 = parent::luaSays("The authors of Lua didn't want to turn Lua into an object-oriented language, because a fixed programming paradigm wasn't what they wanted. However, the mechanism of classes and objects can be implemented with tables. A table is the main, and the only, data structure in Lua. Tables are implemented as associative arrays. That are arrays where not only numbers can be used as indexes, but any other type (except nil). The other 7 types are number, string, table, function, userdata, boolean and thread. In that way, to go back to the concept of object-oriented programming, the keys of the table can be used as the names of the fields and methods by using the type string. Above that, functions are first-class values. This means that functions can be assigned to global and local variables, passed as arguments to functions, returned from functions and stored in tables. So, functions can be stored as the values in a table.");
-		$java0 = parent::javaSays("Java is an object-oriented language and there is direct support for classes. To give an example of a class:".$this->codeInline($codeEx0Java, "java")."Is it possible to give an analogue of this in Lua?");
-		$lua1 = parent::luaSays("Of course.".$this->codeInline($codeEx0Lua, "lua"). "I will clarify this piece of code a bit. Car is of type table as mentioned above. At line 2, an element with key \"speed\" and value 0 is added to the table. Line 2 is syntactic sugar for Car[\"speed\"] = 0. At line 5, we declare a function and put it in the table Car as well. Line 5 is also syntactic sugar for Car[\"new\"] = function (self,o).");
+		$lua0 = parent::luaSays("The authors of Lua didn't want to turn Lua into an object-oriented language, because a fixed programming paradigm wasn't what they wanted. However, the mechanism of classes and objects can be implemented with tables. A table is the main, and the only, data structure in Lua. Tables are implemented as associative arrays. That are arrays where not only numbers can be used as indexes, but any other type (except nil). The other 7 types are number, string, table, function, userdata, boolean and thread. In that way, to go back to the concept of object-oriented programming, the keys of the table can be used as the names of the fields and methods by using the type string. Above that, functions are first-class values. This means that functions can be assigned to variables, passed as arguments to functions, returned from functions and stored in tables. So, functions can be stored as the values in a table. It is now possible to call a method by using the key in the table, which is the name of the method.");
+		$java0 = parent::javaSays("In contrast, Java is an object-oriented language and there is direct support for classes. To give an example of a class:".$code0."Is it possible to give an analogue of this in Lua?");
+		$lua1 = parent::luaSays("Of course.".$code2. "I will clarify this piece of code a bit. Car is of type table as mentioned above. At line 2, an element with key \"speed\" and value 0 is added to the table. Line 2 is syntactic sugar for Car[\"speed\"] = 0. At line 5, we declare a function and put it in the table Car as well. Line 5 is also syntactic sugar for Car[\"new\"] = function (self,o).");
 		$cpp0 = parent::cppSays("For me, the body of the constructor isn't clear yet. What is meant with the setmetatable method and the \"__index\" construct?");
 		$lua2 = parent::luaSays("Before I explain this, I will give some background about metatables and metamethods. Metamethods allow changing the behaviour of a value when confronted with an undefined operation. So, when you try to access an absent field in a table, the result is nil. However, there is a way to get around this. When there is an absent field, the interpreter looks for an \"__index\" metamethod.");
 		//metamethods and tables uitleggen
