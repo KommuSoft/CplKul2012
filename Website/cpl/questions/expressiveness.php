@@ -14,7 +14,7 @@ class Expressiveness extends Question {
 	}
 	
 	public function introduction(){
-		return "Some people call it entropy: the amount of information one stores in a fixed number of characters. How expressive is Lua compared to it's contestants? What are the domains Lua can talk about?";
+		return "Some people call it entropy: the amount of information one stores in a fixed number of characters. How expressive is Lua compared to its contestants? What are the domains Lua can talk about?";
 	}
 	
 	/*TODO (door Jonas):
