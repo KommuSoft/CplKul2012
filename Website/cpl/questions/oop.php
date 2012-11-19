@@ -35,9 +35,10 @@ class OOP extends Question {
 
 		$lua0 = parent::luaSays("The authors of Lua didn't want to turn Lua into an object-oriented language, because a fixed programming paradigm wasn't what they wanted. However, the mechanism of classes and objects can be implemented with tables. A table is the main, and the only, data structure in Lua. Tables are implemented as associative arrays. That are arrays where not only numbers can be used as indexes, but any other type (except nil). The other 7 types are number, string, table, function, userdata, boolean and thread. In that way, to go back to the concept of object-oriented programming, the keys of the table can be used as the names of the fields and methods by using the type string. Above that, functions are first-class values. This means that functions can be assigned to variables, passed as arguments to functions, returned from functions and stored in tables. So, functions can be stored as the values in a table. It is now possible to call a method by using the key in the table, which is the name of the method.");
 		$java0 = parent::javaSays("In contrast, Java is an object-oriented language and there is direct support for classes. To give an example of a class:".$code0."Is it possible to give an analogue of this in Lua?");
-		$lua1 = parent::luaSays("Of course.".$code2. "I will clarify this piece of code a bit. Car is of type table as mentioned above. At line 2, an element with key \"speed\" and value 0 is added to the table. Line 2 is syntactic sugar for Car[\"speed\"] = 0. At line 5, we declare a function and put it in the table Car as well. Line 5 is also syntactic sugar for Car[\"new\"] = function (self,o).");
-		$cpp0 = parent::cppSays("For me, the body of the constructor isn't clear yet. What is meant with the setmetatable method and the \"__index\" construct?");
-		$lua2 = parent::luaSays("Before I explain this, I will give some background about metatables and metamethods. Metamethods allow changing the behaviour of a value when confronted with an undefined operation. So, when you try to access an absent field in a table, the result is nil. However, there is a way to get around this. When there is an absent field, the interpreter looks for an \"__index\" metamethod.");
+		$lua1 = parent::luaSays("Of course.".$code1. "I will clarify this piece of code a bit. Car is of type table as mentioned above. At line 2, an element with key \"speed\" and value 0 is added to the table." /*Line 2 is syntactic sugar for Car[\"speed\"] = 0*/ . " At line 5, we declare a constructor and put it in the table Car as well. At line 13, a similar thing happens. The \"self\"  parameter is necessary, because we want to specify the object the method has to operate on." /*Line 5 is also syntactic sugar for Car[\"new\"] = function (self,o)."*/);
+		$cpp0 = parent::cppSays("For me, the body of the constructor isn't clear yet. What is meant with the setmetatable method and the \"__index\" construct on lines 7 and 8?");
+		$lua2 = parent::luaSays("Before I explain this, I will give some background about metatables and metamethods. When you try to access an absent field in a table, the result is nil. However, there is a way to get around this. In the case of an absent field, the interpreter looks for an \"__index\" metamethod in the metatable of this table. Usually, this method isn't available, so the result is a nil value as explained before. But if it is available, the metamethod will provide the result. A metatable is just like any other table, except that it also contains metamethods. A table can have a metatable by using the \"setmetatable\" construct as shown in line 7 where \"self\" is the metatable of \"o\". This mechanism allows the programmer to propose a way to proceed if the basic execution mechanism fails. Operator overloading is possible with this too. There are metamethods like \"__add\", \"__mod\", \"__pow\", \"__eq\", \"__lt\", etc. The way to perform the \"+\" operation on two tables isn't defined. The solution is to define the \"__add\" metamethod.");
+		$java1 = parent::javaSays("");
 		//metamethods and tables uitleggen
 		//dan overgaan op inheritance
 		//eventueel multiple inheritance
@@ -64,7 +65,7 @@ class OOP extends Question {
 		
 		$code = $this->code($this->readFromFile("code/cppInheritance.cpp"), "c++");
 		
-		return $lua0.$java0.$lua1.$cpp0.$lua2; 
+		return $lua0.$java0.$lua1.$cpp0.$lua2.$java1; 
 		//return $lua.$cpp.$cSharp.$python.$lua2_old.$cpp2.$java.$code;
 	}
 	
