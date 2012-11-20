@@ -18,39 +18,21 @@ class Syntax extends Question {
 	}
 	
 	public function answers(){
+		$codeEx1 = $this->codeInline($this->readFromFile("code/LuaSemicolonExample.lua"), "lua");
+		$codeEx2 = $this->codeInline($this->readFromFile("code/LuaMultipleAssignmentExample.lua"), "lua");
+		$codeEx3 = $this->codeInline($this->readFromFile("code/JavaSpecialAssignmentExample.java"), "java");
+		$codeEx4 = $this->codeInline($this->readFromFile("code/LuaSwapValuesExample.lua"), "lua");
+		$codeEx5 = $this->codeInline($this->readFromFile("code/CPPMultipleAssignmentExample.cpp"), "c++");
 
-		$codeEx1 = 
-"x = 4
-y = 2*x
-
-x = 4;
-y = 2*x;
-
-x = 4 y = 2*x
-
-x = 4; y = 2*x;";
-
-		$codeEx2 = "x,y = 100,200"; 
-
-		$codeEx3 = 
-"int a,b;
-a = b = 100;"; 
-
-		$codeEx4 =  "x,y = y,x";
-		
-		$codeEx5 = "int a,b;
-a,b = 5,10; // a is undefined, b is 5
-(a,b) = (5,10); //a is undefined, b is 10"; 
-
-		$lua0 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua, Lua is a so called free format language. To illustrate this, all following groups of statements are valid and equivalent." . $this->codeInline($codeEx1, "lua"));
+		$lua0 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua, Lua is a so called free format language. To illustrate this, all following groups of statements are valid and equivalent." . $codeEx1);
 
 		$java0 = parent::javaSays("In Java, you can put multiple statements on the same line, but the semicolon is necessary. It makes the code more readable by using it. Are there other unusual things that can be written in Lua?");
 
-		$lua1 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$this->codeInline($codeEx2, "lua"). "The result is that the variable x gets the value 100 and the variable y gets the value 200.");//Java heeft wel een expressie int x=100,y=100 (alleen werkt dit niet met lijsten)!
+		$lua1 = parent::luaSays("Another feature that isn't present in Java is the concept of multiple assignments. This means for example that a list of values can be assigned to a list of variables. An example is given:" .$codeEx2. "The result is that the variable x gets the value 100 and the variable y gets the value 200.");//Java heeft wel een expressie int x=100,y=100 (alleen werkt dit niet met lijsten)!
 		
-		$cpp0 = parent::cppSays("C++ can do something that looks the same. Although is's syntactically the same thing, semantically it's very different. It's even funier with parentheses. Here is an example." . $this->codeInline($codeEx5, "c++") . "This so because this is'n a list like in Lua, the ',' is actually an operator.");
+		$cpp0 = parent::cppSays("C++ can do something that looks the same. Although is's syntactically the same thing, semantically it's very different. It's even funier with parentheses. Here is an example." . $codeEx5 . "This so because this is'n a list like in Lua, the ',' is actually an operator.");
 
-		$java1 = parent::javaSays("Java can also do something similar. The same value can be assigned to different variables in one statement. For example,". $this->codeInline($codeEx3, "java") . "But I have to admit that this is more limited. I was also wondering what happens if the number of elements isn't the same on both sides. Does this result in an error?");
+		$java1 = parent::javaSays("Java can also do something similar. The same value can be assigned to different variables in one statement. For example,". $codeEx3. "But I have to admit that this is more limited. I was also wondering what happens if the number of elements isn't the same on both sides. Does this result in an error?");
 
 		$lua2 = parent::luaSays("Surprisingly no. If the number of elements on the right is less than the number of elements on the left, then the extra variables on the left will receive nil as their value. But if the number of elements on the left are less than the number of elements on the right, then the extra values will be discarded.");
 
@@ -58,7 +40,7 @@ a,b = 5,10; // a is undefined, b is 5
 
 		$java2 = parent::javaSays("Ok, now I think I have a good understanding of how it works. But I am missing a good example where this construct really proves its usefulness");
 
-		$lua3 = parent::luaSays("Let's think. Ok, I know. When you need to swap two values, just one expression is needed." .$this->codeInline($codeEx4, "lua"). "So no explicit temporary variable is used. Here, Lua evaluates all the values on the right side and then performs the assignment. To refer to my second example, multiple assignment doesn't work faster than when you had put that expression on two lines."); //Jonas: moet die "Let's think. Ok, I know" er in? Dat klinkt zo geforceerd.
+		$lua3 = parent::luaSays("Let's think. Ok, I know. When you need to swap two values, just one expression is needed." .$codeEx4. "So no explicit temporary variable is used. Here, Lua evaluates all the values on the right side and then performs the assignment. To refer to my second example, multiple assignment doesn't work faster than when you had put that expression on two lines."); //Jonas: moet die "Let's think. Ok, I know" er in? Dat klinkt zo geforceerd.
 //Bron van het bovenstaande: vooral het boek Programming in Lua (2de editie) van ROBERTO IERUSALIMSCHY
 
 
