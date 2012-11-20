@@ -49,7 +49,7 @@ end';
 		
 		$cSharp1 = parent::cSharpSays("I want to comment on what Lua said about C# that forces you to think in a certain paradigm. Nowadays C# is really becoming multiparadigm (which is maybe a paradigm by itself). For example functional programming (like Haskell) is somewhat supported in C#" . parent::bib()->cite(5) . ". I think C++ is going in a similar direction, am I correct?");
 		
-		$cpp1 = parent::cppSays("Yeah, but in the past this was different. C++ was originally made for programmers, in particular C programmers. In this perspective, C++ was easy to learn. This also led to the fact that no 'Main' class is needed, so in this sense C++ is easier than C# and Java. But indeed, the current C++ version supports multiple paradigms. For example there is almost a one-to-one mapping between Haskell and C++ " . $popoverTMP . parent::bib()->cite(6) . ". However the syntax is very intimidating so I wouldn't recommend it for beginners.");
+		$cpp1 = parent::cppSays("Yes, but in the past this was different. C++ was originally made for programmers, in particular C programmers. In this perspective, C++ was easy to learn. This also led to the fact that no 'Main' class is needed, so in this sense C++ is easier than C# and Java. But indeed, the current C++ version supports multiple paradigms. For example there is almost a one-to-one mapping between Haskell and C++ " . $popoverTMP . parent::bib()->cite(6) . ". However the syntax is very intimidating so I wouldn't recommend it for beginners.");
 
 		$python1 = parent::pythonSays("But even if you don't use TMP in C++, it still is a pretty difficult language for a beginner? With beginner I mean a person who hasn't programmed before, not a programmer who already knows C.");
 		

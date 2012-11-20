@@ -36,7 +36,7 @@ class Libraries extends Question {
 		
 		$python0 = parent::pythonSays("So this is similar like the Python approach? Python has the \"Batteries Included\" philosophy. This means that Python ships with a lot of functionality already present in the language. For example Python has by default support for a webserver, managing mails, SQLite databases, data compression and so forth.");
 		
-		$cSharp1 = parent::cSharpSays("Not really, in C# there is a difference between the language (i.e. C#) and the libraries (the .Net framework). Also the libraries are very modular, this results in a very good consistency but it can lead to a lot of \"meaningless\" code because a lot of \"using\" statements will be used.");
+		$cSharp1 = parent::cSharpSays("Not really, in C# there is a difference between the language (i.e. C#) and the libraries (the .NET framework). Also the libraries are very modular, this results in a very good consistency but it can lead to a lot of \"meaningless\" code because a lot of \"using\" statements will be used.");
 		
 		$cpp1 = parent::cppSays("But shipping with a lot of libraries can have its problems too. A library can restrict the programmer, because he/she isn't used to work with something else. Also a library doesn't always tackle the programmers wants to be solved.");
 		
@@ -52,7 +52,7 @@ class Libraries extends Question {
 		
 		
 		//TODO: vertel iets over Java (zie $java0) en link dan $cSharp3 daaraan
-		$java0 = parent::javaSays("A lot of libraries available. Standaard veel beschikbaar in de taal. (vaak slechte kwaliteit van libraries). Ook modulair opgebouwd.");
+		$java0 = parent::javaSays("A lot of libraries available. Standaard veel beschikbaar in de taal. Ook modulair opgebouwd.");
 		$cSharp3 = parent::cSharpSays("Er zijn ook systemen beschikbaar die bijvoorbeeld java libraries kunnen importen. Werkt soms niet volledig als er low level stuff gebruikt wordt");
 		
 		return $lua0.$cpp0.$lua1.$cSharp0.$python0.$cSharp1.$cpp1.$cSharp2.$cpp2.$python1.$haskell0.$lua2.$java0.$cSharp3;

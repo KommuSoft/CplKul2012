@@ -54,7 +54,7 @@ a,b = 5,10; // a is undefined, b is 5
 
 		$lua2 = parent::luaSays("Surprisingly no. If the number of elements on the right is less than the number of elements on the left, then the extra variables on the left will receive nil as their value. But if the number of elements on the left are less than the number of elements on the right, then the extra values will be discarded.");
 
-		$python1 = parent::pythonSays("Python also supports multiple assignments. But Python is more strict, the number of value on both sides of the '=' have to match.");
+		$python1 = parent::pythonSays("Python also supports multiple assignments. But Python is more strict, the number of values on both sides of the '=' have to match.");
 
 		$java2 = parent::javaSays("Ok, now I think I have a good understanding of how it works. But I am missing a good example where this construct really proves its usefulness");
 
