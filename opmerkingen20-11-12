@@ -35,3 +35,5 @@ typing
 
 language design
 -----------------------
+since 2010 -> verandereren naar versie van het framework. Gebruikte bron: http://msdn.microsoft.com/en-us/magazine/ee336309.aspx
+lua -> f# en combinatie met andere talen of zoiets
