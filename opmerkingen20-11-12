@@ -1,0 +1,37 @@
+oo
+--------------------------------------------------------------------------------
+* te lange blokken tekst
+* 7 types moeten niet meer vermeld worden
+* table associative array
+* multiple inheritance
+
+portability
+--------------------------------------------------------------------------------
+
+* Is het niet zo dat vm instructies gemakkelijk te decompilen zijn (tenzij je een obfucater gebruikt)? Bij Java gaat het gemakkelijk, over C# heb ik geen idee.
+* Over C++: er zijn geen 1300 pagina's geschreven om de taal compatible te houden. Dat is de volledige standaard.
+* Er wordt gesproken over een runtime compiler. Voor mij klinkt dit raar, zou er iets beter bestaan? runtime interpreter mss
+* Bron voor stack-based en register-based vermelden.
+
+expressiveness
+--------------------------------------------------------------------------------
+* Sommige delen code zijn lang, misschien gebruik maken van $this->code(...) en die dan onderaan plaatsen met een verwijzing?
+* Het gebruik van "one" is iets te veel naar mijn mening
+* $cpp0_0 zegt dat TMP code kan reduceren. Ik zie in dat templated code code kan reduceren maark TMP zie ik dat niet direct doen.
+* $cpp1 zegt dat TMP ervoor zorgt dat je code kan schrijven die anders te complex is om met de hand te schrijven. Ik ga daar niet volledig mee akkoord, TMP is ook heel complex (wordt beschouwd als een van de meest complexe zaken in C++).
+* Ik hou niet van de uitleg van coroutines. Er wordt gezegd dat dit methodes zijn die samenwerken maar in het voorbeeld wordt er maar 1 methode gegeven, dus er kan niet samengewerkt worden.
+* De Java - C# discussie over het aantal regels code: eigenlijk is het 26-39 en niet 30-50 (witregels worden meestal genegeerd in zulke vergelijkingen), maar dat is een detail.
+* Java zegt dat het intern naar een object-oriented pattern zal gecompileerd worden. Ik heb daar nog nooit van gehoord. Bedoel je dat het intern naar full blown object oriented code zal omgezet worden of dat het zal omgezet worden naar een iterator (of gelijkaardig) pattern?
+* Plotseling wordt er gezegd dat C++ ook coroutines heeft. Mss ergens een overgang maken. En C++ heeft geen coroutines, je moet een library gebruiken. Dus de vergelijking met macro's gaat niet op, je kan ze schrijven via templates of via gewone C++ code.
+* my question to c++ -> onbeantwoord gebleven
+* bloated file -> bloated source code?
+
+typing
+-------------------
+* This is because the type is inferred at run-time which is less noticeable and can be done in a more lazy way.
+* interferred typing -> implicit typing?
+* bron voor abstract stack
+* python mag mss vervangen worden
+
+language design
+-----------------------

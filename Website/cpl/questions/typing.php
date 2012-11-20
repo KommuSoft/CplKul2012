@@ -46,7 +46,7 @@ print(type(x[1])) -- output: number";
 		
 		$lua1 = parent::luaSays("But doesn't a strong type system lead to horrible code? In strong type systems not every type is compatible with the expected type, so a lot of conversions are needed. Also the reuse of variables is more difficult.");
 		
-		$cpp1 = parent::cppSays("That's not completely true. You can use implicit casting. This means that the programmer specifies how an object of one type can be converted in another type. Then the compiler tries to cast the object in the desired type. Off course this is sometimes a source of unwanted behaviour. That's why a programmer can declare the cast 'explicit', that way you have to specify which cast you want to use where. I think C# has a similar thing?");
+		$cpp1 = parent::cppSays("That's not completely true. You can use implicit casting. This means that the programmer specifies how an object of one type can be converted in another type. Then the compiler tries to cast the object in the desired type. Of course this is sometimes a source of unwanted behaviour. That's why a programmer can declare the cast 'explicit', that way you have to specify which cast you want to use where. I think C# has a similar thing?");
 		
 		$cSharp1 = parent::cSharpSays("Indeed, although it's called a conversion in C#. The programmer specifies the conversions and the compiler will search for a chain of conversions to convert a variable to a given object. This is of course an argument to say C# is a weakly typed language. However since the program has to specify these conversions first, it's debatable. It can make the type system less strong but it doesn't create a weak type system.");
 		
@@ -56,7 +56,7 @@ print(type(x[1])) -- output: number";
 		
 		$lua3 = parent::luaSays("I agree. In retrospect, the designers could have removed this" . parent::bib()->cite(0) . ". The automatic conversion from strings to numbers can indeed be troublesome. But the automatic conversion from numbers to strings doesn't really lead to problems.");
 		
-		$cSharp2 = parent::cSharpSays("I want to react on argument of higher-order programming: it's not that difficult to implement it in the static typing paradigm: C# is a higher-order programming language. Methods can be stored as variables. These methods are then stored in a ''delegate'' structure. The delegate structure specifies the signature of the function. The compiler uses duck typing to check if the selected function matches with the given signature.");
+		$cSharp2 = parent::cSharpSays("I want to react on the argument of higher-order programming: it's not that difficult to implement it in the static typing paradigm: C# is a higher-order programming language. Methods can be stored as variables. These methods are then stored in a ''delegate'' structure. The delegate structure specifies the signature of the function. The compiler uses duck typing to check if the selected function matches with the given signature.");
 		
 		$lua4 = parent::luaSays("I know C# has some elegant structures to deal with higher-order programming. But the Lua support is even more elegant: use first-class values. However Lua is still an interpreted scripting language. That means code is compiled and checked at runtime. In order to make the run-time compiler fast, we needs small and simple code. C# is way too complex to be a fast scripting language. You also mentioned duck typing, this system is also used by Lua.");		
 
@@ -64,7 +64,7 @@ print(type(x[1])) -- output: number";
 
 		$lua5 = parent::luaSays("Lua solves this problem with an abstract stack. The slots in this stack can contain Lua values with an arbitrary type. When a certain type has a mapping between C and Lua (for example numbers) there are 2 available functions. The injection function transforms a C value to a Lua one, the projection function works the other way around. The real problem is when there is no direct mapping. Then the API offers you to manipulate the stack positions.");
 		
-		$java0 = parent::javaSays("If a programmer doesn't have to specify the types of his/her variables in Lua, how can you check for the type?");
+		$java0 = parent::javaSays("If a programmer doesn't have to specify the types of his/her variables in Lua, how can you check the type?");
 		
 		$lua6 = parent::luaSays("It's not so that Lua doesn't use types internally, they are only transparent for the programmer. But to answer your question: Lua has support for run-time type information. For example:" . parent::codeInline($codeRTTI, "lua") . "So if a programmer would like to use the type of his/her variables, Lua provides an answer.");
 		

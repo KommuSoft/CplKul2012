@@ -1,8 +1,8 @@
---attribute
+--attributes
 Car = {speed = 0}
 
 --constructor
-function Car.new(self,o)
+function Car:new(o)
 	o = o or {}
 	setmetatable(o,self)
 	self.__index = self
@@ -10,6 +10,6 @@ function Car.new(self,o)
 end
 
 --other methods
-function Car.accelerate(self,speedIncrement)
+function Car:accelerate(speedIncrease)
 	self.speed = self.speed+speedIncrement
 end
