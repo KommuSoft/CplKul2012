@@ -1,0 +1,38 @@
+TARGET AUDIENCE
+---------------
+Moet Lua wel in de 'titel'? We vergelijken talen, dus het slaat niet alleen op lua.
+
+OOP
+---
+grotere stukken tekst proberen op te splitsen in kleinere
+andere talen er ook nog passend bijvoegen en iets gedetailleerder mss. (in het geval van Python: "Pyhon is also an object oriented language. Actually the class mechanism is based on C++ and Modula-3. Python provides a very clean syntax for creating classes (and their hierarchies). Unfortunately constructors introduce uglier syntax (lots of underscores)". Voor mij zouden wat voorbeelden handig zijn, maar als het doelpubliek de prof is, is alles wss sneller duidelijk voor hem.
+
+PORTABILITY
+-----------
+slightly different audience -> mag wag concreter
+Ik snap de overgang naar dat backwards compatibility niet.
+wat meer uitleg over mmx sse?
+Met welke redenen staat C# daar?
+ik kom net iets te veel "probably", "I guess" tegen. Zijn het dingen dat we niet zeker zijn of niet kunnen beargumenteren? 
+bloated language
+meer dan 60, minder dan 40 -> bron?
+talen weten blijkbaar veel over de andere talen -> c++ over lua
+
+EXPRESSIVENESS
+--------------
+opnieuw: de titel vermeldt lua, maar wanneer begint het te gaan over lua?
+One can write this function as a coroutine to generate for instance all prime numbers smaller than 42 NEEN
+
+TYPING
+------
+This is because the type is inferred at run-time which is less noticeable LESS NOTICEABLE
+implicit casting, zie het verschil niet met explicit casting
+I want to react on argument of higher-order programming
+lua weet blijkbaar weer veel over c#
+abstract stack
+consistent in het woord run-time
+
+LANGUAGE DESIGN
+---------------
+table is toch ook 1 van de basic types
+development harder -> but if you have already a stack/tree, than you don't need to implement it.

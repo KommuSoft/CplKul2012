@@ -1,0 +1,10 @@
+PORTABILITY
+-----------
+werkwoordsvervoegingen verbeterd
+typfouten gecorrigeerd
+"a language who" -> "a language that"
+Yeah naar het iets formelere yes.
+
+TYPING
+------
+andere bron ipv versie 2.1 (coercion)
