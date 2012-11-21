@@ -56,7 +56,7 @@ print(type(x[1])) -- output: number";
 		
 		$lua3 = parent::luaSays("I agree. In retrospect, the designers could have removed this" . parent::bib()->cite(0) . ". The automatic conversion from strings to numbers can indeed be troublesome. But the automatic conversion from numbers to strings doesn't really lead to problems.");
 		
-		$cSharp2 = parent::cSharpSays("I want to react on the argument of higher-order programming: it's not that difficult to implement it in the static typing paradigm: C# is a higher-order programming language. Methods can be stored as variables. These methods are then stored in a ''delegate'' structure. The delegate structure specifies the signature of the function. The compiler uses duck typing to check if the selected function matches with the given signature.");
+		$cSharp2 = parent::cSharpSays("I want to react on the argument about higher-order programming: it's not that difficult to implement it in the static typing paradigm: C# is a higher-order programming language. Methods can be stored as variables. These methods are then stored in a ''delegate'' structure. The delegate structure specifies the signature of the function. The compiler uses duck typing to check if the selected function matches with the given signature.");
 		
 		$lua4 = parent::luaSays("I see, so C# has some elegant structures to deal with higher-order programming. But the Lua support is even more elegant: use first-class values. However Lua is still an interpreted scripting language. That means code is compiled and checked at run-time. In order to make the run-time compiler fast, we needs small and simple code. C# is way too complex to be a fast scripting language. You also mentioned duck typing, this system is also used by Lua.");		
 

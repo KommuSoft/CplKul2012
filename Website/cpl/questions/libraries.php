@@ -14,7 +14,7 @@ class Libraries extends Question {
 	}
 	
 	public function introduction(){
-		return "Newton already knew it: ''If I have seen further it is by standing on the shoulders of giants''. One can't simply implement everything. Are there good libraries available, or do we have to do it all by ourselves?";
+		return "Newton already knew it: ''If I have seen further it is by standing on the shoulders of giants''. One can't simply implement everything. Are there good libraries available, or do we have to do it all by ourselves?";;
 	}
 	
 	public function answers(){
@@ -38,6 +38,10 @@ class Libraries extends Question {
 		
 		$cSharp1 = parent::cSharpSays("Not really, in C# there is a difference between the language (i.e. C#) and the libraries (the .NET framework). Also the libraries are very modular, this results in a very good consistency but it can lead to a lot of \"meaningless\" code because a lot of \"using\" statements will be used.");
 		
+		$java0 = parent::javaSays("Java has also a lot of libraries available. Like most other languages, the library system is very modular.");
+		
+		$cSharp1_0 = parent::cSharpSays("In C# it's even possible to use these Java libraries. However if the libraries use low level code, for example drivers it's not guaranteed to work good. But for more general purposes it's an easy system to use Java code.");
+		
 		$cpp1 = parent::cppSays("But shipping with a lot of libraries can have its problems too. A library can restrict the programmer, because he/she isn't used to work with something else. Also a library doesn't always tackle the programmers wants to be solved.");
 		
 		$cSharp2 = parent::cSharpSays("But it's good to provide some default behaviour. Of course the .NET framework was aimed to be used at Windows which reduces some problems because you only have to implement default behaviour for one platform (there exists a cross platform version of the .NET framework called Mono, but it depends on other libraries like GTK+ for creating windows). But isn't it so that C++ has also better library support than in the early years?");
@@ -50,12 +54,7 @@ class Libraries extends Question {
 		
 		$lua2 = parent::luaSays("Lua has also some high quality libraries. Lua is used a lot in the game industry, this resulted in a lot of contributions from game developers. For example " . $popoverCryENGINE ." supports Lua for the AI system" . parent::bib()->cite(10) . ". But Lua doesn't really need that much libraries. Lua is designed to be an embeddable language, so it can use the functionality/libraries that are present in the host language.");	
 		
-		
-		//TODO: vertel iets over Java (zie $java0) en link dan $cSharp3 daaraan
-		$java0 = parent::javaSays("A lot of libraries available. Standaard veel beschikbaar in de taal. Ook modulair opgebouwd.");
-		$cSharp3 = parent::cSharpSays("Er zijn ook systemen beschikbaar die bijvoorbeeld java libraries kunnen importen. Werkt soms niet volledig als er low level stuff gebruikt wordt");
-		
-		return $lua0.$cpp0.$lua1.$cSharp0.$python0.$cSharp1.$cpp1.$cSharp2.$cpp2.$python1.$haskell0.$lua2.$java0.$cSharp3;
+		return $lua0.$cpp0.$lua1.$cSharp0.$python0.$cSharp1.$java0.$cSharp1_0.$cpp1.$cSharp2.$cpp2.$python1.$haskell0.$lua2;
 	}
 	
 	public function link(){
