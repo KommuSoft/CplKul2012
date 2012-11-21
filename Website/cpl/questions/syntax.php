@@ -24,6 +24,9 @@ class Syntax extends Question {
 		$codeEx3 = $this->codeInline($this->readFromFile("code/JavaSpecialAssignmentExample.java"), "java");
 		$codeEx4 = $this->codeInline($this->readFromFile("code/LuaSwapValuesExample.lua"), "lua");
 		$codeEx5 = $this->codeInline($this->readFromFile("code/CPPMultipleAssignmentExample.cpp"), "c++");
+		$codeEx6 = $this->codeInline($this->readFromFile("code/LuaIndexFrom1Example.lua"), "lua");
+		$codeEx7 = $this->codeInline($this->readFromFile("code/LuaIndexFrom0Example.lua"), "lua");
+		$codeEx8 = $this->codeInline($this->readFromFile("code/LuaHolesInArray.lua"), "lua");
 
 		$lua0 = parent::luaSays("In Lua, it isn't necessary to have a separator between consecutive statements, but a semicolon is allowed for those who like to. Furthermore, line breaks play no role in Lua, Lua is a so called free format language. To illustrate this, all following groups of statements are valid and equivalent." . $codeEx1);
 
@@ -41,11 +44,17 @@ class Syntax extends Question {
 
 		$lua3 = parent::luaSays("Surprisingly not. If the number of elements on the right is less than the number of elements on the left, then the extra variables on the left will receive nil as their value. But if the number of elements on the left are less than the number of elements on the right, then the extra values will be discarded.");
 
-		$python1 = parent::pythonSays("Python also supports multiple assignments. But Python is more strict, the number of values on both sides of the '=' have to match.");
+		$python1 = parent::pythonSays("Python also supports multiple assignments. But Python is more strict, the number of values on both sides of the '=' have to match. As mentioned before, Lua supports multiple return values from function calls. How does this work? Is it just putting the return values, separated by commas, after the return statement?" );
 
-		$java3 = parent::javaSays("");
+		$lua4 = parent::luaSays("Indeed, it's as simple as that.");
+		
+		$cpp1 = parent::cppSays("Now, to discuss something else, arrays in for example C++, C# and Java all start at index 0. On the other hand, I know that arrays in Lua start at index 1. Is there a way to circumvent this and nevertheless let them start at index 0?");
+		
+		$lua5 = parent::luaSays("Yes, it's possible. This is done by explicitly declaring the first index of the array as 0.".$codeEx7."However, it isn't recommended. This is because most built-in functions assume that arrays start at index 1. So, an unexpected result will appear. This is seen in the example above where the length operator doesn't return the expected result. In the next example, the case is shown where the array is started at index 1.".$codeEx6);
+		
+		$csharp0 = parent::csharpSays("You introduced the length operator and it behaves odd. Can you explain how it works? I suppose it is based on the length operator as shown in the two previous examples.");
+		$lua6 = parent::luaSays("Yes, that's true. The length operator looks for the last index of an array and returns that result. Lua finds the end of the array by looking for a nil value. This is done because any non-initialized index gives a nil value. Again, this can lead to problems. Consider the following code:".$codeEx8. "So, when there are holes in an array, the length operator returns a wrong result.");
 
-		$lua4 = parent::luaSays("");
 //Bron van het bovenstaande: vooral het boek Programming in Lua (2de editie) van ROBERTO IERUSALIMSCHY
 
 
@@ -62,13 +71,13 @@ class Syntax extends Question {
 //print(table.maxn(a))
 //uitvoer --> 10000
 
-		$lua5 = parent::luaSays("Lua has also very few keywords. Only 22. How much keywords do the other languages have?"); //TODO: misschien vraag specieker maken (bv rechtstreeks aan C++ vragen)
+		$lua7 = parent::luaSays("Lua has also very few keywords. Only 22. How much keywords do the other languages have?"); //TODO: misschien vraag specieker maken (bv rechtstreeks aan C++ vragen)
 		
-		$cpp1 = parent::cppSays("86" . parent::bib()->cite(15));
+		$cpp2 = parent::cppSays("86" . parent::bib()->cite(15));
 		
 		$java4 = parent::javaSays("50 but two of them are unused and only reserverd" . parent::bib()->cite(20) . "But how does this correspond to the syntax");
 		
-		$lua6 = parent::luaSays("Designed for end users => they are not able to learn a programming language => as simple as possible but not simpler => few keywords is good");
+		$lua8 = parent::luaSays("Designed for end users => they are not able to learn a programming language => as simple as possible but not simpler => few keywords is good");
 		
 //ook slechts 22 keywords in lua
 //and       break     do        else      elseif    end
@@ -89,7 +98,7 @@ class Syntax extends Question {
 		
 		$haskell = parent::haskellSays("niet verbose");
 		
-		return $lua0.$java0.$lua1.$java1.$lua2.$cpp0.$java2.$lua3.$python1.$lua4.$cpp1.$java3.$lua5;
+		return $lua0.$java0.$lua1.$java1.$lua2.$cpp0.$java2.$lua3.$python1.$lua4.$cpp1.$lua5.$csharp0.$lua6;#na python 1: .$lua4.$cpp1.$java3.$lua5;
 	}
 	
 	public function link(){
