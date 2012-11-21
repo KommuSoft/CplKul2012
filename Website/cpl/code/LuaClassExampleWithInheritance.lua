@@ -1,4 +1,3 @@
---We 'emulate' a class Car
 --attribute
 Car = {speed = 50}
 
@@ -11,8 +10,8 @@ function Car:new(o)
 end
 
 --other methods
-function Car:accelerate(speedIncrement)
-	self.speed = self.speed+speedIncrement
+function Car:accelerate(speedIncrease)
+	self.speed = self.speed+speedIncrease
 end
 
 --Creation of a new car
@@ -23,8 +22,8 @@ print(nCar.speed) --The output is 120, so a takes the speed of Car at the time o
 --Adding inheritance
 FastCar = Car:new();
 
-function FastCar:accelerate(speedincrement)
-	self.speed = self.speed+2*speedincrement
+function FastCar:accelerate(speedIncrease)
+	self.speed = self.speed+2*speedIncrease
 end
 
 fCar = FastCar:new() --When new executes here, its self parameter will refer to FastCar. This implies that the metatable of fCar will be FastCar.

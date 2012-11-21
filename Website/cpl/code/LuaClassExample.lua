@@ -11,5 +11,5 @@ end
 
 --other methods
 function Car:accelerate(speedIncrease)
-	self.speed = self.speed+speedIncrement
+	self.speed = self.speed+speedIncrease
 end

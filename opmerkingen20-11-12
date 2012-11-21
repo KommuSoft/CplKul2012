@@ -1,8 +1,8 @@
 oo
 --------------------------------------------------------------------------------
 * te lange blokken tekst
-* 7 types moeten niet meer vermeld worden
-* table associative array
+* 7 types moeten niet meer vermeld worden (OK-PJ)
+* table associative array				  (OK-PJ)
 * multiple inheritance
 
 portability
@@ -35,7 +35,7 @@ typing
 
 language design
 -----------------------
-since 2010 -> verandereren naar versie van het framework. Gebruikte bron: http://msdn.microsoft.com/en-us/magazine/ee336309.aspx
+since 2010 -> verandereren naar versie van het framework. Gebruikte bron: http://msdn.microsoft.com/en-us/magazine/ee336309.aspx (OK-PJ)
 lua -> f# en combinatie met andere talen of zoiets
 
 
