@@ -28,10 +28,10 @@ expressiveness
 
 typing
 -------------------
-* This is because the type is inferred at run-time which is less noticeable and can be done in a more lazy way.
-* interferred typing -> implicit typing?
-* bron voor abstract stack
-* python mag mss vervangen worden
+* This is because the type is inferred at run-time which is less noticeable and can be done in a more lazy way. [ok Jonas]
+* interferred typing -> implicit typing? [ok Jonas]
+* bron voor abstract stack [ok Jonas]
+* python mag mss vervangen worden [ok Jonas]
 
 language design
 -----------------------

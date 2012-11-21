@@ -25,12 +25,12 @@ One can write this function as a coroutine to generate for instance all prime nu
 
 TYPING
 ------
-This is because the type is inferred at run-time which is less noticeable LESS NOTICEABLE
-implicit casting, zie het verschil niet met explicit casting
+This is because the type is inferred at run-time which is less noticeable LESS NOTICEABLE [ok Jonas]
+implicit casting, zie het verschil niet met explicit casting [ok Jonas]
 I want to react on argument of higher-order programming
-lua weet blijkbaar weer veel over c#
-abstract stack
-consistent in het woord run-time
+lua weet blijkbaar weer veel over c# [ok Jonas]
+abstract stack [ok Jonas]
+consistent in het woord run-time [ok Jonas]
 
 LANGUAGE DESIGN
 ---------------
