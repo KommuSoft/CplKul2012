@@ -10,17 +10,17 @@ class Audience extends Question {
 	}
 
 	public function questionName(){
-		return "What's the target audience of Lua?";
+		return "How Does a Language Evolve?";
 	}
 	
 	public function introduction(){
-		return "Every language has its own audience. Some languages are made for a particular audience, others discover by accident their audience.";
+		return "One does not simply adds features to a language. All popular languages have some limitations evolving the development of that language. The audience of the language plays of course a crucial part. How does these programming languages maintain themselves?";
 	}
 	
 	public function answers(){
 		$WorldOfWarcraft = $this->popover("World of Warcraft", "World of Warcraft", "World of Warcraft is a massively multiplayer online role-playing game.");
 		$monty = $this->popover("Monty Python's Flying Circus", "Title", "Uitleg");		
-		$lua0 = parent::luaSays("merge sol del brazilie petrobras. Gemakkelijk data te verwerken, configuration files. Lua is erin geslaagd zichzelf up to date te houden.");
+		/*$lua0 = parent::luaSays("merge sol del brazilie petrobras. Gemakkelijk data te verwerken, configuration files. Lua is erin geslaagd zichzelf up to date te houden.");
 
 		$random = parent::cppSays("What are the implications of keeping yourself up to date? users themselves suggest adaptations for 'me''");
 
@@ -38,9 +38,21 @@ class Audience extends Question {
 		$python = parent::pythonSays("The audience of Python is more like the audience of Lua. Everyone who wants to automate a certain task can use Python. This is why Python is very readable. Instead of using curly braces, Python uses indentation. An approach which is very similar to Lua's one. It's a language for everyone who wants to have fun, as long as you like " . $monty . ".//// Like Lua Python also has a garbage collector. However the system is quite open: one can turn off the garbage collector and implement one himself. Therefore both performance and general users benefit from Python.");
 
 
-		$cSharp = parent::cSharpSays("C# aims to be a broad language: mainly for business purposes however some scientific libraries and applications are written in C# (for instance the Math.NET framework). Therefore it mixes a lot of concepts found in other languages. //// C# has a garbage collector the options available are quite the same as in Java. C# argues introducing a garbage collector will not slow down the system that much, the garbage collector is quite lazy. /// C# is quite extensible: it allows programmers to write code in other languages inside their C# code. For instance if you want to write a program where some methods should be executed quite fast, one can write Assembly code in C#. Lua is also supported" . parent::bib()->cite(3) .".");
+		$cSharp = parent::cSharpSays("C# aims to be a broad language: mainly for business purposes however some scientific libraries and applications are written in C# (for instance the Math.NET framework). Therefore it mixes a lot of concepts found in other languages. //// C# has a garbage collector the options available are quite the same as in Java. C# argues introducing a garbage collector will not slow down the system that much, the garbage collector is quite lazy. /// C# is quite extensible: it allows programmers to write code in other languages inside their C# code. For instance if you want to write a program where some methods should be executed quite fast, one can write Assembly code in C#. Lua is also supported" . parent::bib()->cite(3) .".");*/
+
+		$lua0 = parent::luaSays("Lua was never intended to become a real popular language. Therefore if you look at the first versions of the language, a lot of features were missing. Basically Lua originated from merging two other programming languages together: DEL and SOL.");
+		$cpp0 = parent::cppSays("What was the purpose of merging these two languages together? You say the language was missing some aspects, can you give some examples?");
+		$lua1 = parent::luaSays("DEL is a language that was used to format data. It aimed to help engineers enter data into files. Before DEL the engineers had to know the format of the files themselves. This made the task way more difficult. SOL was more a language to generate reports: the SOL interpreter could check if the data was correctly typed and generate a report summarizing that data.");
+		$cpp1 = parent::cppSays("I don't realy see what these languages have to do with Lua. The languages you're describing are very domain specific and probably aren't even Turing complete. Why were these languages merged after all?");
+		$lua2 = parent::luaSays("One can say both languages were growing out of the box. SOL could do type checking but it's user wanted more sophisticated tests and even procedural programming. Users of DEL wanted more control over the user interface. If both languages would remain separated a lot of work would be done twice. Therefore the developers decided to merge the languages.");
+		$cSharp0 = parent::cSharpSays("What issues arose while merging both languages? I think one can't claim there are no problems merging languages since the developers of C# have some problems merging different programming paradigms.");
+		$lua3 = parent::luaSays("The developers of Lua didn't merged the languages in a pure semantical way. Therefore they had more freedom to create new concepts. For instance DEL was not really integrated in Lua. It was merely the idea that everything could be stored in tables that represents the influence of DEL.");
+		$cSharp1 = parent::cSharpSays("Can one argue that Lua didn't really merged those two languages. When does you consider a language to be predecessor of that language?");
+		$lua4 = parent::luaSays("One can claim Lua doesn't has a predecessor since the developers didn't worked with the implementations of both DEL and SOL. But I don't think one has to judge a language that way. At that time DEL and SOL were, and still are, used by a non-programmer community. The audience of both languages were merely the geologist and petroleum engineers of Petrobras. Given the success of SOL in this environment, the developers of Lua created a language with a quite simular syntax.");
+		$cSharp2 = parent::cSharpSays("Did this make any difference?");
 		
-		return $lua0.$random.$lua1.$lua.$cpp.$python.$cSharp;
+		//return $lua0.$random.$lua1.$lua.$cpp.$python.$cSharp;
+		return $lua0.$cpp0.$lua1.$cpp1.$lua2.$cSharp0.$lua3.$cSharp1.$lua4.$cSharp2;
 	}
 	
 	public function link(){
