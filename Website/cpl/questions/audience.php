@@ -55,9 +55,14 @@ class Audience extends Question {
 		$cpp2 = parent::cppSays("But doesn't make such a decision both language quite similar? At what points C# differs from Java?");
 		$cSharp4 = parent::cSharpSays("Since Java was developed earlier, the developers of C# had detected some bad aspects of Java. Some of these aspects were eliminated in the first version of C#.");
 		$lua6 = parent::luaSays("Can you give some examples of such aspects?");
+		$cSharp5 = parent::cSharpSays("One of the most annoying things about Java is the implementation of primitive types. When you want to use primitive types, you need to cast them to their class-equivalents (int to Integer,...). C# doesn't use these dual types. In C# int is an alias for Integer.");
+		$cpp3 = parent::cppSays("Are these small aspects the only differences between Java and C#?");
+		$cSharp6 = parent::cSharpSays("When the project started, yes. However if we look at the evolution of C#, one can argue that C# moved away from Java and more to functional languages like Haskell. But I think most programming languages are moving to the functional paradigm?");
+		$lua7 = parent::luaSays("Lua implemented functional programming quite early: in 1998 anonymous functions were introduced. However one has to see this in a more broader context: Lua has always adopted very general concepts in order to keep the language small but powerfull.");
+		$cpp4 = parent::cppSays("What do you mean by adopting very general concepts. I think C++ has also implemented a lot of general structures.");
 		
 		//return $lua0.$random.$lua1.$lua.$cpp.$python.$cSharp;
-		return $lua0.$cpp0.$lua1.$cpp1.$lua2.$cSharp0.$lua3.$cSharp1.$lua4.$cSharp2.$lua5.$cSharp3.$cpp2.$cSharp4.$lua6;
+		return $lua0.$cpp0.$lua1.$cpp1.$lua2.$cSharp0.$lua3.$cSharp1.$lua4.$cSharp2.$lua5.$cSharp3.$cpp2.$cSharp4.$lua6.$cSharp5.$cpp3.$cSharp6.$lua7.$cpp4;
 	}
 	
 	public function link(){
