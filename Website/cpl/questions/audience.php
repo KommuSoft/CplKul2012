@@ -49,10 +49,15 @@ class Audience extends Question {
 		$lua3 = parent::luaSays("The developers of Lua didn't merged the languages in a pure semantical way. Therefore they had more freedom to create new concepts. For instance DEL was not really integrated in Lua. It was merely the idea that everything could be stored in tables that represents the influence of DEL.");
 		$cSharp1 = parent::cSharpSays("Can one argue that Lua didn't really merged those two languages. When does you consider a language to be predecessor of that language?");
 		$lua4 = parent::luaSays("One can claim Lua doesn't has a predecessor since the developers didn't worked with the implementations of both DEL and SOL. But I don't think one has to judge a language that way. At that time DEL and SOL were, and still are, used by a non-programmer community. The audience of both languages were merely the geologist and petroleum engineers of Petrobras. Given the success of SOL in this environment, the developers of Lua created a language with a quite simular syntax.");
-		$cSharp2 = parent::cSharpSays("Did this make any difference?");
+		$cSharp2 = parent::cSharpSays("Did this make any difference? Most people know the syntax of the C-family since it's very widespead.");
+		$lua5 = parent::luaSays("I wouldn't count that much on that C#. However the main customer of DEL and SOL was Petrobras at that time. Lua was intended to replace those systems. In order to defend the choise of a new language, we could argue that the engineers at Petrobras wouldn't have a hard time in order to learn the language. But as far as I know both C# and C++ adapted syntax from their predecessor.");
+		$cSharp3 = parent::cSharpSays("That's true. C# originates from Java. When Java became popular, Microsoft implemented their own virtual machine in order to run Java-applets. However the implementation of the Java standard remained incomplete for a long time. The incomplete implementation was a bottleneck for the further development of Java. Therefore Sun, the creators of Java, sued Microsoft. As a result of the trial, Microsoft wasn't allowed to build Java applications anymore. Therefore they started building a new language and framework: the .NET framework.");
+		$cpp2 = parent::cppSays("But doesn't make such a decision both language quite similar? At what points C# differs from Java?");
+		$cSharp4 = parent::cSharpSays("Since Java was developed earlier, the developers of C# had detected some bad aspects of Java. Some of these aspects were eliminated in the first version of C#.");
+		$lua6 = parent::luaSays("Can you give some examples of such aspects?");
 		
 		//return $lua0.$random.$lua1.$lua.$cpp.$python.$cSharp;
-		return $lua0.$cpp0.$lua1.$cpp1.$lua2.$cSharp0.$lua3.$cSharp1.$lua4.$cSharp2;
+		return $lua0.$cpp0.$lua1.$cpp1.$lua2.$cSharp0.$lua3.$cSharp1.$lua4.$cSharp2.$lua5.$cSharp3.$cpp2.$cSharp4.$lua6;
 	}
 	
 	public function link(){
@@ -60,7 +65,7 @@ class Audience extends Question {
 	}
 	
 	public function name(){
-		return "Target audience";
+		return "Evolution";
 	}
 	
 	public function bibliography(){
