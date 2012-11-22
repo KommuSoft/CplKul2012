@@ -14,7 +14,7 @@ class Evolution extends Question {
 	}
 	
 	public function introduction(){
-		return "One does not simply adds features to a language. All popular languages have some limitations evolving the development of that language. The audience of the language plays of course a crucial part. How does these programming languages maintain themselves?";
+		return "One does not simply adds features to a language. All popular languages have some aspects the limitate the evolution of this language. The audience of the language plays of course a crucial part. How does these programming languages maintain themselves?";
 	}
 	
 	public function answers(){
@@ -42,9 +42,9 @@ class Evolution extends Question {
 
 		$lua0 = parent::luaSays("Lua was never intended to become a real popular language. Therefore if you look at the first versions of the language, a lot of features were missing. Basically Lua originated from merging two other programming languages together: DEL and SOL.");
 		$cpp0 = parent::cppSays("What was the purpose of merging these two languages together? You say the language was missing some aspects, can you give some examples?");
-		$lua1 = parent::luaSays("DEL is a language that was used to format data. It aimed to help engineers enter data into files. Before DEL the engineers had to know the format of the files themselves. This made the task way more difficult. SOL was more a language to generate reports: the SOL interpreter could check if the data was correctly typed and generate a report summarizing that data.");
+		$lua1 = parent::luaSays("DEL is a language that was used to format data. It aimed to help engineers enter data into files. Before DEL, the engineers had to know the format of the files themselves. This made the task way more difficult. SOL was more a language to generate reports: the SOL interpreter could check if the data was correctly typed and generate a report summarizing this data.");
 		$cpp1 = parent::cppSays("I don't realy see what these languages have to do with Lua. The languages you're describing are very domain specific and probably aren't even Turing complete. Why were these languages merged after all?");
-		$lua2 = parent::luaSays("One can say both languages were growing out of the box. SOL could do type checking but it's user wanted more sophisticated tests and even procedural programming. Users of DEL wanted more control over the user interface. If both languages would remain separated a lot of work would be done twice. Therefore the developers decided to merge the languages.");
+		$lua2 = parent::luaSays("One can say both languages were growing out of the box. SOL could do type checking but the users wanted more sophisticated tests and even procedural programming. Users of DEL wanted more control over the user interface. If both languages would remain separated a lot of work would be done twice. Therefore the developers decided to merge the languages.");
 		$cSharp0 = parent::cSharpSays("What issues arose while merging both languages? I think one can't claim there are no problems merging languages since the developers of C# have some problems merging different programming paradigms.");
 		$lua3 = parent::luaSays("The developers of Lua didn't merged the languages in a pure semantical way. Therefore they had more freedom to create new concepts. For instance DEL was not really integrated in Lua. It was merely the idea that everything could be stored in tables that represents the influence of DEL.");
 		$cSharp1 = parent::cSharpSays("Can one argue that Lua didn't really merged those two languages. When does you consider a language to be predecessor of that language?");
