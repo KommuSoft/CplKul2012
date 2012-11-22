@@ -42,7 +42,7 @@ print(type(x[1])) -- output: number";
 		
 		$cpp0 = parent::cppSays("But don't you introduce an extra burden for the programmer? Some problems will only be detected at run-time while they could have been prevented because the compiler would have spotted them. Also for compiled languages it's cheaper to do compile-time type checking" . parent::bib()->cite(2) . ".");
 		
-		$cSharp0 = parent::cSharpSays("It's true that static typing makes a programming language faster. However some programming languages have very complicated type systems, C# for example has " . $pop_it . ". This increases the work that the compiler must do, but it can result in better code because the most specific type will be used. Although this can look like weakly typed, it's actually strongly typed because the compiler will replace it to the correct type before compilation something that a programmer will not always do.");
+		$cSharp0 = parent::cSharpSays("It's true that static typing makes a programming language faster. However some programming languages have very complicated type systems, C# for example has " . $pop_it . ". This increases the work that the compiler must do, but it can result in better code because the most specific type will be used. Although this can look like weakly typed, it's actually strongly typed because the compiler will replace it to the correct type before compilation, something that a programmer will not always do.");
 		
 		$lua1 = parent::luaSays("But doesn't a strong type system lead to horrible code? In strong type systems not every type is compatible with the expected type, so a lot of conversions are needed. Also the reuse of variables is more difficult.");
 		
