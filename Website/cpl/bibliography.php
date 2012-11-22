@@ -54,6 +54,7 @@ class Bibliography{
 		$bib[10] = new Website("http://www.crytek.com/cryengine/cryengine2/overview", "08/11/2012");
 		$bib[15] = new Website("http://en.cppreference.com/w/cpp/keyword", "09/11/2012");
 		$bib[16] = new Item("A Comparison of C++ Concepts and Haskell Type Classes", "Bernardy et al.", "2008");
+		$bib[17] = new Website("http://www.microsoft.com/presspass/legal/01-23settlement.mspx", "22/11/2012");
 		$bib[20] = new Website("http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html", "09/11/2012");
 		$bib[21] = new Website("http://msdn.microsoft.com/en-us/magazine/ee336309.aspx", "20/11/2012");
 		$bib[22] = new Item("Programming in Lua, 2nd edition","Roberto Ierusalimschy","2006");
