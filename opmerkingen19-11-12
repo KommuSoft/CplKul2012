@@ -1,6 +1,6 @@
 TARGET AUDIENCE
 ---------------
-Moet Lua wel in de 'titel'? We vergelijken talen, dus het slaat niet alleen op lua.
+Moet Lua wel in de 'titel'? We vergelijken talen, dus het slaat niet alleen op lua. [ok Jonas]
 
 OOP
 ---
@@ -9,14 +9,14 @@ andere talen er ook nog passend bijvoegen en iets gedetailleerder mss. (in het g
 
 PORTABILITY
 -----------
-slightly different audience -> mag wag concreter
+slightly different audience -> mag wag concreter [verwijzing gemaakt, nog controleren of de naam klopt Jonas]
 Ik snap de overgang naar dat backwards compatibility niet.
-wat meer uitleg over mmx sse?
-Met welke redenen staat C# daar?
-ik kom net iets te veel "probably", "I guess" tegen. Zijn het dingen dat we niet zeker zijn of niet kunnen beargumenteren? 
-bloated language
-meer dan 60, minder dan 40 -> bron?
-talen weten blijkbaar veel over de andere talen -> c++ over lua
+wat meer uitleg over mmx sse? [ok Jonas]
+Met welke redenen staat C# daar? [ok Jonas]
+ik kom net iets te veel "probably", "I guess" tegen. Zijn het dingen dat we niet zeker zijn of niet kunnen beargumenteren? [ok Jonas]
+bloated language [verondersteld gekend Jonas]
+meer dan 60, minder dan 40 -> bron? [ok Jonas]
+talen weten blijkbaar veel over de andere talen -> c++ over lua [valt mee Jonas]
 
 EXPRESSIVENESS
 --------------
