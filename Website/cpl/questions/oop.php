@@ -30,8 +30,6 @@ class OOP extends Question {
 		$code5 = $this->codeInline($this->readFromFile("code/TableInformation.lua"), "lua");
 		$code6 = $this->codeInline($this->readFromFile("code/LuaClassExampleWithInheritanceUsage.lua"), "lua");
 
-//er moet nog wat extra uitleg komen over metamethods.
-//metamethods.
 //operator overloading (ad hoc polymorphism) -> java niet; lua, c++, c#, python wel; haskell nog uitgebreider 
 //JavaScript is perhaps the best known prototype-based programming language, which employs cloning from prototypes rather than inheriting from a class. Another scripting language that takes this approach is Lua.
 //Prototype-based programming is a style of object-oriented programming in which classes are not present, and behavior reuse (known as inheritance in class-based languages) is performed via a process of cloning existing objects that serve as prototypes. This model can also be known as classless, prototype-oriented or instance-based programming. Delegation is the language feature that supports prototype-based programming.
@@ -40,7 +38,7 @@ class OOP extends Question {
 		$cpp0 = parent::cppSays("I see that the notation is adapted to be more familiar for users who have experience with classes in object-oriented languages. Can you explain now how those tables can be used to emulate classes?");		
 		$lua1 = parent::luaSays("Yes, the names of fields and methods can be stored as keys in a table. This is done by using the type string. Above that, functions are first-class values. This means that functions can be assigned to variables, passed as arguments to functions, returned from functions and stored in tables. So, the values in a table can be functions. Therefore, it is possible to call a method by using the appropriate key in the table, which represents the name of the method.");
 		$java0 = parent::javaSays("Java is an object-oriented language and provides direct support for classes. To give an example of a class:".$code0."Is it possible to give an equivalent example in Lua?");
-		$lua2 = parent::luaSays("Of course.".$code1. "I will clarify this piece of code a bit. Car is of type table as mentioned above. At line 2, an element with key \"speed\" and value 0 is added to the table." /*Line 2 is syntactic sugar for Car[\"speed\"] = 0*/ . " At line 5, we declare a constructor and put it in the table Car as well. At line 13, a similar thing happens. The \"self\"  variable is necessary, because we want to specify the object the method has to operate on." /*Line 5 is also syntactic sugar for Car[\"new\"] = function (self,o)."*/);
+		$lua2 = parent::luaSays("Of course.".$code1. "I will clarify this piece of code a bit. Car is of type table as mentioned above. At line 2, an element with key \"speed\" and value 0 is added to the table. At line 5, we declare a constructor and put it in the table Car as well. At line 13, a similar thing happens. The \"self\"  variable is necessary, because we want to specify the object the method has to operate on.");
 		$cpp1 = parent::cppSays("For me, the body of the constructor isn't clear yet. What is meant with the setmetatable method and the \"__index\" construct on lines 7 and 8?");
 		$lua3 = parent::luaSays("Before I explain this, I will give some background about metatables and metamethods. When you try to access an absent field in a table, the result is nil. However, there is a way to get around this. In the case of an absent field, the interpreter looks for an \"__index\" metamethod in the metatable of that table. Usually this method isn't available, so the result is a nil value as explained before. But if it is available, the metamethod will provide the result. A metatable is just like any other table, except that it also contains metamethods. A table can have a metatable by using the \"setmetatable\" construct as shown in line 7 where \"self\" is the metatable of \"o\". This mechanism allows the programmer to propose a way to proceed if the basic execution mechanism fails. Operator overloading is possible with this too. There are metamethods like \"__add\", \"__mod\", \"__pow\", \"__eq\", \"__lt\", etc. For example, the way to perform the \"+\" operation on two tables isn't defined. The solution is to define the \"__add\" metamethod.");
 		$java1 = parent::javaSays("Another essential part of object-oriented programming is inheritance. Can this also be emulated in Lua?");
@@ -49,24 +47,9 @@ class OOP extends Question {
 		$lua5 = parent::luaSays("Yes, I will show how you can create a instance of both classes and how methods can be performed on them.".$code6);
 		$java2 = parent::javaSays("Now we have seen how classes and inheritance can be emulated. Are there drawbacks or subtleties with this approach?");
 		$lua6 = parent::luaSays("First, I want to mention that this is just an approach. There are other possible approaches, for example to provide multiple inheritance".parent::bib()->cite(22).". The main design for objects offers no privacy mechanisms. This is a reflection of some of the basic design decisions behind Lua. The aim of Lua is at building small to medium programs where just a few programmers work on. For that reason, Lua wants to avoid such redundancy. But again, there are ways to implement the privacy mechanism. If we judge based on simplicity, performance and flexibility, the approach using the \"__index\" is probably the best".parent::bib()->cite(22).".");
-		//eventueel multiple inheritance
-/*
-But this also reflects some basic design
-decisions behind Lua. Lua is not intended for building huge programs, where
-many programmers are involved for long periods. Quite the opposite, Lua aims
-at small to medium programs, usually part of a larger system, typically devel-
-oped by one or a few programmers, or even by non programmers. Therefore,
-Lua avoids too much redundancy and artificial restrictions. If you do not want
-to access something inside an object, just do not do it.
-
-The approach that we have seen, using the
-index metamethod, is probably the best combination of simplicity, performance,
-and flexibility.
-
-*/
 
 
-
+//NIET GEBRUIKTE DINGEN
 
 		$lua = parent::luaSays("Lua uses a quite special paradigm: the only real datastructure is a table. Lua itself contains only 8 types: nil, number, string, table, function, userdata, boolean and threads. Therefore one can argue Lua isn't a real object-oriented language. The authors of Lua are of course aware of the object-oriented paradigm and see it benefits. However in their opinion the language should remain simple and small. Lua however allows object-oriented programming since objects can be represented by the tables (where the keys are the names of the fields and methods). Inheritance in tables is supported by the so called ''fallback'' mechanism" . parent::bib()->cite(0) . ". This mechanism allows the programmer to propose a way to proceed if the basic execution mechanism fails. One can use this mechanism for instance when an index of a table doesn't exist by looking at the parent's table. Since inheritance is widely used one doesn't need to define these fallbacks manually. Lua offers an __index entry a pointer to the parent table. One can easily see the fallback mechanism gives birth to more dynamic typing: an object can change it's parent on the fly while keeping it's own specific attributes.");
 		

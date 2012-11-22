@@ -32,7 +32,7 @@ class Syntax extends Question {
 
 		$java0 = parent::javaSays("In Java, you can put multiple statements on the same line, but the semicolon is necessary. It makes the code more readable by using it. Is there a special reason for making the semicolon optional?");
 		
-		$lua1 = parent::luaSays("The designers thought that it could be a little confusing for people with a Fortran background by requiring semicolons. However, not allowing them could confuse people with a Pascal or C background. For that reason, optional semicolons were introduced".parent::bib()->cite(0).". Another feature that is nonexistent in some other languages, is the concept of multiple assignments (and multiple returns from function calls). This means for example that a list of values can be assigned to a list of variables. To give an example:".$codeEx2."The result is that the variable x gets the value 100 and the variable y gets the value 200.");//Java heeft wel een expressie int x=100,y=100 (alleen werkt dit niet met lijsten)!
+		$lua1 = parent::luaSays("The designers thought that it could be a little confusing for people with a Fortran background by requiring semicolons. However, not allowing them could confuse people with a Pascal or C background. For that reason, optional semicolons were introduced".parent::bib()->cite(0).". Another feature that is nonexistent in some other languages, is the concept of multiple assignments (and multiple returns from function calls). This means for example that a list of values can be assigned to a list of variables. To give an example:".$codeEx2."The result is that the variable x gets the value 100 and the variable y gets the value 200.");
 		
 		$java1 = parent::javaSays("In Java, you can do something that is semantically equivalent, I think. For example:".$codeEx2b);		
 
@@ -55,36 +55,15 @@ class Syntax extends Question {
 		$csharp0 = parent::csharpSays("You introduced the length operator and it behaves odd. Can you explain how it works? I suppose it is based on the length operator as shown in the two previous examples.");
 		$lua6 = parent::luaSays("Yes, that's true. The length operator looks for the last index of an array and returns that result. Lua finds the end of the array by looking for a nil value. This is done because any non-initialized index gives a nil value. Again, this can lead to problems. Consider the following code:".$codeEx8. "So, when there are holes in an array, the length operator returns a wrong result.");
 
-//Bron van het bovenstaande: vooral het boek Programming in Lua (2de editie) van ROBERTO IERUSALIMSCHY
 
 
-//Jonas: Syntax en semantiek zijn soms aan elkaar gekoppeld maar toch heb ik het moeilijk met "length" en "maxn". Een goede plaats weet ik niet echt, ze vallen volgens mij tussen syntax en language design. Aangezien er bij language design zeker wat verteld zal worden over tables, zou ik het dan daar plaatsen. PJ: als ik het goed begrepen heb, gaat semantics over de betekenis van expressies. En de length operator betekent verschillende dingen in de verschillende talen.
-//the length operator werkt niet correct bij tabellen waarin nil elementen zitten. In alle andere talen werkt dit wel vermoed ik. Een vb.
-//x = {}
-//x[1] = "begin"
-//x[100] = "einde"
-//rarara, wat is de uitvoer van print(#x)? -> 1. Reden x[2] is een nil waarde, dus dat wordt als het einde van de table gezien.
-
-//you can use the function table.maxn, which returns the largest numerical positive index of a table, vb:
-//a = {}
-//a[10000] = 1
-//print(table.maxn(a))
-//uitvoer --> 10000
-
-		$lua7 = parent::luaSays("Lua has also very few keywords. Only 22. How much keywords do the other languages have?"); //TODO: misschien vraag specieker maken (bv rechtstreeks aan C++ vragen)
+		$lua7 = parent::luaSays("Lua has also very few keywords. Only 22. How much keywords do the other languages have?");
 		
-		$cpp2 = parent::cppSays("86" . parent::bib()->cite(15));
+		$cpp2 = parent::cppSays("86" /*. parent::bib()->cite(15)*/);
 		
-		$java4 = parent::javaSays("50 but two of them are unused and only reserverd" . parent::bib()->cite(20) . "But how does this correspond to the syntax");
+		$java4 = parent::javaSays("50 but two of them are unused and only reserverd" . /*parent::bib()->cite(20) .*/ "But how does this correspond to the syntax");
 		
 		$lua8 = parent::luaSays("Designed for end users => they are not able to learn a programming language => as simple as possible but not simpler => few keywords is good");
-		
-//ook slechts 22 keywords in lua
-//and       break     do        else      elseif    end
-//false     for       function  goto      if        in
-//local     nil       not       or        repeat    return
-//then      true      until     while
-
 
 		$lua = parent::luaSays("Verbose syntax");
 		
@@ -98,7 +77,7 @@ class Syntax extends Question {
 		
 		$haskell = parent::haskellSays("niet verbose");
 		
-		return $lua0.$java0.$lua1.$java1.$lua2.$cpp0.$java2.$lua3.$python1.$lua4.$cpp1.$lua5.$csharp0.$lua6;#na python 1: .$lua4.$cpp1.$java3.$lua5;
+		return $lua0.$java0.$lua1.$java1.$lua2.$cpp0.$java2.$lua3.$python1.$lua4.$cpp1.$lua5.$csharp0.$lua6;
 	}
 	
 	public function link(){
