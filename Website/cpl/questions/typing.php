@@ -58,7 +58,7 @@ print(type(x[1])) -- output: number";
 		
 		$cSharp2 = parent::cSharpSays("I want to react on the argument about higher-order programming: it's not that difficult to implement it in the static typing paradigm: C# is a higher-order programming language. Methods can be stored as variables. These methods are then stored in a ''delegate'' structure. The delegate structure specifies the signature of the function. The compiler uses duck typing to check if the selected function matches with the given signature.");
 		
-		$lua4 = parent::luaSays("I see, so C# has some elegant structures to deal with higher-order programming. But the Lua support is even more elegant: use first-class values. However Lua is still an interpreted scripting language. That means code is compiled and checked at run-time. In order to make the run-time interpreter fast, we needs small and simple code. C# is way too complex to be a fast scripting language. You also mentioned duck typing, this system is also used by Lua.");		
+		$lua4 = parent::luaSays("I see, so C# has some elegant structures to deal with higher-order programming. But the Lua support is even more elegant: use first-class values. However Lua is still an interpreted scripting language. That means code is compiled and checked at run-time. In order to make the run-time interpreter fast, we need small and simple code. C# is way too complex to be a fast scripting language. You also mentioned duck typing, this system is also used by Lua.");		
 
 		$cpp2 = parent::cppSays("Something different. Lua is an embeddable language, this means that Lua should be compatible with the type system of the host language. How does Lua do this?");
 

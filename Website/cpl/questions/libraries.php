@@ -26,7 +26,7 @@ class Libraries extends Question {
 	
 		$popoverCryENGINE = parent::popover("CryENGINE", "CryENGINE", "This is a game engine made by Crytek, a company which made games like the Crysis serie and Far Cry.");
 	
-		$lua0 = parent::luaSays("Lua is a less known language, so the libary support is a bit less than those of the big ones. The fact that Lua is very small language, so not a lot of functionality is included doesn't really help."); 
+		$lua0 = parent::luaSays("Lua is a less known language, so the libary support is a bit less than those of the big ones. The fact that Lua is very small language, so not a lot of functionality is included, doesn't really help."); 
 		
 		$cpp0 = parent::cppSays("But does this mean that Lua has very little available libraries? For example C++ has a good integration with C, so a lot of C libraries can be reused as C++ library. Of course sometimes some little adjustments are needed, but this isn't a big problem.");
 		
@@ -40,9 +40,9 @@ class Libraries extends Question {
 		
 		$java0 = parent::javaSays("Java has also a lot of libraries available. Like most other languages, the library system is very modular.");
 		
-		$cSharp1_0 = parent::cSharpSays("In C# it's even possible to use these Java libraries. However if the libraries use low level code, for example drivers it's not guaranteed to work good. But for more general purposes it's an easy system to use Java code.");
+		$cSharp1_0 = parent::cSharpSays("In C# it's even possible to use these Java libraries. However if the libraries use low level code, for example drivers, it's not guaranteed to work good. But for more general purposes it's an easy system to use Java code.");
 		
-		$cpp1 = parent::cppSays("But shipping with a lot of libraries can have its problems too. A library can restrict the programmer, because he/she isn't used to work with something else. Also a library doesn't always tackle the programmers wants to be solved.");
+		$cpp1 = parent::cppSays("But shipping with a lot of libraries can have its problems too. A library can restrict the programmer, because he/she isn't used to work with something else. Also a library doesn't always tackle the problems the programmers want to have solved.");
 		
 		$cSharp2 = parent::cSharpSays("But it's good to provide some default behaviour. Of course the .NET framework was aimed to be used at Windows which reduces some problems because you only have to implement default behaviour for one platform (there exists a cross platform version of the .NET framework called Mono, but it depends on other libraries like GTK+ for creating windows). But isn't it so that C++ has also better library support than in the early years?");
 		
