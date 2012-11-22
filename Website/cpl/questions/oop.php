@@ -14,7 +14,7 @@ class OOP extends Question {
 	}
 	
 	public function introduction(){
-		return "One of the most popular paradigm is \"Object oriented programming\". But how is it implemented in different languages?";
+		return "One of the most popular paradigms is \"Object oriented programming\". But how is it implemented in different languages?";
 	}
 	
 	public function answers(){
