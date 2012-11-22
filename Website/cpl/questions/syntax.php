@@ -14,7 +14,7 @@ class Syntax extends Question {
 	}
 	
 	public function introduction(){
-		return "Ever written a document in LaTeX? It looks beautiful. Programming code can have the same characteristics. What are the main differences in syntax and what makes one syntactical family better than the other one.";
+		return "Ever written a document in LaTeX? It looks beautiful. Programming code can have the same characteristics. What are the main differences in syntax and semantics?";
 	}
 	
 	public function answers(){
