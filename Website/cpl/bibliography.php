@@ -56,6 +56,7 @@ class Bibliography{
 		$bib[16] = new Item("A Comparison of C++ Concepts and Haskell Type Classes", "Bernardy et al.", "2008");
 		$bib[20] = new Website("http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html", "09/11/2012");
 		$bib[21] = new Website("http://msdn.microsoft.com/en-us/magazine/ee336309.aspx", "20/11/2012");
+		$bib[22] = new Item("Programming in Lua, 2nd edition","Roberto Ierusalimschy","2006");
 		return $bib[$hash];
 	}
 	
