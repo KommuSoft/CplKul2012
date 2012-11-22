@@ -31,7 +31,7 @@ end';
 		
 		$lua0 = parent::luaSays("Lua is a language that is very easy to learn. When the language was created, one of the requirements was that it should be very simple. The intention was to create a language that non-programmers (e.g. geologists, engineers, etc) could use.");
 		
-		$cpp0 = parent::cppSays("How is that elaborated in the language?");
+		$cpp0 = parent::cppSays("How is this elaborated in the language?");
 		
 		$lua1 = parent::luaSays("I will give an example." . parent::codeInline($codeLuaIf, "lua") . "The if statement starts with an 'if' followed by a condition. The word 'then' introduces the code that must be executed when the statement is true. At the end the word 'end' denotes the end of the if construct. This way Lua looks like English so this makes the language very readable.");
 		

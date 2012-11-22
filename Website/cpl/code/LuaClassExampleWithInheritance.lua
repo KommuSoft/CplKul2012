@@ -1,4 +1,4 @@
---The base class (it's exactly the same as in the previous example)
+--The base class (it is exactly the same as in the previous example)
 Car = {speed = 50}
 
 function Car:new(o)

@@ -36,7 +36,7 @@
 						<p>What's this website about and what is the purpose?</p>
 					</div>
 					<div class="span12" id="about">
-						<p>This is a website we (= Willem Van Onsem, Jonas Vanthornhout & Pieter-Jan Vuylsteke) created for the first project of the course "Comparative Programming Languages". The goal was to select a programming language and compare it with languages you already knew. We've chosen Lua and compared it with mainly C#, C++ but also with Java and to a lesser extent with Haskell and Python.</p>
+						<p>This is a website we (= Willem Van Onsem, Jonas Vanthornhout & Pieter-Jan Vuylsteke) created for the first project of the course "Comparative Programming Languages". The goal was to select a programming language and compare it with languages we already knew. We've chosen Lua and compared it with mainly C#, C++ but also with Java and to a lesser extent with Haskell and Python.</p>
 						<p>The purpose was to do this comparison in a Socratic dialogue. This can be done in a couple of ways, but our approach is as follows. We've selected a few topics, see the sidebar on the left. Each topic has a main question and a short introduction. Then we let the experts of the languages discuss about this topic.</p>
 						
 						<p>We hope you enjoy it and learn something new about Lua.</p>
