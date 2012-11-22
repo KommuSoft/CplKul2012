@@ -60,23 +60,6 @@ class Expressiveness extends Question {
 		$cSharp4 = parent::cSharpSays("Another type of serialization that is very popular these days is XML. C# has a very elegant way to serialize and deserialize objects into XML. One only has to anotate the proper fields and provide a default constructor. The C# library can handle these annotations and does the whole serialization/deserialization process. The main reason to implement this feature were web servers: web servers mainly communicate through the HTTP protocol. This protocol doesn't allow binary data. Do the other languages have built-in features for XML serialization?");
 		$java7 = parent::javaSays("Java has some libraries who work in a simular way like C#: with annotations. You simply annotate the code of your class and the library can serialize and deserialize objects to XML code. A problem is that there are many libraries and thus there is no real standard procedure for XML serialization/deserialization.");
 		$lua7 = parent::luaSays("Again: Lua has no syntactical sugar for XML serialization. But since the typing system is extremely simpe, it's very easy to write a generic method who can serialize any type of table. An example of a library who serializes tables is TinyXml.");
-		//$lua0 = parent::luaSays("Lua aims to be an expressive language. A proof of this expressiveness is for instance coroutine support.");
-		//$cSharp0 = parent::cSharpSays("What makes coroutines actually an expressive part of the language? C# itself has coroutine support too. Of course it helps the programmer to specify better list generation, but it doesn't but let's say that it adds only little expressiveness to the language.");
-		//$lua1 = parent::luaSays("That's partly because the coroutine support in C# is somehow limited to list generation.");
-		//$cSharp0 = parent::cSharpSays("How does coroutines actually relate to this discussion. C# has coroutines too, but that doesn't make the language that much more expressive.");
-		//$lua0 = parent::luaSays("Well, Lua has no built-in functionalities, it doesn't has syntactical sugar for most features other languages support easily. However it has some standard libraries to cope with these problems. Most of these libraries try to implement short but general methods to cope with a lot of problems at once.");
-		//$cSharp0 = parent::cSharpSays("Since C# is an object oriented language, syntactical");
-		//$lua = parent::luaSays("Lua has builtin functionality for matching regular expressions and file I/O. Lambda, XML library bestaat maar niet standaard meegeleverd, Library nodig");
-		
-		//$cSharp = parent::cSharpSays("C# doesn't have such functionalities. However it has the LINQ framework, this framework comes with additional syntax to write queries to objects. Furthermore, like C++ it has operator overloading. Everything in classes, lambda, XML (na system.xml import)");
-		
-		//$cpp = parent::cppSays("Operator overloading, lambda, alles in library die niet meegeleverd is");
-		
-		//$python = parent::pythonSays("Operator overloading, regular expressions, file I/O, lambda, standaard support xml");
-		
-		//$haskell = parent::haskellSays("Easy to write statements that can be easily parallellised. lambda :), ");
-		
-		//$java = parent::javaSays("not expressive (geen operator overloading, ... + decorator file input vb), lambda (wss in java 8), xml zit er standaard in maar is lelijk en niet echt expressief");
 
 		return $cSharp0.$lua0.$cpp0_0.$java0.$cpp0.$java1.$cpp1.$lua1.$java2_0.$lua2.$java3.$lua3.$cSharp1.$lua4.$cSharp2.$java2.$lua5.$java4.$lua5_0.$cpp3.$java5.$cSharp3.$java6.$cpp4.$lua6.$cSharp4.$java7.$lua7;
 	}
