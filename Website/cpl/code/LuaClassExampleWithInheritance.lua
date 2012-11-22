@@ -13,7 +13,7 @@ function Car:accelerate(speedIncrease)
 end
 
 --The subclass
-FastCar = Car:new(); --the metatable of FastCar is now Car
+FastCar = Car:new() --the metatable of FastCar is now Car
 
 function FastCar:accelerate(speedIncrease) --override the method accelerate
 	self.speed = self.speed+2*speedIncrease
