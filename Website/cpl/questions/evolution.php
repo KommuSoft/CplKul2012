@@ -4,7 +4,7 @@ ini_set('display_errors', '1');
 include_once("question.php");
 include_once("bibliography.php");
 
-class Audience extends Question {	
+class Evolution extends Question {	
 	public function __construct() {
 		parent::__construct($this);
 	}
@@ -68,7 +68,7 @@ class Audience extends Question {
 	}
 	
 	public function link(){
-		return "audience.php";
+		return "evolution.php";
 	}
 	
 	public function name(){
