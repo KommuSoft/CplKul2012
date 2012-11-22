@@ -8,7 +8,7 @@ oo
 portability
 --------------------------------------------------------------------------------
 
-* Is het niet zo dat vm instructies gemakkelijk te decompilen zijn (tenzij je een obfucater gebruikt)? Bij Java gaat het gemakkelijk, over C# heb ik geen idee.
+* Is het niet zo dat vm instructies gemakkelijk te decompilen zijn (tenzij je een obfucater gebruikt)? Bij Java gaat het gemakkelijk, over C# heb ik geen idee. [ok Willem]
 * Over C++: er zijn geen 1300 pagina's geschreven om de taal compatible te houden. Dat is de volledige standaard. [ok Jonas]
 * Er wordt gesproken over een runtime compiler. Voor mij klinkt dit raar, zou er iets beter bestaan? runtime interpreter mss [ok Jonas]
 * Bron voor stack-based en register-based vermelden. [ok jonas]
