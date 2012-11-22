@@ -54,28 +54,6 @@ class Syntax extends Question {
 		
 		$csharp0 = parent::csharpSays("You introduced the length operator and it behaves odd. Can you explain how it works? I suppose it is based on the length operator as shown in the two previous examples.");
 		$lua6 = parent::luaSays("Yes, that's true. The length operator looks for the last index of an array and returns that result. Lua finds the end of the array by looking for a nil value. This is done because any non-initialized index gives a nil value. Again, this can lead to problems. Consider the following code:".$codeEx8. "So, when there are holes in an array, the length operator returns a wrong result.");
-
-//NIET GEBRUIKTE DINGEN
-
-		$lua7 = parent::luaSays("Lua has also very few keywords. Only 22. How much keywords do the other languages have?");
-		
-		$cpp2 = parent::cppSays("86" /*. parent::bib()->cite(15)*/);
-		
-		$java4 = parent::javaSays("50 but two of them are unused and only reserverd" . /*parent::bib()->cite(20) .*/ "But how does this correspond to the syntax");
-		
-		$lua8 = parent::luaSays("Designed for end users => they are not able to learn a programming language => as simple as possible but not simpler => few keywords is good");
-
-		$lua = parent::luaSays("Verbose syntax");
-		
-		$cpp = parent::cppSays("Matig verbose (curly braces, )");
-		
-		$cSharp = parent::cSharpSays("Matig verbose");
-		
-		$java = parent::javaSays("quasi verbose");
-		
-		$python = parent::pythonSays("niet verbose");
-		
-		$haskell = parent::haskellSays("niet verbose");
 		
 		return $lua0.$java0.$lua1.$java1.$lua2.$cpp0.$java2.$lua3.$python1.$lua4.$cpp1.$lua5.$csharp0.$lua6;
 	}
