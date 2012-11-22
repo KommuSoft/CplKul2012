@@ -52,8 +52,8 @@ class Syntax extends Question {
 		
 		$lua5 = parent::luaSays("Yes, it's possible. This is done by explicitly declaring the first index of the array as 0.".$codeEx7."However, it isn't recommended. This is because most built-in functions assume that arrays start at index 1. So, an unexpected result will appear. This is seen in the example above where the length operator doesn't return the expected result. In the next example, the case is shown where the array is started at index 1.".$codeEx6);
 		
-		$csharp0 = parent::csharpSays("You introduced the length operator and it behaves odd. Can you explain how it works? I suppose it is based on the length operator as shown in the two previous examples.");
-		$lua6 = parent::luaSays("Yes, that's true. The length operator looks for the last index of an array and returns that result. Lua finds the end of the array by looking for a nil value. This is done because any non-initialized index gives a nil value. Again, this can lead to problems. Consider the following code:".$codeEx8. "So, when there are holes in an array, the length operator returns a wrong result.");
+		$csharp0 = parent::csharpSays("You introducted the length operator and its odd behaviour. Can you explain how it works? I suppose it is based on the indices of the array as shown in the two previous examples.");
+		$lua6 = parent::luaSays("Yes, that's true. The length operator looks for the last index of an array and returns that result. Lua finds the end of the array by looking for a nil value. This is done because any non-initialized index gives a nil value. Consider the following code:".$codeEx8. "So, when there are holes in an array, it is better to avoid using the length operator if you want to know the length.");
 		
 		return $lua0.$java0.$lua1.$java1.$lua2.$cpp0.$java2.$lua3.$python1.$lua4.$cpp1.$lua5.$csharp0.$lua6;
 	}
