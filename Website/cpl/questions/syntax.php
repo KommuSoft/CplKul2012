@@ -38,7 +38,7 @@ class Syntax extends Question {
 
 		$lua2 = parent::luaSays("I didn't explain it well. Lua evaluates all the values on the right side and then performs the assignment, so that's the difference. In this way, it is very easy to swap two values.".$codeEx4);
 
-		$cpp0 = parent::cppSays("C++ can do something that looks the same. Although it's syntactically the same thing, semantically it's very different. It's even more curious with parentheses. Here is an example." . $codeEx5 . "This so because this is'nt a list like in Lua, the ',' is actually an operator.");
+		$cpp0 = parent::cppSays("C++ can do something that looks the same. Although it's syntactically the same thing, semantically it's very different. It's even more curious with parentheses. Here is an example." . $codeEx5 . "This so because this isn't a list like in Lua, the ',' is actually an operator.");
 
 		$java2 = parent::javaSays("What happens in Lua when the numbers of elements isn't the same on both sides? Does this result in an error?");
 

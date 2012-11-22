@@ -10,10 +10,6 @@ public class LinqExample {
 		IEnumerable<int> result = from x in data
 			where x.Item1 < 3
 			select x.Item1 * x.Item2;
-		Console.WriteLine(string.Join(",",result));//result: 14,-10
-		
-	}
-	
-	
+		Console.WriteLine(string.Join(",",result));//result: 14,-10	
+	}	
 }
-
