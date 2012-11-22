@@ -17,14 +17,6 @@ class Expressiveness extends Question {
 		return "Some people call it entropy: the amount of information one stores in a fixed number of characters. How expressive is Lua compared to its contestants? What are the domains Lua can talk about?";
 	}
 	
-	/*TODO (door Jonas):
-		* Sommige delen code zijn lang, misschien gebruik maken van $this->code(...) en die dan onderaan plaatsen met een verwijzing?
-		* Het gebruik van "one" is iets te veel naar mijn mening
-		* Ik hou niet van de uitleg van coroutines. Er wordt gezegd dat dit methodes zijn die samenwerken maar in het voorbeeld wordt er maar 1 methode gegeven, dus er kan niet samengewerkt worden.
-		* Java zegt dat het intern naar een object-oriented pattern zal gecompileerd worden. Ik heb daar nog nooit van gehoord. Bedoel je dat het intern naar full blown object oriented code zal omgezet worden of dat het zal omgezet worden naar een iterator (of gelijkaardig) pattern?
-		* Plotseling wordt er gezegd dat C++ ook coroutines heeft. Mss ergens een overgang maken. En C++ heeft geen coroutines, je moet een library gebruiken. Dus de vergelijking met macro's gaat niet op, je kan ze schrijven via templates of via gewone C++ code.
-	*/
-	
 	public function answers(){
 		//GUI, data serializeren, SQL
 		$code0 = $this->codeInline($this->readFromFile("code/LinqExample.cs"), "c#");
@@ -41,7 +33,7 @@ class Expressiveness extends Question {
 		$cpp1 = parent::cppSays("Sure, look at the following piece of code:".$code1."In the above code we calculate the factorial of 4. Instead of building a method to calculate the result, this implementation simply creates a struct that holds the result of the factorial of 4. This is done with templates, the result is therefore calculated at compile time! Of course this minimal example won't gain that much performance, but I think one can imagine we can calculate a lot of partial results at compile time. Furthermore templates enable the programmer to let the compiler write code that is way to long or complex to be written by hand.");
 		$lua1 = parent::luaSays("My question to C++ is: do you see any advantage of this if you run code by an interpreter. Since the interpreter is working at runtime, such optimizations will probably don't yield any benefit. However even Lua has some structures to make the language more expressive, but keep in mind since the language is interpreted, the amount of syntactical sugar is limited. A powerful principle we implement are coroutines. Are coroutines implemented in other languages as well?");
 		$java2_0 = parent::javaSays("What are coroutines?");
-		$lua2 = parent::luaSays("Coroutines are methods that work in a collaborative fashion with the main program. They have their own stack and local variables, but are used for instance for data manipulation. One can think of them like threads. However coroutines work sequentially.");
+		$lua2 = parent::luaSays("A coroutine is a special method with multiple entry and exit points. Each time the caller calls that method it will resume execution starting from the previous exit point. The method suspends when it reaches the next exit point return the result of the next item. They have their own stack and local variables, but are used for instance for data manipulation. One can think of them like threads. However coroutines work sequentially.");
 		$java3 = parent::javaSays("I don't really understand what you mean? How do you work with these methods and how do they know when they should be executed? Can you give a minimal example?");
 		$lua3 = parent::luaSays("Well, as I already said a typical application is data generation or data modification. So take a look at the following code: ".$code2."You see a function that returns the chemical symbols of all noble gasses. Now we can turn this method into a coroutine and use that method in a loop. As long as there are still symbols, the coroutine is still alive and we can print symbols. I guess one can imagine a method where we simply generate all Fibonacci numbers. You can write this function as a coroutine to generate for instance all Fibonacci numbers smaller than 42.");
 		$cSharp1 = parent::cSharpSays("C# has a similar feature: the fact that you are working with a coroutine doesn't have to be specified. One simply uses the yield statement in order to emit an element of the virtual list.");

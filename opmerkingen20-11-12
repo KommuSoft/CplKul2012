@@ -19,11 +19,11 @@ expressiveness
 * Het gebruik van "one" is iets te veel naar mijn mening [ok willem]
 * $cpp0_0 zegt dat TMP code kan reduceren. Ik zie in dat templated code code kan reduceren maark TMP zie ik dat niet direct doen. [ok willem]
 * $cpp1 zegt dat TMP ervoor zorgt dat je code kan schrijven die anders te complex is om met de hand te schrijven. Ik ga daar niet volledig mee akkoord, TMP is ook heel complex (wordt beschouwd als een van de meest complexe zaken in C++). [ok willem]
-* Ik hou niet van de uitleg van coroutines. Er wordt gezegd dat dit methodes zijn die samenwerken maar in het voorbeeld wordt er maar 1 methode gegeven, dus er kan niet samengewerkt worden.
+* Ik hou niet van de uitleg van coroutines. Er wordt gezegd dat dit methodes zijn die samenwerken maar in het voorbeeld wordt er maar 1 methode gegeven, dus er kan niet samengewerkt worden. [ok willem]
 * De Java - C# discussie over het aantal regels code: eigenlijk is het 26-39 en niet 30-50 (witregels worden meestal genegeerd in zulke vergelijkingen), maar dat is een detail. [ok willem]
 * Java zegt dat het intern naar een object-oriented pattern zal gecompileerd worden. Ik heb daar nog nooit van gehoord. Bedoel je dat het intern naar full blown object oriented code zal omgezet worden of dat het zal omgezet worden naar een iterator (of gelijkaardig) pattern? [ok willem]
 * Plotseling wordt er gezegd dat C++ ook coroutines heeft. Mss ergens een overgang maken. En C++ heeft geen coroutines, je moet een library gebruiken. Dus de vergelijking met macro's gaat niet op, je kan ze schrijven via templates of via gewone C++ code. [ok willem]
-* my question to c++ -> onbeantwoord gebleven
+* my question to c++ -> onbeantwoord gebleven [ok willem]
 * bloated file -> bloated source code? [ok willem]
 
 typing
