@@ -53,7 +53,7 @@ class Portability extends Question {
 		$cSharp3 = parent::cSharpSays("But hasn't Lua got a compiler? As far as I know one can already preprocess the programming code into byte code for a Lua virtual machine. In that aspect Lua doesn't have to worry about a bloated language.");
 		$lua7 = parent::luaSays("Lua has a compiler, but keep in mind even the virtual machine instructions are not backwards compatible. For instance until version 4, the virtual machine was stack-based. Now Lua uses a register-based approach" . parent::bib()->cite(0) . ". Furthermore the number of instructions has been reduced: the first version had more than sixty instructions, now there are less than forty" . parent::bib()->cite(0) . ".");
 		$cSharp4 = parent::cSharpSays("That's quite small. C# has more than 230 virtual machine instructions. However that's probably reasonable since the language has more programming concepts. Furthermore in response to C++: I think a virtual machine approach can at least partly solve backwards compatibility issues. Of course the virtual machine can process different versions of the language by implementing their proper virtual machines. Furthermore C# uses a system called Global Assembly Cache: a repository where different versions of each library are stored. Each version of each library has a unique identifier called GUID. When you include a library into a C# project, one has to specify this GUID. Therefore the virtual machine can load the proper version of that library.");
-		$java3 = parent::javaSays("That's an elegant solution to solve portability issues. However the question remains: are there some ways to decrease the importance of backwards compatibility why enabling a large collection of (legacy) libraries? I guess every language here still fails to cope with this problem.");
+		$java3 = parent::javaSays("That's an elegant solution to solve portability issues. However the question remains: are there some ways to decrease the importance of backwards compatibility why enabling a large collection of (legacy) libraries? I guess every language here still fails to cope with this problem. Lua is quite portable, but the main reason is that most of the applications are special purpose.");
 
 		//TODO: add haskell and python?
 
@@ -72,7 +72,7 @@ class Portability extends Question {
 
 		$haskell = parent::haskellSays("Geen vm, compileert naar C-- (of een C variant, afhankelijk van de compiler).");*/
 		
-		return $lua0.$cSharp0.$lua1.$cpp0.$lua2.$java0.$lua3.$cSharp1.$lua4.$cpp1.$java1.$cpp2.$java2.$cpp3.$cSharp2.$lua5.$cpp4.$lua6.$cSharp3.$lua7.$cSharp4;
+		return $lua0.$cSharp0.$lua1.$cpp0.$lua2.$java0.$lua3.$cSharp1.$lua4.$cpp1.$java1.$cpp2.$java2.$cpp3.$cSharp2.$lua5.$cpp4.$lua6.$cSharp3.$lua7.$cSharp4.$java3;
 	}
 	
 	public function link(){
