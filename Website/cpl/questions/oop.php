@@ -20,13 +20,11 @@ class OOP extends Question {
 	public function answers(){
 		$pop_events = $this->popover("events","Events","Events are a language structure in C# and is used as a syntactical sugar for the Visitor pattern. An event is basically a table of delegates (method pointers). By adding and removing, the programmer can register delegates to a certain event. The programmer can than call the event with the proper arguments resulting in a multicast of these arguments to the registered methods.");
 		$pop_operators = $this->popover("operators","Operators","C# supports operator overloading. Therefore one can define a + operator on a custom class (for instance complex numbers).");
-		$code = $this->code($this->readFromFile("code/cppInheritance.cpp"), "c++");
 
 		$code0 = $this->codeInline($this->readFromFile("code/JavaClassExample.java"), "java");
 		$code1 = $this->codeInline($this->readFromFile("code/LuaClassExample.lua"), "lua");
 		$code2 = $this->codeInline($this->readFromFile("code/LuaClassExampleAlternative.lua"), "lua");
 		$code3 = $this->codeInline($this->readFromFile("code/LuaClassExampleWithInheritance.lua"), "lua");
-		$code4 = $this->codeInline($this->readFromFile("code/AmbiguityExample.cpp"), "c++");
 		$code5 = $this->codeInline($this->readFromFile("code/TableInformation.lua"), "lua");
 		$code6 = $this->codeInline($this->readFromFile("code/LuaClassExampleWithInheritanceUsage.lua"), "lua", 21);
 
