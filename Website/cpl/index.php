@@ -36,7 +36,7 @@
 				<div class="span9">
 					<div class="hero-unit">
 						<h1>Hello, Lua!</h1>
-						<p>Lua isn't a language that is very well known. With some questions an answers we try to tell the strengths and weakness of Lua in comparison with other languages (C++, C#, Haskell, Java, Python)</p>
+						<p>Lua isn't a language that is very well known. With some questions and answers we try to tell the strengths and weaknesses of Lua in comparison with other languages (C++, C#, Haskell, Java, Python)</p>
 					</div>
 					<?php echo(Overview::create()); ?>
 				</div><!--/span-->

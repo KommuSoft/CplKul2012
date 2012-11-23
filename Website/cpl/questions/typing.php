@@ -52,7 +52,7 @@ print(type(x[1])) -- output: number";
 		
 		$lua2 = parent::luaSays("On the other hand, Lua is weakly typed. Lua uses a system that is named coercion. This system can convert numbers to strings and vice versa when this is appropriate" . parent::bib()->cite(4) . ". An important exception is that coercion isn't performed in comparison operators. The following example illustrates this." . parent::codeInline($codeCoercion, "lua") . "Furthermore the dynamic aspect enables other features in the language like functions. Functions are treated in Lua as variables. If you want a higher order programming language, it's somehow difficult to do this by static typing.");
 		
-		$cpp1_0 = parent::cppSays("Although weakly typed can be easy to use, it can also introduce ambiguity in the language. This makes is harder for beginners. A beginner doesn't always understand that a program does what you write, not wat you want.");
+		$cpp1_0 = parent::cppSays("Although weakly typed can be easy to use, it can also introduce ambiguity in the language. This makes is harder for beginners. A beginner doesn't always understand that a program does what you write, not what you want.");
 		
 		$lua3 = parent::luaSays("I agree. In retrospect, the designers could have removed this" . parent::bib()->cite(0) . ". The automatic conversion from strings to numbers can indeed be troublesome. But the automatic conversion from numbers to strings doesn't really lead to problems.");
 		
