@@ -1,6 +1,6 @@
 public class Car{
 	//attributes
-	private int speed;
+	public int speed;
 	
 	//constructor
 	public Car(){
