@@ -1,0 +1,92 @@
+Use Case #01: Create Repeating Flight
+--------------------------------------------------------------------------------
+Priority: High
+Main actor: airline operator's secretary (AOS)
+Interested parties: 
+Preconditions:
+	
+Main scenario:
+	1. The AOS wants to create a new repeating flight-template
+	2. The AOS enters the two airports (codes), the date+time, multidimensional interval, plane-type //probleem: hoe interval voorstellen??
+	   class-tree, 
+	3. The system checks if the given data is consistent.
+//	4. The systems returns an identifier of the repeating flight-template
+
+	
+Use Case #02: Cancel Single Flight
+--------------------------------------------------------------------------------
+Priority: High
+Main actor: airline operator's secretary (AOS)
+Interested parties: 
+Preconditions:
+	- The AOS knows the flight-template number
+Main scenario:
+	1. The AOS wants to cancel a certain single flight-template
+	2. The AOS specifies the flight-template number
+	3. The system gives a list of times when flights with this flight-template number will take place
+	4. The AOS selects a certain time
+	5. The system cancels the flight for the specified time
+	
+
+Use Case #03: Search Flight Number
+--------------------------------------------------------------------------------
+Priority: High
+Main actor: all internal actors
+Interested parties: 
+Preconditions:
+
+Main scenario:
+	1. The main actor wants to lookup a certain flight-template number
+	2. The main actor specifies the information she knows about the flight-template such as destination, city, date, time, country,...
+	3. The system searches its database and gives a list of flight-templates where the main actor has access to (for instance one company has no access to the passenger list of other airline companies).
+Alternative flow:
+	A. the main actor is a customer
+		2a. The customer looks for a flight-template with a given destination,...
+		3a. The system searches its database and gives a list of flight-templates
+
+
+Use Case #04: Cancel Repeating Flight
+--------------------------------------------------------------------------------
+Priority: High
+Main actor: airline operator's secretary (AOS)
+Interested parties: 
+Preconditions:
+	- The AOS knows the flight-template number
+Main scenario:
+	1. The AOS wants to cancel a certain repeating flight
+	2. The AOS specifies the flight number
+	3. The system cancels the flight entirely
+	
+
+Use Case #05: Booking a flight
+--------------------------------------------------------------------------------
+Priority: High
+Main actor: customer or ticket clerk
+Interested parties: 
+Preconditions:
+	- The main actor knows the flight-template number
+Main scenario:
+	1. The main actor wants to book a flight
+	2. The main actor gives the flight-template number
+	3. The system gives a list of available times together with the information if the flight has not met booking constraints yet.
+	4. The main actor selects a flight out of the list.
+	5. The main actor specifies the class
+	6. The system checks if one can still book a seat on the flight in this specific class
+	7. The main actor confirms his booking
+	8. The system gives a booking number
+Exception:
+	A. The flight cannot be booked with a the given class constraint
+	B. The user has selected a flight who already met booking constraints
+
+
+Use Case #06: Cancel a booking
+--------------------------------------------------------------------------------
+Priority: High
+Main actor: customer or ticket clerk
+Interested parties: 
+Preconditions:
+	- The main actor knows the booking number
+Main scenario:
+	1. The main actor wants to cancel a booking
+	2. The main actor gives the booking number
+	3. The system cancels the booking
