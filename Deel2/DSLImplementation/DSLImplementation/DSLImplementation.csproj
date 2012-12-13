@@ -37,6 +37,7 @@
     <Compile Include="CairoWidget.cs" />
     <Compile Include="LinePrimitive.cs" />
     <Compile Include="IPaintPrimitive.cs" />
+    <Compile Include="CirclePrimitive.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
@@ -53,5 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\..\..\..\..\..\SoftwareLibraries\Net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
