@@ -1,0 +1,119 @@
+-----------------------------Opmerkingen vooraf---------------------------------
+Voor elke actie die uitgevoerd kan worden moeten we een representatie hebben, dit is volgens mij het grootste probleem.
+	Enkele voorbeelden:
+		* het interval tussen vluchten van hetzelfde type (bv. een vliegtuig dat elke week de dinsdag en vrijdag vliegt)
+		* hoe stel je grafisch het kopen/annuleren van een ticket voor?
+Het grafisch gedeelte is goed om zoekqueries op te stellen, maar ik heb voorlopig nog problemen om mij een grafische DSL voor te stellen waar je ook eenvoudig data mee kunt bewerken (bv.: kopen ticket)
+Ik heb gekozen voor XML omdat dit lijkt op een database en toch redelijk goed leesbaar is. Correctheid van de XML wordt absoluut niet gegarandeerd, daarvoor ken ik te weinig XML. :-)
+
+--------------------------Presentatie Informatie--------------------------------
+De presentatie van informatie is gebaseerd op informatiekaarten gekoppeld aan symbolen.
+Vb.:
+	1) als je het symbool van een vliegtuig ziet en je klikt er op krijg je
+		* alle vliegtuigen van dat type
+		* alle vluchten met dat type vliegtuig
+	2) als je het symbool van België en het symbool van Nederland ziet + een pijl van België naar Nederland; als je op deze pijl klikt krijg je alle vluchten van België naar Nederland
+	
+Problemen met deze represenatie:
+	1) Het grafische is enkel voor landen/vluchten/vliegtuigen. Het grafisch voorstellen van de tijdstippen van de vluchten is heel wat moeilijker.
+	2) Er is heel veel info aanwezig. Zie voorbeeld 1, alle vluchten met dat type vliegtuig zal gigantisch veel zijn. Natuurlijk kun je een vliegtuig aan een symbool van een land koppelen om zo specifieke queries op te stellen.
+
+-------------------------Concreet voorbeeld UC #01:-----------------------------	
+Zie ook jonas_diagram.jpg
+Stel dat dit de gegevens zijn die je moet toevoegen aan de database
+	Start: Brussel (EBBR)
+	Bestemming: Amsterdam (EHAM)
+	Type vliegtuig: Boeing 787
+	Setup: dual (economy + business)
+	Time of departure: 14h00
+	Time of arrival: 15h30
+	Data wanneer deze vluchten vliegen
+Invoeren gebeurt op de volgende manier:
+	1) selecteer het type vliegtuig
+	2) koppel aan het vliegtuig een land
+	3) koppel aan het vliegtuig een land
+	4) teken pijl (van het ene land naar het andere) in de vliegrichting
+	5) vul de resterende informatie in
+	
+Merk op: het is mogelijk om bijvoorbeeld eerst een land te selecteren, dan het vliegtuig en dan het andere land. Verschillende manieren van opbouwen van de "tekening" mogen het eindresultaat niet beïnvloeden.
+	
+Dit is de database die we al reeds hebben
+<CatalogPlaneType>
+	<planeType>
+		<id> B787 </id>
+		<name> Boeing 787 </name>
+		<setup>
+			<id> dual </id>
+			<class>
+				<type> Business </type>
+				<capacity> 80 </capacity>
+			</class
+			<class>
+				<type> Economy</type>
+				<capacity> 150 </capacity>
+			</class>
+		</setup
+		<setup>
+			<id> mono </id>
+			<class>
+				<type> Economy</type>
+				<capacity> 300 </capacity>
+			</class>
+		</setup>
+	<planeType>
+</CatalogPlaneType>
+
+<CatalogAirport>
+	<airport>
+		<id> EBBR </id>
+		<country> Belgium </country>
+	</airport>
+	<airport>
+		<id> EHAM </id>
+		<country> The Netherlands </country>
+	</airport>
+</CatalogAirport>
+	
+Dit is telkens de XML na de corresponderende stap
+XML na 1)
+	<flight>
+		<planeType> B787 </planetype>
+	</flight>	
+XML na 2)
+	<flight>
+		<planeType> B787 </planetype>
+		<airport> EBBR </airport>
+	</flight>
+XML na 3)
+	<flight>
+		<planeType> B787 </planetype>
+		<airport> EBBR </airport>
+		<airport> EHAM </airport>
+	</flight>
+XML na 4)
+	<flight>
+		<planeType> B787 </planetype>
+		<start>
+			<airport> EBBR </airport>
+		</start>
+		
+		<destination>
+			<airport> EHAM </airport>
+		</destination
+	</flight>
+XML na 5)
+	<flight>
+		<planeType> 
+			<id> B787 </id>
+			<setup> dual </setup>
+		</planetype>
+		<start>
+			<airport> EBBR </airport>
+			<time> 1400 </time>
+		</start>
+		
+		<destination>
+			<airport> EHAM </airport>
+			<time> 1530 </time>
+		</destination
+	</flight>	
