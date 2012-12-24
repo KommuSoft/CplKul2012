@@ -4,16 +4,11 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class AirportRequest
+	public class AirportRequest : DatabaseRequest
 	{
-		private Database db;
+		public AirportRequest () : base() {}
 
-		public AirportRequest ()
-		{
-			db = new Database();
-		}
-
-		private string createQuery (string column, int value)
+		protected override string createQuery (string column, int value)
 		{
 			return "SELECT id, name, country, city, company FROM airport WHERE " + column + " = " + value; 
 		}

@@ -3,16 +3,11 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class ClassPriceRequest
+	public class ClassPriceRequest : DatabaseRequest
 	{
-		private Database db;
+		public ClassPriceRequest () : base() {}
 
-		public ClassPriceRequest ()
-		{
-			db = new Database();
-		}
-
-		private string createQuery (string column, int value)
+		protected override string createQuery (string column, int value)
 		{
 			return "SELECT id, class, price FROM class_price WHERE " + column + " = " + value;
 		}

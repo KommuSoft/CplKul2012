@@ -4,16 +4,11 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class ClassRequest
+	public class ClassRequest : DatabaseRequest
 	{
-		private Database db;
+		public ClassRequest () : base() {}
 		
-		public ClassRequest ()
-		{
-			db = new Database();
-		}
-		
-		private string createQuery (string column, int value)
+		protected override string createQuery (string column, int value)
 		{
 			return "SELECT id, name FROM class WHERE " + column + " = " + value;
 		}

@@ -3,16 +3,11 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class LocationRequest
+	public class LocationRequest : DatabaseRequest
 	{
-		private Database db;
+		public LocationRequest () : base() {}
 
-		public LocationRequest ()
-		{
-			db = new Database();
-		}
-
-		private string createQuery (string column, int value)
+		protected override string createQuery (string column, int value)
 		{
 			return "SELECT id, start_city, start_country, destination_city, destination_country FROM location WHERE " + column + " = " + value;
 		}

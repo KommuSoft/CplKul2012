@@ -8,12 +8,14 @@ namespace DSLImplementation.Database
 	{
 		private IDbConnection dbcon;
 		private IDbCommand dbcmd;
+		private int counter = 0;
 
 		public Database ()
 		{
 			string connectionString = "Server=localhost; Database=DB; User ID=postgres; Password=postgres;";
 			dbcon = new NpgsqlConnection(connectionString);
 			dbcon.Open();
+			++counter;
 		}
 
 		public IDataReader CreateCommand(string query)
@@ -29,13 +31,16 @@ namespace DSLImplementation.Database
 			dbcmd = null;
 		}
 
-		~Database()
+		~Database ()
 		{
-			if(dbcmd != null){
-				CloseCommand();
+			if (dbcmd != null) {
+				CloseCommand ();
 			}
-			//dbcon.Close();
-			//dbcon = null;
+			--counter;
+			if (counter == 0) {
+				dbcon.Close();
+				dbcon = null;
+			}
 		}
 	}
 }

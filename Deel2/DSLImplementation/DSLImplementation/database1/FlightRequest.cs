@@ -4,16 +4,11 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class FlightRequest
+	public class FlightRequest : DatabaseRequest
 	{
-		private Database db;
+		public FlightRequest () : base(){}
 
-		public FlightRequest ()
-		{
-			db = new Database();
-		}
-
-		private string createQuery (string column, int value)
+		protected override string createQuery (string column, int value)
 		{
 			return "SELECT id, location, airline, start_time, end_time, start_date, end_date, class_price FROM flight WHERE " + column + " = " + value;
 		}

@@ -2,7 +2,7 @@ using System;
 
 namespace DSLImplementation.Database
 {
-	public class DatabaseRequest
+	public abstract class DatabaseRequest
 	{
 		protected Database db;
 
@@ -10,6 +10,8 @@ namespace DSLImplementation.Database
 		{
 			db = new Database();
 		}
+
+		protected abstract string createQuery (string column, int value);
 	}
 }
 

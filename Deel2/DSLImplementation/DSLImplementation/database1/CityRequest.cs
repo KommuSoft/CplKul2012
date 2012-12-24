@@ -4,16 +4,11 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class CityRequest
+	public class CityRequest : DatabaseRequest
 	{
-		private Database db;
+		public CityRequest () : base() {}
 
-		public CityRequest ()
-		{
-			db = new Database();
-		}
-
-		private string createQuery (string column, int value)
+		protected override string createQuery (string column, int value)
 		{
 			return "SELECT id, name, country FROM city WHERE " + column + " = " + value;
 		}
