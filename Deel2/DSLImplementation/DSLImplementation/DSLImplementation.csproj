@@ -10,26 +10,27 @@
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <StartupObject>Test</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -72,15 +73,31 @@
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Seat.cs" />
+    <Compile Include="database1\Airport.cs" />
+    <Compile Include="database1\AirportRequest.cs" />
+    <Compile Include="database1\Booking.cs" />
+    <Compile Include="database1\City.cs" />
+    <Compile Include="database1\CityRequest.cs" />
+    <Compile Include="database1\Class.cs" />
+    <Compile Include="database1\ClassPrice.cs" />
+    <Compile Include="database1\ClassPriceRequest.cs" />
+    <Compile Include="database1\ClassRequest.cs" />
+    <Compile Include="database1\Country.cs" />
+    <Compile Include="database1\Database.cs" />
+    <Compile Include="database1\DatabaseRequest.cs" />
+    <Compile Include="database1\Flight.cs" />
+    <Compile Include="database1\FlightRequest.cs" />
+    <Compile Include="database1\Location.cs" />
+    <Compile Include="database1\LocationRequest.cs" />
+    <Compile Include="database1\Main.cs" />
+    <Compile Include="database1\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Cairo" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -88,5 +105,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Npgsql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="database1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="database1\SQL_test.csproj" />
   </ItemGroup>
 </Project>
