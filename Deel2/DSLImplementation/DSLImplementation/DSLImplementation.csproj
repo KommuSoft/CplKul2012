@@ -9,6 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +61,17 @@
     <Compile Include="TreeNode.cs" />
     <Compile Include="TreeBuilder.cs" />
     <Compile Include="SeatNode.cs" />
+    <Compile Include="Flight.cs" />
+    <Compile Include="FlightRequest.cs" />
+    <Compile Include="Airport.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="Time.cs" />
+    <Compile Include="CityRequest.cs" />
+    <Compile Include="AirportRequest.cs" />
+    <Compile Include="SeatRequest.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="Seat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
