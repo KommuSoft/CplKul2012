@@ -3,7 +3,7 @@ using Gtk;
 using Gdk;
 using Cairo;
 
-namespace DSLImplementation {
+namespace DSLImplementation.UserInterface {
 
 	public abstract class CairoWidget : DrawingArea {
 

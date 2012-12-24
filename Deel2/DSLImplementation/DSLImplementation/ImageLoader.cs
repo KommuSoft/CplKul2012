@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cairo;
 using Gdk;
 
-namespace DSLImplementation {
+namespace DSLImplementation.UserInterface {
 
 	public static class ImageLoader {
 
