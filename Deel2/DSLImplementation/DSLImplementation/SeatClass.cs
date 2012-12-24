@@ -9,12 +9,12 @@ namespace DSLImplementation.XmlRepresentation
 		{
 		}
 		
-		public SeatClass(String Type){
-			this.GetType = Type;
+		public SeatClass(String Name){
+			this.Name = Name;
 		}
 		
-		[XmlAttribute("Type")]
-		public String type {
+		[XmlAttribute("Name")]
+		public String Name {
 			get;
 			set;
 		}
