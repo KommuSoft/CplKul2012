@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("SeatRequest")]
@@ -10,9 +11,9 @@ namespace DSLImplementation.XmlRepresentation
 		
 		[XmlElement("Flight")]
 		public Flight Flight {
-			get { return this.flight; }
+			get;
 
-			set { this.flight = value; }
+			set;
 		}
 	}
 }

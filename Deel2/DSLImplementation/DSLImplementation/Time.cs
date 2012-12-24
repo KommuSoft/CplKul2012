@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlType("Time")]
@@ -18,37 +19,37 @@ namespace DSLImplementation.XmlRepresentation
 
 		[XmlAttribute("Year")]
 		public String Year {
-			get { return this.year; }
+			get;
 
-			set { this.year = value; }
+			set;
 		}		
 		
 		[XmlAttribute("Month")]
 		public String Month {
-			get { return this.month; }
+			get;
 
-			set { this.month = value; }
+			set;
 		}
 		
 		[XmlAttribute("Day")]
 		public String Day {
-			get { return this.day; }
+			get;
 
-			set { this.day = value; }
+			set;
 		}
 		
 		[XmlAttribute("Hour")]
 		public String Hour {
-			get { return this.hour; }
+			get;
 
-			set { this.hour = value; }
+			set;
 		}
 		
 		[XmlAttribute("Minute")]
 		public String Minute {
-			get { return this.minute; }
+			get;
 
-			set { this.minute = value; }
+			set;
 		}
 		
 	}

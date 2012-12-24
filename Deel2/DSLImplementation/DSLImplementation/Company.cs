@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation{
 	[XmlType("Company")]
 	public class Company{
@@ -11,9 +12,9 @@ namespace DSLImplementation.XmlRepresentation{
 		
 		[XmlAttribute("Name")]
 		public String Name {
-			get { return this.name; }
+			get;
 
-			set { this.name = value; }
+			set;
 		}
 	}
 }

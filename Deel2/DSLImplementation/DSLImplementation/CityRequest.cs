@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("CityRequest")]
@@ -9,9 +10,9 @@ namespace DSLImplementation.XmlRepresentation
 		}
 		[XmlElement("Country")]
 		public Country Country {
-			get { return this.country; }
+			get;
 
-			set { this.country = value; }
+			set;
 		}
 		
 	}

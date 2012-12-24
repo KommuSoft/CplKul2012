@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlType("Airport")]
@@ -15,16 +16,16 @@ namespace DSLImplementation.XmlRepresentation
 		
 		[XmlAttribute("Name")]
 		public String Name {
-			get { return this.name; }
+			get;
 
-			set { this.name = value; }
+			set;
 		}
 		
 		[XmlAttribute("Code")]
 		public String Code {
-			get { return this.code; }
+			get;
 
-			set { this.code = value; }
+			set;
 		}
 		
 	}

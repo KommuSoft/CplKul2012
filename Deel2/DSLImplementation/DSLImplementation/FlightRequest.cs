@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation{
 
 	[XmlRoot("FlightRequest")]
@@ -17,37 +18,37 @@ namespace DSLImplementation.XmlRepresentation{
 
 		[XmlElement("Airport1")]
 		public Airport Airport1 {
-			get { return this.airport1; }
+			get;
 
-			set { this.airport1 = value; }
+			set;
 		}
 		
 		[XmlElement("Airport2")]
 		public Airport Airport2{
-			get { return this.airport2; }
+			get;
 
-			set { this.airport2 = value; }
+			set;
 		}
 		
 		[XmlElement("Time")]
 		public Time Time{
-			get { return this.time; }
+			get;
 
-			set { this.time = value; }
+			set;
 		}
 		
 		[XmlElement("Company")]
 		public Company Company{
-			get { return this.company; }
+			get;
 
-			set { this.company = value; }
+			set;
 		}
 		
 		[XmlElement("Seat")]
 		public Seat Seat{
-			get { return this.seat; }
+			get;
 
-			set { this.seat = value; }
+			set;
 		}		
 		
 	}
