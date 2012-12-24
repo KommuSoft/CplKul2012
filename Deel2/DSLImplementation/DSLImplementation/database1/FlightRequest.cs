@@ -49,9 +49,21 @@ namespace DSLImplementation.Database
 		}
 
 		//TODO: vararg?
-		public List<Flight> fetchFlightFromLocation(int locationID)
+		public List<Flight> fetchFlightFromLocation (int locationID, int company = -1)
 		{
-			IDataReader reader = db.CreateCommand(createQuery("location", locationID));
+			List<string> columns = new List<string> ();
+			columns.Add ("location");
+
+			List<int> values = new List<int>();
+			values.Add(locationID);
+
+			if (company != -1) {
+				columns.Add("company");
+				values.Add(company);
+			}
+
+			string query = createQuery(columns, values);
+			IDataReader reader = db.CreateCommand(query);
 			List<Flight> flights = new List<Flight>();
 			
 			while (reader.Read()) {
@@ -64,8 +76,6 @@ namespace DSLImplementation.Database
 			
 			return flights;
 		}
-
-
 	}
 }
 
