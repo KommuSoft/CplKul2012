@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-namespace DSLImplementation
+namespace DSLImplementation.XmlRepresentation
 {
 	//The answer for the request of airports
 	[XmlRoot("AirportAnswer")]

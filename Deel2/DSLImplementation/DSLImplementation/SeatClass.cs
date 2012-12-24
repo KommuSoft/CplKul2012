@@ -1,6 +1,6 @@
 using System;
 using System.Xml.Serialization;
-namespace DSLImplementation
+namespace DSLImplementation.XmlRepresentation
 {
 	[XmlType("Class")]
 	public class SeatClass
