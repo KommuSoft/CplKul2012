@@ -9,8 +9,9 @@ namespace DSLImplementation
 		{
 		}
 		
-		[XmlElement("City")]
-		public Airport Airport{
+		[XmlArray("ListOfAirports")]
+		[XmlArrayItem("Airport")]
+		public List<Airport> Airport{
 			get;
 			set;
 		}	
