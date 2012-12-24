@@ -40,8 +40,8 @@ namespace DSLImplementation.XmlRepresentation{
 			set;
 		}
 		
-		[XmlElement("Seat")]
-		public Seat Seat{
+		[XmlElement("Class")]
+		public SeatClass SeatClass{
 			get;
 			set;
 		}		

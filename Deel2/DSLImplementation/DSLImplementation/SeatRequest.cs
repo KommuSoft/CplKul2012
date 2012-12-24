@@ -12,7 +12,6 @@ namespace DSLImplementation.XmlRepresentation
 		[XmlElement("Flight")]
 		public Flight Flight {
 			get;
-
 			set;
 		}
 	}
