@@ -26,8 +26,10 @@ namespace DSLImplementation {
 
 	public interface IPaintPrimitive {
 
-		double Score (List<PointD> points, out IPaintPrimitive primitive);
 		void Paint (Context ctx);
+		IPaintPrimitive Clone ();
+		bool Contains (PointD point);
+		Rectangle GetBounds ();
 
 	}
 }

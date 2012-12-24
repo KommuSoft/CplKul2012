@@ -35,9 +35,31 @@
     <Compile Include="MainWindow.cs" />
     <Compile Include="SketchPad.cs" />
     <Compile Include="CairoWidget.cs" />
-    <Compile Include="LinePrimitive.cs" />
+    <Compile Include="NodeBase.cs" />
+    <Compile Include="RectangularNodeBase.cs" />
+    <Compile Include="IEdge2.cs" />
+    <Compile Include="Edge2Base.cs" />
+    <Compile Include="IEdge.cs" />
+    <Compile Include="NodeAttribute.cs" />
+    <Compile Include="FlightNode.cs" />
+    <Compile Include="ImageLoader.cs" />
+    <Compile Include="RectangularImageNodeBase.cs" />
+    <Compile Include="AirportNode.cs" />
+    <Compile Include="CountryNode.cs" />
+    <Compile Include="TimeNode.cs" />
+    <Compile Include="RectangularImageTextNodeBase.cs" />
+    <Compile Include="RunNode.cs" />
+    <Compile Include="PersonNode.cs" />
+    <Compile Include="FindQueryNode.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="EdgeAttribute.cs" />
+    <Compile Include="PaintPrimitiveAttribute.cs" />
+    <Compile Include="INode.cs" />
     <Compile Include="IPaintPrimitive.cs" />
-    <Compile Include="CirclePrimitive.cs" />
+    <Compile Include="Arrow.cs" />
+    <Compile Include="TreeNode.cs" />
+    <Compile Include="TreeBuilder.cs" />
+    <Compile Include="SeatNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
@@ -54,8 +76,5 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="MathNet.Numerics">
-      <HintPath>..\..\..\..\..\..\SoftwareLibraries\Net40\MathNet.Numerics.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
