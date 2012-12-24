@@ -1,5 +1,5 @@
 using System;
-namespace DSLImplementation
+namespace DSLImplementation.XmlRepresentation
 {
 	[XmlType("City")]
 	public class City
