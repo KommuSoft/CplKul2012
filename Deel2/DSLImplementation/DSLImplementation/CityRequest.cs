@@ -11,7 +11,6 @@ namespace DSLImplementation.XmlRepresentation
 		[XmlElement("Country")]
 		public Country Country {
 			get;
-
 			set;
 		}
 		

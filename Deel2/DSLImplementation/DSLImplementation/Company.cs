@@ -13,7 +13,6 @@ namespace DSLImplementation.XmlRepresentation{
 		[XmlAttribute("Name")]
 		public String Name {
 			get;
-
 			set;
 		}
 	}

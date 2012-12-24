@@ -17,14 +17,12 @@ namespace DSLImplementation.XmlRepresentation
 		[XmlAttribute("Name")]
 		public String Name {
 			get;
-
 			set;
 		}
 		
 		[XmlAttribute("Code")]
 		public String Code {
 			get;
-
 			set;
 		}
 		
