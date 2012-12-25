@@ -1,21 +1,29 @@
 using System;
 using System.Data;
 using Npgsql;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
 namespace DSLImplementation.Database
 {
 	public class Database
 	{
-		private IDbConnection dbcon;
+		private static IDbConnection dbcon;
 		private IDbCommand dbcmd;
-		private int counter = 0;
+		private static int counter = 0;
 
 		public Database ()
 		{
-			string connectionString = "Server=localhost; Database=DB; User ID=postgres; Password=postgres;";
-			dbcon = new NpgsqlConnection(connectionString);
-			dbcon.Open();
-			++counter;
+//			string connectionString = "Server=localhost; Database=DB; User ID=postgres1; Password=postgres;";
+//			string connectionString = "Server=pgsql.ulyssis.org; Database=gonaz; User ID=gonaz; Password=cplPassword1; SSL=true; Sslmode=require;";
+			string connectionString = "Server=localhost; Port=3333; Database=gonaz; User ID=gonaz; Password=cplPassword1;";
+
+			if (counter == 0) {
+				dbcon = new NpgsqlConnection(connectionString);
+				dbcon.Open();
+				++counter;
+			}
 		}
 
 		public IDataReader CreateCommand(string query)
@@ -38,6 +46,7 @@ namespace DSLImplementation.Database
 			}
 			--counter;
 			if (counter == 0) {
+				Console.WriteLine("I will close the database");
 				dbcon.Close();
 				dbcon = null;
 			}
