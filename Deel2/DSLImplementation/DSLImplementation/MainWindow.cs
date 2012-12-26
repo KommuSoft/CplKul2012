@@ -37,10 +37,11 @@ namespace DSLImplementation.UserInterface {
 			this.vbox = new VBox(false,0x00);
 			this.sketchpad = new SketchPad();
 			this.sketchpad.RootPiece = new RunPiece();
-			this.piecesStore = new ListStore(typeof(string),typeof(ConstructorInfo));
+			this.piecesStore = new ListStore(typeof(string),typeof(ConstructorInfo),typeof(Gdk.Pixbuf));
 			this.invokePieces(Assembly.GetExecutingAssembly());
 			this.piecesView = new IconView(this.piecesStore);
 			this.piecesView.TextColumn = 0x00;
+			this.piecesView.PixbufColumn = 0x02;
 			this.piecesView.SelectionChanged += HandleSelectionChanged;
 			this.vbox.PackEnd(this.sketchpad,true,true,0x00);
 			this.vbox.PackEnd(this.piecesView,false,false,0x00);
@@ -66,7 +67,7 @@ namespace DSLImplementation.UserInterface {
 					ConstructorInfo ci = t.GetConstructor(new Type[0x00]);
 					if(ci != null) {
 						foreach(PuzzlePieceAttribute ppa in t.GetCustomAttributes(typeof(PuzzlePieceAttribute),false)) {
-							piecesStore.AppendValues(ppa.PieceName,ci);
+							piecesStore.AppendValues(ppa.PieceName,ci,ppa.Icon);
 						}
 					}
 				}

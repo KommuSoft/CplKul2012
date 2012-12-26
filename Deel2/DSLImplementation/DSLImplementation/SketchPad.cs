@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using System.ComponentModel;
 using Cairo;
@@ -55,8 +56,16 @@ namespace DSLImplementation.UserInterface {
 				int index;
 				IPuzzlePiece ipp = this.rootpiece.GetPuzzleGap (this.subcontext, new PointD (evnt.X - 5.0d, evnt.Y - 5.0d), out index);
 				if (ipp != null) {
-					ipp[index] = (IPuzzlePiece) this.injectionPiece.Invoke(emptyArgs);
-					this.QueueDraw();
+					try {
+						ipp[index] = (IPuzzlePiece) this.injectionPiece.Invoke(emptyArgs);
+						this.QueueDraw();
+					}
+					catch(Exception e) {
+						MessageDialog md = new MessageDialog(null,DialogFlags.DestroyWithParent,MessageType.Error,ButtonsType.Ok,e.Message);
+						md.Run();
+						md.HideAll();
+						md.Dispose();
+					}
 				}
 			}
 			return base.OnButtonPressEvent (evnt);

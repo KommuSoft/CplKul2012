@@ -1,3 +1,4 @@
+using System;
 using Cairo;
 
 namespace DSLImplementation.UserInterface {
@@ -53,6 +54,44 @@ namespace DSLImplementation.UserInterface {
 		}
 		public static Color GetColorFromColorType (int index) {
 			return colors[index];
+		}
+		public static Gdk.Pixbuf GeneratePuzzlePiece (TypeColors tc, int size)
+		{
+			ImageSurface imsu = new ImageSurface(Format.ARGB32,size,size);
+			Context ctx = new Context (imsu);
+				//Gdk.Pixbuf pb = new Gdk.Pixbuf(Gdk.Colorspace.Rgb,true,8,size,size);
+				//Context ctx = Gdk.CairoHelper.Create(pb);
+			ctx.Color = White;
+			ctx.Paint();
+			double x1 = 0.9d * size, x0 = size - x1, x2 = 0.35d * size, x3 = 0.55d * size, x4 = 0.45d * size;
+			ctx.MoveTo (0.0d, x0);
+			ctx.LineTo (x2, x0);
+			ctx.Arc (x4, x0, x0, Math.PI, 2.0d*Math.PI);
+			ctx.LineTo(x1,x0);
+			ctx.LineTo (x1, x2+x0);
+			ctx.Arc (x1, x4+x0, x0, 1.5d*Math.PI, 2.5d*Math.PI);
+			ctx.LineTo(x1,size);
+			ctx.LineTo(x3,size);
+			ctx.ArcNegative (x4, size, x0, 2.0d*Math.PI, Math.PI);
+			ctx.LineTo(0.0d,size);
+			ctx.LineTo(0.0d,x3+x0);
+			ctx.ArcNegative(0.0d, x4+x0, x0, 2.5d*Math.PI, 1.5d*Math.PI);
+			ctx.ClosePath();
+			ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern (size, tc);
+			ctx.Fill();
+			byte a, r, g, b;
+			byte[] dat = new byte[imsu.Data.Length];
+			for(int i = 0, j = 0; i < dat.Length;) {
+				b = imsu.Data[i++];
+				g = imsu.Data[i++];
+				r = imsu.Data[i++];
+				a = imsu.Data[i++];
+				dat[j++] = r;
+				dat[j++] = g;
+				dat[j++] = b;
+				dat[j++] = a;
+			}
+			return new Gdk.Pixbuf(dat,Gdk.Colorspace.Rgb,true,8,size,size,imsu.Stride);
 		}
 
 	}

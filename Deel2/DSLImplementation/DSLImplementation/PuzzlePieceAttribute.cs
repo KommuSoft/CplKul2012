@@ -1,4 +1,5 @@
 using System;
+using Gdk;
 
 namespace DSLImplementation.UserInterface {
 
@@ -16,6 +17,11 @@ namespace DSLImplementation.UserInterface {
 		public TypeColors TypeColors {
 			get {
 				return this.typeColors;
+			}
+		}
+		public Pixbuf Icon {
+			get {
+				return KnownColors.GeneratePuzzlePiece(this.TypeColors,64);
 			}
 		}
 

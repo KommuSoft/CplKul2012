@@ -143,15 +143,13 @@ namespace DSLImplementation.UserInterface {
 				ctx.Save();
 				ctx.Translate(x0,Margin);
 				if(ipp == null) {
-					siz = new PointD(MinimumWidth,MinimumHeight);
-					ctx.Rectangle(Margin,Margin,MinimumWidth,MinimumHeight);
+					siz = new PointD(MinimumWidth,size.Y-4.0d*Margin);
+					ctx.Rectangle(Margin,Margin,MinimumWidth,siz.Y);
 					ctx.Pattern = KnownColors.ConstructionPattern;
 					ctx.FillPreserve();
-					ctx.Rectangle(0.0d,0.0d,MinimumWidth+2.0d*Margin,MinimumHeight+2.0d*Margin);
+					ctx.Rectangle(0.0d,0.0d,MinimumWidth+2.0d*Margin,siz.Y+2.0d*Margin);
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(MinimumWidth+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
-					//ctx.Color = KnownColors.Black;
-					//ctx.Stroke();
 				}
 				else {
 					siz = ipp.MeasureSize(ctx);
@@ -159,7 +157,6 @@ namespace DSLImplementation.UserInterface {
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(MinimumWidth+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
 					ctx.Color = KnownColors.Black;
-					//ctx.Stroke();
 					ctx.Translate(Margin,Margin);
 					ipp.Paint(ctx);
 				}
