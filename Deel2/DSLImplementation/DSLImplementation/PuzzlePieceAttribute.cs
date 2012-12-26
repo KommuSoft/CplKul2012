@@ -2,7 +2,8 @@ using System;
 
 namespace DSLImplementation.UserInterface {
 
-	public class PuzzlePieceAttribute {
+	[AttributeUsage(AttributeTargets.Class)]
+	public class PuzzlePieceAttribute : Attribute {
 
 		private readonly string piecename;
 		private readonly TypeColors typeColors;

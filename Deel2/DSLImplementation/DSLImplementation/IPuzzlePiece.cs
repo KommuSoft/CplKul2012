@@ -21,11 +21,13 @@ namespace DSLImplementation.UserInterface {
 		string Name {
 			get;
 		}
+		event EventHandler BoundsChanged;
 
 		bool MatchesConstraints (int index, IPuzzlePiece piece);
 		bool IsOptional (int index);
 		void Paint (Context ctx);
 		PointD MeasureSize (Context ctx);
+		IPuzzlePiece GetPuzzleGap (Context ctx, PointD point, out int index);
 
 	}
 }

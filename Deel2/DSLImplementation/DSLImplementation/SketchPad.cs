@@ -10,6 +10,7 @@ namespace DSLImplementation.UserInterface {
 	public class SketchPad : CairoWidget {
 
 		private IPuzzlePiece rootpiece;
+		private Context subcontext;
 
 		public IPuzzlePiece RootPiece {
 			get {
@@ -21,7 +22,20 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public SketchPad () {
+			ImageSurface imsu = new ImageSurface(Format.Argb32,0x01,0x01);
+			this.subcontext = new Context(imsu);
 			this.AddEvents((int) (Gdk.EventMask.PointerMotionMask|Gdk.EventMask.ButtonPressMask|Gdk.EventMask.ButtonReleaseMask));
+		}
+
+		protected override bool OnMotionNotifyEvent (Gdk.EventMotion evnt) {
+			if(this.rootpiece != null) {
+				int index;
+				IPuzzlePiece ipp = this.rootpiece.GetPuzzleGap(this.subcontext,new PointD(evnt.X,evnt.Y),out index);
+				if(ipp != null) {
+
+				}
+			}
+			return base.OnMotionNotifyEvent (evnt);
 		}
 
 		protected override void PaintWidget (Cairo.Context ctx, int w, int h) {

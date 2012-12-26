@@ -6,12 +6,12 @@ namespace DSLImplementation.UserInterface {
 
 
 		public const int ConstructionDelta = 0x08;
-		public static readonly Color Red	= new Color(1.0d,0.0d,0.0d);
-		public static readonly Color Green	= new Color(0.0d,1.0d,0.0d);
-		public static readonly Color Blue	= new Color(0.0d,0.0d,1.0d);
-		public static readonly Color Yellow	= new Color(1.0d,1.0d,0.0d);
-		public static readonly Color Purple	= new Color(0.5d,0.0d,0.5d);
-		public static readonly Color Orange	= new Color(1.0d,0.5d,0.0d);
+		public static readonly Color Red	= new Color(1.0d,0.5d,0.5d);
+		public static readonly Color Green	= new Color(0.5d,1.0d,0.5d);
+		public static readonly Color Blue	= new Color(0.5d,0.5d,1.0d);
+		public static readonly Color Yellow	= new Color(1.0d,1.0d,0.5d);
+		public static readonly Color Purple	= new Color(0.75d,0.5d,0.75d);
+		public static readonly Color Orange	= new Color(1.0d,0.75d,0.5d);
 		public static readonly Color White	= new Color(1.0d,1.0d,1.0d);
 		public static readonly Color Black	= new Color(0.0d,0.0d,0.0d);
 		private static readonly Color[] colors = new Color[] {Red,Green,Blue,Yellow,Purple,Orange,White};

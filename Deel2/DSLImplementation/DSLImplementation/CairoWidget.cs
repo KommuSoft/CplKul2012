@@ -1,6 +1,5 @@
 using System;
 using Gtk;
-using Gdk;
 using Cairo;
 
 namespace DSLImplementation.UserInterface {

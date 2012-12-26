@@ -27,6 +27,8 @@ namespace DSLImplementation.UserInterface {
 	public class MainWindow : Window {
 
 		private SketchPad sketchpad;
+		private IconView piecesView;
+		private ListStore piecesStore;
 		private VBox vbox;
 
 		public MainWindow () : base(WindowType.Toplevel) {
@@ -35,9 +37,24 @@ namespace DSLImplementation.UserInterface {
 			this.vbox = new VBox(false,0x00);
 			this.sketchpad = new SketchPad();
 			this.sketchpad.RootPiece = new RunPiece(new BookingPiece());
+			this.piecesStore = new ListStore(typeof(string));
+			this.invokePieces(Assembly.GetExecutingAssembly());
+			this.piecesView = new IconView(this.piecesStore);
+			this.piecesView.TextColumn = 0x00;
 			this.vbox.PackEnd(this.sketchpad,true,true,0x00);
+			this.vbox.PackEnd(this.piecesView,false,false,0x00);
 			this.Add(vbox);
 			this.ShowAll();
+		}
+
+		private void invokePieces (Assembly assembly) {
+			foreach(Type t in assembly.GetTypes()) {
+				if(!t.IsAbstract && typeof(IPuzzlePiece).IsAssignableFrom(t)) {
+					foreach(PuzzlePieceAttribute ppa in t.GetCustomAttributes(typeof(PuzzlePieceAttribute),false)) {
+						piecesStore.AppendValues(ppa.PieceName);
+					}
+				}
+			}
 		}
 
 		public static int Main (string[] args) {
