@@ -3,29 +3,29 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class ClassPrice
+	public class Seat
 	{
 		public int ID { get; set; }
 		public int class_ { get; set; }
-		public decimal price { get; set; }
+		public int number { get; set; }
 
-		public ClassPrice (int ID, int class_, decimal price)
+		public Seat (int ID, int class_, int number)
 		{
 			this.ID = ID;
 			this.class_ = class_;
-			this.price = price;
+			this.number = number;
 		}
 
-		public ClassPrice (IDataReader reader)
+		public Seat (IDataReader reader)
 		{
 			ID = reader.GetInt32(reader.GetOrdinal("id"));
 			class_ = reader.GetInt32(reader.GetOrdinal("class"));
-			price = reader.GetDecimal(reader.GetOrdinal("price"));
+			number = reader.GetInt32(reader.GetOrdinal("number"));
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("[ClassPrice: ID={0}, classID={1}, price={2}]", ID, class_, price);
+			return string.Format ("[Seat: ID={0}, class_={1}, number={2}]", ID, class_, number);
 		}
 	}
 }

@@ -20,23 +20,8 @@ namespace DSLImplementation.Database
 
 		public List<Class> fetchClassFromFlight (int flightID)
 		{
-			IDataReader reader = db.CreateCommand("SELECT class_price FROM flight WHERE id = " + flightID);
-
-			reader.Read();
-			List<int> classPriceIDs = Util.parse<int>(reader.GetString(reader.GetOrdinal("class_price")));
-
-			List<Class> classes = new List<Class>();
-			foreach(int classPriceID in classPriceIDs){
-				ClassPriceRequest cpr = new ClassPriceRequest();
-				List<ClassPrice> classPrices = cpr.fetchClassPriceFromID(classPriceID);
-				if(classPrices.Count == 0){
-					return new List<Class>();
-				}
-				ClassPrice cp = classPrices[0];
-				classes.Add(fetchClassFromID(cp.class_)[0]);
-			}
-
-			return classes;
+			string query = "select * from class where id = any(select class from seat where id = any(select seat from seat_price where flight = " + flightID + ") group by class)";
+			return fetchFromQuery(query);
 		}
 
 	}

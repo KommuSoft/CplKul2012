@@ -6,62 +6,69 @@ using DSLImplementation.Database;
 
 public class Test
 {
+	public static void print<T> (List<T> l, string prefix = "")
+	{
+		l.ForEach (delegate(T t) {
+			Console.WriteLine (prefix + t);
+		});
+	}
+
+	public static void println<T> (List<T> l, string prefix = "")
+	{
+		print (l, prefix);
+		Console.WriteLine ();
+	}
+
 	public static void Main (string[] args)
 	{
 		CityRequest cr = new CityRequest ();
 
 		Console.WriteLine ("Find the city with ID = 1");
-		Console.WriteLine (cr.fetchCityFromID (1) + "\n");
+		println (cr.fetchCityFromID (1));
 
 		Console.WriteLine ("Find the cities that are in a country with ID = 1");
-		List<City> cities = cr.fetchCitiesFromCountry (1);
-		cities.ForEach (delegate(City c) {
-			Console.WriteLine (c);
-		});
-		Console.WriteLine ();
+		println (cr.fetchCitiesFromCountry (1));
 
 		//------------------------------------------------------
 		AirportRequest ar = new AirportRequest ();
 
 		Console.WriteLine ("Find the airport with ID = 1");
-		Console.WriteLine (ar.fetchAirportFromID (1) + "\n");
+		println (ar.fetchAirportFromID (1));
 
 		Console.WriteLine ("Find the airports that are in a city with ID = 1");
-		List<Airport> airports = ar.fetchAirportsFromCity (1);
-		airports.ForEach (delegate(Airport a) {
-			Console.WriteLine (a);
-		});
-		Console.WriteLine ();
+		println (ar.fetchAirportsFromCity (1));
 
 		//------------------------------------------------------
 		FlightRequest fr = new FlightRequest ();
 		LocationRequest lr = new LocationRequest ();
 		ClassRequest clr = new ClassRequest ();
-		ClassPriceRequest cpr = new ClassPriceRequest();
+		SeatRequest sr = new SeatRequest ();
+		SeatPriceRequest spr = new SeatPriceRequest ();
 
 		Console.WriteLine ("Find the flight with location = 1");
 		List<Flight> flights = fr.fetchFlightFromLocation (1);
-		flights.ForEach (delegate(Flight f) {
-			Console.WriteLine (f);
-		});
+		print (flights);
 
 		Flight f0 = flights [0];
-		Location l0 = lr.fetchLocationFromID (f0.location)[0];
+		Location l0 = lr.fetchLocationFromID (f0.location) [0];
 
-		Console.WriteLine ("\tFrom: " + cr.fetchCityFromID (l0.start_city)[0].name + "\tTo: " + cr.fetchCityFromID (l0.destination_city)[0].name);
-		List<Class> classes = clr.fetchClassFromFlight (f0.ID);
-		foreach (Class c in classes) {
-			Console.WriteLine(c);
-			Console.WriteLine(cpr.fetchClassPriceFromID(c.ID));
+		Console.WriteLine ("\tFrom: " + cr.fetchCityFromID (l0.start_city) [0].name + "\tTo: " + cr.fetchCityFromID (l0.destination_city) [0].name);
+		List<Seat> seats = sr.fetchSeatFromFlight (f0.ID);
+
+		Console.WriteLine("\n\tThe seats with their price");
+		foreach (Seat s in seats) {
+			List<SeatPrice> seatprices = spr.fetchSeatPriceFromSeatAndFlight(s.ID, f0.ID);
+			Console.Write("\t" + s + " -> ");
+			print (seatprices);
 		}
+		Console.WriteLine("\n\tThe classes of this flight");
+		println(clr.fetchClassFromFlight (f0.ID), "\t");
 
-		Console.WriteLine();
-
-		DateTime startDateTime = DateTime.Parse("2012-01-15");
-		Console.WriteLine("Find the flight with location = 2 & airline = 1 & class = 3 & startDateTime = " + startDateTime);
-		flights = fr.fetchFlightFromLocation(2, 1, 3, startDateTime);
-		flights.ForEach(delegate(Flight f){
-			Console.WriteLine(f);
+		DateTime startDateTime = DateTime.Parse ("2012-12-25");
+		Console.WriteLine ("Find the flight with location = 1 & airline = 1 & class = 3 & startDateTime = " + startDateTime);
+		flights = fr.fetchFlight (1, 1, 3, startDateTime);
+		flights.ForEach (delegate(Flight f) {
+			Console.WriteLine (f);
 		});
 
 		//------------------------------------------------------

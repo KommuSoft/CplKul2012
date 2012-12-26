@@ -11,16 +11,16 @@ namespace DSLImplementation.Database
 		public int airline { get; set; }
 		public DateTime start { get; set; }
 		public DateTime end { get; set; }
-		public List<int> classPrice { get; set; }
+		public int airplane { get; set; }
 
-		public Flight (int ID, int location, int airline, DateTime start, DateTime end, List<int> classPrice)
+		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane)
 		{
 			this.ID = ID;
 			this.location = location;
 			this.airline = airline;
 			this.start = start;
 			this.end = end;
-			this.classPrice = classPrice;
+			this.airplane = airplane;
 		}
 
 		public Flight (IDataReader reader)
@@ -37,13 +37,12 @@ namespace DSLImplementation.Database
 			DateTime end_date = reader.GetDateTime(reader.GetOrdinal("end_date"));
 			end = new DateTime(end_date.Year, end_date.Month, end_date.Day, end_time.Hour, end_time.Minute, end_time.Second);
 			
-			string classePrices = reader.GetString(reader.GetOrdinal("class_price"));
-			classPrice = Util.parse<int>(classePrices);
+			airplane = reader.GetInt32(reader.GetOrdinal("airplane"));
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, classPrice={5}]", ID, location, airline, start, end, classPrice);
+			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, airplane={5}]", ID, location, airline, start, end, airplane);
 		}
 	}
 }
