@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -18,6 +19,17 @@ namespace DSLImplementation.Database
 			this.country = country;
 			this.city = city;
 			this.company = company;
+		}
+
+		public Airport (IDataReader reader)
+		{
+			ID = reader.GetInt32(reader.GetOrdinal("id"));
+			name = reader.GetString(reader.GetOrdinal("name"));
+			country = reader.GetInt32(reader.GetOrdinal("country"));
+			city = reader.GetInt32(reader.GetOrdinal("city"));
+				
+			string companies = reader.GetString(reader.GetOrdinal("company"));
+			company = Util.parse<int>(companies);
 		}
 
 		public override string ToString ()

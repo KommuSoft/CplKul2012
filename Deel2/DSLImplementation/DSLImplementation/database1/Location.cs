@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -17,6 +18,15 @@ namespace DSLImplementation.Database
 			this.start_country = start_country;
 			this.destination_city = destination_city;
 			this.destination_country = destination_country;
+		}
+
+		public Location (IDataReader reader)
+		{
+			ID = reader.GetInt32(reader.GetOrdinal("id"));
+			start_city = reader.GetInt32(reader.GetOrdinal("start_city"));
+			start_country = reader.GetInt32(reader.GetOrdinal("start_country"));
+			destination_city = reader.GetInt32(reader.GetOrdinal("destination_city"));
+			destination_country = reader.GetInt32(reader.GetOrdinal("destination_country"));
 		}
 
 		public override string ToString ()

@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -13,6 +14,13 @@ namespace DSLImplementation.Database
 			this.ID = ID;
 			this.class_ = class_;
 			this.price = price;
+		}
+
+		public ClassPrice (IDataReader reader)
+		{
+			ID = reader.GetInt32(reader.GetOrdinal("id"));
+			class_ = reader.GetInt32(reader.GetOrdinal("class"));
+			price = reader.GetDecimal(reader.GetOrdinal("price"));
 		}
 
 		public override string ToString ()

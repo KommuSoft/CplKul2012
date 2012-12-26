@@ -4,7 +4,7 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class ClassRequest : DatabaseRequest
+	public class ClassRequest : DatabaseRequest<Class>
 	{
 		public ClassRequest () : base() {}
 		
@@ -13,25 +13,9 @@ namespace DSLImplementation.Database
 			return "SELECT id, name FROM class WHERE " + column + " = " + value;
 		}
 		
-		private Class createClass (IDataReader reader)
+		public List<Class> fetchClassFromID (int ID)
 		{
-			int ID = reader.GetInt32(reader.GetOrdinal("id"));
-			string name = reader.GetString(reader.GetOrdinal("name"));
-			return new Class(ID: ID, name: name);
-		}
-		
-		public Class fetchClassFromID (int ID)
-		{
-			IDataReader reader = db.CreateCommand(createQuery("id", ID));
-			
-			reader.Read();
-			Class class_ = createClass(reader);
-			
-			reader.Close();
-			reader = null;
-			db.CloseCommand();
-			
-			return class_;
+			return fetchFromQuery(createQuery("id", ID));
 		}
 
 		public List<Class> fetchClassFromFlight (int flightID)
@@ -44,8 +28,12 @@ namespace DSLImplementation.Database
 			List<Class> classes = new List<Class>();
 			foreach(int classPriceID in classPriceIDs){
 				ClassPriceRequest cpr = new ClassPriceRequest();
-				ClassPrice cp = cpr.fetchClassPriceFromID(classPriceID);
-				classes.Add(fetchClassFromID(cp.class_));
+				List<ClassPrice> classPrices = cpr.fetchClassPriceFromID(classPriceID);
+				if(classPrices.Count == 0){
+					return new List<Class>();
+				}
+				ClassPrice cp = classPrices[0];
+				classes.Add(fetchClassFromID(cp.class_)[0]);
 			}
 
 			return classes;

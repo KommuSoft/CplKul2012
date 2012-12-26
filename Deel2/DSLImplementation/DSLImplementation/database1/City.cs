@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -13,6 +14,13 @@ namespace DSLImplementation.Database
 			this.ID = ID;
 			this.name = name;
 			this.country = country;
+		}
+
+		public City (IDataReader reader)
+		{
+			ID = reader.GetInt32(reader.GetOrdinal("id"));
+			name = reader.GetString(reader.GetOrdinal("name"));
+			country = reader.GetInt32(reader.GetOrdinal("country"));
 		}
 
 		public override string ToString ()

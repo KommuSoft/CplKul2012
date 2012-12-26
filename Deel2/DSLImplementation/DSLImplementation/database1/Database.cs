@@ -16,8 +16,7 @@ namespace DSLImplementation.Database
 		public Database ()
 		{
 //			string connectionString = "Server=localhost; Database=DB; User ID=postgres1; Password=postgres;";
-//			string connectionString = "Server=pgsql.ulyssis.org; Database=gonaz; User ID=gonaz; Password=cplPassword1; SSL=true; Sslmode=require;";
-			string connectionString = "Server=localhost; Port=3333; Database=gonaz; User ID=gonaz; Password=cplPassword1;";
+			string connectionString = "Server=localhost; Port=25432; Database=gonaz; User ID=gonaz; Password=cplPassword1;";
 
 			if (counter == 0) {
 				dbcon = new NpgsqlConnection(connectionString);
