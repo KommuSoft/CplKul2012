@@ -14,6 +14,8 @@ namespace DSLImplementation.UserInterface {
 		private PointD sizeCache = new PointD(-1.0d,-1.0d);
 		private EventHandler boundsChanged;
 		private readonly Rectangle[] subpieces;
+		private IPuzzlePiece parent;
+		private int index = -0x01;
 
 		public event EventHandler BoundsChanged {
 			add {
@@ -21,6 +23,32 @@ namespace DSLImplementation.UserInterface {
 			}
 			remove {
 				this.boundsChanged -= value;
+			}
+		}
+		public int Index {
+			get {
+				return this.index;
+			}
+			set {
+				this.index = value;
+			}
+		}
+		public IPuzzlePiece Parent {
+			get {
+				return this.parent;
+			}
+			set {
+				if(this.parent != value) {
+					if(this.parent != null) {
+						IPuzzlePiece parent = this.parent;
+						this.parent = null;
+						parent[index] = null;
+						this.parent = value;
+						if(this.parent == null) {
+							this.index = -0x01;
+						}
+					}
+				}
 			}
 		}
 		public IPuzzlePiece this [int index] {
@@ -36,14 +64,16 @@ namespace DSLImplementation.UserInterface {
 						this.arguments[index].BoundsChanged -= this.performBoundsChanged;
 					}
 					this.arguments[index] = value;
-					if(this.arguments[index] != null) {
-						this.arguments[index].BoundsChanged += this.performBoundsChanged;
+					if(value != null) {
+						value.Index = index;
+						value.Parent = this;
+						value.BoundsChanged += this.performBoundsChanged;
 					}
 					this.performBoundsChanged(this,EventArgs.Empty);
 				}
 			}
 		}
-		public string Name {
+		public virtual string Name {
 			get {
 				string name = this.GetType().Name;
 				if(name.EndsWith("Piece")) {
@@ -63,6 +93,11 @@ namespace DSLImplementation.UserInterface {
 				return 0x00;
 			}
 		}
+		public int NumberOfRequiredArguments {
+			get {
+				return this.NumberOfArguments-this.NumberOfOptionalArguments;
+			}
+		}
 		public abstract TypeColors[] TypeColorArguments {
 			get;
 		}
@@ -74,7 +109,16 @@ namespace DSLImplementation.UserInterface {
 		public abstract TypeColors TypeColors {
 			get;
 		}
-
+		public bool Complete {
+			get {
+				for(int i = 0; i < this.NumberOfRequiredArguments; i++) {
+					if(this.arguments[i] == null || !this.arguments[i].Complete) {
+						return false;
+					}
+				}
+				return true;
+			}
+		}
 
 		protected PuzzlePieceBase (params IPuzzlePiece[] pieces) : this() {
 			int n = Math.Min(this.arguments.Length,pieces.Length);
@@ -216,6 +260,14 @@ namespace DSLImplementation.UserInterface {
 				}
 				index = -0x01;
 				return null;
+			}
+		}
+		public IEnumerable<IPuzzlePiece> DepthFirstTraverse () {
+			yield return this;
+			foreach(IPuzzlePiece ipp in this.arguments) {
+				foreach(IPuzzlePiece ippsub in ipp.DepthFirstTraverse()) {
+					yield return ippsub;
+				}
 			}
 		}
 		#endregion

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cairo;
 
 namespace DSLImplementation.UserInterface {
@@ -15,10 +16,21 @@ namespace DSLImplementation.UserInterface {
 			get;
 			set;
 		}
+		int Index {
+			get;
+			set;
+		}
 		TypeColors TypeColors {
 			get;
 		}
 		string Name {
+			get;
+		}
+		IPuzzlePiece Parent {
+			get;
+			set;
+		}
+		bool Complete {
 			get;
 		}
 		event EventHandler BoundsChanged;
@@ -28,6 +40,7 @@ namespace DSLImplementation.UserInterface {
 		void Paint (Context ctx);
 		PointD MeasureSize (Context ctx);
 		IPuzzlePiece GetPuzzleGap (Context ctx, PointD point, out int index);
+		IEnumerable<IPuzzlePiece> DepthFirstTraverse ();
 
 	}
 }

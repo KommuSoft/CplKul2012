@@ -1,0 +1,18 @@
+\section{User interface}
+\subsection{Overview}
+Most programming languages and by extend domain specific languages are parsed
+in a structure called abstract syntax trees. The source code first pases
+through a lexer who groups strings of characters together into tokens. Since we
+implemented a graphical language, the graphical ``source code'' is already
+tokenized: we simply group information into predefined graphical primitives who
+can be considered the equivalent of a token.
+\paragraph{}
+When the source code is tokenized, a compiler component called the parser
+injects some structure in the token stream by converting the stream into a
+tree-structure. The parser knows how to do this since the order of the tokens
+contains some cues on how the data is structured.
+\paragraph{}
+Graphical languages mainly use two paradigms: graph-based and tree-based. In a
+graph based language, the user uses two basic concepts: nodes and edges. A
+popular example is UML: the class diagram uses classes and the relations
+between classes are represented as edges.

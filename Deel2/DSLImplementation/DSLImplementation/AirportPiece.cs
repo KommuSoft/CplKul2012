@@ -7,7 +7,7 @@ namespace DSLImplementation.UserInterface {
 
 		public override TypeColors TypeColors {
 			get {
-				return TypeColors.Purple;
+				return TypeColors.Purple|TypeColors.Blue;
 			}
 		}
 
