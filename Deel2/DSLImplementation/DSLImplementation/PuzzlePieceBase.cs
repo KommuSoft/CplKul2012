@@ -149,22 +149,22 @@ namespace DSLImplementation.UserInterface {
 					ctx.FillPreserve();
 					ctx.Rectangle(0.0d,0.0d,MinimumWidth+2.0d*Margin,MinimumHeight+2.0d*Margin);
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(MinimumWidth+2.0d*Margin,TypeColorArguments[index]);
-					ctx.FillPreserve();
-					ctx.Color = KnownColors.Black;
-					ctx.Stroke();
+					ctx.Fill();
+					//ctx.Color = KnownColors.Black;
+					//ctx.Stroke();
 				}
 				else {
 					siz = ipp.MeasureSize(ctx);
 					ctx.Rectangle(0.0d,0.0d,siz.X+2.0d*Margin,siz.Y+2.0d*Margin);
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(MinimumWidth+2.0d*Margin,TypeColorArguments[index]);
-					ctx.FillPreserve();
+					ctx.Fill();
 					ctx.Color = KnownColors.Black;
-					ctx.Stroke();
+					//ctx.Stroke();
 					ctx.Translate(Margin,Margin);
 					ipp.Paint(ctx);
 				}
 				ctx.Restore();
-				subpieces[index] = new Rectangle(x0+Margin,Margin,siz.X,siz.Y);
+				subpieces[index] = new Rectangle(x0+Margin,2.0d*Margin,siz.X,siz.Y);
 				x0 += siz.X+3.0d*Margin;
 				if(index >= NumberOfArguments-NumberOfOptionalArguments) {
 					ctx.MoveTo(x0-2.0d*Margin-0.5d*(siz.X+te.Width),size.Y-0.5d*te.Height);

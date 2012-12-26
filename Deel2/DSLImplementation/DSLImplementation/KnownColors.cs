@@ -5,7 +5,7 @@ namespace DSLImplementation.UserInterface {
 	public static class KnownColors {
 
 
-		public const int ConstructionDelta = 0x08;
+		public const int ConstructionDelta = 0x20;
 		public static readonly Color Red	= new Color(1.0d,0.5d,0.5d);
 		public static readonly Color Green	= new Color(0.5d,1.0d,0.5d);
 		public static readonly Color Blue	= new Color(0.5d,0.5d,1.0d);
@@ -39,7 +39,7 @@ namespace DSLImplementation.UserInterface {
 					ctx.RelLineTo(0.25d*ConstructionDelta,0.25d*ConstructionDelta);
 					ctx.RelLineTo(-0.25d*ConstructionDelta,0.0d);
 					ctx.ClosePath();
-					ctx.Color = new Color(0.75d,0.75d,0.75d);
+					ctx.Color = new Color(0.75d,0.75d,0.25d);
 					ctx.Fill();
 					constructionPattern = new SurfacePattern(imsu);
 					constructionPattern.Extend = Extend.Repeat;

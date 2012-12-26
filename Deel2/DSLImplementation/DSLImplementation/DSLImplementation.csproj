@@ -75,7 +75,11 @@
     <Compile Include="database1\Util.cs" />
     <Compile Include="AirportAnswer.cs" />
     <Compile Include="SeatClass.cs" />
-    <Compile Include="PuzzlePiece.cs" />
+    <Compile Include="PlanePiece.cs" />
+    <Compile Include="ZeroArgumentPuzzlePieceBase.cs" />
+    <Compile Include="PersonPiece.cs" />
+    <Compile Include="TimePiece.cs" />
+    <Compile Include="AirportPiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

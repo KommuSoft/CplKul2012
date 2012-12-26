@@ -36,22 +36,38 @@ namespace DSLImplementation.UserInterface {
 			this.Title = "Comparative Programming Languages - Domain Specific Language Assignment";
 			this.vbox = new VBox(false,0x00);
 			this.sketchpad = new SketchPad();
-			this.sketchpad.RootPiece = new RunPiece(new BookingPiece());
-			this.piecesStore = new ListStore(typeof(string));
+			this.sketchpad.RootPiece = new RunPiece();
+			this.piecesStore = new ListStore(typeof(string),typeof(ConstructorInfo));
 			this.invokePieces(Assembly.GetExecutingAssembly());
 			this.piecesView = new IconView(this.piecesStore);
 			this.piecesView.TextColumn = 0x00;
+			this.piecesView.SelectionChanged += HandleSelectionChanged;
 			this.vbox.PackEnd(this.sketchpad,true,true,0x00);
 			this.vbox.PackEnd(this.piecesView,false,false,0x00);
 			this.Add(vbox);
 			this.ShowAll();
 		}
 
+		void HandleSelectionChanged (object sender, EventArgs e)
+		{
+			TreePath[] tps = this.piecesView.SelectedItems;
+			if (tps.Length <= 0x00) {
+				this.sketchpad.InjectionPiece = null;
+			} else {
+				TreeIter ti;
+				this.piecesStore.GetIter(out ti, tps[0x00]);
+				this.sketchpad.InjectionPiece = (ConstructorInfo) this.piecesStore.GetValue(ti,0x01);
+			}
+		}
+
 		private void invokePieces (Assembly assembly) {
 			foreach(Type t in assembly.GetTypes()) {
 				if(!t.IsAbstract && typeof(IPuzzlePiece).IsAssignableFrom(t)) {
-					foreach(PuzzlePieceAttribute ppa in t.GetCustomAttributes(typeof(PuzzlePieceAttribute),false)) {
-						piecesStore.AppendValues(ppa.PieceName);
+					ConstructorInfo ci = t.GetConstructor(new Type[0x00]);
+					if(ci != null) {
+						foreach(PuzzlePieceAttribute ppa in t.GetCustomAttributes(typeof(PuzzlePieceAttribute),false)) {
+							piecesStore.AppendValues(ppa.PieceName,ci);
+						}
 					}
 				}
 			}
