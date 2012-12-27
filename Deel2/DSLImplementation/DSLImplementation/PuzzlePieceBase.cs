@@ -25,6 +25,11 @@ namespace DSLImplementation.UserInterface {
 				this.boundsChanged -= value;
 			}
 		}
+		public virtual string[] ArgumentNames {
+			get {
+				return null;
+			}
+		}
 		public int Index {
 			get {
 				return this.index;
@@ -174,11 +179,16 @@ namespace DSLImplementation.UserInterface {
 			ctx.FillPreserve();
 			ctx.Color = KnownColors.Black;
 			ctx.Stroke();
-			TextExtents te = ctx.TextExtents(this.Name);
-			double y0 = 0.5d*(size.Y-te.Height);
-			ctx.MoveTo(Margin,y0);
+			KnownColors.SetFontFacePieceName(ctx);
+			TextExtents te = ctx.TextExtents(this.Name), ten;
+			double y0 = 0.5d*(size.Y-te.Width);
+			ctx.MoveTo(0.5d*Margin,y0);
+			ctx.Save();
+			ctx.Rotate(0.5d*Math.PI);
 			ctx.ShowText(this.Name);
-			double x0 = 2.0d*Margin+te.Width;
+			ctx.Restore();
+			double x0 = Margin+te.Height;
+			KnownColors.SetFontFaceNormal(ctx);
 			te = ctx.TextExtents(OptionalString);
 			y0 = 2.0d*Margin;
 			int index = 0x00;
@@ -192,13 +202,13 @@ namespace DSLImplementation.UserInterface {
 					ctx.Pattern = KnownColors.ConstructionPattern;
 					ctx.FillPreserve();
 					ctx.Rectangle(0.0d,0.0d,MinimumWidth+2.0d*Margin,siz.Y+2.0d*Margin);
-					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(MinimumWidth+2.0d*Margin,TypeColorArguments[index]);
+					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(siz.X+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
 				}
 				else {
 					siz = ipp.MeasureSize(ctx);
 					ctx.Rectangle(0.0d,0.0d,siz.X+2.0d*Margin,siz.Y+2.0d*Margin);
-					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(MinimumWidth+2.0d*Margin,TypeColorArguments[index]);
+					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(siz.X+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
 					ctx.Color = KnownColors.Black;
 					ctx.Translate(Margin,Margin);
@@ -208,8 +218,13 @@ namespace DSLImplementation.UserInterface {
 				subpieces[index] = new Rectangle(x0+Margin,2.0d*Margin,siz.X,siz.Y);
 				x0 += siz.X+3.0d*Margin;
 				if(index >= NumberOfArguments-NumberOfOptionalArguments) {
-					ctx.MoveTo(x0-2.0d*Margin-0.5d*(siz.X+te.Width),size.Y-0.5d*te.Height);
+					ctx.MoveTo(x0-2.0d*Margin-0.5d*(siz.X+te.Width),siz.Y+3.0d*Margin-2.0d);
 					ctx.ShowText(OptionalString);
+				}
+				if(this.ArgumentNames != null && index < arguments.Length) {
+					ten = ctx.TextExtents(this.ArgumentNames[index]);
+					ctx.MoveTo(x0-2.0d*Margin-0.5d*(siz.X+ten.Width),-te.YBearing+Margin+2.0d);
+					ctx.ShowText(this.ArgumentNames[index]);
 				}
 				index++;
 			}
@@ -219,9 +234,10 @@ namespace DSLImplementation.UserInterface {
 		{
 			if(sizeCache.X < 0.0d) {
 				double w, th, h = MinimumHeight;
+				KnownColors.SetFontFacePieceName(ctx);
 				TextExtents te = ctx.TextExtents(this.Name);
-				w = te.Width+2.0d*Margin;
-				th = te.Height;
+				w = te.Height+Margin;
+				th = te.Width;
 				foreach(IPuzzlePiece piece in this.arguments) {
 					if(piece == null) {
 						w += MinimumWidth+3.0d*Margin;

@@ -29,9 +29,7 @@ namespace DSLImplementation.UserInterface {
 		{
 			int ones = 0x00;
 			while(x > 0x00) {
-				if((x&0x01) != 0x00) {
-					ones++;
-				}
+				ones += (int) (x&0x01);
 				x >>= 0x01;
 			}
 			return ones;
@@ -69,6 +67,7 @@ namespace DSLImplementation.UserInterface {
 			}
 			Pattern pat = new SurfacePattern(imsu);
 			pat.Extend = Extend.Repeat;
+			((IDisposable) ctx).Dispose();
 			return pat;
 		}
 

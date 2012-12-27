@@ -12,8 +12,18 @@ namespace DSLImplementation.UserInterface {
 		private IPuzzlePiece rootpiece;
 		private Context subcontext;
 		private ConstructorInfo injectionPiece;
+		private SketchPadTool tool;
 		private static readonly object[] emptyArgs = new object[0x00];
+		private bool autorun = true;
 
+		public bool Autorun {
+			get {
+				return this.autorun;
+			}
+			set {
+				this.autorun = value;
+			}
+		}
 		public IPuzzlePiece RootPiece {
 			get {
 				return this.rootpiece;
@@ -28,6 +38,14 @@ namespace DSLImplementation.UserInterface {
 			}
 			set {
 				this.injectionPiece = value;
+			}
+		}
+		public SketchPadTool Tool {
+			get {
+				return this.tool;
+			}
+			set {
+				this.tool = value;
 			}
 		}
 

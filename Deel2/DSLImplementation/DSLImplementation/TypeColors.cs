@@ -11,7 +11,8 @@ namespace DSLImplementation.UserInterface {
 		Purple	= 0x0000000000000010,
 		Orange	= 0x0000000000000020,
 		White	= 0x0000000000000040,
-		Brown	= 0x0000000000000080
+		Brown	= 0x0000000000000080,
+		All		= 0x00000000000000ff
 	}
 }
 

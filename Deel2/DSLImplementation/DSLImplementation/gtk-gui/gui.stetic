@@ -2,29 +2,198 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
-    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
     <widget-library name="../bin/Debug/DSLImplementation.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="DSLImplementation.TopWindow" design-size="800 600">
+    <action-group name="Default">
+      <action id="ToolsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Tools</property>
+        <property name="ShortLabel" translatable="yes">Tools</property>
+      </action>
+      <action id="menu_insertSubpiece">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Insert subpiece</property>
+        <property name="ShortLabel" translatable="yes">Insert subpiece</property>
+        <property name="StockId">gtk-select-color</property>
+        <property name="Tooltip" translatable="yes">Insert subpiece</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+        <property name="Value">0</property>
+        <property name="Group">menu_select_tool</property>
+        <signal name="Activated" handler="menu_tool_changed" />
+      </action>
+      <action id="menu_insert_linkpiece">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Insert linkpiece</property>
+        <property name="ShortLabel" translatable="yes">Insert linkpiece</property>
+        <property name="StockId">gtk-convert</property>
+        <property name="Tooltip" translatable="yes">Insert linkpiece</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">menu_select_tool</property>
+        <signal name="Activated" handler="menu_tool_changed" />
+      </action>
+      <action id="menu_edit_information">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Edit information</property>
+        <property name="ShortLabel" translatable="yes">Edit information</property>
+        <property name="StockId">gtk-index</property>
+        <property name="Tooltip" translatable="yes">Edit information</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">menu_select_tool</property>
+        <signal name="Activated" handler="menu_tool_changed" />
+      </action>
+      <action id="Action">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">--</property>
+        <property name="ShortLabel" translatable="yes">--</property>
+      </action>
+      <action id="propertiesAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Execute query</property>
+        <property name="ShortLabel" translatable="yes">Execute query</property>
+        <property name="StockId">gtk-properties</property>
+      </action>
+      <action id="tool_insertSubpiece">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Insert subpiece</property>
+        <property name="ShortLabel" translatable="yes">Insert subpiece</property>
+        <property name="StockId">gtk-select-color</property>
+        <property name="Tooltip" translatable="yes">Insert subpiece</property>
+        <property name="DrawAsRadio">True</property>
+        <property name="Active">True</property>
+        <property name="Value">0</property>
+        <property name="Group">tool_select_tool</property>
+        <signal name="Activated" handler="tool_selected" />
+      </action>
+      <action id="tool_insert_linkpiece">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Insert linkpiece</property>
+        <property name="ShortLabel" translatable="yes">Insert linkpiece</property>
+        <property name="StockId">gtk-convert</property>
+        <property name="Tooltip" translatable="yes">Insert linkpiece</property>
+        <property name="DrawAsRadio">True</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">tool_select_tool</property>
+        <signal name="Activated" handler="tool_selected" />
+      </action>
+      <action id="tool_edit_information">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Edit information</property>
+        <property name="ShortLabel" translatable="yes">Edit information</property>
+        <property name="StockId">gtk-index</property>
+        <property name="Tooltip" translatable="yes">Edit information</property>
+        <property name="DrawAsRadio">True</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">tool_select_tool</property>
+        <signal name="Activated" handler="tool_selected" />
+      </action>
+      <action id="tool_execute_query">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Execute Query</property>
+        <property name="ShortLabel" translatable="yes">Execute Query</property>
+        <property name="StockId">gtk-execute</property>
+        <property name="Tooltip" translatable="yes">Execute Query</property>
+      </action>
+      <action id="menu_autorun">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Execute complete queries</property>
+        <property name="ShortLabel" translatable="yes">Execute complete queries</property>
+        <property name="StockId">gtk-refresh</property>
+        <property name="Tooltip" translatable="yes">Execute complete queries</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+        <signal name="Activated" handler="menu_autorun_changed" />
+      </action>
+      <action id="tool_autorun">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Execute complete queries</property>
+        <property name="ShortLabel" translatable="yes">Execute complete queries</property>
+        <property name="StockId">gtk-refresh</property>
+        <property name="Tooltip" translatable="yes">Execute complete queries</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+        <signal name="Activated" handler="tool_autorun_changed" />
+      </action>
+    </action-group>
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="HeightRequest">600</property>
-    <property name="Title" translatable="yes">TopWindow</property>
+    <property name="Title" translatable="yes">Comparative Programming Languages - Domain Specific Language Assignment</property>
     <property name="WindowPosition">CenterOnParent</property>
     <child>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
-        <property name="Spacing">1</property>
         <child>
-          <placeholder />
+          <widget class="Gtk.MenuBar" id="menubar1">
+            <property name="MemberName" />
+            <node name="__gtksharp_136_Stetic_Editor_ActionMenuBar" type="Menubar">
+              <node type="Menu" action="ToolsAction">
+                <node type="Menuitem" action="menu_insertSubpiece" />
+                <node type="Menuitem" action="menu_insert_linkpiece" />
+                <node type="Menuitem" action="menu_edit_information" />
+                <node type="Separator" />
+                <node type="Menuitem" action="menu_autorun" />
+                <node type="Menuitem" action="propertiesAction" />
+              </node>
+            </node>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
         </child>
         <child>
-          <placeholder />
+          <widget class="Gtk.Toolbar" id="toolbar1">
+            <property name="MemberName" />
+            <property name="ShowArrow">False</property>
+            <node name="__gtksharp_146_Stetic_Editor_ActionToolbar" type="Toolbar">
+              <node type="Toolitem" action="tool_insertSubpiece" />
+              <node type="Toolitem" action="tool_insert_linkpiece" />
+              <node type="Toolitem" action="tool_edit_information" />
+              <node type="Separator" />
+              <node type="Toolitem" action="tool_autorun" />
+              <node type="Toolitem" action="tool_execute_query" />
+            </node>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
         </child>
         <child>
-          <placeholder />
+          <widget class="Gtk.IconView" id="piecesView">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <signal name="SelectionChanged" handler="pieces_selection_changed" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">False</property>
+            <property name="Expand">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="DSLImplementation.UserInterface.SketchPad" id="sketchpad">
+            <property name="MemberName" />
+            <property name="Autorun">False</property>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+            <property name="AutoSize">False</property>
+          </packing>
         </child>
       </widget>
     </child>

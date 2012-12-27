@@ -14,8 +14,9 @@ namespace DSLImplementation.UserInterface {
 		public static readonly Color Purple	= new Color(0.75d,0.5d,0.75d);
 		public static readonly Color Orange	= new Color(1.0d,0.75d,0.5d);
 		public static readonly Color White	= new Color(1.0d,1.0d,1.0d);
+		public static readonly Color Brown	= new Color(0.48d,0.39d,0.29d);
 		public static readonly Color Black	= new Color(0.0d,0.0d,0.0d);
-		private static readonly Color[] colors = new Color[] {Red,Green,Blue,Yellow,Purple,Orange,White};
+		private static readonly Color[] colors = new Color[] {Red,Green,Blue,Yellow,Purple,Orange,White,Brown};
 		private static Pattern constructionPattern = null;
 
 		public static Pattern ConstructionPattern {
@@ -55,12 +56,19 @@ namespace DSLImplementation.UserInterface {
 		public static Color GetColorFromColorType (int index) {
 			return colors[index];
 		}
+		public static void SetFontFaceNormal (Context ctx) {
+			ctx.SelectFontFace("Arial",FontSlant.Normal,FontWeight.Normal);
+			ctx.SetFontSize(12.0d);
+		}
+		public static void SetFontFacePieceName (Context ctx)
+		{
+			ctx.SelectFontFace("Arial",FontSlant.Italic,FontWeight.Bold);
+			ctx.SetFontSize(14.0d);
+		}
 		public static Gdk.Pixbuf GeneratePuzzlePiece (TypeColors tc, int size)
 		{
 			ImageSurface imsu = new ImageSurface(Format.ARGB32,size,size);
 			Context ctx = new Context (imsu);
-				//Gdk.Pixbuf pb = new Gdk.Pixbuf(Gdk.Colorspace.Rgb,true,8,size,size);
-				//Context ctx = Gdk.CairoHelper.Create(pb);
 			ctx.Color = White;
 			ctx.Paint();
 			double x1 = 0.9d * size, x0 = size - x1, x2 = 0.35d * size, x3 = 0.55d * size, x4 = 0.45d * size;

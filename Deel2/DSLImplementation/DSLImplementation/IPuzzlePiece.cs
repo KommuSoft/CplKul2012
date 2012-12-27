@@ -38,6 +38,8 @@ namespace DSLImplementation.UserInterface {
 		bool MatchesConstraints (int index, IPuzzlePiece piece);
 		bool IsOptional (int index);
 		void Paint (Context ctx);
+		//PointD InnerLocation (Context ctx);
+		//PointD OuterLocation (Context ctx);
 		PointD MeasureSize (Context ctx);
 		IPuzzlePiece GetPuzzleGap (Context ctx, PointD point, out int index);
 		IEnumerable<IPuzzlePiece> DepthFirstTraverse ();
