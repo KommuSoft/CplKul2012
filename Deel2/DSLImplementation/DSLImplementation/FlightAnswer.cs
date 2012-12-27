@@ -6,7 +6,7 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlRoot("FlightAnswer")]
 	public class FlightAnswer
 	{
-		public FlightAnswer (List<Airport> Flights)
+		public FlightAnswer (List<Flight> Flights)
 		{
 			this.Flights = Flights;
 		}
