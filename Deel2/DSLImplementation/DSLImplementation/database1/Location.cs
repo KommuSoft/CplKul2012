@@ -6,32 +6,29 @@ namespace DSLImplementation.Database
 	public class Location
 	{
 		public int ID { get; set; }
-		public int start_city { get; set; }
-		public int start_country { get; set; }
-		public int destination_city { get; set; }
-		public int destination_country { get; set; }
+		public int start_airport { get; set; }
+		public int destination_airport { get; set; }
+		public int distance { get; set; }
 
-		public Location (int ID, int start_city, int start_country, int destination_city, int destination_country)
+		public Location (int ID, int start_airport, int destination_airport, int distance)
 		{
 			this.ID = ID;
-			this.start_city = start_city;
-			this.start_country = start_country;
-			this.destination_city = destination_city;
-			this.destination_country = destination_country;
+			this.start_airport = start_airport;
+			this.destination_airport = destination_airport;
+			this.distance = distance;
 		}
 
 		public Location (IDataReader reader)
 		{
 			ID = reader.GetInt32(reader.GetOrdinal("id"));
-			start_city = reader.GetInt32(reader.GetOrdinal("start_city"));
-			start_country = reader.GetInt32(reader.GetOrdinal("start_country"));
-			destination_city = reader.GetInt32(reader.GetOrdinal("destination_city"));
-			destination_country = reader.GetInt32(reader.GetOrdinal("destination_country"));
+			start_airport = reader.GetInt32(reader.GetOrdinal("start_airport"));
+			destination_airport = reader.GetInt32(reader.GetOrdinal("destination_airport"));
+			distance = reader.GetInt32(reader.GetOrdinal("distance"));
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("[Location: ID={0}, start_city={1}, start_country={2}, destination_city={3}, destination_country={4}]", ID, start_city, start_country, destination_city, destination_country);
+			return string.Format ("[Location: ID={0}, start_airport={1}, destination_airport={2}, distance={3}]", ID, start_airport, destination_airport, distance);
 		}
 	}
 }

@@ -12,8 +12,9 @@ namespace DSLImplementation.Database
 		public DateTime start { get; set; }
 		public DateTime end { get; set; }
 		public int airplane { get; set; }
+		public int template { get; set; }
 
-		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane)
+		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane, int template)
 		{
 			this.ID = ID;
 			this.location = location;
@@ -21,6 +22,7 @@ namespace DSLImplementation.Database
 			this.start = start;
 			this.end = end;
 			this.airplane = airplane;
+			this.template = template;
 		}
 
 		public Flight (IDataReader reader)
@@ -38,11 +40,12 @@ namespace DSLImplementation.Database
 			end = new DateTime(end_date.Year, end_date.Month, end_date.Day, end_time.Hour, end_time.Minute, end_time.Second);
 			
 			airplane = reader.GetInt32(reader.GetOrdinal("airplane"));
+			template = reader.GetInt32(reader.GetOrdinal("template"));
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, airplane={5}]", ID, location, airline, start, end, airplane);
+			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, airplane={5}, template={6}]", ID, location, airline, start, end, airplane, template);
 		}
 	}
 }

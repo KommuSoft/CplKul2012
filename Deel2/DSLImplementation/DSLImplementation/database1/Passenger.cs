@@ -3,18 +3,18 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class Country
+	public class Passenger
 	{
 		public int ID { get; set; }
 		public string name { get; set; }
 
-		public Country (int ID, string name)
+		public Passenger (int ID, string name)
 		{
 			this.ID = ID;
 			this.name = name;
 		}
 
-		public Country (IDataReader reader)
+		public Passenger (IDataReader reader)
 		{
 			ID = reader.GetInt32(reader.GetOrdinal("id"));
 			name = reader.GetString(reader.GetOrdinal("name"));
@@ -22,7 +22,7 @@ namespace DSLImplementation.Database
 
 		public override string ToString ()
 		{
-			return string.Format ("[Country: ID={0}, name={1}]", ID, name);
+			return string.Format ("[Passenger: ID={0}, name={1}]", ID, name);
 		}
 	}
 }

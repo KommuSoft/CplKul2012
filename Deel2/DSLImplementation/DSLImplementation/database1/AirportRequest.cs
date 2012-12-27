@@ -9,7 +9,7 @@ namespace DSLImplementation.Database
 
 		protected override string createQuery (string column, int value)
 		{
-			return "SELECT id, name, country, city, company FROM airport WHERE " + column + " = " + value; 
+			return "SELECT * FROM airport WHERE " + column + " = " + value; 
 		}
 
 		public List<Airport> fetchAirportFromID(int ID)

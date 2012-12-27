@@ -10,7 +10,7 @@ namespace DSLImplementation.Database
 
 		protected override string createQuery (string column, int value)
 		{
-			return "SELECT id, start_city, start_country, destination_city, destination_country FROM location WHERE " + column + " = " + value;
+			return "SELECT * FROM location WHERE " + column + " = " + value;
 		}
 
 		public List<Location> fetchLocationFromID (int ID)
