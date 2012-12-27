@@ -61,8 +61,6 @@
     <Compile Include="database1\City.cs" />
     <Compile Include="database1\CityRequest.cs" />
     <Compile Include="database1\Class.cs" />
-    <Compile Include="database1\ClassPrice.cs" />
-    <Compile Include="database1\ClassPriceRequest.cs" />
     <Compile Include="database1\ClassRequest.cs" />
     <Compile Include="database1\Country.cs" />
     <Compile Include="database1\Database.cs" />
@@ -81,6 +79,10 @@
     <Compile Include="TimePiece.cs" />
     <Compile Include="AirportPiece.cs" />
     <Compile Include="LinkPiece.cs" />
+    <Compile Include="SketchPadTool.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="TopWindow.cs" />
+    <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -100,11 +102,23 @@
       <Private>False</Private>
       <Package>glib-sharp-2.0</Package>
     </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="database1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database1\SQL_test.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

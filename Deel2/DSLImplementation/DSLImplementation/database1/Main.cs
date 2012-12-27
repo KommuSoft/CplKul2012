@@ -42,8 +42,8 @@ public class Test
 		FlightRequest fr = new FlightRequest ();
 		LocationRequest lr = new LocationRequest ();
 		ClassRequest clr = new ClassRequest ();
-		SeatRequest sr = new SeatRequest ();
-		SeatPriceRequest spr = new SeatPriceRequest ();
+		/*SeatRequest sr = new SeatRequest ();
+		SeatPriceRequest spr = new SeatPriceRequest ();*/
 
 		Console.WriteLine ("Find the flight with location = 1");
 		List<Flight> flights = fr.fetchFlightFromLocation (1);
@@ -53,14 +53,14 @@ public class Test
 		Location l0 = lr.fetchLocationFromID (f0.location) [0];
 
 		Console.WriteLine ("\tFrom: " + cr.fetchCityFromID (l0.start_city) [0].name + "\tTo: " + cr.fetchCityFromID (l0.destination_city) [0].name);
-		List<Seat> seats = sr.fetchSeatFromFlight (f0.ID);
+		/*List<Seat> seats = sr.fetchSeatFromFlight (f0.ID);
 
 		Console.WriteLine("\n\tThe seats with their price");
 		foreach (Seat s in seats) {
 			List<SeatPrice> seatprices = spr.fetchSeatPriceFromSeatAndFlight(s.ID, f0.ID);
 			Console.Write("\t" + s + " -> ");
 			print (seatprices);
-		}
+		}*/
 		Console.WriteLine("\n\tThe classes of this flight");
 		println(clr.fetchClassFromFlight (f0.ID), "\t");
 

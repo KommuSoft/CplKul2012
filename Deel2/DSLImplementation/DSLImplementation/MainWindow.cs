@@ -30,6 +30,8 @@ namespace DSLImplementation.UserInterface {
 		private IconView piecesView;
 		private ListStore piecesStore;
 		private VBox vbox;
+		private MenuBar menubar;
+		private Toolbar toolbar;
 
 		public MainWindow () : base(WindowType.Toplevel) {
 			this.SetSizeRequest(800, 600);
@@ -43,8 +45,30 @@ namespace DSLImplementation.UserInterface {
 			this.piecesView.TextColumn = 0x00;
 			this.piecesView.PixbufColumn = 0x02;
 			this.piecesView.SelectionChanged += HandleSelectionChanged;
+			#region Menu
+			this.menubar = new MenuBar();
+			MenuItem		mi_tool = new MenuItem("Tools");
+			Menu			mn_tool = new Menu();
+			RadioMenuItem	mi_tool_crsb = new RadioMenuItem("Insert subpieces");
+			mn_tool.Append(mi_tool_crsb);
+			RadioMenuItem	mi_tool_link = new RadioMenuItem(mi_tool_crsb,"Create link piece");
+			mn_tool.Append(mi_tool_link);
+			RadioMenuItem	mi_tool_edit = new RadioMenuItem(mi_tool_crsb,"Edit information");
+			mn_tool.Append(mi_tool_edit);
+			mn_tool.Append(new SeparatorMenuItem());
+			MenuItem		mi_tool_exec = new MenuItem("Execute Query");
+			mn_tool.Append(mi_tool_exec);
+			mi_tool.Submenu = mn_tool;
+			this.menubar.Append(mi_tool);
+			#endregion
+			#region Toolbar
+			this.toolbar = new Toolbar();
+			this.toolbar.Add(mi_tool_crsb);
+			#endregion
 			this.vbox.PackEnd(this.sketchpad,true,true,0x00);
 			this.vbox.PackEnd(this.piecesView,false,false,0x00);
+			this.vbox.PackEnd(this.toolbar,false,false,0x00);
+			this.vbox.PackEnd(this.menubar,false,false,0x00);
 			this.Add(vbox);
 			this.ShowAll();
 		}
