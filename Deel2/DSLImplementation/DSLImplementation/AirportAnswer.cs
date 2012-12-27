@@ -7,6 +7,9 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlRoot("AirportAnswer")]
 	public class AirportAnswer
 	{
+		public AirportAnswer(){
+		}
+		
 		public AirportAnswer (List<Airport> Airports)
 		{
 			this.Airports = Airports;
