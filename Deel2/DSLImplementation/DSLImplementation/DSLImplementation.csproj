@@ -9,27 +9,27 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
-    <StartupObject>DSLImplementation.UserInterface.MainWindow</StartupObject>
+    <StartupObject>Test</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -83,6 +83,17 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
+    <Compile Include="database1\Airplane.cs" />
+    <Compile Include="database1\AirplaneRequest.cs" />
+    <Compile Include="database1\Airline.cs" />
+    <Compile Include="database1\AirlineRequest.cs" />
+    <Compile Include="database1\CountryRequest.cs" />
+    <Compile Include="database1\Passenger.cs" />
+    <Compile Include="database1\PassengerRequest.cs" />
+    <Compile Include="database1\Seat.cs" />
+    <Compile Include="database1\SeatPrice.cs" />
+    <Compile Include="database1\SeatPriceRequest.cs" />
+    <Compile Include="database1\SeatRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -92,23 +103,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Npgsql" />
-    <Reference Include="gdk-sharp">
-      <HintPath>..\..\..\..\..\usr\lib\mono\gac\gdk-sharp\2.12.0.0__35e10195dab3c99f\gdk-sharp.dll</HintPath>
-    </Reference>
     <Reference Include="gtk-sharp">
       <HintPath>..\..\..\..\..\usr\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="gdk-sharp, gtk-sharp" />
+    <Reference Include="glib-sharp, gtk-sharp" />
+    <Reference Include="gtk-sharp, gtk-sharp" />
+    <Reference Include="gdk-sharp, gtk-sharp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="database1\" />
