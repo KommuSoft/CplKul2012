@@ -17,8 +17,34 @@ namespace DSLImplementation.UserInterface {
 		public static readonly Color Brown	= new Color(0.48d,0.39d,0.29d);
 		public static readonly Color Black	= new Color(0.0d,0.0d,0.0d);
 		private static readonly Color[] colors = new Color[] {Red,Green,Blue,Yellow,Purple,Orange,White,Brown};
-		private static Pattern constructionPattern = null;
+		private static Pattern constructionPattern = null, shadowd = null, shadowr = null;
 
+		public static Pattern ShadowDownPattern {
+			get {
+				if(shadowd == null) {
+					LinearGradient lg = new LinearGradient(0.0d,0.0d,0.0d,5.0d);
+					for(int i = 0x00; i <= 0x32; i++) {
+						lg.AddColorStop(0.02d*i,new Color(0.0d,0.0d,0.0d,1.0d-0.02d*i));
+					}
+					lg.Extend = Extend.Pad;
+					shadowd = lg;
+				}
+				return shadowd;
+			}
+		}
+		public static Pattern ShadowRightPattern {
+			get {
+				if(shadowr == null) {
+					LinearGradient lg = new LinearGradient(0.0d,0.0d,5.0d,0.0d);
+					for(int i = 0x00; i <= 0x32; i++) {
+						lg.AddColorStop(0.02d*i,new Color(0.0d,0.0d,0.0d,1.0d-0.02d*i));
+					}
+					lg.Extend = Extend.Pad;
+					shadowr = lg;
+				}
+				return shadowr;
+			}
+		}
 		public static Pattern ConstructionPattern {
 			get {
 				if(constructionPattern == null) {
@@ -45,6 +71,7 @@ namespace DSLImplementation.UserInterface {
 					ctx.Fill();
 					constructionPattern = new SurfacePattern(imsu);
 					constructionPattern.Extend = Extend.Repeat;
+					((IDisposable) ctx).Dispose();
 				}
 				return constructionPattern;
 			}

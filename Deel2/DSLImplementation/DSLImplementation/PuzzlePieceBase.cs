@@ -204,6 +204,21 @@ namespace DSLImplementation.UserInterface {
 					ctx.Rectangle(0.0d,0.0d,MinimumWidth+2.0d*Margin,siz.Y+2.0d*Margin);
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(siz.X+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
+					ctx.Translate(Margin,Margin);
+					ctx.MoveTo(0.0d,0.0d);
+					ctx.LineTo(MinimumWidth,0.0d);
+					ctx.RelLineTo(0.0d,5.0d);
+					ctx.LineTo(5.0d,5.0d);
+					ctx.ClosePath();
+					ctx.Pattern = KnownColors.ShadowDownPattern;
+					ctx.Fill();
+					ctx.MoveTo(0.0d,0.0d);
+					ctx.LineTo(0.0d,siz.Y);
+					ctx.RelLineTo(5.0d,0.0d);
+					ctx.LineTo(5.0d,5.0d);
+					ctx.ClosePath();
+					ctx.Pattern = KnownColors.ShadowRightPattern;
+					ctx.Fill();
 				}
 				else {
 					siz = ipp.MeasureSize(ctx);
@@ -236,21 +251,52 @@ namespace DSLImplementation.UserInterface {
 				double w, th, h = MinimumHeight;
 				KnownColors.SetFontFacePieceName(ctx);
 				TextExtents te = ctx.TextExtents(this.Name);
+				PointD siz;
 				w = te.Height+Margin;
 				th = te.Width;
+				int index = 0x00;
 				foreach(IPuzzlePiece piece in this.arguments) {
 					if(piece == null) {
-						w += MinimumWidth+3.0d*Margin;
+						siz = new PointD(MinimumWidth,MinimumHeight);
 					}
 					else {
-						PointD size = piece.MeasureSize(ctx);
-						w += size.X+3.0d*Margin;
-						h = Math.Max(h,size.Y);
+						siz = piece.MeasureSize(ctx);
+						h = Math.Max(h,siz.Y);
 					}
+					this.subpieces[index++] = new Rectangle(w,2.0d*Margin,siz.X,siz.Y);
+					w += siz.X+3.0d*Margin;
 				}
 				this.sizeCache = new PointD(w,Math.Max(th,h+2.0d*Margin)+2.0d*Margin);
 			}
 			return this.sizeCache;
+		}
+		public PointD ChildLocation (Context ctx,int index) {
+			if(sizeCache.X < 0.0d) {
+				MeasureSize(ctx);
+			}
+			Rectangle r = this.subpieces[index];
+			return new PointD(r.X,r.Y);
+		}
+		public PointD InnerLocation (Context ctx) {
+			if (parent != null) {
+				return this.parent.ChildLocation(ctx,index);
+			} else {
+				return new PointD(0.0d,0.0d);
+			}
+		}
+		public PointD OuterLocation (Context ctx) {
+			IPuzzlePiece ch = this;
+			IPuzzlePiece pa = this.Parent;
+			PointD res = new PointD(0.0d,0.0d);
+			PointD loc;
+			while(pa != null) {
+				loc = pa.ChildLocation(ctx,ch.Index);
+				res.X += loc.X;
+				res.Y += loc.Y;
+				ch = pa;
+				pa = pa.Parent;
+			}
+			return res;
 		}
 		public IPuzzlePiece GetPuzzleGap (Context ctx, PointD location, out int index)
 		{
