@@ -1,18 +1,95 @@
 \section{User interface}
 \subsection{Overview}
+\subsection{Lexer}
 Most programming languages and by extend domain specific languages are parsed
 in a structure called abstract syntax trees. The source code first pases
 through a lexer who groups strings of characters together into tokens. Since we
 implemented a graphical language, the graphical ``source code'' is already
 tokenized: we simply group information into predefined graphical primitives who
 can be considered the equivalent of a token.
-\paragraph{}
+\subsection{Parser}
 When the source code is tokenized, a compiler component called the parser
 injects some structure in the token stream by converting the stream into a
 tree-structure. The parser knows how to do this since the order of the tokens
 contains some cues on how the data is structured.
-\paragraph{}
+\subsection{Graphical language paradigms}
 Graphical languages mainly use two paradigms: graph-based and tree-based. In a
 graph based language, the user uses two basic concepts: nodes and edges. A
 popular example is UML: the class diagram uses classes and the relations
-between classes are represented as edges.
+between classes are represented as edges. The other paradigm is tree based. A
+tree based approach is in a sense logical since the second step in a compiler:
+the parser also transforms the language into a tree-based equivalent. Since
+textual languages are eventually parsed in a tree structure, we can eliminate
+some checks that a parser in a textual language should do: for instance
+checking if the brackets in the language are matching. Since these constraints
+are already forced at language level, it makes concepts easier for both the
+programmer in the domain specific language and the developer of the language
+itself.
+\subsection{Beyond the parser}
+\subsubsection{Abstract syntax tree}
+By working with a graphical language, we can however go beyond the parser. A
+first step after the parser is building an abstract syntax tree out of a
+concrete syntax tree: in a concrete syntax tree, the tokens are only
+represented in the leaves of the tree. When the tree is converted into an
+abstract syntax tree, tokens are moved to higher parts in the hierarchy. For
+instance in the concrete syntax tree, the tokens \verb+5+, \verb+-+ and
+\verb+3+ will all be leaves of the same node. In the abstract syntax tree, the
+operator sign \verb+-+ will be the parent of the two integer leaves \verb+5+
+and \verb+3+. This step can also be enforced at language level: simply by
+making sure that the nodes in the tree contain data (independent from the fact
+that they are leaves or not).
+\subsubsection{Symbol tables}
+After the syntactical analysis, a semantical analysis is performed on a
+language. In this step, symbol tables are prepared. A symbol table contains the
+name of a variable, method,... together with information about that variable
+like it's type. Since in most programming languages variables and methods have
+a certain scope, different symbol tables are created for the different scopes.
+As a result nodes in the abstract syntax tree are transformed into pointers
+pointing to an entry in the symbol table. Based on the symbol tables,
+semantical analysis can perform type checks. For instance the programming
+language might force that we can only perform an addition on two integers. We
+can modify our graphical language in such a way that it contains hints which
+types are accepted and thus boost performance\footnote{If the language hints
+or forces certain aspects, users won't lose time by trying these aspects.}.
+Furthermore by slightly modifying the tree paradigm, the graphical language can
+specify implicit symbol tables. If we allow link-nodes into our language, the
+graphical language is based on a Directed Acyclic Graph.The user doesn't has to
+specify the same values a second time, but can simply introduce a link piece
+who points to a piece where the data is already specified.
+\paragraph{}
+\subsection{Proposed graphical language}
+We've implemented a graphical language following the tree paradigm. The
+graphical language is mainly based on a puzzle. In a puzzle, pieces must fit
+into the gaps other pieces provide. Since each puzzle piece fills one gap and
+provides zero or more gaps, a tree structure emerges.
+\subsubsection{Polymorphism and overloading}
+How can the graphical language hint (or even force) the use of a certain piece
+to fill a certain gap? In the physical world the gaps follow a certain pattern.
+Only pieces who are compatible with this pattern, can fit into the the gap.
+\paragraph{}
+The problem however with this approach is that the number of potential pieces
+is in most cases limited to one. Sometimes however, it is possible that their
+are different solutions to fill a gap. Most programming languages solve this
+problem with polymorphism. We will need a mechanism to allow polymorphism.
+Another aspect some puzzles use is graphical coherence: the resulting puzzles
+must form a picture, not a colorful ensemble of dots.
+\paragraph{}
+We adapted this concept to introduce polymorphism in our graphical language.
+Each gap is surrounded by a sequence of colors. Each piece is filled with a
+sequence of colors. If a puzzle piece has at least one color in common with the
+colors surrounding the gap, the user of the language is allowed to use this
+piece\footnote{It is of course possible that their are still constraints who
+can't be expressed by a type system. The ``compiler'' of the domain specific
+language will have to check on these additional constraints.}.
+\paragraph{}
+Since the pieces only have to share one color, one can look to this relation as
+a many-to-many relation: each gap allows several types of pieces. On the the
+other hand a piece can fit into gaps with different type constraints. Therefore
+this aspect is stronger than polymorphism: also overloading is supported since
+the types of the ``parameters'' of a puzzle piece are somehow dynamic.
+\paragraph{}
+A constraint on the use of colors is that the number a person can distinct is
+limited. Research points out that humans with normal color perception
+(trichromatic) can distinct around 36 colors. Since domain specific languages
+however in general and more specific this language is limited in the amount of
+polymorphism and overloading we assume this system will be sufficient.
