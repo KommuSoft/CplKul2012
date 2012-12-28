@@ -5,9 +5,7 @@ namespace DSLImplementation.Database
 {
 	public class Util
 	{
-		public Util ()
-		{
-		}
+		public Util () {}
 
 		public static List<T> parse<T> (string text) where T : IConvertible
 		{
@@ -22,6 +20,19 @@ namespace DSLImplementation.Database
 			}
 
 			return result;
+		}
+
+		public static string parse (Object o)
+		{
+			if (o.GetType () == typeof(string)) {
+				return "'" + o + "'";	
+			} else if (o.GetType () == typeof(DateTime)) {
+				throw new NotImplementedException();
+			} else if (o.GetType () == typeof(decimal)) {
+				throw new NotImplementedException();
+			} else {	
+				return o.ToString();
+			}
 		}
 	}
 }

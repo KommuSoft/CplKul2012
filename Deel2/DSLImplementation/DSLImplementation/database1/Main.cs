@@ -110,5 +110,8 @@ public class Test
 		//------------------------------------------------------
 //		Booking b = new Booking(1, 2, 2, 200);
 //		b.insert();
+
+		Airline ba = new Airline(code: "BA", name: "British Airways");
+		ba.insert();
 	}
 }
