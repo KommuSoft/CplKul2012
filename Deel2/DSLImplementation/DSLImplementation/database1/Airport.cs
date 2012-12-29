@@ -50,7 +50,7 @@ namespace DSLImplementation.Database
 			return code.Length == 3 && code.All(char.IsUpper);
 		}
 
-		public void insert ()
+		public override void insert ()
 		{
 			List<string> columns = new List<string>{"name", "country", "city", "code", "company"};
 			List<object> values = new List<object>{name, country, city, code, company};

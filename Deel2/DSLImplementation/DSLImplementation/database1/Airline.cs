@@ -38,7 +38,7 @@ namespace DSLImplementation.Database
 			return (code.Count() == 2 || code.Count() == 3) && name.Count() > 0;
 		}
 
-		public void insert ()
+		public override void insert ()
 		{
 			List<string> columns = new List<string>{"code", "name"};
 			List<object> values = new List<object>{code, name};

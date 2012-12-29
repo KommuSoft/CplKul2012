@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
@@ -30,6 +31,14 @@ namespace DSLImplementation.Database
 		protected override bool isValid ()
 		{
 			return name.Length > 0;
+		}
+
+		public override void insert ()
+		{
+			List<string> columns = new List<string>{"name"};
+			List<object> values = new List<object>{name};
+			
+			base.insert("city", columns, values);
 		}
 	}
 }

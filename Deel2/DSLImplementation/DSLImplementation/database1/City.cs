@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
@@ -33,7 +34,17 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid ()
 		{
-			return name.Length > 0 && country != -1;
+			bool basicCheck = name.Length > 0 && country != -1;
+			CountryRequest cr = new CountryRequest();
+			return basicCheck && cr.fetchCountryFromID(country).Count == 1;
+		}
+
+		public override void insert ()
+		{
+			List<string> columns = new List<string>{"name", "country"};
+			List<object> values = new List<object>{name, country};
+
+			base.insert("city", columns, values);
 		}
 	}
 }

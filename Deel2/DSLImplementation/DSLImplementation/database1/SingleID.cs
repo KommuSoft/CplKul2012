@@ -32,6 +32,11 @@ namespace DSLImplementation.Database
 
 		protected abstract bool isValid();
 
+		public virtual void insert ()
+		{
+			throw new Exception ("Not implemented yet");
+		}
+
 		protected void insert (string table, List<string> columns, List<object> values)
 		{
 			if (!isValid ()) {

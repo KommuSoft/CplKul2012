@@ -37,7 +37,7 @@ namespace DSLImplementation.Database
 			return type.Length > 0;
 		}
 
-		public void insert(){
+		public override void insert(){
 			List<string> columns = new List<string>{"seat", "type"};
 			List<object> values = new List<object>{seat, type};
 
