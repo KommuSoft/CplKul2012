@@ -37,7 +37,6 @@ namespace DSLImplementation.UserInterface {
 			ctx.MoveTo(l.X,l.Y);
 			ctx.IdentityMatrix();
 			siz = this.piece.OuterLocation(ctx);
-			Console.WriteLine("{0}/{1}",siz.X,siz.Y);
 			ctx.LineTo(siz);
 			ctx.Stroke();
 		}

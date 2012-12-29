@@ -65,6 +65,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
+		public SketchPad () : this (new DummyRun())
+		{
+		}
 		public SketchPad (IPuzzleQueryResolver resolver) {
 			ImageSurface imsu = new ImageSurface(Format.Argb32,0x01,0x01);
 			this.subcontext = new Context(imsu);
@@ -87,6 +90,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		protected override bool OnButtonPressEvent (Gdk.EventButton evnt)
 		{
+			PointD p = new PointD(evnt.X,evnt.Y);
 			switch (this.Tool) {
 			case SketchPadTool.CreateNew:
 				if (this.injectionPiece != null && this.rootpiece != null) {
@@ -94,16 +98,22 @@ namespace DSLImplementation.UserInterface {
 				}
 				break;
 			case SketchPadTool.Link :
-				Console.WriteLine("link now {0}",this.linkpiece);
 				if(this.linkpiece == null) {
-					this.linkpiece = this.GetPuzzlePiece(new PointD(evnt.X,evnt.Y));
+					this.linkpiece = this.GetPuzzlePiece(p);
 				}
 				else {
 					this.AddGap(evnt,new LinkPiece(this.linkpiece));
 					this.linkpiece = null;
 				}
 				break;
+			case SketchPadTool.Remove :
+				IPuzzlePiece ipp = this.GetPuzzlePiece(p);
+				if(ipp != null && ipp.PieceParent != null) {
+					ipp.PieceParent[ipp.Index] = null;
+				}
+				break;
 			}
+			this.QueueDraw ();
 			return base.OnButtonPressEvent (evnt);
 		}
 		private void AddGap (Gdk.EventButton evnt, IPuzzlePiece source)
@@ -113,7 +123,6 @@ namespace DSLImplementation.UserInterface {
 			if (ipp != null) {
 				try {
 					ipp [index] = source;
-					this.QueueDraw ();
 				} catch (Exception e) {
 					MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, e.Message);
 					md.Run ();
@@ -129,7 +138,7 @@ namespace DSLImplementation.UserInterface {
 				if(p.X >= Margin && p.Y >= Margin && p.X < siz.X-Margin && p.Y < siz.Y-Margin) {
 					p.X -= Margin;
 					p.Y -= Margin;
-					this.rootpiece.GetPuzzlePiece(this.subcontext,p);
+					return this.rootpiece.GetPuzzlePiece(this.subcontext,p);
 				}
 			}
 			foreach(QueryAnswerLocations qal in this.qas) {

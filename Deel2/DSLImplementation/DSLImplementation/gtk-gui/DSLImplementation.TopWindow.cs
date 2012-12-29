@@ -17,6 +17,8 @@ namespace DSLImplementation
 		private global::Gtk.Action tool_execute_query;
 		private global::Gtk.ToggleAction menu_autorun;
 		private global::Gtk.ToggleAction tool_autorun;
+		private global::Gtk.RadioAction menu_delete_piece;
+		private global::Gtk.RadioAction tool_delete_piece;
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.Toolbar toolbar1;
@@ -59,7 +61,7 @@ namespace DSLImplementation
 			this.tool_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.tool_insert_linkpiece, null);
 			this.tool_edit_information = new global::Gtk.RadioAction ("tool_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.tool_edit_information.Group = this.tool_insertSubpiece.Group;
+			this.tool_edit_information.Group = this.tool_insert_linkpiece.Group;
 			this.tool_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.tool_edit_information, null);
 			this.tool_execute_query = new global::Gtk.Action ("tool_execute_query", global::Mono.Unix.Catalog.GetString ("Execute Query"), global::Mono.Unix.Catalog.GetString ("Execute Query"), "gtk-execute");
@@ -73,6 +75,13 @@ namespace DSLImplementation
 			this.tool_autorun.Active = true;
 			this.tool_autorun.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute complete queries");
 			w1.Add (this.tool_autorun, null);
+			this.menu_delete_piece = new global::Gtk.RadioAction ("menu_delete_piece", global::Mono.Unix.Catalog.GetString ("Remove piece"), null, "gtk-delete", 0);
+			this.menu_delete_piece.Group = this.menu_insert_linkpiece.Group;
+			this.menu_delete_piece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove piece");
+			w1.Add (this.menu_delete_piece, null);
+			this.tool_delete_piece = new global::Gtk.RadioAction ("tool_delete_piece", null, null, "gtk-delete", 0);
+			this.tool_delete_piece.Group = this.tool_insert_linkpiece.Group;
+			w1.Add (this.tool_delete_piece, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.WidthRequest = 800;
@@ -84,7 +93,7 @@ namespace DSLImplementation
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='ToolsAction' action='ToolsAction'><menuitem name='menu_insertSubpiece' action='menu_insertSubpiece'/><menuitem name='menu_insert_linkpiece' action='menu_insert_linkpiece'/><menuitem name='menu_edit_information' action='menu_edit_information'/><separator/><menuitem name='menu_autorun' action='menu_autorun'/><menuitem name='propertiesAction' action='propertiesAction'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='ToolsAction' action='ToolsAction'><menuitem name='menu_insertSubpiece' action='menu_insertSubpiece'/><menuitem name='menu_insert_linkpiece' action='menu_insert_linkpiece'/><menuitem name='menu_edit_information' action='menu_edit_information'/><menuitem name='menu_delete_piece' action='menu_delete_piece'/><separator/><menuitem name='menu_autorun' action='menu_autorun'/><menuitem name='propertiesAction' action='propertiesAction'/></menu></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.vbox1.Add (this.menubar1);
@@ -93,7 +102,7 @@ namespace DSLImplementation
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='tool_insertSubpiece' action='tool_insertSubpiece'/><toolitem name='tool_insert_linkpiece' action='tool_insert_linkpiece'/><toolitem name='tool_edit_information' action='tool_edit_information'/><separator/><toolitem name='tool_autorun' action='tool_autorun'/><toolitem name='tool_execute_query' action='tool_execute_query'/></toolbar></ui>");
+			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='tool_insertSubpiece' action='tool_insertSubpiece'/><toolitem name='tool_insert_linkpiece' action='tool_insert_linkpiece'/><toolitem name='tool_edit_information' action='tool_edit_information'/><toolitem name='tool_delete_piece' action='tool_delete_piece'/><separator/><toolitem name='tool_autorun' action='tool_autorun'/><toolitem name='tool_execute_query' action='tool_execute_query'/></toolbar></ui>");
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";
 			this.toolbar1.ShowArrow = false;
@@ -111,7 +120,7 @@ namespace DSLImplementation
 			w4.Position = 2;
 			w4.Expand = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.sketchpad = new global::DSLImplementation.UserInterface.SketchPad (new DSLImplementation.UserInterface.DummyRun());
+			this.sketchpad = new global::DSLImplementation.UserInterface.SketchPad ();
 			this.sketchpad.Name = "sketchpad";
 			this.sketchpad.Autorun = false;
 			this.vbox1.Add (this.sketchpad);
@@ -133,6 +142,8 @@ namespace DSLImplementation
 			this.tool_execute_query.Activated += new global::System.EventHandler (this.tool_query_exec);
 			this.menu_autorun.Activated += new global::System.EventHandler (this.menu_autorun_changed);
 			this.tool_autorun.Activated += new global::System.EventHandler (this.tool_autorun_changed);
+			this.menu_delete_piece.Activated += new global::System.EventHandler (this.menu_tool_changed);
+			this.tool_delete_piece.Activated += new global::System.EventHandler (this.tool_selected);
 			this.piecesView.SelectionChanged += new global::System.EventHandler (this.pieces_selection_changed);
 		}
 	}

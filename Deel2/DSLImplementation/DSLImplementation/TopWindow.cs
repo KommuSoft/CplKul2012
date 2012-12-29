@@ -74,6 +74,9 @@ namespace DSLImplementation
 			} else if(this.tool_edit_information.Active && !this.menu_edit_information.Active) {
 				this.sketchpad.Tool = SketchPadTool.Modify;
 				this.menu_edit_information.Activate ();
+			} else if(this.tool_delete_piece.Active && !this.menu_delete_piece.Active) {
+				this.sketchpad.Tool = SketchPadTool.Remove;
+				this.menu_delete_piece.Activate ();
 			}
 		}
 		protected void menu_tool_changed (object sender, EventArgs e) {
@@ -86,6 +89,9 @@ namespace DSLImplementation
 			} else if(this.menu_edit_information.Active && !this.tool_edit_information.Active) {
 				this.sketchpad.Tool = SketchPadTool.Modify;
 				this.tool_edit_information.Activate ();
+			} else if(this.menu_delete_piece.Active && !this.tool_delete_piece.Active) {
+				this.sketchpad.Tool = SketchPadTool.Remove;
+				this.tool_delete_piece.Activate ();
 			}
 		}
 		protected void menu_autorun_changed (object sender, EventArgs e)
@@ -101,11 +107,10 @@ namespace DSLImplementation
 				this.menu_autorun.Active = this.tool_autorun.Active;
 			}
 		}
-		protected void tool_query_exec (object sender, EventArgs e)
-		{
+		
+		protected void tool_query_exec (object sender, EventArgs e) {
 			this.sketchpad.ExecuteQuery();
 		}
-
 
 	}
 }

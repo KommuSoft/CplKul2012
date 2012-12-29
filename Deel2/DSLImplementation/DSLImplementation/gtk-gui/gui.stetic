@@ -124,6 +124,27 @@
         <property name="Active">True</property>
         <signal name="Activated" handler="tool_autorun_changed" />
       </action>
+      <action id="menu_delete_piece">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes">Remove piece</property>
+        <property name="ShortLabel" translatable="yes">Remove piece</property>
+        <property name="StockId">gtk-delete</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">menu_select_tool</property>
+        <signal name="Activated" handler="menu_tool_changed" />
+      </action>
+      <action id="tool_delete_piece">
+        <property name="Type">Radio</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-delete</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <property name="Value">0</property>
+        <property name="Group">tool_select_tool</property>
+        <signal name="Activated" handler="tool_selected" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
@@ -141,6 +162,7 @@
                 <node type="Menuitem" action="menu_insertSubpiece" />
                 <node type="Menuitem" action="menu_insert_linkpiece" />
                 <node type="Menuitem" action="menu_edit_information" />
+                <node type="Menuitem" action="menu_delete_piece" />
                 <node type="Separator" />
                 <node type="Menuitem" action="menu_autorun" />
                 <node type="Menuitem" action="propertiesAction" />
@@ -162,6 +184,7 @@
               <node type="Toolitem" action="tool_insertSubpiece" />
               <node type="Toolitem" action="tool_insert_linkpiece" />
               <node type="Toolitem" action="tool_edit_information" />
+              <node type="Toolitem" action="tool_delete_piece" />
               <node type="Separator" />
               <node type="Toolitem" action="tool_autorun" />
               <node type="Toolitem" action="tool_execute_query" />

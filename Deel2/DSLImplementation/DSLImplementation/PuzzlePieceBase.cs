@@ -61,7 +61,7 @@ namespace DSLImplementation.UserInterface {
 				return this.arguments [index];
 			}
 			set {
-				if(!this.MatchesConstraints(index,value)) {
+				if(value != null && !this.MatchesConstraints(index,value)) {
 					throw new ArgumentException("The given piece doesn't match with it's parent.");
 				}
 				if(this.arguments[index] != value) {
@@ -285,7 +285,6 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 		public PointD OuterLocation (Context ctx) {
-			Console.WriteLine("parent {0}",parent == null);
 			if (parent != null) {
 				PointD dxy = this.parent.OuterLocation(ctx);
 				PointD off = this.parent.ChildLocation(ctx,index);
