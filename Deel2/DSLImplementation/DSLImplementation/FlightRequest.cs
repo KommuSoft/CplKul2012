@@ -8,11 +8,11 @@ namespace DSLImplementation.XmlRepresentation{
 		public FlightRequest (){
 		}
 		
-		public FlightRequest(Airport Airport1, Airport Airport2, DateTime Time, Company Company, SeatClass SeatClass){
+		public FlightRequest(Airport Airport1, Airport Airport2, DateTime Time, Airline Airline, SeatClass SeatClass){
 			this.Airport1 = Airport1;
 			this.Airport2 = Airport2;
 			this.Time = Time;
-			this.Company = Company;
+			this.Airline = Airline;
 			this.SeatClass = SeatClass;
 		}
 
@@ -34,8 +34,8 @@ namespace DSLImplementation.XmlRepresentation{
 			set;
 		}
 		
-		[XmlElement("Company")]
-		public Company Company{
+		[XmlElement("Airline")]
+		public Airline Airline{
 			get;
 			set;
 		}
