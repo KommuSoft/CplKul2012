@@ -4,6 +4,7 @@ namespace DSLImplementation.UserInterface {
 
 	[Flags]
 	public enum TypeColors : ulong {
+		None	= 0x0000000000000000,
 		Red		= 0x0000000000000001,
 		Green	= 0x0000000000000002,
 		Blue	= 0x0000000000000004,

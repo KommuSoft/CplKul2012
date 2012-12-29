@@ -23,10 +23,7 @@ namespace DSLImplementation.UserInterface {
 		TypeColors TypeColors {
 			get;
 		}
-		string Name {
-			get;
-		}
-		IPuzzlePiece Parent {
+		IPuzzlePiece PieceParent {
 			get;
 			set;
 		}
@@ -43,7 +40,6 @@ namespace DSLImplementation.UserInterface {
 		PointD OuterLocation (Context ctx);
 		PointD MeasureSize (Context ctx);
 		IPuzzlePiece GetPuzzleGap (Context ctx, PointD point, out int index);
-		IEnumerable<IPuzzlePiece> DepthFirstTraverse ();
 
 	}
 }

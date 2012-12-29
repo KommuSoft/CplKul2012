@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
-    <StartupObject>DSLImplementation.TopWindow</StartupObject>
+    <StartupObject>Test</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +95,10 @@
     <Compile Include="database1\SeatPriceRequest.cs" />
     <Compile Include="database1\SeatRequest.cs" />
     <Compile Include="QueryPiece.cs" />
+    <Compile Include="DummyRun.cs" />
+    <Compile Include="IPuzzleQueryResolver.cs" />
+    <Compile Include="database1\InvalidObjectException.cs" />
+    <Compile Include="database1\SingleID.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -104,15 +108,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Npgsql" />
-    <Reference Include="gtk-sharp">
-      <HintPath>..\..\..\..\..\usr\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="gdk-sharp, gtk-sharp">
       <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="glib-sharp, gtk-sharp">
-      <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="gtk-sharp, gtk-sharp">
       <Package>gtk-sharp-2.0</Package>

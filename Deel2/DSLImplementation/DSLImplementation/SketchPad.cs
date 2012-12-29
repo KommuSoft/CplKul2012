@@ -1,6 +1,8 @@
 using System;
 using System.Reflection;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
 using Cairo;
 using Gtk;
 
@@ -13,8 +15,11 @@ namespace DSLImplementation.UserInterface {
 		private Context subcontext;
 		private ConstructorInfo injectionPiece;
 		private SketchPadTool tool;
+		private readonly List<QueryAnswerLocations> qas = new List<QueryAnswerLocations>();
 		private static readonly object[] emptyArgs = new object[0x00];
 		private bool autorun = true;
+		private readonly IPuzzleQueryResolver resolver;
+		private event EventHandler boundsChanged;
 
 		public bool Autorun {
 			get {
@@ -70,21 +75,26 @@ namespace DSLImplementation.UserInterface {
 		}
 		protected override bool OnButtonPressEvent (Gdk.EventButton evnt)
 		{
-			if (this.injectionPiece != null && this.rootpiece != null) {
-				int index;
-				IPuzzlePiece ipp = this.rootpiece.GetPuzzleGap (this.subcontext, new PointD (evnt.X - 5.0d, evnt.Y - 5.0d), out index);
-				if (ipp != null) {
-					try {
-						ipp[index] = (IPuzzlePiece) this.injectionPiece.Invoke(emptyArgs);
-						this.QueueDraw();
-					}
-					catch(Exception e) {
-						MessageDialog md = new MessageDialog(null,DialogFlags.DestroyWithParent,MessageType.Error,ButtonsType.Ok,e.Message);
-						md.Run();
-						md.HideAll();
-						md.Dispose();
+			switch (this.Tool) {
+			case SketchPadTool.CreateNew:
+				if (this.injectionPiece != null && this.rootpiece != null) {
+					int index;
+					IPuzzlePiece ipp = this.rootpiece.GetPuzzleGap (this.subcontext, new PointD (evnt.X - 5.0d, evnt.Y - 5.0d), out index);
+					if (ipp != null) {
+						try {
+							ipp [index] = (IPuzzlePiece)this.injectionPiece.Invoke (emptyArgs);
+							this.QueueDraw ();
+						} catch (Exception e) {
+							MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, e.Message);
+							md.Run ();
+							md.HideAll ();
+							md.Dispose ();
+						}
 					}
 				}
+				break;
+			case SketchPadTool.Link :
+				break;
 			}
 			return base.OnButtonPressEvent (evnt);
 		}
@@ -98,6 +108,184 @@ namespace DSLImplementation.UserInterface {
 				ctx.Translate(5.0d,5.0d);
 				this.rootpiece.Paint(ctx);
 			}
+		}
+		public void ExecuteQuery () {
+
+		}
+
+		public bool IsOptional (int index) {
+			return false;
+		}
+		public void Paint (Context ctx) {
+
+		}
+		public PointD MeasureSize (Context ctx) {
+			return new PointD(0.0d,0.0d);
+		}
+		public bool MatchesConstraints (int index, IPuzzlePiece ipp) {
+			return true;
+		}
+
+		private class QueryAnswerLocations : Tuple<RunPiece,PointD,IPuzzlePiece[],PointD[]>, IPuzzlePiece {
+
+			private PointD size = new PointD(-0x01,-0x01);
+			private event EventHandler boundsChanged;
+			private int index;
+			public const double Margin = 10.0d;
+
+			public IPuzzlePiece PieceParent {
+				get {
+					return null;
+				}
+				set {}
+			}
+			public bool Complete {
+				get {
+					return true;
+				}
+			}
+			public bool IsLeaf {
+				get {
+					return false;
+				}
+			}
+			public int Index {
+				get {
+					return this.index;
+				}
+				set {
+					this.index = value;
+				}
+			}
+			public TypeColors TypeColors {
+				get {
+					return TypeColors.None;
+				}
+			}
+			public IPuzzlePiece this [int index] {
+				get {
+					if (index == 0x00) {
+						return this.Query;
+					} else {
+						return this.Answer [index - 0x01];
+					}
+				}
+				set {
+					throw new InvalidOperationException("Cannot set the values of a query answer!");
+				}
+			}
+			public event EventHandler BoundsChanged {
+				add {
+					this.boundsChanged += value;
+				}
+				remove {
+					this.boundsChanged -= value;
+				}
+			}
+			public int NumberOfArguments {
+				get {
+					return this.Answer.Length+0x01;
+				}
+			}
+			public PointD Offset {
+				get {
+					return this.Item2;
+				}
+			}
+			public RunPiece Query {
+				get {
+					return this.Item1;
+				}
+			}
+			public IPuzzlePiece[] Answer {
+				get {
+					return this.Item3;
+				}
+			}
+			public PointD[] Locations {
+				get {
+					return this.Item4;
+				}
+			}
+			public int NumberOfPieces {
+				get {
+					return this.Answer.Length+0x01;
+				}
+			}
+
+			public QueryAnswerLocations (RunPiece query, params IPuzzlePiece[] answer) : base(query,new PointD(),answer,new PointD[answer.Length+0x01]) {}
+			public QueryAnswerLocations (RunPiece query, IEnumerable<IPuzzlePiece> answer) : base(query,new PointD(),answer.ToArray(),new PointD[answer.Count()+0x01]) {}
+
+			public IEnumerable<IPuzzlePiece> GetAllPieces () {
+				yield return this.Query;
+				foreach(IPuzzlePiece a in this.Answer) {
+					yield return a;
+				}
+			}
+			public IEnumerable<Tuple<IPuzzlePiece,PointD>> PieceLocationCollection () {
+				yield return new Tuple<IPuzzlePiece,PointD>(this.Query,this.Locations[0x00]);
+				int index = 0x01;
+				foreach(IPuzzlePiece ipp in this.Answer) {
+					yield return new Tuple<IPuzzlePiece, PointD>(ipp,this.Locations[index++]);
+				}
+			}
+			private void registerChildren ()
+			{
+				foreach(IPuzzlePiece ipp in this.AllPieces()) {
+					ipp.BoundsChanged += handleBoundsChanged;
+				}
+			}
+			private void handleBoundsChanged (object s, EventArgs e) {
+				this.size.X = -0x01;
+			}
+			public void Paint (Context ctx) {
+
+			}
+			public IEnumerable<IPuzzlePiece> AllPieces () {
+				yield return Query;
+				foreach(IPuzzlePiece a in this.Answer) {
+					yield return a;
+				}
+			}
+			public PointD InnerLocation (Context ctx)
+			{
+				return this.Offset;
+			}
+			public PointD OuterLocation (Context ctx) {
+				return this.Offset;
+			}
+			public PointD MeasureSize (Context ctx) {
+				if(this.size.X < 0x00) {
+					size.X = 0.0d;
+					size.Y = 0.0d;
+					PointD siz;
+					int index = 0x00;
+					foreach(IPuzzlePiece ipp in AllPieces()) {
+						siz = ipp.MeasureSize(ctx);
+						size.X += siz.X+Margin;
+						size.Y = Math.Max(size.Y,siz.Y);
+						this.Locations[index++] = new PointD(size.X,0.0d);
+					}
+					size.X -= Margin;
+				}
+				return size;
+			}
+			public PointD ChildLocation (Context ctx, int index) {
+				MeasureSize(ctx);
+				return this.Locations[index];
+			}
+			public IPuzzlePiece GetPuzzleGap (Context ctx, PointD p, out int index)
+			{
+				index = -0x01;
+				return null;
+			}
+			public bool MatchesConstraints (int index, IPuzzlePiece piece) {
+				return false;
+			}
+			public bool IsOptional (int index) {
+				return false;
+			}
+
 		}
 
 	}

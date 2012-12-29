@@ -6,7 +6,7 @@ namespace DSLImplementation.UserInterface {
 	public class BookingPiece : PuzzlePieceBase {
 
 		private static string[] argnames = new string[] {"Person","Flight","Seat"};
-		private static readonly TypeColors[] arguments = new TypeColors[] {TypeColors.Green,TypeColors.Yellow,TypeColors.Brown};
+		private static readonly TypeColors[] arguments = new TypeColors[] {TypeColors.Green,TypeColors.Yellow,TypeColors.Green};
 
 		public override TypeColors[] TypeColorArguments {
 			get {

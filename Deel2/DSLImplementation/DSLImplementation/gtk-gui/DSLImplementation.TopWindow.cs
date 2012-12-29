@@ -59,7 +59,7 @@ namespace DSLImplementation
 			this.tool_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.tool_insert_linkpiece, null);
 			this.tool_edit_information = new global::Gtk.RadioAction ("tool_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.tool_edit_information.Group = this.tool_insert_linkpiece.Group;
+			this.tool_edit_information.Group = this.tool_insertSubpiece.Group;
 			this.tool_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.tool_edit_information, null);
 			this.tool_execute_query = new global::Gtk.Action ("tool_execute_query", global::Mono.Unix.Catalog.GetString ("Execute Query"), global::Mono.Unix.Catalog.GetString ("Execute Query"), "gtk-execute");

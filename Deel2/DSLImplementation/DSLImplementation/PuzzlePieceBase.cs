@@ -38,7 +38,7 @@ namespace DSLImplementation.UserInterface {
 				this.index = value;
 			}
 		}
-		public IPuzzlePiece Parent {
+		public IPuzzlePiece PieceParent {
 			get {
 				return this.parent;
 			}
@@ -71,7 +71,7 @@ namespace DSLImplementation.UserInterface {
 					this.arguments[index] = value;
 					if(value != null) {
 						value.Index = index;
-						value.Parent = this;
+						value.PieceParent = this;
 						value.BoundsChanged += this.performBoundsChanged;
 					}
 					this.performBoundsChanged(this,EventArgs.Empty);
@@ -285,18 +285,13 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 		public PointD OuterLocation (Context ctx) {
-			IPuzzlePiece ch = this;
-			IPuzzlePiece pa = this.Parent;
-			PointD res = new PointD(0.0d,0.0d);
-			PointD loc;
-			while(pa != null) {
-				loc = pa.ChildLocation(ctx,ch.Index);
-				res.X += loc.X;
-				res.Y += loc.Y;
-				ch = pa;
-				pa = pa.Parent;
+			if (parent != null) {
+				PointD dxy = this.parent.OuterLocation(ctx);
+				PointD off = this.parent.ChildLocation(ctx,index);
+				return new PointD(off.X+dxy.X,off.Y+dxy.Y);
+			} else {
+				return new PointD(0.0d,0.0d);
 			}
-			return res;
 		}
 		public IPuzzlePiece GetPuzzleGap (Context ctx, PointD location, out int index)
 		{
@@ -322,14 +317,6 @@ namespace DSLImplementation.UserInterface {
 				}
 				index = -0x01;
 				return null;
-			}
-		}
-		public IEnumerable<IPuzzlePiece> DepthFirstTraverse () {
-			yield return this;
-			foreach(IPuzzlePiece ipp in this.arguments) {
-				foreach(IPuzzlePiece ippsub in ipp.DepthFirstTraverse()) {
-					yield return ippsub;
-				}
 			}
 		}
 		#endregion
