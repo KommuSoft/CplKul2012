@@ -1,16 +1,20 @@
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class Class
+	public class Class : SingleID
 	{
-		public int ID { get; set; }
 		public string name { get; set; }
 
-		public Class (int ID, string name)
+		public Class (int ID, string name) : this(name)
 		{
 			this.ID = ID;
+		}
+
+		public Class (string name)
+		{
 			this.name = name;
 		}
 
@@ -23,6 +27,25 @@ namespace DSLImplementation.Database
 		public override string ToString ()
 		{
 			return string.Format ("[Class: ID={0}, name={1}]", ID, name);
+		}
+
+		protected override bool isValid (out string exceptionMessage)
+		{
+			if (name.Length == 0) {
+				exceptionMessage = "The name of the class is invalid";
+				return false;
+			}
+
+			exceptionMessage = "";
+			return true;
+		}
+
+		public override void insert ()
+		{
+			List<string> columns = new List<string>{"name"};
+			List<object> values = new List<object>{name};
+
+			base.insert("class", columns, values);
 		}
 	}
 }

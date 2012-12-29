@@ -3,6 +3,7 @@ using System;
 namespace DSLImplementation.Database
 {
 	public class Booking
+		//TODO: klasse controleren/schrijven
 	{
 		public int ID { get; set; }
 		public int flight { get; set; }

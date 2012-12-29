@@ -27,6 +27,8 @@ namespace DSLImplementation.Database
 		{
 			return string.Format ("[Seat: ID={0}, class_={1}, number={2}]", ID, class_, number);
 		}
+
+		//TODO: insert schrijven
 	}
 }
 

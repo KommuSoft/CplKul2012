@@ -4,6 +4,7 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
+	//TODO: implementeer
 	public class Flight
 	{
 		public int ID { get; set; }

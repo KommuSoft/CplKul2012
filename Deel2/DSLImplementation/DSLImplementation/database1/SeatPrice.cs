@@ -27,6 +27,8 @@ namespace DSLImplementation.Database
 		{
 			return string.Format ("[SeatPrice: seat={0}, flight={1}, price={2}]", seat, flight, price);
 		}
+
+		//TODO: insert schrijven
 	}
 }
 
