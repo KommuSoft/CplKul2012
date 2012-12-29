@@ -96,6 +96,7 @@
     <Compile Include="IPuzzleQueryResolver.cs" />
     <Compile Include="database1\InvalidObjectException.cs" />
     <Compile Include="database1\SingleID.cs" />
+    <Compile Include="Airline.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

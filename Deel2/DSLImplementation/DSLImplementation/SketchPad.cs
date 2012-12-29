@@ -12,7 +12,7 @@ namespace DSLImplementation.UserInterface {
 	public class SketchPad : CairoWidget {
 
 		public const double Margin = 0x08;
-		private IPuzzlePiece rootpiece;
+		private RunPiece rootpiece;
 		private Context subcontext;
 		private ConstructorInfo injectionPiece;
 		private SketchPadTool tool;
@@ -30,7 +30,7 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public IPuzzlePiece RootPiece {
+		public RunPiece RootPiece {
 			get {
 				return this.rootpiece;
 			}
@@ -142,7 +142,10 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 		public void ExecuteQuery () {
-
+			QueryAnswerLocations qal = new QueryAnswerLocations(this.rootpiece,this.resolver.Resolve(this.rootpiece));
+			this.AddQueryAnswer(qal);
+			this.RootPiece = new RunPiece();
+			this.QueueDraw();
 		}
 
 		private class QueryAnswerLocations : IPuzzlePiece {
@@ -252,13 +255,6 @@ namespace DSLImplementation.UserInterface {
 				yield return this.Query;
 				foreach(IPuzzlePiece a in this.Answer) {
 					yield return a;
-				}
-			}
-			public IEnumerable<Tuple<IPuzzlePiece,PointD>> PieceLocationCollection () {
-				yield return new Tuple<IPuzzlePiece,PointD>(this.Query,this.Locations[0x00]);
-				int index = 0x01;
-				foreach(IPuzzlePiece ipp in this.Answer) {
-					yield return new Tuple<IPuzzlePiece, PointD>(ipp,this.Locations[index++]);
 				}
 			}
 			private void registerChildren ()
