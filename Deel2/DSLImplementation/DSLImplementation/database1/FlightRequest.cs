@@ -19,6 +19,8 @@ namespace DSLImplementation.Database
 			string query = lr.queryLocationFromAirports(startAirport, destinationAirport);
 
 			query = "SELECT * FROM flight WHERE location = " + query;
+			//TODO: code van airline, class, ... van hieronder naar hier kopiëren (lees: in een methode steken)
+
 			Console.WriteLine(query);
 
 			return fetchFromQuery(query);

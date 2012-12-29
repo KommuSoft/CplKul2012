@@ -3,14 +3,16 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class Country
+	public class Country : SingleID
 	{
-		public int ID { get; set; }
 		public string name { get; set; }
 
-		public Country (int ID, string name)
-		{
+		public Country (int ID, string name = "") : this(name) {
 			this.ID = ID;
+		}
+
+		public Country (string name = "")
+		{
 			this.name = name;
 		}
 
@@ -23,6 +25,11 @@ namespace DSLImplementation.Database
 		public override string ToString ()
 		{
 			return string.Format ("[Country: ID={0}, name={1}]", ID, name);
+		}
+
+		protected override bool isValid ()
+		{
+			return name.Length > 0;
 		}
 	}
 }

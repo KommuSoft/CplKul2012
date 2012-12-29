@@ -62,7 +62,7 @@ public class Test
 		println (cr.fetchCityFromCountry (1));
 
 		Console.WriteLine("Find the cities that are in a country with name ILIKE belgium");
-		println(cr.fetchCityFromCountryName("belgium"));
+		println(cr.fetchCityFromCountry(new Country("belgium")));
 
 		//------------------------------------------------------
 		Console.WriteLine("Find the class with ID = 1");
