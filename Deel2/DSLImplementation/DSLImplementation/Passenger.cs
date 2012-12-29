@@ -2,22 +2,23 @@ using System;
 using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
-	[XmlRoot("Country")]
-	public class Country
+	[XmlType("Passenger")]
+	public class Passenger
 	{
-		public Country ()
+		public Passenger ()
 		{
 		}
 		
-		public Country(String Name){
+		public Passenger (String Name){
 			this.Name = Name;
 		}
 		
 		[XmlAttribute("Name")]
-		public String Name{
+		public String Name {
 			get;
 			set;
 		}
+		
 	}
 }
 

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Serialization;
-//PJTODO: Er moet hier mss nog een code-attribuut bij afgaande op de opgave op pg. 2
-namespace DSLImplementation.XmlRepresentation{
+namespace DSLImplementation.XmlRepresentation
+{
 	[XmlType("Airline")]
 	public class Airline{
 		public Airline (){

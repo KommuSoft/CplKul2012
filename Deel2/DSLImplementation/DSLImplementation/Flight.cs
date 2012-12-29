@@ -5,9 +5,10 @@ namespace DSLImplementation.XmlRepresentation{
 		public Flight (){
 		}
 		
-		public Flight (String Name, String Code){
+		public Flight (String Name, String Code, Airline Airline){
 			this.Name = Name;
 			this.Code = Code;
+			this.Airline = Airline;
 		}		
 		
 		[XmlAttribute("Name")]
@@ -21,6 +22,14 @@ namespace DSLImplementation.XmlRepresentation{
 			get;
 			set;
 		}
+		
+		[XmlElement("Airline")]
+		public Airline Airline{
+			get;
+			set;
+		}
+		
+		
 	}
 }
 

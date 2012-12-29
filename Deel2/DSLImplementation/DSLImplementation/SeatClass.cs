@@ -3,8 +3,6 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	
-	//PJTODO: Hier moet er dan mss nog iets van prijs bijhoren ofzo, 
-	//aangezien de prijs vastgekoppeld is aan de klasse
 	[XmlType("Class")]
 	public class SeatClass
 	{

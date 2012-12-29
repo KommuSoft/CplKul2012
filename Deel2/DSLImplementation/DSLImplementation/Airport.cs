@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlType("Airport")]
@@ -9,9 +10,12 @@ namespace DSLImplementation.XmlRepresentation
 		{
 		}
 		
-		public Airport(String Name, String Code){
+		public Airport(String Name, String Code, City City, Country Country, List<Airline> Airlines){
 			this.Name = Name;
 			this.Code = Code;
+			this.City = City;
+			this.Country = Country;
+			this.Airlines = Airlines;
 		}
 		
 		[XmlAttribute("Name")]
@@ -25,6 +29,25 @@ namespace DSLImplementation.XmlRepresentation
 			get;
 			set;
 		}
+		
+		[XmlElement("City")]
+		public City City {
+			get;
+			set;
+		}
+		
+		[XmlElement("Country")]
+		public Country Country {
+			get;
+			set;
+		}
+
+		[XmlArray("ListOfAirlines")]
+		[XmlArrayItem("Airline")]
+		public List<Airline> Airlines{
+			get;
+			set;
+		}		
 		
 	}
 }
