@@ -49,8 +49,6 @@
     <Compile Include="FlightRequest.cs" />
     <Compile Include="Airport.cs" />
     <Compile Include="Company.cs" />
-    <Compile Include="CityRequest.cs" />
-    <Compile Include="AirportRequest.cs" />
     <Compile Include="SeatRequest.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
