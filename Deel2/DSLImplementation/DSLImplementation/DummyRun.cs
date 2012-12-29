@@ -9,7 +9,7 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public IPuzzlePiece[] Resolve (IPuzzlePiece query) {
-			return new IPuzzlePiece[] {new TimePiece(),new AirportPiece()};
+			return new IPuzzlePiece[] {new TimePiece(),new AirportPiece(),new PlanePiece()};
 		}
 
 	}

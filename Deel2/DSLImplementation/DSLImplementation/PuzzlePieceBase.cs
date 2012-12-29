@@ -319,8 +319,22 @@ namespace DSLImplementation.UserInterface {
 				return null;
 			}
 		}
-		public IPuzzlePiece GetPuzzlePiece (Context ctx, PointD p) {
-			return null;
+		public IPuzzlePiece GetPuzzlePiece (Context ctx, PointD location) {
+			PointD size = this.MeasureSize (ctx);
+			if (location.X >= size.X || location.Y >= size.Y) {
+				return null;
+			} else {
+				int index = 0x00;
+				foreach(Rectangle r in subpieces) {
+					if(r.Contains(location) && this[index] != null) {
+						location.X -= r.X;
+						location.Y -= r.Y;
+						return this[index].GetPuzzlePiece(ctx,location);
+					}
+					index++;
+				}
+				return this;
+			}
 		}
 		#endregion
 

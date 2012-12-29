@@ -90,25 +90,58 @@ namespace DSLImplementation.UserInterface {
 			switch (this.Tool) {
 			case SketchPadTool.CreateNew:
 				if (this.injectionPiece != null && this.rootpiece != null) {
-					int index;
-					IPuzzlePiece ipp = this.rootpiece.GetPuzzleGap (this.subcontext, new PointD (evnt.X - 5.0d, evnt.Y - 5.0d), out index);
-					if (ipp != null) {
-						try {
-							ipp [index] = (IPuzzlePiece)this.injectionPiece.Invoke (emptyArgs);
-							this.QueueDraw ();
-						} catch (Exception e) {
-							MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, e.Message);
-							md.Run ();
-							md.HideAll ();
-							md.Dispose ();
-						}
-					}
+					this.AddGap(evnt,(IPuzzlePiece)this.injectionPiece.Invoke (emptyArgs));
 				}
 				break;
 			case SketchPadTool.Link :
+				Console.WriteLine("link now {0}",this.linkpiece);
+				if(this.linkpiece == null) {
+					this.linkpiece = this.GetPuzzlePiece(new PointD(evnt.X,evnt.Y));
+				}
+				else {
+					this.AddGap(evnt,new LinkPiece(this.linkpiece));
+				}
 				break;
 			}
 			return base.OnButtonPressEvent (evnt);
+		}
+		private void AddGap (Gdk.EventButton evnt, IPuzzlePiece source)
+		{
+			int index;
+			IPuzzlePiece ipp = this.rootpiece.GetPuzzleGap (this.subcontext, new PointD (evnt.X - Margin, evnt.Y - Margin), out index);
+			if (ipp != null) {
+				try {
+					ipp [index] = source;
+					this.QueueDraw ();
+				} catch (Exception e) {
+					MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, e.Message);
+					md.Run ();
+					md.HideAll ();
+					md.Dispose ();
+				}
+			}
+		}
+		private IPuzzlePiece GetPuzzlePiece (PointD p) {
+			PointD siz;
+			if(this.rootpiece != null) {
+				siz = this.rootpiece.MeasureSize(this.subcontext);
+				if(p.X >= Margin && p.Y >= Margin && p.X < siz.X-Margin && p.Y < siz.Y-Margin) {
+					p.X -= Margin;
+					p.Y -= Margin;
+					this.rootpiece.GetPuzzlePiece(this.subcontext,p);
+				}
+			}
+			foreach(QueryAnswerLocations qal in this.qas) {
+				double dx = p.X-qal.Offset.X;
+				double dy = p.Y-qal.Offset.Y;
+				siz = qal.MeasureSize(this.subcontext);
+				if(dx >= 0.0d && dy >= 0.0d && dx < siz.X && dy < siz.Y) {
+					p.X = dx;
+					p.Y = dy;
+					return qal.GetPuzzlePiece(this.subcontext,p);
+				}
+			}
+			return null;
 		}
 
 		protected override void PaintWidget (Cairo.Context ctx, int w, int h) {
@@ -296,17 +329,17 @@ namespace DSLImplementation.UserInterface {
 			}
 			public PointD MeasureSize (Context ctx) {
 				if(this.size.X < 0x00) {
-					size.X = 0.0d;
+					size.X = Margin;
 					size.Y = 0.0d;
 					PointD siz;
 					int index = 0x00;
 					foreach(IPuzzlePiece ipp in AllPieces()) {
 						siz = ipp.MeasureSize(ctx);
+						this.Locations[index++] = new PointD(size.X,0.0d);
 						size.X += siz.X+Margin;
 						size.Y = Math.Max(size.Y,siz.Y);
-						this.Locations[index++] = new PointD(size.X,0.0d);
 					}
-					size.X -= Margin;
+					size.X -= 2.0d*Margin;
 				}
 				return size;
 			}
@@ -320,7 +353,28 @@ namespace DSLImplementation.UserInterface {
 				return null;
 			}
 			public IPuzzlePiece GetPuzzlePiece (Context ctx, PointD p) {
-				return null;
+				this.MeasureSize (ctx);
+				if (p.X < 0.0d && p.Y < 0.0d && p.X >= size.X || p.Y >= size.Y) {
+					return null;
+				} else {
+					int index = 0x00;
+					foreach(PointD l in Locations) {
+						Console.WriteLine("({0};{1})",l.X,l.Y);
+					}
+					foreach(PointD l in Locations) {
+						double dx = p.X-l.X;
+						double dy = p.Y-l.Y;
+						PointD siz = this[index].MeasureSize(ctx);
+						Console.WriteLine("Checking {0}, {1}/{2} -> {5}/{6}, {3}/{4}",this.index,p.X,p.Y,siz.X,siz.Y,dx,dy);
+						if(dx >= 0.0d && dy >= 0.0d && dx <= siz.X && dy <= siz.Y) {
+							p.X -= l.X;
+							p.Y -= l.Y;
+							return this[index].GetPuzzlePiece(ctx,p);
+						}
+						index++;
+					}
+					return this;
+				}
 			}
 			public bool MatchesConstraints (int index, IPuzzlePiece piece) {
 				return false;
