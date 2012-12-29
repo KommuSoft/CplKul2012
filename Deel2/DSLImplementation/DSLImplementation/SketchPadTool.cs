@@ -1,6 +1,6 @@
 using System;
 
-namespace DSLImplementation {
+namespace DSLImplementation.UserInterface {
 
 	public enum SketchPadTool {
 		CreateNew,

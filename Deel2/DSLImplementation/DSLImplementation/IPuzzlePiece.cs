@@ -40,6 +40,7 @@ namespace DSLImplementation.UserInterface {
 		PointD OuterLocation (Context ctx);
 		PointD MeasureSize (Context ctx);
 		IPuzzlePiece GetPuzzleGap (Context ctx, PointD point, out int index);
+		IPuzzlePiece GetPuzzlePiece (Context ctx, PointD point);
 
 	}
 }

@@ -33,7 +33,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="MainWindow.cs" />
     <Compile Include="SketchPad.cs" />
     <Compile Include="CairoWidget.cs" />
     <Compile Include="ImageLoader.cs" />

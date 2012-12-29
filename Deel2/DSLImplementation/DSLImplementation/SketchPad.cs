@@ -13,10 +13,11 @@ namespace DSLImplementation.UserInterface {
 
 		public const double Margin = 0x08;
 		private RunPiece rootpiece;
+		private IPuzzlePiece linkpiece = null;
 		private Context subcontext;
 		private ConstructorInfo injectionPiece;
 		private SketchPadTool tool;
-		private readonly List<QueryAnswerLocations> qas = new List<QueryAnswerLocations>();
+		private readonly Stack<QueryAnswerLocations> qas = new Stack<QueryAnswerLocations>();
 		private static readonly object[] emptyArgs = new object[0x00];
 		private bool autorun = true;
 		private readonly IPuzzleQueryResolver resolver;
@@ -117,8 +118,10 @@ namespace DSLImplementation.UserInterface {
 			ctx.Color = KnownColors.Black;
 			double y0 = Margin;
 			if(this.rootpiece != null) {
+				ctx.Save();
 				ctx.Translate(Margin,y0);
 				this.rootpiece.Paint(ctx);
+				ctx.Restore();
 			}
 			foreach(QueryAnswerLocations qal in this.qas) {
 				qal.Paint(ctx);
@@ -126,7 +129,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		private void AddQueryAnswer (QueryAnswerLocations qa) {
 			if(qa != null) {
-				this.qas.Add(qa);
+				this.qas.Push(qa);
 				qa.BoundsChanged += handleBoundsChanged;
 			}
 		}
@@ -314,6 +317,9 @@ namespace DSLImplementation.UserInterface {
 			public IPuzzlePiece GetPuzzleGap (Context ctx, PointD p, out int index)
 			{
 				index = -0x01;
+				return null;
+			}
+			public IPuzzlePiece GetPuzzlePiece (Context ctx, PointD p) {
 				return null;
 			}
 			public bool MatchesConstraints (int index, IPuzzlePiece piece) {

@@ -319,6 +319,9 @@ namespace DSLImplementation.UserInterface {
 				return null;
 			}
 		}
+		public IPuzzlePiece GetPuzzlePiece (Context ctx, PointD p) {
+			return null;
+		}
 		#endregion
 
 	}
