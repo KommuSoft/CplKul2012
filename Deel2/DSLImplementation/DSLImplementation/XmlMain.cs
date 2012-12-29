@@ -7,9 +7,8 @@ namespace DSLImplementation.XmlRepresentation{
 	public class XmlMain{
 		public static void Main (string[] args){
 				Country c = new Country("Belgie");
-				CityRequest cr = new CityRequest(c);
-			
-				XmlSerializer sCr = new XmlSerializer(typeof(CityRequest));
+				RequestGetCity cr = new RequestGetCity(c);
+				XmlSerializer sCr = new XmlSerializer(typeof(RequestGetCity));
 				FileStream fs = File.Open("cityrequest.xml", FileMode.Create, FileAccess.Write);
 				sCr.Serialize(fs, cr);
 				fs.Close();
@@ -25,6 +24,12 @@ namespace DSLImplementation.XmlRepresentation{
 				XmlSerializer sAa = new XmlSerializer(typeof(AirportAnswer));
 				fs = File.Open("airportanswer.xml", FileMode.Create, FileAccess.Write);
 				sAa.Serialize(fs, aa);
+				fs.Close();
+			
+				RequestAddCountry rac = new RequestAddCountry(c);
+				XmlSerializer sRac = new XmlSerializer(typeof(RequestAddCountry));
+				fs = File.Open("requestAddCountry.xml", FileMode.Create, FileAccess.Write);
+				sRac.Serialize(fs, rac);
 				fs.Close();
 		}
 	}
