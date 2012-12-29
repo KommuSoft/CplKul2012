@@ -31,18 +31,19 @@ namespace DSLImplementation.Database
 		{
 			return createBase() + createWhere(columns, values);
 		}
-		protected virtual string createQuery (string column, int value)
+
+		protected virtual string createQuery<T1> (string column, T1 value)
 		{
-			return createBase() + createWhere(new List<string>{column}, new List<int>{value});
+			return createBase() + createWhere(new List<string>{column}, new List<T1>{value});
 		}
 
 		//TODO: dit moet misschien nog algemener
-		protected string createWhere (List<string> columns, List<int> values)
+		protected string createWhere<T1> (List<string> columns, List<T1> values)
 		{
 			string query = " WHERE ";
 			for (int i=0; i<columns.Count; ++i) {
 				query += columns[i];
-				query += " = ";
+				query += Util.fetchOperator<T1>();
 				query += Util.parse(values[i]);
 				if(i < columns.Count - 1){
 					query += " AND ";

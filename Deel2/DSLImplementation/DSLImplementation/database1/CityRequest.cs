@@ -18,9 +18,14 @@ namespace DSLImplementation.Database
 			return fetchFromQuery(createQuery("id", ID));
 		}
 
-		public List<City> fetchCitiesFromCountry (int countryID)
+		public List<City> fetchCityFromCountry (int countryID)
 		{
 			return fetchFromQuery(createQuery("country", countryID));
+		}
+
+		public List<City> fetchCityFromName (string name)
+		{
+			return fetchFromQuery (createQuery("name", name));
 		}
 	}
 }

@@ -16,6 +16,11 @@ namespace DSLImplementation.Database
 		{
 			return fetchFromQuery(createQuery("id", ID));
 		}
+
+		public List<Country> fetchCountryFromName(string name)
+		{
+			return fetchFromQuery (createQuery("name", name));
+		}
 	}
 }
 

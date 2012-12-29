@@ -46,8 +46,9 @@ namespace DSLImplementation.Database
 			--counter;
 			if (counter == 0) {
 				Console.WriteLine("I will close the database");
-				dbcon.Close();
-				dbcon = null;
+				//TODO: buggy
+//				dbcon.Close();
+//				dbcon = null;
 			}
 		}
 	}

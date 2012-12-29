@@ -46,14 +46,20 @@ public class Test
 		println (ar.fetchAirportFromID (1));
 		
 		Console.WriteLine ("Find the airports that are in a city with ID = 1");
-		println (ar.fetchAirportsFromCity (1));
+		println (ar.fetchAirportFromCity (1));
+
+		Console.WriteLine("Find the airports that are in a city with name ILIKE brussels");
+		println(ar.fetchAirportFromCityName("brussels"));
+
+		Console.WriteLine("Find the airports that are in a city with name ILIKE brussels and in a country with name ILIKE belgium");
+		println(ar.fetchAirportFromCityNameAndCountryName("brussels", "belgium"));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the city with ID = 1");
 		println (cr.fetchCityFromID (1));
 
 		Console.WriteLine ("Find the cities that are in a country with ID = 1");
-		println (cr.fetchCitiesFromCountry (1));
+		println (cr.fetchCityFromCountry (1));
 
 		//------------------------------------------------------
 		Console.WriteLine("Find the class with ID = 1");

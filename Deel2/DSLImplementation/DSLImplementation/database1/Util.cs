@@ -37,6 +37,17 @@ namespace DSLImplementation.Database
 				return o.ToString();
 			}
 		}
+
+		public static string fetchOperator<T> ()
+		{
+			if (typeof(T) == typeof(string)) {
+				return " ILIKE ";
+			} else if (typeof(T) == typeof(int)) {
+				return " = ";
+			} else {
+				return " =";
+			}
+		}
 	}
 }
 
