@@ -61,8 +61,9 @@ namespace DSLImplementation.UserInterface {
 				return this.arguments [index];
 			}
 			set {
-				if(value != null && !this.MatchesConstraints(index,value)) {
-					throw new ArgumentException("The given piece doesn't match with it's parent.");
+				if(value != null) {
+					this.MatchesConstraintsChildren(index,value);
+					value.MatchesConstraintsParent(this);
 				}
 				if(this.arguments[index] != value) {
 					if(this.arguments[index] != null) {
@@ -156,9 +157,13 @@ namespace DSLImplementation.UserInterface {
 			this.subpieces = new Rectangle[this.NumberOfArguments];
 		}
 
-		public virtual bool MatchesConstraints (int index, IPuzzlePiece piece)
+		public virtual void MatchesConstraintsChildren (int index, IPuzzlePiece piece)
 		{
-			return ExtensionMethods.IsTypeColorMatch(this.TypeColorArguments[index],piece.TypeColors);
+			if (!ExtensionMethods.IsTypeColorMatch (this.TypeColorArguments [index], piece.TypeColors)) {
+				throw new ArgumentException("The given piece doesn't match with it's parent.");
+			}
+		}
+		public virtual void MatchesConstraintsParent (IPuzzlePiece piece) {
 		}
 		public bool IsOptional (int index) {
 			return index >= this.NumberOfArguments-this.NumberOfOptionalArguments;

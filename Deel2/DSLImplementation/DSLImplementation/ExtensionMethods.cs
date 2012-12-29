@@ -1,4 +1,5 @@
 using System;
+using Gtk;
 using Cairo;
 
 namespace DSLImplementation.UserInterface {
@@ -7,6 +8,16 @@ namespace DSLImplementation.UserInterface {
 
 		public static bool Contains (this Rectangle rect, PointD p) {
 			return p.X >= rect.X && p.Y >= rect.Y && p.X <= rect.X+rect.Width && p.Y <= rect.Y+rect.Height;
+		}
+
+		public static void ShowException (Exception e) {
+			ShowException(e.Message);
+		}
+		public static void ShowException (string message) {
+			MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, message);
+			md.Run ();
+			md.HideAll ();
+			md.Dispose ();
 		}
 
 		public static void Rotate (ref double x, ref double y, double theta) {

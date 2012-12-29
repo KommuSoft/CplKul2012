@@ -32,7 +32,8 @@ namespace DSLImplementation.UserInterface {
 		}
 		event EventHandler BoundsChanged;
 
-		bool MatchesConstraints (int index, IPuzzlePiece piece);
+		void MatchesConstraintsChildren (int index, IPuzzlePiece piece);
+		void MatchesConstraintsParent (IPuzzlePiece piece);
 		bool IsOptional (int index);
 		void Paint (Context ctx);
 		PointD ChildLocation (Context ctx, int index);

@@ -33,12 +33,26 @@ namespace DSLImplementation.UserInterface {
 			PointD siz = this.MeasureSize(ctx);
 			PointD l = new PointD(0.5d*siz.X,0.5d*siz.Y);
 			ctx.Arc(l.X,l.Y,2.0d,0.0d,2.0d*Math.PI);
+			ctx.Color = KnownColors.DarkRed;
 			ctx.Fill();
 			ctx.MoveTo(l.X,l.Y);
 			ctx.IdentityMatrix();
 			siz = this.piece.OuterLocation(ctx);
 			ctx.LineTo(siz);
 			ctx.Stroke();
+			ctx.Color = KnownColors.Black;
+		}
+		public override void MatchesConstraintsParent (IPuzzlePiece piece)
+		{
+			IPuzzlePiece par = piece;
+			while (par != null && par != this.piece) {
+				par = par.PieceParent;
+			}
+			if (par == null) {
+				base.MatchesConstraintsParent (piece);
+			} else {
+				throw new Exception("Cyclic relations are not allowed!");
+			}
 		}
 
 	}

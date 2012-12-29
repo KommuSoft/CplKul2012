@@ -116,6 +116,7 @@ namespace DSLImplementation.UserInterface {
 			this.QueueDraw ();
 			return base.OnButtonPressEvent (evnt);
 		}
+
 		private void AddGap (Gdk.EventButton evnt, IPuzzlePiece source)
 		{
 			int index;
@@ -124,10 +125,7 @@ namespace DSLImplementation.UserInterface {
 				try {
 					ipp [index] = source;
 				} catch (Exception e) {
-					MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, e.Message);
-					md.Run ();
-					md.HideAll ();
-					md.Dispose ();
+					ExtensionMethods.ShowException (e);
 				}
 			}
 		}
@@ -187,11 +185,16 @@ namespace DSLImplementation.UserInterface {
 				y += qal.MeasureSize(this.subcontext).Y+Margin;
 			}
 		}
-		public void ExecuteQuery () {
-			QueryAnswerLocations qal = new QueryAnswerLocations(this.rootpiece,this.resolver.Resolve(this.rootpiece));
-			this.AddQueryAnswer(qal);
-			this.RootPiece = new RunPiece();
-			this.QueueDraw();
+		public void ExecuteQuery ()
+		{
+			if (this.rootpiece != null && this.rootpiece.Complete) {
+				QueryAnswerLocations qal = new QueryAnswerLocations (this.rootpiece, this.resolver.Resolve (this.rootpiece));
+				this.AddQueryAnswer (qal);
+				this.RootPiece = new RunPiece ();
+				this.QueueDraw ();
+			} else {
+				ExtensionMethods.ShowException("Cannot execute the query: not all required parameters have been resolved!");
+			}
 		}
 
 		private class QueryAnswerLocations : IPuzzlePiece {
@@ -343,7 +346,7 @@ namespace DSLImplementation.UserInterface {
 			}
 			public PointD MeasureSize (Context ctx) {
 				if(this.size.X < 0x00) {
-					size.X = Margin;
+					size.X = 0.0d;
 					size.Y = 0.0d;
 					PointD siz;
 					int index = 0x00;
@@ -353,7 +356,7 @@ namespace DSLImplementation.UserInterface {
 						size.X += siz.X+Margin;
 						size.Y = Math.Max(size.Y,siz.Y);
 					}
-					size.X -= 2.0d*Margin;
+					size.X -= Margin;
 				}
 				return size;
 			}
@@ -386,8 +389,9 @@ namespace DSLImplementation.UserInterface {
 					return null;
 				}
 			}
-			public bool MatchesConstraints (int index, IPuzzlePiece piece) {
-				return false;
+			public void MatchesConstraintsChildren (int index, IPuzzlePiece piece) {
+			}
+			public void MatchesConstraintsParent (IPuzzlePiece piece) {
 			}
 			public bool IsOptional (int index) {
 				return false;
