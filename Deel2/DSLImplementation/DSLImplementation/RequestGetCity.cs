@@ -2,7 +2,7 @@ using System;
 using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
-	[XmlRoot("CityRequest")]
+	[XmlRoot("RequestGetCity")]
 	public class RequestGetCity
 	{
 		public RequestGetCity ()
