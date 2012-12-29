@@ -1,21 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
-	public class Airport
+	public class Airport : SingleID
 	{
-		public int ID { get; set; }
 		public string code { get; set; }
 		public string name { get; set; }
 		public int country { get; set; }
 		public int city { get; set; }
 		public List<int> company { get; set; }
 
-		public Airport (int ID, string name, string code, int country, int city, List<int> company)
+		public Airport (int ID, string name, string code, int country, int city, List<int> company) : this(name, code, country, city, company)
 		{
 			this.ID = ID;
+		}
+
+		public Airport (string name, string code, int country, int city, List<int> company)
+		{
 			this.name = name;
 			this.country = country;
 			this.city = city;
@@ -38,6 +42,20 @@ namespace DSLImplementation.Database
 		public override string ToString ()
 		{
 			return string.Format ("[Airport: ID={0}, code={1}, name={2}, country={3}, city={4}, company={5}]", ID, code, name, country, city, company);
+		}
+
+		protected override bool isValid ()
+		{
+			//TODO: check if the country and the city are valid (i.e. are present in the database)
+			return code.Length == 3 && code.All(char.IsUpper);
+		}
+
+		public void insert ()
+		{
+			List<string> columns = new List<string>{"name", "country", "city", "code", "company"};
+			List<object> values = new List<object>{name, country, city, code, company};
+
+			base.insert("airport", columns, values);
 		}
 	}
 }

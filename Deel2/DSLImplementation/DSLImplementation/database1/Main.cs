@@ -113,5 +113,12 @@ public class Test
 
 		Airline ba = new Airline(code: "BA", name: "British Airways");
 		ba.insert();
+
+		Airplane a380 = new Airplane(seat: new List<int>{1, 2, 3}, type: "A380");
+		a380.insert();
+
+		Airport kjk = new Airport(name: "Kortrijk-Wevelgem International Airport", code: "KJK", country: 1, city: 4, company: new List<int>{});
+		//TODO: the insert should fail because there isn't a city with ID = 4
+		kjk.insert();
 	}
 }

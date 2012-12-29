@@ -4,15 +4,18 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class Airplane
+	public class Airplane : SingleID
 	{
-		public int ID { get; set; }
 		public List<int> seat { get; set; }
 		public string type { get; set; }
 
-		public Airplane (int ID, List<int> seat, string type)
+		public Airplane (int ID, List<int> seat, string type) : this(seat, type)
 		{
 			this.ID = ID;
+		}
+
+		public Airplane (List<int> seat, string type)
+		{
 			this.seat = seat;
 			this.type = type;
 		}
@@ -27,6 +30,18 @@ namespace DSLImplementation.Database
 		public override string ToString ()
 		{
 			return string.Format ("[Airplane: ID={0}, seat={1}, type={2}]", ID, seat, type);
+		}
+
+		protected override bool isValid ()
+		{
+			return type.Length > 0;
+		}
+
+		public void insert(){
+			List<string> columns = new List<string>{"seat", "type"};
+			List<object> values = new List<object>{seat, type};
+
+			base.insert("airplane", columns, values);
 		}
 	}
 }
