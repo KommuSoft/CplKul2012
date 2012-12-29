@@ -30,6 +30,8 @@ namespace DSLImplementation.Database
 				throw new NotImplementedException();
 			} else if (o.GetType () == typeof(decimal)) {
 				throw new NotImplementedException();
+			} else if (o.GetType() == typeof(List<int>)){
+				return "'{" + string.Join(", ", (List<int>) o) + "}'";
 			} else {	
 				return o.ToString();
 			}
