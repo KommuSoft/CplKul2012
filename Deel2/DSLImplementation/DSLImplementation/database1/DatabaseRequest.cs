@@ -26,7 +26,31 @@ namespace DSLImplementation.Database
 			return objects;
 		}
 
-		protected abstract string createQuery (string column, int value);
+		protected abstract string createBase ();
+		protected virtual string createQuery (List<string> columns, List<int> values)
+		{
+			return createBase() + createWhere(columns, values);
+		}
+		protected virtual string createQuery (string column, int value)
+		{
+			return createBase() + createWhere(new List<string>{column}, new List<int>{value});
+		}
+
+		//TODO: dit moet misschien nog algemener
+		protected string createWhere (List<string> columns, List<int> values)
+		{
+			string query = " WHERE ";
+			for (int i=0; i<columns.Count; ++i) {
+				query += columns[i];
+				query += " = ";
+				query += Util.parse(values[i]);
+				if(i < columns.Count - 1){
+					query += " AND ";
+				}
+			}
+
+			return query;
+		}
 
 		protected void close (IDataReader reader)
 		{

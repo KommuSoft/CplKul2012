@@ -8,9 +8,9 @@ namespace DSLImplementation.Database
 	{
 		public LocationRequest () : base() {}
 
-		protected override string createQuery (string column, int value)
+		protected override string createBase ()
 		{
-			return "SELECT * FROM location WHERE " + column + " = " + value;
+			return "SELECT * FROM location";
 		}
 
 		public List<Location> fetchLocationFromID (int ID)

@@ -8,9 +8,9 @@ namespace DSLImplementation.Database
 	{
 		public CityRequest () : base() {}
 
-		protected override string createQuery (string column, int value)
+		protected override string createBase ()
 		{
-			return "SELECT id, name, country FROM city WHERE " + column + " = " + value;
+			return "SELECT * FROM city";
 		}
 
 		public List<City> fetchCityFromID(int ID)

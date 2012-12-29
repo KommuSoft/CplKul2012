@@ -7,9 +7,9 @@ namespace DSLImplementation.Database
 	{
 		public CountryRequest () : base() {}
 
-		protected override string createQuery (string column, int value)
+		protected override string createBase ()
 		{
-			return "SELECT * FROM country WHERE " + column + " = " + value;
+			return "SELECT * FROM country";
 		}
 
 		public List<Country> fetchCountryFromID (int ID)

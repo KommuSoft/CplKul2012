@@ -8,24 +8,9 @@ namespace DSLImplementation.Database
 	{
 		public FlightRequest () : base(){}
 
-		protected override string createQuery (string column, int value)
+		protected override string createBase ()
 		{
-			return "SELECT * FROM flight WHERE " + column + " = " + value;
-		}
-
-		private string createQuery (List<string> columns, List<int> values)
-		{
-			string query = "SELECT * FROM flight WHERE ";
-			for (int i=0; i<columns.Count; ++i) {
-				query += columns[i];
-				query += " = ";
-				query += values[i];
-				if(i < columns.Count - 1){
-					query += " AND ";
-				}
-			}
-
-			return query;
+			return "SELECT * FROM flight";
 		}
 
 		public List<Flight> fetchFlight (int locationID, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))

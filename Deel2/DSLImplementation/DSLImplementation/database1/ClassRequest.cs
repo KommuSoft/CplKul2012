@@ -8,9 +8,9 @@ namespace DSLImplementation.Database
 	{
 		public ClassRequest () : base() {}
 		
-		protected override string createQuery (string column, int value)
+		protected override string createBase ()
 		{
-			return "SELECT id, name FROM class WHERE " + column + " = " + value;
+			return "SELECT * FROM class";
 		}
 		
 		public List<Class> fetchClassFromID (int ID)

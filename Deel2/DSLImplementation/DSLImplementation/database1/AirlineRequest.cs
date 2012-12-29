@@ -7,9 +7,9 @@ namespace DSLImplementation.Database
 	{
 		public AirlineRequest () : base() {}
 
-		protected override string createQuery (string column, int value)
+		protected override string createBase ()
 		{
-			return "SELECT * FROM airline WHERE " + column + " = " + value;
+			return "SELECT * FROM airline";
 		}
 
 		public List<Airline> fetchAirlineFromID(int ID)
