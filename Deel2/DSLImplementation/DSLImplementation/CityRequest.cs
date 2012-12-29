@@ -8,6 +8,11 @@ namespace DSLImplementation.XmlRepresentation
 		public CityRequest ()
 		{
 		}
+		
+		public CityRequest(Country Country){
+			this.Country = Country;
+		}
+		
 		[XmlElement("Country")]
 		public Country Country {
 			get;
