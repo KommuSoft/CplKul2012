@@ -70,7 +70,6 @@
     <Compile Include="AirportAnswer.cs" />
     <Compile Include="SeatClass.cs" />
     <Compile Include="PlanePiece.cs" />
-    <Compile Include="ZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="PersonPiece.cs" />
     <Compile Include="TimePiece.cs" />
     <Compile Include="AirportPiece.cs" />
@@ -96,6 +95,9 @@
     <Compile Include="database1\InvalidObjectException.cs" />
     <Compile Include="database1\SingleID.cs" />
     <Compile Include="Airline.cs" />
+    <Compile Include="KeyValueTable.cs" />
+    <Compile Include="KeyValueTablePuzzlePieceBase.cs" />
+    <Compile Include="KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

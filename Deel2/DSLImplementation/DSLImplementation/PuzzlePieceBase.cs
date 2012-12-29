@@ -250,7 +250,7 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public PointD MeasureSize (Context ctx)
+		public virtual PointD MeasureSize (Context ctx)
 		{
 			if(sizeCache.X < 0.0d) {
 				double w, th, h = MinimumHeight;

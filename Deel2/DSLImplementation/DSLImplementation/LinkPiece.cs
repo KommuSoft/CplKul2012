@@ -3,7 +3,7 @@ using Cairo;
 
 namespace DSLImplementation.UserInterface {
 
-	public class LinkPiece : ZeroArgumentPuzzlePieceBase {
+	public class LinkPiece : KeyValueTableZeroArgumentPuzzlePieceBase<string,string> {
 
 		private readonly IPuzzlePiece piece;
 

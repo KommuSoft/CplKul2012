@@ -3,7 +3,7 @@ using System;
 namespace DSLImplementation.UserInterface {
 
 	[PuzzlePiece("Plane",TypeColors.Yellow)]
-	public class PlanePiece : ZeroArgumentPuzzlePieceBase {
+	public class PlanePiece : KeyValueTableZeroArgumentPuzzlePieceBase<string,string> {
 
 		public override TypeColors TypeColors {
 			get {
