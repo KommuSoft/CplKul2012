@@ -100,6 +100,7 @@ namespace DSLImplementation.UserInterface {
 				}
 				else {
 					this.AddGap(evnt,new LinkPiece(this.linkpiece));
+					this.linkpiece = null;
 				}
 				break;
 			}
@@ -283,6 +284,7 @@ namespace DSLImplementation.UserInterface {
 				this.offset = offset;
 				this.answers = answer;
 				this.locations = locations;
+				this.registerChildren();
 			}
 			public QueryAnswerLocations (RunPiece query, params IPuzzlePiece[] answer) : this(query,new PointD(),answer,new PointD[answer.Length+0x01]) {}
 			public QueryAnswerLocations (RunPiece query, IEnumerable<IPuzzlePiece> answer) : this(query,new PointD(),answer.ToArray(),new PointD[answer.Count()+0x01]) {}
@@ -295,7 +297,10 @@ namespace DSLImplementation.UserInterface {
 			}
 			private void registerChildren ()
 			{
+				int index = 0x00;
 				foreach(IPuzzlePiece ipp in this.AllPieces()) {
+					ipp.PieceParent = this;
+					ipp.Index = index++;
 					ipp.BoundsChanged += handleBoundsChanged;
 				}
 			}
@@ -359,13 +364,9 @@ namespace DSLImplementation.UserInterface {
 				} else {
 					int index = 0x00;
 					foreach(PointD l in Locations) {
-						Console.WriteLine("({0};{1})",l.X,l.Y);
-					}
-					foreach(PointD l in Locations) {
 						double dx = p.X-l.X;
 						double dy = p.Y-l.Y;
 						PointD siz = this[index].MeasureSize(ctx);
-						Console.WriteLine("Checking {0}, {1}/{2} -> {5}/{6}, {3}/{4}",this.index,p.X,p.Y,siz.X,siz.Y,dx,dy);
 						if(dx >= 0.0d && dy >= 0.0d && dx <= siz.X && dy <= siz.Y) {
 							p.X -= l.X;
 							p.Y -= l.Y;
@@ -373,7 +374,7 @@ namespace DSLImplementation.UserInterface {
 						}
 						index++;
 					}
-					return this;
+					return null;
 				}
 			}
 			public bool MatchesConstraints (int index, IPuzzlePiece piece) {

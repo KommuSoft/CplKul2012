@@ -48,10 +48,10 @@ namespace DSLImplementation.UserInterface {
 						IPuzzlePiece parent = this.parent;
 						this.parent = null;
 						parent[index] = null;
-						this.parent = value;
-						if(this.parent == null) {
-							this.index = -0x01;
-						}
+					}
+					this.parent = value;
+					if(this.parent == null) {
+						this.index = -0x01;
 					}
 				}
 			}
@@ -172,7 +172,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		protected virtual void OnBoundsChanged (EventArgs e) {}
 		#region IPuzzlePiece implementation
-		public void Paint (Context ctx) {
+		public virtual void Paint (Context ctx) {
 			PointD size = this.MeasureSize(ctx);
 			ctx.Rectangle(0.0d,0.0d,size.X,size.Y);
 			ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(size.X,this.TypeColors);
@@ -285,6 +285,7 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 		public PointD OuterLocation (Context ctx) {
+			Console.WriteLine("parent {0}",parent == null);
 			if (parent != null) {
 				PointD dxy = this.parent.OuterLocation(ctx);
 				PointD off = this.parent.ChildLocation(ctx,index);
