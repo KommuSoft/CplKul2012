@@ -33,9 +33,20 @@ namespace DSLImplementation.Database
 			return string.Format ("[Airline: ID={0}, code={1}, name={2}]", ID, code, name);
 		}
 
-		protected override bool isValid ()
+		protected override bool isValid (out string exceptionMessage)
 		{
-			return (code.Count() == 2 || code.Count() == 3) && name.Count() > 0;
+			if (code.Count() != 2 && code.Count() != 3) {
+				exceptionMessage = "The code of the airline is invalid";
+				return false;
+			}
+
+			if (name.Count() == 0) {
+				exceptionMessage = "The name of the airline is invalid";
+				return false;
+			}
+
+			exceptionMessage = "";
+			return true;
 		}
 
 		public override void insert ()

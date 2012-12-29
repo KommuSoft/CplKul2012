@@ -44,10 +44,28 @@ namespace DSLImplementation.Database
 			return string.Format ("[Airport: ID={0}, code={1}, name={2}, country={3}, city={4}, company={5}]", ID, code, name, country, city, company);
 		}
 
-		protected override bool isValid ()
+		protected override bool isValid (out string exceptionMessage)
 		{
-			//TODO: check if the country and the city are valid (i.e. are present in the database)
-			return code.Length == 3 && code.All(char.IsUpper);
+			CountryRequest cor = new CountryRequest ();
+			CityRequest cir = new CityRequest ();
+
+			if (code.Length != 3 || !code.All (char.IsUpper)) {
+				exceptionMessage = "The code of the airport is invalid";
+				return false;
+			}
+
+			if (cor.fetchCountryFromID (country).Count != 1) {
+				exceptionMessage = "The country of the airport is invalid";
+				return false;
+			}
+
+			if (cir.fetchCityFromID (city).Count != 1) {
+				exceptionMessage = "The city of the airport is invalid";
+				return false;
+			}
+
+			exceptionMessage = "";
+			return true;
 		}
 
 		public override void insert ()

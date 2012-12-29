@@ -28,9 +28,15 @@ namespace DSLImplementation.Database
 			return string.Format ("[Country: ID={0}, name={1}]", ID, name);
 		}
 
-		protected override bool isValid ()
+		protected override bool isValid (out string exceptionMessage)
 		{
-			return name.Length > 0;
+			if (name.Length == 0) {
+				exceptionMessage = "The name of the country is invalid";
+				return false;
+			}
+
+			exceptionMessage = "";
+			return true;
 		}
 
 		public override void insert ()

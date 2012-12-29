@@ -30,7 +30,7 @@ namespace DSLImplementation.Database
 			return query + "(" + columnQuery + ") VALUES(" + valuequery + ")";
 		}
 
-		protected abstract bool isValid();
+		protected abstract bool isValid(out string exceptionMessage);
 
 		public virtual void insert ()
 		{
@@ -39,8 +39,9 @@ namespace DSLImplementation.Database
 
 		protected void insert (string table, List<string> columns, List<object> values)
 		{
-			if (!isValid ()) {
-				throw new InvalidObjectException ("This airline object isn't valid.");
+			string exceptionMessage;
+			if (!isValid (out exceptionMessage)) {
+				throw new InvalidObjectException (exceptionMessage);
 			}
 
 			if (hasID) {

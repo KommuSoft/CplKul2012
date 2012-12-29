@@ -32,11 +32,21 @@ namespace DSLImplementation.Database
 			return string.Format ("[City: ID={0}, name={1}, country={2}]", ID, name, country);
 		}
 
-		protected override bool isValid ()
+		protected override bool isValid (out string exceptionMessage)
 		{
-			bool basicCheck = name.Length > 0 && country != -1;
+			if (name.Length == 0) {
+				exceptionMessage = "The name of the city is invalid";
+				return false;
+			}
+
 			CountryRequest cr = new CountryRequest();
-			return basicCheck && cr.fetchCountryFromID(country).Count == 1;
+			if (country == -1 && cr.fetchCountryFromID(country).Count == 1) {
+				exceptionMessage = "The country of the city is invalid";
+				return false;
+			}
+
+			exceptionMessage = "";
+			return true;
 		}
 
 		public override void insert ()

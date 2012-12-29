@@ -32,8 +32,17 @@ namespace DSLImplementation.Database
 			return string.Format ("[Airplane: ID={0}, seat={1}, type={2}]", ID, seat, type);
 		}
 
-		protected override bool isValid ()
+		protected override bool isValid (out string exceptionMessage)
 		{
+			SeatRequest sr = new SeatRequest ();
+			foreach (int s in seat) {
+				if(sr.fetchSeatFromID(s).Count != 1){
+					exceptionMessage = "Seat " + s + " of the airplane is invalid";
+					return false;
+				}
+			}
+
+			exceptionMessage = "";
 			return type.Length > 0;
 		}
 
