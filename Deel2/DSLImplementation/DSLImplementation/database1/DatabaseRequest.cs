@@ -27,24 +27,25 @@ namespace DSLImplementation.Database
 		}
 
 		protected abstract string createBase ();
-		protected virtual string createQuery (List<string> columns, List<int> values)
+		protected virtual string createQuery (List<string> columns, List<object> values)
 		{
 			return createBase() + createWhere(columns, values);
 		}
 
 		protected virtual string createQuery<T1> (string column, T1 value)
 		{
-			return createBase() + createWhere(new List<string>{column}, new List<T1>{value});
+			return createBase() + createWhere(new List<string>{column}, new List<object>{value});
 		}
 
-		//TODO: dit moet misschien nog algemener
-		protected string createWhere<T1> (List<string> columns, List<T1> values)
+		protected string createWhere (List<string> columns, List<object> values)
 		{
 			string query = " WHERE ";
 			for (int i=0; i<columns.Count; ++i) {
+				object val = values[i];
+
 				query += columns[i];
-				query += Util.fetchOperator<T1>();
-				query += Util.parse(values[i]);
+				query += Util.fetchOperator(val.GetType());
+				query += Util.parse(val);
 				if(i < columns.Count - 1){
 					query += " AND ";
 				}

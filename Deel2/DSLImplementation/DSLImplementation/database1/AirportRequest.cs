@@ -22,6 +22,11 @@ namespace DSLImplementation.Database
 			return fetchFromQuery(createQuery("city", cityID));
 		}
 
+		public List<Airport> fetchAirportFromCode (string code)
+		{
+			return fetchFromQuery(createQuery("code", code));
+		}
+
 		public List<Airport> fetchAirportFromCityName (string cityName)
 		{
 			CityRequest cr = new CityRequest ();
@@ -49,6 +54,26 @@ namespace DSLImplementation.Database
 			}
 
 			return resultAirports;
+		}
+
+		public string toQuery (Airport airport)
+		{
+			string query = "(SELECT id FROM airport";
+
+			List<string> columns = new List<string>();
+			List<object> values = new List<object>();
+
+			if (airport.code.Length != 0) {
+				columns.Add("code");
+				values.Add(airport.code);
+			}
+
+			if(airport.name.Length != 0){
+				columns.Add("name");
+				values.Add(airport.name);
+			}
+
+			return query + createWhere(columns, values) + ")";
 		}
 	}
 }

@@ -13,12 +13,23 @@ namespace DSLImplementation.Database
 			return "SELECT * FROM flight";
 		}
 
+		public List<Flight> fetchFlight (Airport startAirport, Airport destinationAirport)
+		{
+			LocationRequest lr = new LocationRequest();
+			string query = lr.queryLocationFromAirports(startAirport, destinationAirport);
+
+			query = "SELECT * FROM flight WHERE location = " + query;
+			Console.WriteLine(query);
+
+			return fetchFromQuery(query);
+		}
+
 		public List<Flight> fetchFlight (int locationID, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
 		{
 			List<string> columns = new List<string> ();
 			columns.Add ("location");
 			
-			List<int> values = new List<int> ();
+			List<object> values = new List<object> ();
 			values.Add (locationID);
 			
 			if (airline != -1) {

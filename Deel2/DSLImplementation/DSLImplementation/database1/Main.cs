@@ -104,6 +104,9 @@ public class Test
 		Console.WriteLine("Find the location with ID = 1");
 		println (lr.fetchLocationFromID(1));
 
+		Console.WriteLine("Find the locations that have as start_airport = 1 and destination_airport = 3");
+		println(lr.fetchLocationFromAirports(1, 3));
+
 		//------------------------------------------------------
 		Console.WriteLine("Find the passenger with ID = 1");
 		println(par.fetchPassengerFromID(1));
@@ -129,5 +132,10 @@ public class Test
 		Airport kjk = new Airport(name: "Kortrijk-Wevelgem International Airport", code: "KJK", country: 1, city: 4, company: new List<int>{});
 		//TODO: the insert should fail because there isn't a city with ID = 4
 		kjk.insert();
+
+		Airport start = new Airport(code: "BRU");
+		Airport destination = new Airport(code: "crl");
+
+		println(fr.fetchFlight(start, destination));
 	}
 }

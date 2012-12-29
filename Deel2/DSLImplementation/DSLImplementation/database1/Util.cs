@@ -23,7 +23,7 @@ namespace DSLImplementation.Database
 			return result;
 		}
 
-		public static string parse (Object o)
+		public static string parse (object o)
 		{
 			if (o.GetType () == typeof(string)) {
 				return "'" + o + "'";	
@@ -38,11 +38,11 @@ namespace DSLImplementation.Database
 			}
 		}
 
-		public static string fetchOperator<T> ()
+		public static string fetchOperator (Type type)
 		{
-			if (typeof(T) == typeof(string)) {
+			if (type == typeof(string)) {
 				return " ILIKE ";
-			} else if (typeof(T) == typeof(int)) {
+			} else if (type == typeof(int)) {
 				return " = ";
 			} else {
 				return " =";
