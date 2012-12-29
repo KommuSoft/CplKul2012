@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -31,7 +32,7 @@ namespace DSLImplementation.Database
 			} else if (o.GetType () == typeof(decimal)) {
 				throw new NotImplementedException();
 			} else if (o.GetType() == typeof(List<int>)){
-				return "'{" + string.Join(", ", (List<int>) o) + "}'";
+				return "'{" + string.Join(", ", ((List<int>) o).Select(X=>X.ToString()).ToArray()) + "}'";
 			} else {	
 				return o.ToString();
 			}

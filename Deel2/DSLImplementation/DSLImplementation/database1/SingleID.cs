@@ -24,8 +24,8 @@ namespace DSLImplementation.Database
 		protected string createInsertQuery (string table, List<String> columns, List<Object> values)
 		{
 			string query = "INSERT INTO " + table;
-			string columnQuery = String.Join(", ", columns);
-			string valuequery = String.Join(", ", values.Select(x => Util.parse(x)));
+			string columnQuery = String.Join(", ", columns.ToArray());
+			string valuequery = String.Join(", ", values.Select(x => Util.parse(x)).ToArray());
 			
 			return query + "(" + columnQuery + ") VALUES(" + valuequery + ")";
 		}
