@@ -23,6 +23,12 @@ namespace DSLImplementation.Database
 			return fetchFromQuery(createQuery("country", countryID));
 		}
 
+		public List<City> fetchCityFromCountryName (string countryName)
+		{
+			//TODO: dit moet mooier
+			return fetchFromQuery("select * from city where country = (select id from country where name ILIKE '" + countryName + "')");
+		}
+
 		public List<City> fetchCityFromName (string name)
 		{
 			return fetchFromQuery (createQuery("name", name));
