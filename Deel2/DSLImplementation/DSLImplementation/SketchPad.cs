@@ -128,10 +128,10 @@ namespace DSLImplementation.UserInterface {
 
 		private class QueryAnswerLocations : IPuzzlePiece {
 
-			private RunPiece item1;
-			private PointD item2;
-			private IPuzzlePiece[] item3;
-			private PointD[] item4;
+			private RunPiece query;
+			private PointD offset;
+			private IPuzzlePiece[] answers;
+			private PointD[] locations;
 			private PointD size = new PointD(-0x01,-0x01);
 			private event EventHandler boundsChanged;
 			private int index;
@@ -193,22 +193,22 @@ namespace DSLImplementation.UserInterface {
 			}
 			public PointD Offset {
 				get {
-					return this.Item2;
+					return this.offset;
 				}
 			}
 			public RunPiece Query {
 				get {
-					return this.Item1;
+					return this.query;
 				}
 			}
 			public IPuzzlePiece[] Answer {
 				get {
-					return this.Item3;
+					return this.answers;
 				}
 			}
 			public PointD[] Locations {
 				get {
-					return this.Item4;
+					return this.locations;
 				}
 			}
 			public int NumberOfPieces {
@@ -218,10 +218,10 @@ namespace DSLImplementation.UserInterface {
 			}
 
 			private QueryAnswerLocations (RunPiece query, PointD offset, IPuzzlePiece[] answer, PointD[] locations) {
-				this.item1 = query;
-				this.item2 = offset;
-				this.item3 = answer;
-				this.item4 = locations;
+				this.query = query;
+				this.offset = offset;
+				this.answers = answer;
+				this.locations = locations;
 			}
 			public QueryAnswerLocations (RunPiece query, params IPuzzlePiece[] answer) : this(query,new PointD(),answer,new PointD[answer.Length+0x01]) {}
 			public QueryAnswerLocations (RunPiece query, IEnumerable<IPuzzlePiece> answer) : this(query,new PointD(),answer.ToArray(),new PointD[answer.Count()+0x01]) {}
