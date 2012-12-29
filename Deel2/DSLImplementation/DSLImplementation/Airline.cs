@@ -2,12 +2,12 @@ using System;
 using System.Xml.Serialization;
 //PJTODO: Er moet hier mss nog een code-attribuut bij afgaande op de opgave op pg. 2
 namespace DSLImplementation.XmlRepresentation{
-	[XmlType("Company")]
-	public class Company{
-		public Company (){
+	[XmlType("Airline")]
+	public class Airline{
+		public Airline (){
 		}
 		
-		public Company(String Name){
+		public Airline(String Name){
 			this.Name = Name;
 		}
 		
@@ -16,6 +16,13 @@ namespace DSLImplementation.XmlRepresentation{
 			get;
 			set;
 		}
+
+		[XmlAttribute("Code")]
+		public String Code {
+			get;
+			set;
+		}		
+		
 	}
 }
 
