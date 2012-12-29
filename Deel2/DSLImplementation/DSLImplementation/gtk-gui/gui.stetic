@@ -102,6 +102,7 @@
         <property name="ShortLabel" translatable="yes">Execute Query</property>
         <property name="StockId">gtk-execute</property>
         <property name="Tooltip" translatable="yes">Execute Query</property>
+        <signal name="Activated" handler="tool_query_exec" />
       </action>
       <action id="menu_autorun">
         <property name="Type">Toggle</property>

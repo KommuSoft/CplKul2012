@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
-    <StartupObject>Test</StartupObject>
+    <StartupObject>DSLImplementation.TopWindow</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,7 +48,6 @@
     <Compile Include="Flight.cs" />
     <Compile Include="FlightRequest.cs" />
     <Compile Include="Airport.cs" />
-    <Compile Include="Company.cs" />
     <Compile Include="SeatRequest.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />

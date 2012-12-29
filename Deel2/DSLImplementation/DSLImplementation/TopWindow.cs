@@ -101,6 +101,11 @@ namespace DSLImplementation
 				this.menu_autorun.Active = this.tool_autorun.Active;
 			}
 		}
+		protected void tool_query_exec (object sender, EventArgs e)
+		{
+			this.sketchpad.ExecuteQuery();
+		}
+
 
 	}
 }

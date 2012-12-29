@@ -41,7 +41,7 @@ namespace DSLImplementation
 			this.menu_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.menu_insert_linkpiece, null);
 			this.menu_edit_information = new global::Gtk.RadioAction ("menu_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.menu_edit_information.Group = this.menu_insertSubpiece.Group;
+			this.menu_edit_information.Group = this.menu_insert_linkpiece.Group;
 			this.menu_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.menu_edit_information, null);
 			this.Action = new global::Gtk.Action ("Action", global::Mono.Unix.Catalog.GetString ("--"), null, null);
@@ -111,7 +111,7 @@ namespace DSLImplementation
 			w4.Position = 2;
 			w4.Expand = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.sketchpad = new global::DSLImplementation.UserInterface.SketchPad ();
+			this.sketchpad = new global::DSLImplementation.UserInterface.SketchPad (new DSLImplementation.UserInterface.DummyRun());
 			this.sketchpad.Name = "sketchpad";
 			this.sketchpad.Autorun = false;
 			this.vbox1.Add (this.sketchpad);
@@ -130,6 +130,7 @@ namespace DSLImplementation
 			this.tool_insertSubpiece.Activated += new global::System.EventHandler (this.tool_selected);
 			this.tool_insert_linkpiece.Activated += new global::System.EventHandler (this.tool_selected);
 			this.tool_edit_information.Activated += new global::System.EventHandler (this.tool_selected);
+			this.tool_execute_query.Activated += new global::System.EventHandler (this.tool_query_exec);
 			this.menu_autorun.Activated += new global::System.EventHandler (this.menu_autorun_changed);
 			this.tool_autorun.Activated += new global::System.EventHandler (this.tool_autorun_changed);
 			this.piecesView.SelectionChanged += new global::System.EventHandler (this.pieces_selection_changed);

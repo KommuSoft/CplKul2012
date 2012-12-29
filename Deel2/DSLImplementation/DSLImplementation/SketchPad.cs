@@ -11,6 +11,7 @@ namespace DSLImplementation.UserInterface {
 	[ToolboxItem(true)]
 	public class SketchPad : CairoWidget {
 
+		public const double Margin = 0x08;
 		private IPuzzlePiece rootpiece;
 		private Context subcontext;
 		private ConstructorInfo injectionPiece;
@@ -19,7 +20,6 @@ namespace DSLImplementation.UserInterface {
 		private static readonly object[] emptyArgs = new object[0x00];
 		private bool autorun = true;
 		private readonly IPuzzleQueryResolver resolver;
-		private event EventHandler boundsChanged;
 
 		public bool Autorun {
 			get {
@@ -29,12 +29,22 @@ namespace DSLImplementation.UserInterface {
 				this.autorun = value;
 			}
 		}
+
 		public IPuzzlePiece RootPiece {
 			get {
 				return this.rootpiece;
 			}
 			set {
-				this.rootpiece = value;
+				if(this.rootpiece != value) {
+					if(this.rootpiece != null) {
+						this.rootpiece.BoundsChanged -= handleBoundsChanged;
+					}
+					this.rootpiece = value;
+					if(this.rootpiece != null) {
+						this.rootpiece.BoundsChanged += handleBoundsChanged;
+					}
+					this.handleBoundsChanged(this,EventArgs.Empty);
+				}
 			}
 		}
 		public ConstructorInfo InjectionPiece {
@@ -54,10 +64,11 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public SketchPad () {
+		public SketchPad (IPuzzleQueryResolver resolver) {
 			ImageSurface imsu = new ImageSurface(Format.Argb32,0x01,0x01);
 			this.subcontext = new Context(imsu);
 			this.AddEvents((int) (Gdk.EventMask.PointerMotionMask|Gdk.EventMask.ButtonPressMask|Gdk.EventMask.ButtonReleaseMask));
+			this.resolver = resolver;
 		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion evnt) {
@@ -104,26 +115,34 @@ namespace DSLImplementation.UserInterface {
 			ctx.Pattern = KnownColors.ConstructionPattern;
 			ctx.Paint();
 			ctx.Color = KnownColors.Black;
+			double y0 = Margin;
 			if(this.rootpiece != null) {
-				ctx.Translate(5.0d,5.0d);
+				ctx.Translate(Margin,y0);
 				this.rootpiece.Paint(ctx);
+			}
+			foreach(QueryAnswerLocations qal in this.qas) {
+				qal.Paint(ctx);
+			}
+		}
+		private void AddQueryAnswer (QueryAnswerLocations qa) {
+			if(qa != null) {
+				this.qas.Add(qa);
+				qa.BoundsChanged += handleBoundsChanged;
+			}
+		}
+
+		private void handleBoundsChanged (object sender, EventArgs e) {
+			double y = Margin;
+			if(this.rootpiece != null) {
+				y += this.rootpiece.MeasureSize(this.subcontext).Y+Margin;
+			}
+			foreach(QueryAnswerLocations qal in this.qas) {
+				qal.Offset = new PointD(Margin,y);
+				y += qal.MeasureSize(this.subcontext).Y+Margin;
 			}
 		}
 		public void ExecuteQuery () {
 
-		}
-
-		public bool IsOptional (int index) {
-			return false;
-		}
-		public void Paint (Context ctx) {
-
-		}
-		public PointD MeasureSize (Context ctx) {
-			return new PointD(0.0d,0.0d);
-		}
-		public bool MatchesConstraints (int index, IPuzzlePiece ipp) {
-			return true;
 		}
 
 		private class QueryAnswerLocations : IPuzzlePiece {
@@ -195,6 +214,9 @@ namespace DSLImplementation.UserInterface {
 				get {
 					return this.offset;
 				}
+				set {
+					this.offset = value;
+				}
 			}
 			public RunPiece Query {
 				get {
@@ -247,9 +269,18 @@ namespace DSLImplementation.UserInterface {
 			}
 			private void handleBoundsChanged (object s, EventArgs e) {
 				this.size.X = -0x01;
+				if(this.boundsChanged != null) {
+					this.boundsChanged(this,e);
+				}
 			}
 			public void Paint (Context ctx) {
-
+				ctx.Save();
+				ctx.Translate(this.offset.X,this.offset.Y);
+				foreach(IPuzzlePiece ipp in this.AllPieces()) {
+					ipp.Paint(ctx);
+					ctx.Translate(Margin+ipp.MeasureSize(ctx).X,0.0d);
+				}
+				ctx.Restore();
 			}
 			public IEnumerable<IPuzzlePiece> AllPieces () {
 				yield return Query;
