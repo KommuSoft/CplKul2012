@@ -5,8 +5,11 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlRoot("RequestAddBooking")]
 	public class RequestAddBooking
 	{
-		public RequestAddBooking ()
-		{
+		public RequestAddBooking (){
+		}
+		
+		public RequestAddBooking (Booking Booking){
+			this.Booking = Booking;
 		}
 		
 		[XmlElement("Booking")]

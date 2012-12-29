@@ -8,6 +8,17 @@ namespace DSLImplementation.XmlRepresentation
 		public RequestAddAirport ()
 		{
 		}
+		
+		public RequestAddAirport (Airport Airport){
+			this.Airport = Airport;
+		}
+		
+		[XmlElement("Airport")]
+		public Airport Airport{
+			get;
+			set;
+		}	
+		
 	}
 }
 

@@ -10,7 +10,7 @@ namespace DSLImplementation.XmlRepresentation
 		{
 		}
 		
-		public Airplane (String Type, List<SeatClass> Seats){
+		public Airplane (String Type, List<Seat> Seats){
 			this.Type = Type;
 			this.Seats = Seats;
 		}
@@ -23,7 +23,7 @@ namespace DSLImplementation.XmlRepresentation
 		
 		[XmlArray("ListOfSeats")]
 		[XmlArrayItem("Seat")]
-		public List<SeatClass> Seats{
+		public List<Seat> Seats{
 			get;
 			set;
 		}	

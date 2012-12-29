@@ -5,14 +5,13 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlRoot("RequestAddCity")]
 	public class RequestAddCity
 	{
-	
+
+		public RequestAddCity (){
+		}		
+		
 		public RequestAddCity (City City){
 			this.City = City;
 		}		
-		
-		public RequestAddCity ()
-		{
-		}
 		
 		[XmlElement("City")]
 		public City City{

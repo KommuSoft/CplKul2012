@@ -5,9 +5,20 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlRoot("RequestAddFlightTemplate")]
 	public class RequestAddFlightTemplate
 	{
-		public RequestAddFlightTemplate ()
-		{
+		
+		public RequestAddFlightTemplate (){
 		}
+		
+		public RequestAddFlightTemplate (FlightTemplate FlightTemplate){
+			this.FlightTemplate = FlightTemplate;
+		}
+		
+		[XmlElement("FlightTemplate")]
+		public FlightTemplate FlightTemplate{
+			get;
+			set;
+		}		
+		
 	}
 }
 

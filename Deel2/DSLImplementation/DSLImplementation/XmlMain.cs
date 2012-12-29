@@ -19,6 +19,8 @@ namespace DSLImplementation.XmlRepresentation{
 				City ci2 = new City("Wielsbeke", c);
 				City ci3 = new City("Veurne", c);
 				List<Airport> airports = new List<Airport>();
+				//Door null te gebruiken zullen er geen airlines 
+				//zichtbaar worden in het xml-bestand
 				Airport a1 = new Airport("LendeledeAirport", "1", ci1, c, null);
 				Airport a2 = new Airport("WielsbekeAirport", "2", ci2, c, null);
 				Airport a3 = new Airport("VeurneAirport", "3", ci3, c, null);

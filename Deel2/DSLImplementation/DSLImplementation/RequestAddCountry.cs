@@ -6,13 +6,13 @@ namespace DSLImplementation.XmlRepresentation
 	public class RequestAddCountry
 	{
 	
+		public RequestAddCountry ()
+		{
+		}		
+		
 		public RequestAddCountry (Country Country){
 			this.Country = Country;
 		}		
-		
-		public RequestAddCountry ()
-		{
-		}
 		
 		[XmlElement("Country")]
 		public Country Country{
