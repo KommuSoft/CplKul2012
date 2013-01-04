@@ -43,7 +43,7 @@ namespace DSLImplementation
 			this.menu_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.menu_insert_linkpiece, null);
 			this.menu_edit_information = new global::Gtk.RadioAction ("menu_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.menu_edit_information.Group = this.menu_insert_linkpiece.Group;
+			this.menu_edit_information.Group = this.menu_insertSubpiece.Group;
 			this.menu_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.menu_edit_information, null);
 			this.Action = new global::Gtk.Action ("Action", global::Mono.Unix.Catalog.GetString ("--"), null, null);
@@ -76,7 +76,7 @@ namespace DSLImplementation
 			this.tool_autorun.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute complete queries");
 			w1.Add (this.tool_autorun, null);
 			this.menu_delete_piece = new global::Gtk.RadioAction ("menu_delete_piece", global::Mono.Unix.Catalog.GetString ("Remove piece"), null, "gtk-delete", 0);
-			this.menu_delete_piece.Group = this.menu_insert_linkpiece.Group;
+			this.menu_delete_piece.Group = this.menu_insertSubpiece.Group;
 			this.menu_delete_piece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove piece");
 			w1.Add (this.menu_delete_piece, null);
 			this.tool_delete_piece = new global::Gtk.RadioAction ("tool_delete_piece", null, null, "gtk-delete", 0);

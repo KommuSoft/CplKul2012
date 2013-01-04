@@ -11,8 +11,8 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public PlanePiece ()
-		{
+		public PlanePiece () {
+			this.Table.Add("Id","AAAA");
 		}
 	}
 }

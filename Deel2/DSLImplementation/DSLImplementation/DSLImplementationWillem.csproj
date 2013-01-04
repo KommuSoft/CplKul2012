@@ -33,6 +33,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="MainWindow.cs" />
     <Compile Include="SketchPad.cs" />
     <Compile Include="CairoWidget.cs" />
     <Compile Include="ImageLoader.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Flight.cs" />
     <Compile Include="FlightRequest.cs" />
     <Compile Include="Airport.cs" />
+    <Compile Include="Company.cs" />
     <Compile Include="SeatRequest.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="AirportAnswer.cs" />
     <Compile Include="SeatClass.cs" />
     <Compile Include="PlanePiece.cs" />
+    <Compile Include="ZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="PersonPiece.cs" />
     <Compile Include="TimePiece.cs" />
     <Compile Include="AirportPiece.cs" />
@@ -94,13 +97,6 @@
     <Compile Include="IPuzzleQueryResolver.cs" />
     <Compile Include="database1\InvalidObjectException.cs" />
     <Compile Include="database1\SingleID.cs" />
-    <Compile Include="Airline.cs" />
-    <Compile Include="KeyValueTable.cs" />
-    <Compile Include="KeyValueTablePuzzlePieceBase.cs" />
-    <Compile Include="KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
-    <Compile Include="KeyValueTableEditor.cs" />
-    <Compile Include="IKeyValueTablePuzzlePiece.cs" />
-    <Compile Include="ParsableKeyValueTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

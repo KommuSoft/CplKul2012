@@ -38,7 +38,8 @@ namespace DSLImplementation.UserInterface {
 			ctx.MoveTo(l.X,l.Y);
 			ctx.IdentityMatrix();
 			siz = this.piece.OuterLocation(ctx);
-			ctx.LineTo(siz);
+			PointD siza = this.piece.MeasureSize(ctx);
+			ctx.LineTo(siz.X+0.5d*siza.X,siz.Y+0.5d*siza.Y);
 			ctx.Stroke();
 			ctx.Color = KnownColors.Black;
 		}

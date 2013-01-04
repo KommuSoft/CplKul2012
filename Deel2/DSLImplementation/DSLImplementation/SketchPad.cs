@@ -12,7 +12,6 @@ namespace DSLImplementation.UserInterface {
 	public class SketchPad : CairoWidget {
 
 		public const double Margin = 0x08;
-		private RunPiece rootpiece;
 		private IPuzzlePiece linkpiece = null;
 		private Context subcontext;
 		private ConstructorInfo injectionPiece;
@@ -46,6 +45,43 @@ namespace DSLImplementation.UserInterface {
 					}
 					this.handleBoundsChanged(this,EventArgs.Empty);
 				}
+			}
+		}
+		private RunPiece rootpiece {
+			get {
+				QueryAnswerLocations aq = this.ActiveQuery;
+				if(aq != null) {
+					return aq.Query;
+				}
+				else {
+					return null;
+				}
+			}
+			set {
+				this.ActiveQuery = new QueryAnswerLocations(value);
+			}
+		}
+		private QueryAnswerLocations ActiveQuery {
+			get {
+				if(this.qas.Count > 0x00) {
+					return this.qas.Peek ();
+				}
+				else {
+					return null;
+				}
+			}
+			set {
+				if(this.qas.Count > 0x00) {
+					QueryAnswerLocations qat = this.qas.Pop();
+					if(qat != null) {
+						qat.BoundsChanged -= handleBoundsChanged;
+					}
+				}
+				if(value != null) {
+					this.qas.Push(value);
+					value.BoundsChanged += handleBoundsChanged;
+				}
+				this.handleBoundsChanged(this,EventArgs.Empty);
 			}
 		}
 		public ConstructorInfo InjectionPiece {
@@ -91,6 +127,7 @@ namespace DSLImplementation.UserInterface {
 		protected override bool OnButtonPressEvent (Gdk.EventButton evnt)
 		{
 			PointD p = new PointD(evnt.X,evnt.Y);
+			IPuzzlePiece ipp;
 			switch (this.Tool) {
 			case SketchPadTool.CreateNew:
 				if (this.injectionPiece != null && this.rootpiece != null) {
@@ -107,9 +144,25 @@ namespace DSLImplementation.UserInterface {
 				}
 				break;
 			case SketchPadTool.Remove :
-				IPuzzlePiece ipp = this.GetPuzzlePiece(p);
-				if(ipp != null && ipp.PieceParent != null) {
-					ipp.PieceParent[ipp.Index] = null;
+				ipp = this.GetPuzzlePiece(p);
+				if(ipp != null) {
+					if(ipp.PieceParent != null) {
+						ipp.PieceParent[ipp.Index] = null;
+					}
+				}
+				break;
+			case SketchPadTool.Modify :
+				ipp = this.GetPuzzlePiece(p);
+				if(ipp != null) {
+					if(ipp is IKeyValueTablePuzzlePiece<string,string>) {
+						using(KeyValueTableEditor<string,string> kvte = new KeyValueTableEditor<string, string>((KeyValueTable<string,string>) (ipp as IKeyValueTablePuzzlePiece<string,string>).Table)) {
+							kvte.Run();
+							kvte.HideAll();
+						}
+					}
+					else {
+						ExtensionMethods.ShowException("Cannot modify: the selected piece doesn't contain any information!");
+					}
 				}
 				break;
 			}
@@ -157,29 +210,24 @@ namespace DSLImplementation.UserInterface {
 			ctx.Pattern = KnownColors.ConstructionPattern;
 			ctx.Paint();
 			ctx.Color = KnownColors.Black;
-			double y0 = Margin;
-			if(this.rootpiece != null) {
-				ctx.Save();
-				ctx.Translate(Margin,y0);
-				this.rootpiece.Paint(ctx);
-				ctx.Restore();
-			}
 			foreach(QueryAnswerLocations qal in this.qas) {
 				qal.Paint(ctx);
 			}
 		}
 		private void AddQueryAnswer (QueryAnswerLocations qa) {
 			if(qa != null) {
+				QueryAnswerLocations qat = this.qas.Pop ();
+				if(qat != null) {
+					qat.BoundsChanged -= handleBoundsChanged;
+				}
 				this.qas.Push(qa);
 				qa.BoundsChanged += handleBoundsChanged;
+				this.handleBoundsChanged(this,EventArgs.Empty);
 			}
 		}
 
 		private void handleBoundsChanged (object sender, EventArgs e) {
 			double y = Margin;
-			if(this.rootpiece != null) {
-				y += this.rootpiece.MeasureSize(this.subcontext).Y+Margin;
-			}
 			foreach(QueryAnswerLocations qal in this.qas) {
 				qal.Offset = new PointD(Margin,y);
 				y += qal.MeasureSize(this.subcontext).Y+Margin;
@@ -190,7 +238,10 @@ namespace DSLImplementation.UserInterface {
 			if (this.rootpiece != null && this.rootpiece.Complete) {
 				QueryAnswerLocations qal = new QueryAnswerLocations (this.rootpiece, this.resolver.Resolve (this.rootpiece));
 				this.AddQueryAnswer (qal);
-				this.RootPiece = new RunPiece ();
+				qal = new QueryAnswerLocations(new RunPiece ());
+				this.qas.Push(qal);
+				qal.BoundsChanged += handleBoundsChanged;
+				this.handleBoundsChanged(this,EventArgs.Empty);
 				this.QueueDraw ();
 			} else {
 				ExtensionMethods.ShowException("Cannot execute the query: not all required parameters have been resolved!");
@@ -246,7 +297,9 @@ namespace DSLImplementation.UserInterface {
 					}
 				}
 				set {
-					throw new InvalidOperationException("Cannot set the values of a query answer!");
+					if(value != null) {
+						throw new InvalidOperationException("Cannot set the values of a query answer!");
+					}
 				}
 			}
 			public event EventHandler BoundsChanged {

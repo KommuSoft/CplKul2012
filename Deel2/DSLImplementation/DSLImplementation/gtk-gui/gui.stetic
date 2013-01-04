@@ -157,7 +157,7 @@
         <child>
           <widget class="Gtk.MenuBar" id="menubar1">
             <property name="MemberName" />
-            <node name="__gtksharp_136_Stetic_Editor_ActionMenuBar" type="Menubar">
+            <node name="menubar1" type="Menubar">
               <node type="Menu" action="ToolsAction">
                 <node type="Menuitem" action="menu_insertSubpiece" />
                 <node type="Menuitem" action="menu_insert_linkpiece" />
@@ -180,7 +180,7 @@
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="__gtksharp_146_Stetic_Editor_ActionToolbar" type="Toolbar">
+            <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="tool_insertSubpiece" />
               <node type="Toolitem" action="tool_insert_linkpiece" />
               <node type="Toolitem" action="tool_edit_information" />
