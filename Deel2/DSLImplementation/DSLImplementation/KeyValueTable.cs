@@ -4,6 +4,8 @@ using Cairo;
 
 namespace DSLImplementation.UserInterface {
 
+	public delegate bool Checker<T> (T tocheck);
+
 	public class KeyValueTable<TKey,TValue> : List<KeyValuePair<TKey,TValue>> {
 
 		public const double MiddleMargin = 5.0d;
@@ -72,6 +74,19 @@ namespace DSLImplementation.UserInterface {
 				ctx.ShowText(kvp.Value.ToString());
 			}
 			ctx.Restore();
+		}
+		public T GetValue<T> (TKey key) where T : TValue {
+			foreach(KeyValuePair<TKey,TValue> kvp in this) {
+				if(kvp.Key.Equals(key)) {
+					if(kvp.Value is T) {
+						return (T) kvp.Value;
+					}
+					else {
+						throw new TypeAccessException("Cannot cast the value to the requested type!");
+					}
+				}
+			}
+			return default(T);
 		}
 
 	}

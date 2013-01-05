@@ -4,7 +4,7 @@ namespace DSLImplementation.UserInterface
 {
 	public interface IKeyValueTablePuzzlePiece<TKey,TValue> : IPuzzlePiece {
 
-		KeyValueTable<TKey,TValue> Table {
+		ParsableKeyValueTable<TKey,TValue> Table {
 			get;
 		}
 

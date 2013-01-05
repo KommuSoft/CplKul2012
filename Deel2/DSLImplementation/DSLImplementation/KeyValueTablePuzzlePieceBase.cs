@@ -5,10 +5,10 @@ namespace DSLImplementation.UserInterface {
 
 	public abstract class KeyValueTablePuzzlePieceBase<TKey,TValue> : PuzzlePieceBase, IKeyValueTablePuzzlePiece<TKey,TValue> {
 
-		private readonly KeyValueTable<TKey,TValue> table = new KeyValueTable<TKey,TValue>();
+		private readonly ParsableKeyValueTable<TKey,TValue> table = new ParsableKeyValueTable<TKey,TValue>();
 		private PointD size = new PointD(-0x01,-0x01);
 
-		public KeyValueTable<TKey,TValue> Table {
+		public ParsableKeyValueTable<TKey,TValue> Table {
 			get {
 				return this.table;
 			}

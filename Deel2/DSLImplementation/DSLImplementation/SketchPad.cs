@@ -155,10 +155,7 @@ namespace DSLImplementation.UserInterface {
 				ipp = this.GetPuzzlePiece(p);
 				if(ipp != null) {
 					if(ipp is IKeyValueTablePuzzlePiece<string,string>) {
-						using(KeyValueTableEditor<string,string> kvte = new KeyValueTableEditor<string, string>((KeyValueTable<string,string>) (ipp as IKeyValueTablePuzzlePiece<string,string>).Table)) {
-							kvte.Run();
-							kvte.HideAll();
-						}
+						KeyValueTableEditor<string,string>.RunDialog((ipp as IKeyValueTablePuzzlePiece<string,string>).Table);
 					}
 					else {
 						ExtensionMethods.ShowException("Cannot modify: the selected piece doesn't contain any information!");

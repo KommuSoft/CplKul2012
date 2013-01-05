@@ -101,6 +101,7 @@
     <Compile Include="KeyValueTableEditor.cs" />
     <Compile Include="IKeyValueTablePuzzlePiece.cs" />
     <Compile Include="ParsableKeyValueTable.cs" />
+    <Compile Include="Parsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

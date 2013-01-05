@@ -305,7 +305,6 @@ namespace DSLImplementation.UserInterface {
 				index = -0x01;
 				return null;
 			} else {
-				//TODO: Make O(log n)
 				index = 0x00;
 				foreach(Rectangle r in subpieces) {
 					if(r.Contains(location)) {

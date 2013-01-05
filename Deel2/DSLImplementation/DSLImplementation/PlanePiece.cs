@@ -12,6 +12,7 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public PlanePiece () {
+			this.Table.AddParserPair(Parsers.StringParser,Parsers.StringParser);
 			this.Table.Add("Id","AAAA");
 		}
 	}
