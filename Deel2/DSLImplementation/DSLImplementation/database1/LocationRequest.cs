@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Collections.Generic;
 
 namespace DSLImplementation.Database
@@ -11,11 +10,6 @@ namespace DSLImplementation.Database
 		protected override string createBase ()
 		{
 			return "SELECT * FROM location";
-		}
-
-		public List<Location> fetchLocationFromID (int ID)
-		{
-			return fetchFromQuery(createQuery("id", ID));
 		}
 
 		public List<Location> fetchLocationFromAirports (int startAirport, int destinationAirport)

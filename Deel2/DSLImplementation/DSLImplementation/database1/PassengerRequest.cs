@@ -11,11 +11,6 @@ namespace DSLImplementation.Database
 		{
 			return "SELECT * FROM passenger";
 		}
-
-		public List<Passenger> fetchPassengerFromID (int ID)
-		{
-			return fetchFromQuery(createQuery("id", ID));
-		}
 	}
 }
 

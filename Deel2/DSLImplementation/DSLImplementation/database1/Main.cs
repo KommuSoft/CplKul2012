@@ -35,15 +35,15 @@ public class Test
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the airline with ID = 1");
-		println (alr.fetchAirlineFromID (1));
+		println (alr.fetchFromID (1));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find airplane with ID = 1");
-		println (pr.fetchAirplaneFromID (1));
+		println (pr.fetchFromID (1));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the airport with ID = 1");
-		println (ar.fetchAirportFromID (1));
+		println (ar.fetchFromID (1));
 		
 		Console.WriteLine ("Find the airports that are in a city with ID = 1");
 		println (ar.fetchAirportFromCity (1));
@@ -56,7 +56,7 @@ public class Test
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the city with ID = 1");
-		println (cr.fetchCityFromID (1));
+		println (cr.fetchFromID (1));
 
 		Console.WriteLine ("Find the cities that are in a country with ID = 1");
 		println (cr.fetchCityFromCountry (1));
@@ -66,11 +66,11 @@ public class Test
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the class with ID = 1");
-		println (clr.fetchClassFromID (1));
+		println (clr.fetchFromID (1));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the country with ID = 1");
-		println (cnr.fetchCountryFromID (1));
+		println (cnr.fetchFromID (1));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the flight with location = 1");
@@ -78,9 +78,9 @@ public class Test
 		print (flights);
 
 		Flight f0 = flights [0];
-		Location l0 = lr.fetchLocationFromID (f0.location) [0];
+		Location l0 = lr.fetchFromID (f0.location) [0];
 
-		Console.WriteLine ("\tFrom: " + cr.fetchCityFromID (l0.start_airport) [0].name + "\tTo: " + cr.fetchCityFromID (l0.destination_airport) [0].name);
+		Console.WriteLine ("\tFrom: " + cr.fetchFromID (l0.start_airport) [0].name + "\tTo: " + cr.fetchFromID (l0.destination_airport) [0].name);
 		List<Seat> seats = sr.fetchSeatFromFlight (f0.ID);
 
 		Console.WriteLine ("\n\tThe seats with their price");
@@ -102,18 +102,18 @@ public class Test
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the location with ID = 1");
-		println (lr.fetchLocationFromID (1));
+		println (lr.fetchFromID (1));
 
 		Console.WriteLine ("Find the locations that have as start_airport = 1 and destination_airport = 3");
 		println (lr.fetchLocationFromAirports (1, 3));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the passenger with ID = 1");
-		println (par.fetchPassengerFromID (1));
+		println (par.fetchFromID (1));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the seat with ID = 1");
-		println (sr.fetchSeatFromID (1));
+		println (sr.fetchFromID (1));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the seat_price with ID = 1");

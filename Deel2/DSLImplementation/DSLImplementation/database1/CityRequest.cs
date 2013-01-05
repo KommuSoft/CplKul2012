@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -11,11 +10,6 @@ namespace DSLImplementation.Database
 		protected override string createBase ()
 		{
 			return "SELECT * FROM city";
-		}
-
-		public List<City> fetchCityFromID(int ID)
-		{
-			return fetchFromQuery(createQuery("id", ID));
 		}
 
 		public List<City> fetchCityFromCountry (int countryID)

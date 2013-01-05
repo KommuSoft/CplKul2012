@@ -1,7 +1,6 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -28,6 +27,11 @@ namespace DSLImplementation.Database
 			name = reader.GetString(reader.GetOrdinal("name"));
 		}
 
+		public override string tableName ()
+		{
+			return "airline";
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[Airline: ID={0}, code={1}, name={2}]", ID, code, name);
@@ -35,12 +39,12 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid (out string exceptionMessage)
 		{
-			if (code.Count() != 2 && code.Count() != 3) {
+			if (code.Length != 2 && code.Length != 3) {
 				exceptionMessage = "The code of the airline is invalid";
 				return false;
 			}
 
-			if (name.Count() == 0) {
+			if (name.Length == 0) {
 				exceptionMessage = "The name of the airline is invalid";
 				return false;
 			}
@@ -54,7 +58,7 @@ namespace DSLImplementation.Database
 			List<string> columns = new List<string>{"code", "name"};
 			List<object> values = new List<object>{code, name};
 
-			base.insert("airline", columns, values);
+			base.insert(columns, values);
 		}
 	}
 }

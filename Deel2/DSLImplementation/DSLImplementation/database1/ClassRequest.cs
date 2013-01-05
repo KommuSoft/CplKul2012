@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -11,11 +10,6 @@ namespace DSLImplementation.Database
 		protected override string createBase ()
 		{
 			return "SELECT * FROM class";
-		}
-		
-		public List<Class> fetchClassFromID (int ID)
-		{
-			return fetchFromQuery(createQuery("id", ID));
 		}
 
 		public List<Class> fetchClassFromFlight (int flightID)

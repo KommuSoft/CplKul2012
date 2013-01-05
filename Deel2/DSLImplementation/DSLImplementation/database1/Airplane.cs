@@ -27,6 +27,11 @@ namespace DSLImplementation.Database
 			type = reader.GetString(reader.GetOrdinal("type"));
 		}
 
+		public override string tableName ()
+		{
+			return "airplane";
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[Airplane: ID={0}, seat={1}, type={2}]", ID, seat, type);
@@ -34,23 +39,26 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid (out string exceptionMessage)
 		{
-			SeatRequest sr = new SeatRequest ();
 			foreach (int s in seat) {
-				if(sr.fetchSeatFromID(s).Count != 1){
-					exceptionMessage = "Seat " + s + " of the airplane is invalid";
+				if(!validSeat(s, out exceptionMessage)){
 					return false;
 				}
 			}
 
+			if (type.Length == 0) {
+				exceptionMessage = "The type of the airplane is invalid";
+				return false;
+			}
+
 			exceptionMessage = "";
-			return type.Length > 0;
+			return true;
 		}
 
 		public override void insert(){
 			List<string> columns = new List<string>{"seat", "type"};
 			List<object> values = new List<object>{seat, type};
 
-			base.insert("airplane", columns, values);
+			base.insert(columns, values);
 		}
 	}
 }

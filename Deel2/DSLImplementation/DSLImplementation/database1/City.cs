@@ -9,6 +9,8 @@ namespace DSLImplementation.Database
 		public string name { get; set; }
 		public int country { get; set; }
 
+		public City (){}
+
 		public City (int ID, string name = "", int country = -1) : this(name, country)
 		{
 			this.ID = ID;
@@ -27,6 +29,11 @@ namespace DSLImplementation.Database
 			country = reader.GetInt32(reader.GetOrdinal("country"));
 		}
 
+		public override string tableName ()
+		{
+			return "city";
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[City: ID={0}, name={1}, country={2}]", ID, name, country);
@@ -39,14 +46,7 @@ namespace DSLImplementation.Database
 				return false;
 			}
 
-			CountryRequest cr = new CountryRequest();
-			if (country == -1 && cr.fetchCountryFromID(country).Count == 1) {
-				exceptionMessage = "The country of the city is invalid";
-				return false;
-			}
-
-			exceptionMessage = "";
-			return true;
+			return validCountry(country, out exceptionMessage);
 		}
 
 		public override void insert ()
@@ -54,7 +54,7 @@ namespace DSLImplementation.Database
 			List<string> columns = new List<string>{"name", "country"};
 			List<object> values = new List<object>{name, country};
 
-			base.insert("city", columns, values);
+			base.insert(columns, values);
 		}
 	}
 }

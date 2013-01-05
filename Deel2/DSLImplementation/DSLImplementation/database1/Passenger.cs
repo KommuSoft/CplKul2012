@@ -20,6 +20,11 @@ namespace DSLImplementation.Database
 			name = reader.GetString(reader.GetOrdinal("name"));
 		}
 
+		public override string tableName ()
+		{
+			return "passenger";
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[Passenger: ID={0}, name={1}]", ID, name);
@@ -41,7 +46,7 @@ namespace DSLImplementation.Database
 			List<string> columns = new List<string>{"name"};
 			List<object> values = new List<object>{name};
 			
-			base.insert("passenger", columns, values);
+			base.insert(columns, values);
 		}
 	}
 }

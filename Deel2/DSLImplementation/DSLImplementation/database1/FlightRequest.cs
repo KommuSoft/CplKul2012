@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Collections.Generic;
 
 namespace DSLImplementation.Database
@@ -13,33 +12,13 @@ namespace DSLImplementation.Database
 			return "SELECT * FROM flight";
 		}
 
-		public List<Flight> fetchFlight (Airport startAirport, Airport destinationAirport)
-		{
-			LocationRequest lr = new LocationRequest();
-			string query = lr.queryLocationFromAirports(startAirport, destinationAirport);
+		private string addAdditional(int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime)){
+			string query = "";
 
-			query = "SELECT * FROM flight WHERE location = " + query;
-			//TODO: code van airline, class, ... van hieronder naar hier kopiëren (lees: in een methode steken)
-
-			Console.WriteLine(query);
-
-			return fetchFromQuery(query);
-		}
-
-		public List<Flight> fetchFlight (int locationID, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
-		{
-			List<string> columns = new List<string> ();
-			columns.Add ("location");
-			
-			List<object> values = new List<object> ();
-			values.Add (locationID);
-			
 			if (airline != -1) {
-				columns.Add ("airline");
-				values.Add (airline);
+				query += " AND airline = " + airline;
 			}
 			
-			string query = createQuery (columns, values);
 			if (class_ != -1) {
 				query += " AND id = any(select flight.id from flight,seat_price,seat where seat_price.flight=flight.id AND seat_price.seat=seat.id AND seat.class = " + class_ +  " group by flight.id)";
 			}
@@ -50,6 +29,28 @@ namespace DSLImplementation.Database
 				query += " AND extract(year FROM start_date) = " + startDateTime.Year;
 			}
 
+			return query;
+		}
+
+		public List<Flight> fetchFlight (Airport startAirport, Airport destinationAirport, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
+		{
+			LocationRequest lr = new LocationRequest();
+			string query = lr.queryLocationFromAirports(startAirport, destinationAirport);
+
+			query = "SELECT * FROM flight WHERE location = " + query;
+			query += addAdditional(airline, class_, startDateTime);
+			Console.WriteLine(query);
+
+			return fetchFromQuery(query);
+		}
+
+		public List<Flight> fetchFlight (int locationID, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
+		{
+			List<string> columns = new List<string> {"location"};
+			List<object> values = new List<object> {locationID};
+
+			string query = createQuery (columns, values);
+			query += addAdditional(airline, class_, startDateTime);
 			Console.WriteLine("My query is: " + query);
 			
 			return fetchFromQuery(query);

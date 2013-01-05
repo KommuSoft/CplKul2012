@@ -12,11 +12,6 @@ namespace DSLImplementation.Database
 			return "SELECT * FROM country";
 		}
 
-		public List<Country> fetchCountryFromID (int ID)
-		{
-			return fetchFromQuery(createQuery("id", ID));
-		}
-
 		public List<Country> fetchCountryFromName(string name)
 		{
 			return fetchFromQuery (createQuery("name", name));

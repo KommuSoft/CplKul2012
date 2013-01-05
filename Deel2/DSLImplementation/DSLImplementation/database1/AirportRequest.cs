@@ -11,11 +11,6 @@ namespace DSLImplementation.Database
 		{
 			return "SELECT * FROM airport";
 		}
-
-		public List<Airport> fetchAirportFromID(int ID)
-		{
-			return fetchFromQuery(createQuery("id", ID));
-		}
 		
 		public List<Airport> fetchAirportFromCity (int cityID)
 		{
@@ -33,7 +28,7 @@ namespace DSLImplementation.Database
 			List<City> cities = cr.fetchCityFromName (cityName);
 			List<Airport> airports = new List<Airport>(); 
 			foreach (City city in cities) {
-				airports.AddRange(fetchAirportFromID(city.ID));
+				airports.AddRange(fetchFromID(city.ID));
 			}
 
 			return airports;

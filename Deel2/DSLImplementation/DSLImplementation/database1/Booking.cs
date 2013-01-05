@@ -1,38 +1,42 @@
 using System;
+using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class Booking
-		//TODO: klasse controleren/schrijven
+	public class Booking : SingleID
 	{
-		public int ID { get; set; }
 		public int flight { get; set; }
 		public int passenger { get; set; }
-		public int class_ { get; set; }
 		public int seat { get; set; }
 
-		public Booking (int flight, int passenger, int class_, int seat)
+		public Booking (int flight, int passenger, int seat)
 		{
 			this.flight = flight;
 			this.passenger = passenger;
-			this.class_ = class_;
 			this.seat = seat;
 		}
 
-		public void insert ()
+		public override string tableName ()
 		{
-			string query = "INSERT INTO booking(flight, passenger, class, seat) VALUES( " + flight + ", " + passenger + ", " + class_ + ", " + seat + ");";
-
-			Database db = new Database();
-			db.CreateCommand(query);
-
-
-//			string query = "INSERT INTO flight(airline, class, location, start_time, end_time, start_date, end_date, price) VALUES (1, '{1}', 2, '01:50', '02:50', '2012-04-12', '2012-04-12', '{30}');"
+			return "booking";
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("[Booking: ID={0}, flight={1}, passenger={2}, class_={3}, seat={4}]", ID, flight, passenger, class_, seat);
+			return string.Format ("[Booking: ID={0}, flight={1}, passenger={2}, seat={3}]", ID, flight, passenger, seat);
+		}
+
+		protected override bool isValid (out string exceptionMessage)
+		{
+			return validFlight(flight, out exceptionMessage) && validPassenger(passenger, out exceptionMessage) && validSeat(seat, out exceptionMessage);
+		}
+
+		public override void insert ()
+		{
+			List<string> columns = new List<string>{"flight", "passenger", "seat"};
+			List<object> values = new List<object>{flight, passenger, seat};
+			
+			base.insert(columns, values);
 		}
 	}
 }

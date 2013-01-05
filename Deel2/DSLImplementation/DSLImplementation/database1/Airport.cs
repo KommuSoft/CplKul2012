@@ -39,6 +39,11 @@ namespace DSLImplementation.Database
 			company = Util.parse<int>(companies);
 		}
 	
+		public override string tableName ()
+		{
+			return "airport";
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[Airport: ID={0}, code={1}, name={2}, country={3}, city={4}, company={5}]", ID, code, name, country, city, company);
@@ -46,26 +51,12 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid (out string exceptionMessage)
 		{
-			CountryRequest cor = new CountryRequest ();
-			CityRequest cir = new CityRequest ();
-
 			if (code.Length != 3 || !code.All (char.IsUpper)) {
 				exceptionMessage = "The code of the airport is invalid";
 				return false;
 			}
 
-			if (cor.fetchCountryFromID (country).Count != 1) {
-				exceptionMessage = "The country of the airport is invalid";
-				return false;
-			}
-
-			if (cir.fetchCityFromID (city).Count != 1) {
-				exceptionMessage = "The city of the airport is invalid";
-				return false;
-			}
-
-			exceptionMessage = "";
-			return true;
+			return validCity (city, out exceptionMessage) && validCountry(country, out exceptionMessage);
 		}
 
 		public override void insert ()
@@ -73,7 +64,7 @@ namespace DSLImplementation.Database
 			List<string> columns = new List<string>{"name", "country", "city", "code", "company"};
 			List<object> values = new List<object>{name, country, city, code, company};
 
-			base.insert("airport", columns, values);
+			base.insert(columns, values);
 		}
 	}
 }

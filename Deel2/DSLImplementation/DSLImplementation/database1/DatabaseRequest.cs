@@ -26,6 +26,15 @@ namespace DSLImplementation.Database
 			return objects;
 		}
 
+		public virtual List<T> fetchFromID (int ID)
+		{
+			return fetchFromQuery(createQuery("id", ID));
+		}
+
+		public virtual string tableName(){
+			return ((DatabaseTable)Activator.CreateInstance(typeof(T))).tableName();
+		}
+
 		protected abstract string createBase ();
 		protected virtual string createQuery (List<string> columns, List<object> values)
 		{

@@ -30,6 +30,11 @@ namespace DSLImplementation.Database
 			distance = reader.GetInt32(reader.GetOrdinal("distance"));
 		}
 
+		public override string tableName ()
+		{
+			return "location";
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[Location: ID={0}, start_airport={1}, destination_airport={2}, distance={3}]", ID, start_airport, destination_airport, distance);
@@ -42,27 +47,15 @@ namespace DSLImplementation.Database
 				return false;
 			}
 
-			AirportRequest ar = new AirportRequest();
-			if (start_airport == -1 && ar.fetchAirportFromID(start_airport).Count != 1) {
-				exceptionMessage = "The start airport of the location is invalid";
-				return false;
-			}
-
-			if (destination_airport == -1 && ar.fetchAirportFromID(destination_airport).Count != 1) {
-				exceptionMessage = "The destination airport of the location is invalid";
-				return false;
-			}
-
-			exceptionMessage = "";
-			return true;
+			return validAirport(start_airport, out exceptionMessage) && validAirport(destination_airport, out exceptionMessage);
 		}
 
-		public void insert ()
+		public override void insert ()
 		{
 			List<string> columns = new List<string>{"start_airport", "destination_airport", "distance"};
 			List<object> values = new List<object>{start_airport, destination_airport, distance};
 			
-			base.insert("location", columns, values);
+			base.insert(columns, values);
 		}
 	}
 }

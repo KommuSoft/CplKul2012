@@ -4,18 +4,17 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	//TODO: implementeer
-	public class Flight
+	public class Flight : SingleID
 	{
-		public int ID { get; set; }
 		public int location { get; set; }
 		public int airline { get; set; }
 		public DateTime start { get; set; }
 		public DateTime end { get; set; }
 		public int airplane { get; set; }
 		public int template { get; set; }
+		public DateTime travelTime { get; set; }
 
-		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane, int template)
+		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane, int template, DateTime travelTime)
 		{
 			this.ID = ID;
 			this.location = location;
@@ -24,6 +23,7 @@ namespace DSLImplementation.Database
 			this.end = end;
 			this.airplane = airplane;
 			this.template = template;
+			this.travelTime = travelTime;
 		}
 
 		public Flight (IDataReader reader)
@@ -42,11 +42,31 @@ namespace DSLImplementation.Database
 			
 			airplane = reader.GetInt32(reader.GetOrdinal("airplane"));
 			template = reader.GetInt32(reader.GetOrdinal("template"));
+
+			travelTime = reader.GetDateTime(reader.GetOrdinal("travel_time"));
+		}
+
+		public override string tableName ()
+		{
+			return "flight";
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, airplane={5}, template={6}]", ID, location, airline, start, end, airplane, template);
+			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, airplane={5}, template={6}, travelTime={7}]", ID, location, airline, start, end, airplane, template, travelTime);
+		}
+
+		protected override bool isValid (out string exceptionMessage)
+		{
+			//TODO controleer de 3 tijdstippen
+			return validLocation(location, out exceptionMessage) && validAirline(airline, out exceptionMessage) && validAirplane(airplane, out exceptionMessage) && validTemplate(template, out exceptionMessage);
+		}
+
+		public override void insert(){
+			List<string> columns = new List<string>{"location", "airline", "airplane", "template", "start_time", "start_date", "end_time", "end_date", "travel_time"};
+			List<object> values = new List<object>{location, airline, airplane, template, Util.toTime(start), Util.toDate(start), Util.toTime(end), Util.toDate(end), Util.toTime(travelTime)};
+			
+			base.insert(columns, values);
 		}
 	}
 }
