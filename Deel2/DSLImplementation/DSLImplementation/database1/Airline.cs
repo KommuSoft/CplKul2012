@@ -40,17 +40,14 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (code.Length != 2 && code.Length != 3) {
-				exceptionMessage = "The code of the airline is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The code of the airline is invalid");
 			}
 
 			if (name.Length == 0) {
-				exceptionMessage = "The name of the airline is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The name of the airline is invalid");
 			}
 
-			exceptionMessage = "";
-			return true;
+			return makeExceptionMessage(out exceptionMessage);
 		}
 
 		public override void insert ()

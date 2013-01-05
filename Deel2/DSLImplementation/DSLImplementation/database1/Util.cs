@@ -28,11 +28,9 @@ namespace DSLImplementation.Database
 			if (o.GetType () == typeof(string)) {
 				return "'" + o + "'";	
 			} else if (o.GetType () == typeof(DateTime)) {
-				//TODO smijt andere error
-				throw new NotImplementedException();
-				//TODO implementeer dit
+				throw new InvalidCastException("A DateTime should be parsed with Util.toDate or Util.toTime.");
 			} else if (o.GetType () == typeof(decimal)) {
-				throw new NotImplementedException();
+				return o.ToString();
 			} else if (o.GetType() == typeof(List<int>)){
 				return "'{" + string.Join(", ", ((List<int>) o).Select(X=>X.ToString()).ToArray()) + "}'";
 			} else {	

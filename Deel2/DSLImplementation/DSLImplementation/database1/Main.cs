@@ -19,6 +19,15 @@ public class Test
 		Console.WriteLine ();
 	}
 
+	private static void tryCatch (DatabaseTable dt)
+	{
+		try {
+			dt.insert();
+		} catch (Exception e) {
+			Console.WriteLine("Exception: " + e.Message);
+		}
+	}
+
 	public static void Main (string[] args)
 	{
 		AirlineRequest alr = new AirlineRequest ();
@@ -44,7 +53,7 @@ public class Test
 		//------------------------------------------------------
 		Console.WriteLine ("Find the airport with ID = 1");
 		println (ar.fetchFromID (1));
-		
+	
 		Console.WriteLine ("Find the airports that are in a city with ID = 1");
 		println (ar.fetchAirportFromCity (1));
 
@@ -120,25 +129,100 @@ public class Test
 		println (spr.fetchSeatPriceFromSeatAndFlight (seatID: 1, flightID: 1));
 
 		//------------------------------------------------------
-//		Booking b = new Booking(1, 2, 2, 200);
-//		b.insert();
-
+		Console.WriteLine ("Do some inserts");
 		Airline ba = new Airline (code: "BA", name: "British Airways");
 		ba.insert ();
 
 		Airplane a380 = new Airplane (seat: new List<int>{1, 2, 3}, type: "A380");
 		a380.insert ();
+		Console.WriteLine ();
 
+		//------------------------------------------------------
+		Console.WriteLine ("Do some invalid inserts");
+
+		Airline airline1 = new Airline (code: "", name : "Let 'm crash");
+		tryCatch(airline1);
+
+		Airline airline2 = new Airline (code : "TNT", name: "");
+		tryCatch(airline2);
+
+		Airline airline3 = new Airline(code: "Too long code", name: "");
+		tryCatch(airline3);
+
+		Airplane airplane1 = new Airplane(new List<int>(), "");
+		tryCatch(airplane1);
+
+		Airplane airplane2 = new Airplane(new List<int>{9999}, "Citation X");
+		tryCatch(airplane2);
+
+		Airport airport1 = new Airport(name: "", code: "BAL", country: 1, city: 1, company: new List<int>());
+		tryCatch(airport1);
+
+		Airport airport2 = new Airport(name: ":-)", code: "", country: 1, city: 1, company: new List<int>());
+		tryCatch(airport2);
+
+		Airport airport3 = new Airport(name: ":-D", code: "Too long code", country: 1, city: 1, company: new List<int>());
+		tryCatch(airport3);
+
+		Airport airport4 = new Airport(name: "Airport in a non-existing country", code : "ABC", country: 9999, city: 1, company: new List<int>());
+		tryCatch(airport4);
+
+		Airport airport5 = new Airport(name: "Airport in a non-existing city", code : "XYZ", country:1, city: 9999, company: new List<int>());
+		tryCatch(airport5);
+
+		City city1 = new City(name: "", country: 1);
+		tryCatch(city1);
+
+		City city2 = new City(name: ":-P", country: 9999);
+		tryCatch(city2);
+
+		Class class1 = new Class("");
+		tryCatch(class1);
+
+		Country country1 = new Country();
+		tryCatch(country1);
+
+		Location location1 = new Location(start_airport: 9999, destination_airport:1, distance: 100);
+		tryCatch(location1);
+
+		Location location2 = new Location(start_airport: 1, destination_airport:9999, distance: 100);
+		tryCatch(location2);
+
+		Location location3 = new Location(start_airport: 1, destination_airport:1, distance: 0);
+		tryCatch(location3);
+
+		Location location4 = new Location(start_airport: 1, destination_airport: 2, distance: -222);
+		tryCatch(location4);
+
+		Passenger passenger1 = new Passenger(name: "");
+		tryCatch(passenger1);
+
+		Seat seat1 = new Seat(class_: 9999, number: 1);
+		tryCatch(seat1);
+
+		Seat seat2 = new Seat(class_: 1, number: -12);
+		tryCatch(seat2);
+
+		SeatPrice seatPrice1 = new SeatPrice(seat: 9999, flight: 1, price: 500);
+		tryCatch(seatPrice1);
+
+		SeatPrice seatPrice2 = new SeatPrice(seat: 1, flight: 9999, price: 500);
+		tryCatch(seatPrice2);
+
+		SeatPrice seatPrice3 = new SeatPrice(seat: 1, flight: 1, price: -1000);
+		tryCatch(seatPrice3);
+
+
+		//------------------------------------------------------
 		Airport kjk = new Airport (name: "Kortrijk-Wevelgem International Airport", code: "KJK", country: 1, city: 4, company: new List<int>{});
-		try {
-			kjk.insert ();
-		} catch (Exception e) {
-			Console.WriteLine("Exception: " + e.Message);
-		}
+		tryCatch(kjk);
+		//TODO test insert booking
+		//TODO test insert flight
 
-		Airport start = new Airport(code: "BRU");
-		Airport destination = new Airport(code: "crl");
+		//------------------------------------------------------
+		Airport start = new Airport (code: "BRU");
+		Airport destination = new Airport (code: "crl");
 
-		println(fr.fetchFlight(start, destination));
+		println (fr.fetchFlight (start, destination));
 	}
 }

@@ -1,9 +1,6 @@
 using System;
 using System.Data;
 using Npgsql;
-//using System.Diagnostics;
-//using System.IO;
-//using System.Threading;
 
 namespace DSLImplementation.Database
 {
@@ -21,8 +18,8 @@ namespace DSLImplementation.Database
 			if (counter == 0) {
 				dbcon = new NpgsqlConnection(connectionString);
 				dbcon.Open();
-				++counter;
 			}
+			++counter;
 		}
 
 		public IDataReader CreateCommand(string query)
@@ -45,10 +42,9 @@ namespace DSLImplementation.Database
 			}
 			--counter;
 			if (counter == 0) {
-				Console.WriteLine("I will close the database");
-				//TODO: buggy
-//				dbcon.Close();
-//				dbcon = null;
+				Console.WriteLine("I will close the database " + counter);
+				dbcon.Close();
+				dbcon = null;
 			}
 		}
 	}

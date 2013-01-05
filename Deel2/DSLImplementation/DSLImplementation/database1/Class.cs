@@ -8,6 +8,11 @@ namespace DSLImplementation.Database
 	{
 		public string name { get; set; }
 
+		public Class ()
+		{
+			name = "";
+		}
+
 		public Class (int ID, string name) : this(name)
 		{
 			this.ID = ID;
@@ -37,12 +42,10 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				exceptionMessage = "The name of the class is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The name of the class is invalid");
 			}
 
-			exceptionMessage = "";
-			return true;
+			return makeExceptionMessage(out exceptionMessage);
 		}
 
 		public override void insert ()

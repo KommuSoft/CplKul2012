@@ -14,7 +14,7 @@ namespace DSLImplementation.Database
 
 		public override List<SeatPrice> fetchFromID (int id)
 		{
-			//TODO dit zal nooit geimplementeerd worden
+			//TODO dit zal nooit geimplementeerd worden (seat_price heeft een primary key die bestaat uit twee kolommen, dus we kunnen niet van een id spreken)
 			throw new System.NotImplementedException ();
 		}
 

@@ -109,7 +109,8 @@ namespace DSLImplementation.Database
 			
 			string query = createInsertQuery(tableName(), columns, values);
 			Console.WriteLine(query);
-			
+
+			//TODO uncomment the following two lines if data can be added to the database
 			//Database db = new Database();
 			//db.CreateCommand(query);
 		}

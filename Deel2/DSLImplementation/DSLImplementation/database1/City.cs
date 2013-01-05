@@ -42,8 +42,7 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				exceptionMessage = "The name of the city is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The name of the city is invalid");
 			}
 
 			return validCountry(country, out exceptionMessage);

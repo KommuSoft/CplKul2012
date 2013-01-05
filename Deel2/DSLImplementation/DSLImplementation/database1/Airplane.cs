@@ -46,12 +46,10 @@ namespace DSLImplementation.Database
 			}
 
 			if (type.Length == 0) {
-				exceptionMessage = "The type of the airplane is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The type of the airplane is invalid");
 			}
 
-			exceptionMessage = "";
-			return true;
+			return makeExceptionMessage(out exceptionMessage);
 		}
 
 		public override void insert(){

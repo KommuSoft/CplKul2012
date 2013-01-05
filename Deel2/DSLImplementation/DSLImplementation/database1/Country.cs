@@ -8,6 +8,11 @@ namespace DSLImplementation.Database
 	{
 		public string name { get; set; }
 
+		public Country ()
+		{
+			name = "";
+		}
+
 		public Country (int ID, string name = "") : this(name) {
 			this.ID = ID;
 		}
@@ -36,12 +41,10 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				exceptionMessage = "The name of the country is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The name of the country is invalid");
 			}
 
-			exceptionMessage = "";
-			return true;
+			return makeExceptionMessage(out exceptionMessage);
 		}
 
 		public override void insert ()

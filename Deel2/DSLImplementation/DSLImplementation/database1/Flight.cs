@@ -14,9 +14,24 @@ namespace DSLImplementation.Database
 		public int template { get; set; }
 		public DateTime travelTime { get; set; }
 
-		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane, int template, DateTime travelTime)
+		public Flight ()
+		{
+			location = -1;
+			airline = -1;
+			start = default(DateTime);
+			end = default(DateTime);
+			airplane = -1;
+			template = -1;
+			travelTime = default(DateTime);
+		}
+
+		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane, int template, DateTime travelTime) : this(location, airline, start, end, airplane, template, travelTime)
 		{
 			this.ID = ID;
+		}
+
+		public Flight (int location, int airline, DateTime start, DateTime end, int airplane, int template, DateTime travelTime)
+		{
 			this.location = location;
 			this.airline = airline;
 			this.start = start;
@@ -58,7 +73,7 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid (out string exceptionMessage)
 		{
-			//TODO controleer de 3 tijdstippen
+			//TODO controleer de 3 tijdstippen (wss is elk tijdstip geldig, dus controleren is niet nodig)
 			return validLocation(location, out exceptionMessage) && validAirline(airline, out exceptionMessage) && validAirplane(airplane, out exceptionMessage) && validTemplate(template, out exceptionMessage);
 		}
 

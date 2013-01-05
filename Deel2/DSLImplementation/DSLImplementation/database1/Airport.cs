@@ -13,6 +13,15 @@ namespace DSLImplementation.Database
 		public int city { get; set; }
 		public List<int> company { get; set; }
 
+		public Airport ()
+		{
+			code = "";
+			name = "";
+			country = -1;
+			city = -1;
+			company = new List<int>();
+		}
+
 		public Airport (int ID, string name, string code, int country, int city, List<int> company) : this(name, code, country, city, company)
 		{
 			this.ID = ID;
@@ -51,9 +60,12 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid (out string exceptionMessage)
 		{
+			if (name.Length == 0) {
+				return makeExceptionMessage(out exceptionMessage, "The name of the airport is invalid");
+			}
+
 			if (code.Length != 3 || !code.All (char.IsUpper)) {
-				exceptionMessage = "The code of the airport is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The code of the airport is invalid");
 			}
 
 			return validCity (city, out exceptionMessage) && validCountry(country, out exceptionMessage);

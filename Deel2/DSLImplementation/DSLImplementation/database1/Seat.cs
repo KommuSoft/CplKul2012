@@ -9,9 +9,19 @@ namespace DSLImplementation.Database
 		public int class_ { get; set; }
 		public int number { get; set; }
 
-		public Seat (int ID, int class_, int number)
+		public Seat ()
+		{
+			class_ = -1;
+			number = -1;
+		}
+
+		public Seat (int ID, int class_, int number) : this(class_, number)
 		{
 			this.ID = ID;
+		}
+
+		public Seat (int class_, int number)
+		{
 			this.class_ = class_;
 			this.number = number;
 		}
@@ -36,8 +46,7 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (number < 0) {
-				exceptionMessage = "The number of the seat is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The number of the seat is invalid");
 			}
 
 			return validClass(class_, out exceptionMessage);

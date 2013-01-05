@@ -43,8 +43,7 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (distance <= 0) {
-				exceptionMessage = "The distance between the locations is invalid";
-				return false;
+				return makeExceptionMessage(out exceptionMessage, "The distance bewteen the locations is invalid");
 			}
 
 			return validAirport(start_airport, out exceptionMessage) && validAirport(destination_airport, out exceptionMessage);
