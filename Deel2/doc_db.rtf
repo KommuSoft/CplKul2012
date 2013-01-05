@@ -25,12 +25,8 @@ airport\
 booking\
 	id: serial, pk\
 	passenger: integer\
-	class: integer\
 	flight: integer\
 	seat: integer\
-\
-	TODO: remove class because the class is already present in the seat\
-	TODO: implement in Mono\
 \
 city\
 	id: serial, pk\
@@ -55,6 +51,7 @@ flight\
 	end_date: date\
 	airplane: integer\
 	template: integer\
+	travel_time: time\
 \
 flight_template\
 	id: serial, pk\
@@ -69,8 +66,6 @@ location\
 	start_airport: integer\
 	destination_airport: integer\
 \
-TODO: combinatie location en airplane\
-\
 passenger\
 	id: serial, pk\
 	name: text\
@@ -81,6 +76,7 @@ seat\
 	number: integer\
 \
 seat_price\
-	seat: integer, pk\
-	flight: integer, pk\
+	id: serial, pk\
+	seat: integer\
+	flight: integer\
 	price: money}
