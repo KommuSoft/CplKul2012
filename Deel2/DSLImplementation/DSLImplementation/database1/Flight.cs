@@ -77,11 +77,11 @@ namespace DSLImplementation.Database
 			return validLocation(location, out exceptionMessage) && validAirline(airline, out exceptionMessage) && validAirplane(airplane, out exceptionMessage) && validTemplate(template, out exceptionMessage);
 		}
 
-		public override void insert(){
+		public override int insert(){
 			List<string> columns = new List<string>{"location", "airline", "airplane", "template", "start_time", "start_date", "end_time", "end_date", "travel_time"};
 			List<object> values = new List<object>{location, airline, airplane, template, Util.toTime(start), Util.toDate(start), Util.toTime(end), Util.toDate(end), Util.toTime(travelTime)};
 			
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

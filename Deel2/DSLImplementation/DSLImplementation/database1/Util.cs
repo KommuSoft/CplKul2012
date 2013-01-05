@@ -16,8 +16,10 @@ namespace DSLImplementation.Database
 
 			List<T> result = new List<T>(); 
 			foreach (string s in splitted) {
-				string cleaned = s.Replace('$', ' ');
-				result.Add((T)Convert.ChangeType(cleaned, typeof(T)));
+				if (s != ""){
+					string cleaned = s.Replace('$', ' ');
+					result.Add((T)Convert.ChangeType(cleaned, typeof(T)));
+				}
 			}
 
 			return result;

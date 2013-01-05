@@ -129,12 +129,43 @@ public class Test
 		println (spr.fetchSeatPriceFromSeatAndFlight (seatID: 1, flightID: 1));
 
 		//------------------------------------------------------
-		Console.WriteLine ("Do some inserts");
-		Airline ba = new Airline (code: "BA", name: "British Airways");
-		ba.insert ();
+		Console.WriteLine ("Do some valid inserts");
+		try{
+			Airline ba = new Airline (code: "BA", name: "British Airways");
+			ba.insert ();
+			
+			Airplane a380 = new Airplane (seat: new List<int>{1, 2, 3}, type: "A380");
+			a380.insert ();
+			
+			Airport kjk = new Airport (name: "Kortrijk-Wevelgem International Airport", code: "KJK", country: 1, city: 4, company: new List<int>{});
+			City wevelgem = new City(4, "Wevelgem", 1);
+			wevelgem.insert();
+			int kjkID = kjk.insert();
+			
+			Class superDeluxe = new Class("Super Deluxe");
+			int superDeluxeID = superDeluxe.insert();
+			
+			Country sweden = new Country("Sweden");
+			sweden.insert();
+			
+			Location schipholWevelgem = new Location(2, kjkID, 200);
+			schipholWevelgem.insert();
+			
+			Passenger zoidberg = new Passenger("Zoidberg");
+			zoidberg.insert();
+			
+			Seat seat = new Seat(superDeluxeID, 20);
+			int seatID = seat.insert();
+			
+			SeatPrice expensiveSeat = new SeatPrice(seatID, 2, 10000);
+			expensiveSeat.insert();
+		} catch(Exception e){
+			Console.WriteLine("Unexpected error:");
+			Console.WriteLine("    Did you run the main twice?");
+			Console.WriteLine("    Are you sure that insert queries are executed? See insert in DatabaseTable");
+			Console.WriteLine("    Here is the error: " + e.Message);
+		}
 
-		Airplane a380 = new Airplane (seat: new List<int>{1, 2, 3}, type: "A380");
-		a380.insert ();
 		Console.WriteLine ();
 
 		//------------------------------------------------------
@@ -214,11 +245,8 @@ public class Test
 
 
 		//------------------------------------------------------
-		Airport kjk = new Airport (name: "Kortrijk-Wevelgem International Airport", code: "KJK", country: 1, city: 4, company: new List<int>{});
-		tryCatch(kjk);
 		//TODO test insert booking
 		//TODO test insert flight
-
 		//------------------------------------------------------
 		Airport start = new Airport (code: "BRU");
 		Airport destination = new Airport (code: "crl");

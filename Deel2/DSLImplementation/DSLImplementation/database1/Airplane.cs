@@ -52,11 +52,11 @@ namespace DSLImplementation.Database
 			return makeExceptionMessage(out exceptionMessage);
 		}
 
-		public override void insert(){
+		public override int insert(){
 			List<string> columns = new List<string>{"seat", "type"};
 			List<object> values = new List<object>{seat, type};
 
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

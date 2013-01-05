@@ -49,12 +49,12 @@ namespace DSLImplementation.Database
 			return validAirport(start_airport, out exceptionMessage) && validAirport(destination_airport, out exceptionMessage);
 		}
 
-		public override void insert ()
+		public override int insert ()
 		{
 			List<string> columns = new List<string>{"start_airport", "destination_airport", "distance"};
 			List<object> values = new List<object>{start_airport, destination_airport, distance};
 			
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

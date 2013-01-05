@@ -12,7 +12,8 @@ namespace DSLImplementation.Database
 
 		public Database ()
 		{
-//			string connectionString = "Server=localhost; Database=DB; User ID=postgres1; Password=postgres;";
+			//TODO Select the correct database
+			//string connectionString = "Server=localhost; Database=gonaz; User ID=postgres; Password=postgres;";
 			string connectionString = "Server=localhost; Port=25432; Database=gonaz; User ID=gonaz; Password=cplPassword1;";
 
 			if (counter == 0) {

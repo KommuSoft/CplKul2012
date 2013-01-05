@@ -31,12 +31,12 @@ namespace DSLImplementation.Database
 			return validFlight(flight, out exceptionMessage) && validPassenger(passenger, out exceptionMessage) && validSeat(seat, out exceptionMessage);
 		}
 
-		public override void insert ()
+		public override int insert ()
 		{
 			List<string> columns = new List<string>{"flight", "passenger", "seat"};
 			List<object> values = new List<object>{flight, passenger, seat};
 			
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

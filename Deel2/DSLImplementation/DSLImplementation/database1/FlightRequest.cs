@@ -39,8 +39,6 @@ namespace DSLImplementation.Database
 
 			query = "SELECT * FROM flight WHERE location = " + query;
 			query += addAdditional(airline, class_, startDateTime);
-			Console.WriteLine(query);
-
 			return fetchFromQuery(query);
 		}
 
@@ -51,7 +49,6 @@ namespace DSLImplementation.Database
 
 			string query = createQuery (columns, values);
 			query += addAdditional(airline, class_, startDateTime);
-			Console.WriteLine("My query is: " + query);
 			
 			return fetchFromQuery(query);
 		}

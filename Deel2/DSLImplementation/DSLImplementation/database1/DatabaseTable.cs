@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -19,7 +20,7 @@ namespace DSLImplementation.Database
 
 		protected abstract bool isValid(out string exceptionMessage);
 
-		public virtual void insert ()
+		public virtual int insert ()
 		{
 			throw new Exception ("Not implemented yet");
 		}
@@ -100,19 +101,26 @@ namespace DSLImplementation.Database
 			return true;
 		}
 
-		protected virtual void insert (List<string> columns, List<object> values)
+		protected virtual int insert (List<string> columns, List<object> values)
 		{
 			string exceptionMessage;
 			if (!isValid (out exceptionMessage)) {
 				throw new InvalidObjectException (exceptionMessage);
 			}
 			
-			string query = createInsertQuery(tableName(), columns, values);
+			string query = createInsertQuery(tableName(), columns, values) + " RETURNING id";
 			Console.WriteLine(query);
 
-			//TODO uncomment the following two lines if data can be added to the database
-			//Database db = new Database();
-			//db.CreateCommand(query);
+			//TODO comment the following line if data can be added to the database
+			query = "SELECT * FROM country";
+
+			Database db = new Database();
+			IDataReader reader = db.CreateCommand(query);
+
+			reader.Read();
+			int id = reader.GetInt32(reader.GetOrdinal("id"));
+
+			return id;
 		}
 	}
 }

@@ -18,14 +18,14 @@ namespace DSLImplementation.Database
 			}
 		}
 	
-		protected override void insert (List<string> columns, List<object> values)
+		protected override int insert (List<string> columns, List<object> values)
 		{
 			if (hasID) {
 				columns.Insert(0, "id");
 				values.Insert(0, ID);
 			}
 
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

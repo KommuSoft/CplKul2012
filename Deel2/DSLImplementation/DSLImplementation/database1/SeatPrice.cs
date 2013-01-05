@@ -4,11 +4,16 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class SeatPrice : DatabaseTable
+	public class SeatPrice : SingleID
 	{
 		public int seat { get; set; }
 		public int flight { get; set; }
 		public decimal price { get; set; }
+
+		public SeatPrice(int ID, int seat, int flight, decimal price) : this(seat, flight, price)
+		{
+			this.ID = ID;
+		}
 
 		public SeatPrice (int seat, int flight, decimal price)
 		{
@@ -19,6 +24,7 @@ namespace DSLImplementation.Database
 
 		public SeatPrice (IDataReader reader)
 		{
+			ID = reader.GetInt32(reader.GetOrdinal("id"));
 			seat = reader.GetInt32(reader.GetOrdinal("seat"));
 			flight = reader.GetInt32(reader.GetOrdinal("flight"));
 			price = reader.GetDecimal(reader.GetOrdinal("price"));
@@ -43,11 +49,12 @@ namespace DSLImplementation.Database
 			return validFlight(flight, out exceptionMessage) && validSeat(seat, out exceptionMessage);
 		}
 
-		public override void insert(){
+		public override int insert(){
 			List<string> columns = new List<string>{"seat", "flight", "price"};
 			List<object> values = new List<object>{seat, flight, price};
 
-			base.insert(columns, values);
+			return base.insert(columns, values);
+			//TODO: it doesn't make sense to return the id of this
 		}
 	}
 }

@@ -71,12 +71,12 @@ namespace DSLImplementation.Database
 			return validCity (city, out exceptionMessage) && validCountry(country, out exceptionMessage);
 		}
 
-		public override void insert ()
+		public override int insert ()
 		{
 			List<string> columns = new List<string>{"name", "country", "city", "code", "company"};
 			List<object> values = new List<object>{name, country, city, code, company};
 
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

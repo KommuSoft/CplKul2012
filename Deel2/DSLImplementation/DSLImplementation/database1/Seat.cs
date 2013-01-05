@@ -52,12 +52,12 @@ namespace DSLImplementation.Database
 			return validClass(class_, out exceptionMessage);
 		}
 
-		public override void insert ()
+		public override int insert ()
 		{
 			List<string> columns = new List<string>{"class", "number"};
 			List<object> values = new List<object>{class_, number};
 			
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }

@@ -48,12 +48,12 @@ namespace DSLImplementation.Database
 			return validCountry(country, out exceptionMessage);
 		}
 
-		public override void insert ()
+		public override int insert ()
 		{
 			List<string> columns = new List<string>{"name", "country"};
 			List<object> values = new List<object>{name, country};
 
-			base.insert(columns, values);
+			return base.insert(columns, values);
 		}
 	}
 }
