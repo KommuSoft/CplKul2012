@@ -10,6 +10,10 @@ namespace DSLImplementation.Database
 		public int passenger { get; set; }
 		public int seat { get; set; }
 
+		public Booking (int ID, int flight, int passenger, int seat) : this(flight, passenger, seat){
+			this.ID = ID;
+		}
+
 		public Booking (int flight, int passenger, int seat)
 		{
 			this.flight = flight;

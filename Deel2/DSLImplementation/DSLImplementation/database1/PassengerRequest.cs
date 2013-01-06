@@ -28,6 +28,14 @@ namespace DSLImplementation.Database
 			
 			return query;
 		}
+
+		public List<Passenger> fetchPassengerFromName(string name)
+		{
+			List<string> columns = new List<string>{"name"};
+			List<object> values = new List<object>{name};
+
+			return fetchFromQuery(createQuery(columns, values));
+		}
 	}
 }
 

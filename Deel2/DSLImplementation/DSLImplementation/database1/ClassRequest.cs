@@ -14,10 +14,15 @@ namespace DSLImplementation.Database
 
 		public List<Class> fetchClassFromFlight (int flightID)
 		{
-			string query = "select * from class where id = any(select class from seat where id = any(select seat from seat_price where flight = " + flightID + ") group by class)";
+			string query = "SELECT * FROM class WHERE id = ANY(SELECT class FROM seat WHERE id = ANY(SELECT seat FROM seat_price WHERE flight = " + flightID + ") GROUP BY class)";
 			return fetchFromQuery(query);
 		}
 
+		public List<Class> fetchClassFromFlightAndName(int flightID, string name)
+		{
+			string query = "SELECT * FROM class WHERE (name"+ Util.fetchOperator(name.GetType()) + Util.parse(name) + "AND id = ANY(SELECT class FROM seat WHERE id = ANY(SELECT seat FROM seat_price WHERE flight = " + flightID + ") GROUP BY class))";
+			return fetchFromQuery(query);
+		}
 	}
 }
 

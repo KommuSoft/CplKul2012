@@ -146,6 +146,13 @@ public class Test
 			City wevelgem = new City(4, "Wevelgem", 1);
 			wevelgem.insert();
 			int kjkID = kjk.insert();
+
+			int flightAlice = fr.fetchFlight(new Airport(code: "bru"), new Airport(code: "crl"))[0].ID;
+			int alice = par.fetchPassengerFromName("alice")[0].ID;
+			int classAlice = clr.fetchClassFromFlightAndName(flightID: flightAlice, name: "economy class")[0].ID;
+			int seatAlice = sr.fetchSeatFromFlighAndClass(flightID: flightAlice, class_: classAlice)[0].ID;
+			Booking bookingAlice = new Booking(flightAlice, alice, seatAlice);
+			bookingAlice.insert();
 			
 			Class superDeluxe = new Class("Super Deluxe");
 			int superDeluxeID = superDeluxe.insert();
@@ -205,6 +212,15 @@ public class Test
 
 		Airport airport5 = new Airport(name: "Airport in a non-existing city", code : "XYZ", country:1, city: 9999, company: new List<int>());
 		tryCatch(airport5);
+
+		Booking booking1 = new Booking(flight: 999, passenger: 1, seat: 1);
+		tryCatch(booking1);
+
+		Booking booking2 = new Booking(flight: 1, passenger: 999, seat: 1);
+		tryCatch(booking2);
+
+		Booking booking3 = new Booking(flight: 1, passenger: 1, seat: 999);
+		tryCatch(booking3);
 
 		City city1 = new City(name: "", country: 1);
 		tryCatch(city1);

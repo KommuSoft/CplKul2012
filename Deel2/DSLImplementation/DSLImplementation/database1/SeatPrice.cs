@@ -54,7 +54,6 @@ namespace DSLImplementation.Database
 			List<object> values = new List<object>{seat, flight, price};
 
 			return base.insert(columns, values);
-			//TODO: it doesn't make sense to return the id of this
 		}
 	}
 }

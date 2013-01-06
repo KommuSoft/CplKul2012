@@ -8,12 +8,17 @@ namespace DSLImplementation.Database
 	{
 		public string name { get; set; }
 
-		public Passenger (int ID, string name) : this(name)
+		public Passenger ()
+		{
+			name = "";
+		}
+
+		public Passenger (int ID, string name = "") : this(name)
 		{
 			this.ID = ID;
 		}
 
-		public Passenger (string name)
+		public Passenger (string name = "")
 		{
 			this.name = name;
 		}
