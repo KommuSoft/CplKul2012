@@ -17,7 +17,12 @@ namespace DSLImplementation.UserInterface {
 				for (int i = 0x00; i < n; i++) {
 					keyt = keyparsers [i] (key);
 					if (this [i].Key.Equals (keyt)) {
-						return this [i].Value.ToString();
+						TValue val = this [i].Value;
+						if(val.Equals(default(TValue))) {
+							return null;
+						}else {
+							return val.ToString();
+						}
 					}
 				}
 				return string.Empty;

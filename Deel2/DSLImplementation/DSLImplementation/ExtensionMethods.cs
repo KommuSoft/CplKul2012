@@ -11,10 +11,10 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public static void ShowException (Exception e) {
-			ShowException(e.Message);
+			ShowException(e.Message+Environment.NewLine+e.ToString());
 		}
 		public static void ShowException (string message) {
-			MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, message);
+			MessageDialog md = new MessageDialog (null, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, message.Replace("<","&lt;").Replace(">","&gt;"));
 			md.Run ();
 			md.HideAll ();
 			md.Dispose ();

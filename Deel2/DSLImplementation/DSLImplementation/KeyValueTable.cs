@@ -10,6 +10,7 @@ namespace DSLImplementation.UserInterface {
 
 		public const double MiddleMargin = 5.0d;
 		public const double HeightMargin = 5.0d;
+		public const double LineMargin = 2.0d;
 
 		public virtual TValue this [TKey key] {
 			get {
@@ -38,12 +39,14 @@ namespace DSLImplementation.UserInterface {
 			double w2 = 0.0d, h = 0.0d, ht = 0.0d;
 			TextExtents te;
 			foreach(KeyValuePair<TKey,TValue> kvp in this) {
-				te = ctx.TextExtents(kvp.Key.ToString());
-				w1 = Math.Max(w1,te.XAdvance);
-				ht = te.Height;
-				te = ctx.TextExtents(kvp.Value.ToString());
-				w2 = Math.Max(w2,te.XAdvance);
-				h += Math.Max(ht,te.Height);
+				if(kvp.Value != null) {
+					te = ctx.TextExtents(kvp.Key.ToString());
+					w1 = Math.Max(w1,te.XAdvance);
+					ht = te.Height;
+					te = ctx.TextExtents(kvp.Value.ToString());
+					w2 = Math.Max(w2,te.XAdvance);
+					h += Math.Max(ht,te.Height)+LineMargin;
+				}
 			}
 			w1 += MiddleMargin;
 			return new PointD(w1+w2,h+2.0d*HeightMargin);
@@ -63,15 +66,17 @@ namespace DSLImplementation.UserInterface {
 			ctx.Save();
 			ctx.Translate(0.0d,HeightMargin);
 			foreach(KeyValuePair<TKey,TValue> kvp in this) {
-				te = ctx.TextExtents(kvp.Key.ToString());
-				h = te.Height;
-				te = ctx.TextExtents(kvp.Value.ToString());
-				h = Math.Max(h,te.Height);
-				ctx.Translate(0.0d,h);
-				ctx.MoveTo(0.0d,0.0d);
-				ctx.ShowText(kvp.Key.ToString());
-				ctx.MoveTo(w1,0.0d);
-				ctx.ShowText(kvp.Value.ToString());
+				if(kvp.Value != null) {
+					te = ctx.TextExtents(kvp.Key.ToString());
+					h = te.Height;
+					te = ctx.TextExtents(kvp.Value.ToString());
+					h = Math.Max(h,te.Height)+LineMargin;
+					ctx.Translate(0.0d,h);
+					ctx.MoveTo(0.0d,0.0d);
+					ctx.ShowText(kvp.Key.ToString());
+					ctx.MoveTo(w1,0.0d);
+					ctx.ShowText(kvp.Value.ToString());
+				}
 			}
 			ctx.Restore();
 		}

@@ -10,10 +10,10 @@ namespace DSLImplementation.UserInterface {
 		public const double MinimumWidth = 64.0d;
 		public const double MinimumHeight = 32.0d;
 		public const string OptionalString = "(Optional)";
-		private readonly IPuzzlePiece[] arguments;
+		private IPuzzlePiece[] arguments;
 		private PointD sizeCache = new PointD(-1.0d,-1.0d);
 		private EventHandler boundsChanged;
-		private readonly Rectangle[] subpieces;
+		private Rectangle[] subpieces;
 		private IPuzzlePiece parent;
 		private int index = -0x01;
 
@@ -67,16 +67,17 @@ namespace DSLImplementation.UserInterface {
 				}
 				if(this.arguments[index] != value) {
 					if(this.arguments[index] != null) {
-						this.arguments[index].BoundsChanged -= this.performBoundsChanged;
+						this.arguments[index].BoundsChanged -= this.PerformBoundsChanged;
 					}
 					this.arguments[index] = value;
 					if(value != null) {
 						value.Index = index;
 						value.PieceParent = this;
-						value.BoundsChanged += this.performBoundsChanged;
+						value.BoundsChanged += this.PerformBoundsChanged;
 					}
-					this.performBoundsChanged(this,EventArgs.Empty);
+					this.PerformBoundsChanged(this,EventArgs.Empty);
 				}
+				this.PerformChildrenChanged(this,EventArgs.Empty);
 			}
 		}
 		public virtual string Name {
@@ -115,10 +116,20 @@ namespace DSLImplementation.UserInterface {
 		public abstract TypeColors TypeColors {
 			get;
 		}
-		public bool Complete {
+		public virtual bool Complete {
 			get {
 				for(int i = 0; i < this.NumberOfRequiredArguments; i++) {
 					if(this.arguments[i] == null || !this.arguments[i].Complete) {
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		public virtual bool CanExecute {
+			get {
+				for(int i = 0; i < this.NumberOfRequiredArguments; i++) {
+					if(this.arguments[i] == null || !this.arguments[i].CanExecute) {
 						return false;
 					}
 				}
@@ -157,6 +168,21 @@ namespace DSLImplementation.UserInterface {
 			this.subpieces = new Rectangle[this.NumberOfArguments];
 		}
 
+		protected void SetArgumentSize () {
+			int nmin = Math.Min(this.arguments.Length,this.NumberOfArguments);
+			IPuzzlePiece[] newarguments = new IPuzzlePiece[this.NumberOfArguments];
+			Rectangle[] newsubpieces = new Rectangle[this.NumberOfArguments];
+			for(int i = 0x00; i < nmin; i++) {
+				newarguments[i] = this.arguments[i];
+			}
+			for(int i = nmin; i < this.arguments.Length; i++) {
+				this[i] = null;
+			}
+			this.arguments = newarguments;
+			this.subpieces = newsubpieces;
+			this.PerformBoundsChanged(this,EventArgs.Empty);
+		}
+
 		public virtual void MatchesConstraintsChildren (int index, IPuzzlePiece piece)
 		{
 			if (!ExtensionMethods.IsTypeColorMatch (this.TypeColorArguments [index], piece.TypeColors)) {
@@ -168,7 +194,13 @@ namespace DSLImplementation.UserInterface {
 		public bool IsOptional (int index) {
 			return index >= this.NumberOfArguments-this.NumberOfOptionalArguments;
 		}
-		private void performBoundsChanged (object s, EventArgs e) {
+
+		protected virtual void PerformChildrenChanged (object s, EventArgs e) {
+		}
+		public void InvalidateSizeCache () {
+			this.PerformBoundsChanged(this,EventArgs.Empty);
+		}
+		protected void PerformBoundsChanged (object s, EventArgs e) {
 			sizeCache = new PointD(-1.0d,-1.0d);
 			this.OnBoundsChanged(e);
 			if(this.boundsChanged != null) {
@@ -203,10 +235,17 @@ namespace DSLImplementation.UserInterface {
 				ctx.Translate(x0,Margin);
 				if(ipp == null) {
 					siz = new PointD(MinimumWidth,size.Y-4.0d*Margin);
-					ctx.Rectangle(Margin,Margin,MinimumWidth,siz.Y);
+					ctx.Rectangle(Margin,Margin,siz.X,siz.Y);
 					ctx.Pattern = KnownColors.ConstructionPattern;
 					ctx.FillPreserve();
-					ctx.Rectangle(0.0d,0.0d,MinimumWidth+2.0d*Margin,siz.Y+2.0d*Margin);
+				}
+				else {
+					siz = ipp.MeasureSize(ctx);
+				}
+				ctx.Rectangle(0.0d,0.0d,siz.X+2.0d*Margin,siz.Y+2.0d*Margin);
+				ctx.Color = KnownColors.Black;
+				ctx.StrokePreserve();
+				if(ipp == null) {
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(siz.X+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
 					ctx.Translate(Margin,Margin);
@@ -226,8 +265,6 @@ namespace DSLImplementation.UserInterface {
 					ctx.Fill();
 				}
 				else {
-					siz = ipp.MeasureSize(ctx);
-					ctx.Rectangle(0.0d,0.0d,siz.X+2.0d*Margin,siz.Y+2.0d*Margin);
 					ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(siz.X+2.0d*Margin,TypeColorArguments[index]);
 					ctx.Fill();
 					ctx.Color = KnownColors.Black;

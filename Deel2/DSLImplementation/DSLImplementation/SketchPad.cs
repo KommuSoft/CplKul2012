@@ -160,6 +160,7 @@ namespace DSLImplementation.UserInterface {
 					else {
 						ExtensionMethods.ShowException("Cannot modify: the selected piece doesn't contain any information!");
 					}
+					ipp.InvalidateSizeCache();
 				}
 				break;
 			}
@@ -263,6 +264,11 @@ namespace DSLImplementation.UserInterface {
 				set {}
 			}
 			public bool Complete {
+				get {
+					return true;
+				}
+			}
+			public bool CanExecute {
 				get {
 					return true;
 				}
@@ -442,6 +448,10 @@ namespace DSLImplementation.UserInterface {
 			public void MatchesConstraintsChildren (int index, IPuzzlePiece piece) {
 			}
 			public void MatchesConstraintsParent (IPuzzlePiece piece) {
+			}
+			public void InvalidateSizeCache ()
+			{
+				this.handleBoundsChanged(this,EventArgs.Empty);
 			}
 			public bool IsOptional (int index) {
 				return false;

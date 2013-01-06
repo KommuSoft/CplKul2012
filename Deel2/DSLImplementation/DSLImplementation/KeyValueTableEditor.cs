@@ -71,7 +71,7 @@ namespace DSLImplementation.UserInterface
 		private void invokeData ()
 		{
 			foreach(KeyValuePair<TKey,TVal> kvp in this.table) {
-				ls.AppendValues(kvp.Key.ToString(),kvp.Value.ToString());
+				ls.AppendValues(kvp.Key.ToString(),(kvp.Value == null) ? string.Empty : kvp.Value.ToString());
 			}
 		}
 

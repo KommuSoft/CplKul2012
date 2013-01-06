@@ -69,7 +69,6 @@
     <Compile Include="database1\Util.cs" />
     <Compile Include="AirportAnswer.cs" />
     <Compile Include="SeatClass.cs" />
-    <Compile Include="PlanePiece.cs" />
     <Compile Include="PersonPiece.cs" />
     <Compile Include="TimePiece.cs" />
     <Compile Include="AirportPiece.cs" />
@@ -102,6 +101,11 @@
     <Compile Include="IKeyValueTablePuzzlePiece.cs" />
     <Compile Include="ParsableKeyValueTable.cs" />
     <Compile Include="Parsers.cs" />
+    <Compile Include="SeatPiece.cs" />
+    <Compile Include="FlightPiece.cs" />
+    <Compile Include="CountryPiece.cs" />
+    <Compile Include="CityPiece.cs" />
+    <Compile Include="TilingAlgorithm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -121,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="database1\" />
+    <Folder Include="UserInterface1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database1\SQL_test.csproj" />

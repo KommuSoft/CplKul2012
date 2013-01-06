@@ -30,7 +30,7 @@ namespace DSLImplementation
 
 		private void invokePieces (Assembly assembly) {
 			foreach(Type t in assembly.GetTypes()) {
-				if(!t.IsAbstract && typeof(IPuzzlePiece).IsAssignableFrom(t)) {
+				if(!t.IsAbstract && t.IsClass && typeof(IPuzzlePiece).IsAssignableFrom(t)) {
 					ConstructorInfo ci = t.GetConstructor(new Type[0x00]);
 					if(ci != null) {
 						foreach(PuzzlePieceAttribute ppa in t.GetCustomAttributes(typeof(PuzzlePieceAttribute),false)) {

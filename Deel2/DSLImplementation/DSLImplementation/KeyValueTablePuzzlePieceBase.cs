@@ -25,6 +25,10 @@ namespace DSLImplementation.UserInterface {
 			}
 			return size;
 		}
+		protected override void OnBoundsChanged (EventArgs e)
+		{
+			this.size.X = -0x01;
+		}
 		public override void Paint (Context ctx) {
 			MeasureSize(ctx);
 			base.Paint (ctx);
