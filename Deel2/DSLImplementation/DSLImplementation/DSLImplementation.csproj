@@ -33,13 +33,9 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="CairoWidget.cs" />
-    <Compile Include="ImageLoader.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PuzzlePieceAttribute.cs" />
-    <Compile Include="TypeColors.cs" />
     <Compile Include="PuzzlePieceBase.cs" />
-    <Compile Include="KnownColors.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightRequest.cs" />
     <Compile Include="Airport.cs" />
@@ -79,8 +75,6 @@
     <Compile Include="database1\SeatPrice.cs" />
     <Compile Include="database1\SeatPriceRequest.cs" />
     <Compile Include="database1\SeatRequest.cs" />
-    <Compile Include="DummyRun.cs" />
-    <Compile Include="IPuzzleQueryResolver.cs" />
     <Compile Include="database1\InvalidObjectException.cs" />
     <Compile Include="database1\SingleID.cs" />
     <Compile Include="Airline.cs" />
@@ -94,7 +88,6 @@
     <Compile Include="UserInterface1\IKeyValueTablePuzzlePiece.cs" />
     <Compile Include="UserInterface1\IPuzzlePiece.cs" />
     <Compile Include="UserInterface1\KeyValueTable.cs" />
-    <Compile Include="UserInterface1\KeyValueTableEditor.cs" />
     <Compile Include="UserInterface1\KeyValueTablePuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\LinkPiece.cs" />
@@ -104,9 +97,15 @@
     <Compile Include="UserInterface1\RunPiece.cs" />
     <Compile Include="UserInterface1\SeatPiece.cs" />
     <Compile Include="UserInterface1\TimePiece.cs" />
-    <Compile Include="gtk-gui\DSLImplementation.UserInterface.KeyValueTableEditor.cs" />
     <Compile Include="UserInterface1\SketchPad.cs" />
     <Compile Include="UserInterface1\SketchPadTool.cs" />
+    <Compile Include="KeyValueTableEditor.cs" />
+    <Compile Include="UserInterface1\CairoWidget.cs" />
+    <Compile Include="UserInterface1\DummyRun.cs" />
+    <Compile Include="UserInterface1\ImageLoader.cs" />
+    <Compile Include="UserInterface1\IPuzzleQueryResolver.cs" />
+    <Compile Include="UserInterface1\KnownColors.cs" />
+    <Compile Include="UserInterface1\TypeColors.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
