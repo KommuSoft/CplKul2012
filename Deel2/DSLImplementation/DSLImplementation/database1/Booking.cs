@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -14,6 +15,14 @@ namespace DSLImplementation.Database
 			this.flight = flight;
 			this.passenger = passenger;
 			this.seat = seat;
+		}
+
+		public Booking (IDataReader reader)
+		{
+			ID = reader.GetInt32(reader.GetOrdinal("id"));
+			flight = reader.GetInt32(reader.GetOrdinal("flight"));
+			passenger = reader.GetInt32(reader.GetOrdinal("passenger"));
+			seat = reader.GetInt32(reader.GetOrdinal("seat"));
 		}
 
 		public override string tableName ()

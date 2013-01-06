@@ -41,6 +41,7 @@ public class Test
 		SeatRequest sr = new SeatRequest ();
 		SeatPriceRequest spr = new SeatPriceRequest ();
 		PassengerRequest par = new PassengerRequest ();
+		BookingRequest br = new BookingRequest();
 
 		//------------------------------------------------------
 		Console.WriteLine ("Find the airline with ID = 1");
@@ -127,6 +128,10 @@ public class Test
 		//------------------------------------------------------
 		Console.WriteLine ("Find the seat_price with ID = 1");
 		println (spr.fetchSeatPriceFromSeatAndFlight (seatID: 1, flightID: 1));
+
+		//------------------------------------------------------
+		Console.WriteLine("Find the booking with passenger's name ILIKE bob");
+		println(br.fetchBookingFromPassenger(new Passenger(name: "bob")));
 
 		//------------------------------------------------------
 		Console.WriteLine ("Do some valid inserts");
