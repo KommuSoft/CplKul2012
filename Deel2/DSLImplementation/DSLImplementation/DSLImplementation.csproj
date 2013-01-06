@@ -33,17 +33,13 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="SketchPad.cs" />
     <Compile Include="CairoWidget.cs" />
     <Compile Include="ImageLoader.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PuzzlePieceAttribute.cs" />
     <Compile Include="TypeColors.cs" />
-    <Compile Include="IPuzzlePiece.cs" />
     <Compile Include="PuzzlePieceBase.cs" />
-    <Compile Include="RunPiece.cs" />
     <Compile Include="KnownColors.cs" />
-    <Compile Include="BookingPiece.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightRequest.cs" />
     <Compile Include="Airport.cs" />
@@ -69,11 +65,6 @@
     <Compile Include="database1\Util.cs" />
     <Compile Include="AirportAnswer.cs" />
     <Compile Include="SeatClass.cs" />
-    <Compile Include="PersonPiece.cs" />
-    <Compile Include="TimePiece.cs" />
-    <Compile Include="AirportPiece.cs" />
-    <Compile Include="LinkPiece.cs" />
-    <Compile Include="SketchPadTool.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
@@ -88,24 +79,34 @@
     <Compile Include="database1\SeatPrice.cs" />
     <Compile Include="database1\SeatPriceRequest.cs" />
     <Compile Include="database1\SeatRequest.cs" />
-    <Compile Include="QueryPiece.cs" />
     <Compile Include="DummyRun.cs" />
     <Compile Include="IPuzzleQueryResolver.cs" />
     <Compile Include="database1\InvalidObjectException.cs" />
     <Compile Include="database1\SingleID.cs" />
     <Compile Include="Airline.cs" />
-    <Compile Include="KeyValueTable.cs" />
-    <Compile Include="KeyValueTablePuzzlePieceBase.cs" />
-    <Compile Include="KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
-    <Compile Include="KeyValueTableEditor.cs" />
-    <Compile Include="IKeyValueTablePuzzlePiece.cs" />
-    <Compile Include="ParsableKeyValueTable.cs" />
     <Compile Include="Parsers.cs" />
-    <Compile Include="SeatPiece.cs" />
-    <Compile Include="FlightPiece.cs" />
-    <Compile Include="CountryPiece.cs" />
-    <Compile Include="CityPiece.cs" />
     <Compile Include="TilingAlgorithm.cs" />
+    <Compile Include="UserInterface1\AirportPiece.cs" />
+    <Compile Include="UserInterface1\BookingPiece.cs" />
+    <Compile Include="UserInterface1\CityPiece.cs" />
+    <Compile Include="UserInterface1\CountryPiece.cs" />
+    <Compile Include="UserInterface1\FlightPiece.cs" />
+    <Compile Include="UserInterface1\IKeyValueTablePuzzlePiece.cs" />
+    <Compile Include="UserInterface1\IPuzzlePiece.cs" />
+    <Compile Include="UserInterface1\KeyValueTable.cs" />
+    <Compile Include="UserInterface1\KeyValueTableEditor.cs" />
+    <Compile Include="UserInterface1\KeyValueTablePuzzlePieceBase.cs" />
+    <Compile Include="UserInterface1\KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
+    <Compile Include="UserInterface1\LinkPiece.cs" />
+    <Compile Include="UserInterface1\ParsableKeyValueTable.cs" />
+    <Compile Include="UserInterface1\PersonPiece.cs" />
+    <Compile Include="UserInterface1\QueryPiece.cs" />
+    <Compile Include="UserInterface1\RunPiece.cs" />
+    <Compile Include="UserInterface1\SeatPiece.cs" />
+    <Compile Include="UserInterface1\TimePiece.cs" />
+    <Compile Include="gtk-gui\DSLImplementation.UserInterface.KeyValueTableEditor.cs" />
+    <Compile Include="UserInterface1\SketchPad.cs" />
+    <Compile Include="UserInterface1\SketchPadTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
