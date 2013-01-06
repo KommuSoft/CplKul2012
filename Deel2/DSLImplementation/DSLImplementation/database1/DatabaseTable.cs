@@ -7,6 +7,19 @@ namespace DSLImplementation.Database
 {
 	public abstract class DatabaseTable
 	{
+		private bool hasID = false;
+		private int id;
+		
+		public int ID {
+			get {
+				return id;
+			}
+			set{
+				hasID = true;
+				id = value;
+			}
+		}
+
 		public abstract string tableName();
 
 		protected string createInsertQuery (string table, List<String> columns, List<Object> values)
@@ -103,6 +116,11 @@ namespace DSLImplementation.Database
 
 		protected virtual int insert (List<string> columns, List<object> values)
 		{
+			if (hasID) {
+				columns.Insert(0, "id");
+				values.Insert(0, ID);
+			}
+
 			string exceptionMessage;
 			if (!isValid (out exceptionMessage)) {
 				throw new InvalidObjectException (exceptionMessage);

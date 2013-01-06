@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class Location : SingleID
+	public class Location : DatabaseTable
 	{
 		public int start_airport { get; set; }
 		public int destination_airport { get; set; }

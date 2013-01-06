@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class Booking : SingleID
+	public class Booking : DatabaseTable
 	{
 		public int flight { get; set; }
 		public int passenger { get; set; }

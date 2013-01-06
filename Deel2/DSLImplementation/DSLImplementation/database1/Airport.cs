@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DSLImplementation.Database
 {
-	public class Airport : SingleID
+	public class Airport : DatabaseTable
 	{
 		public string code { get; set; }
 		public string name { get; set; }

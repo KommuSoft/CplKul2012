@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class City : SingleID
+	public class City : DatabaseTable
 	{
 		public string name { get; set; }
 		public int country { get; set; }

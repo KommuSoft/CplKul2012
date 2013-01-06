@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class Passenger : SingleID
+	public class Passenger : DatabaseTable
 	{
 		public string name { get; set; }
 

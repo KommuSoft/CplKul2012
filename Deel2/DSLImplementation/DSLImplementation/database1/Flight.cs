@@ -4,7 +4,7 @@ using System.Data;
 
 namespace DSLImplementation.Database
 {
-	public class Flight : SingleID
+	public class Flight : DatabaseTable
 	{
 		public int location { get; set; }
 		public int airline { get; set; }
