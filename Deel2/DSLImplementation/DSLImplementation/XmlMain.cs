@@ -6,6 +6,15 @@ using System.IO;
 namespace DSLImplementation.XmlRepresentation{
 	public class XmlMain{
 		public static void Main (string[] args){
+			//Testje van Jonas
+			Country belgium = new Country("Belgium");
+			RequestGetCities rgc = new RequestGetCities(belgium);
+			AnswerGetCities agc = rgc.execute();
+			XmlSerializer xr = new XmlSerializer(typeof(AnswerGetCities));
+			FileStream fss = File.Open("citiesBelgium.xml", FileMode.Create, FileAccess.Write);
+			xr.Serialize(fss, agc);
+			fss.Close();
+
 				//File 1
 				Country c = new Country("Belgie");
 				RequestGetCities cr = new RequestGetCities(c);

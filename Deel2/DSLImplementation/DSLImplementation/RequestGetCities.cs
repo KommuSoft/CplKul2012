@@ -1,5 +1,8 @@
 using System;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+
+
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestGetCity")]
@@ -17,6 +20,18 @@ namespace DSLImplementation.XmlRepresentation
 		public Country Country {
 			get;
 			set;
+		}
+
+		public AnswerGetCities execute()
+		{
+			Database.CityRequest cr = new Database.CityRequest();
+			List<Database.City> cities = cr.fetchCityFromCountry(new Database.Country(this.Country.Name));
+			List<City> resultCities = new List<City>();
+			foreach(Database.City c in cities){
+				resultCities.Add(new City(Name: c.name, Country: this.Country));
+			}
+
+			return new AnswerGetCities(resultCities);
 		}
 		
 	}
