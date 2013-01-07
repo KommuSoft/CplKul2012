@@ -54,10 +54,19 @@ namespace DSLImplementation.Database
 			return fetchFromQuery(query);
 		}
 
-		private void addJoin (List<string> tables, ref string where_, string table1, string alias1, string table2, string alias2, string column1, string column2)
+		private void addJoin (List<string> tables, ref string where_, string table1, string table2, string column1, string column2, string alias1 = "", string alias2 = "")
 		{
-			string name1 = table1 + " as " + alias1;
-			string name2 = table2 + " as " + alias2;
+
+			string name1 = table1;
+			if (alias1.Length > 0) {
+				name1 += " as " + alias1;
+			}
+
+			string name2 = table2;
+			if(alias2.Length > 0){
+				name2 += " as " + alias2;
+			}
+
 			if (!tables.Contains (name1)) {
 				tables.Add (name1);
 			}
@@ -66,18 +75,18 @@ namespace DSLImplementation.Database
 				tables.Add(name2);
 			}
 
-			where_ = where_ + alias1 + "." + column1 + " = " + alias2 + "." + column2 + " AND ";
+			where_ = where_ + ((alias1.Length > 0) ? alias1 : table1) + "." + column1 + " = " + ((alias2.Length > 0) ? alias2 : table2) + "." + column2 + " AND ";
 		}
 
 		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry){
-			List<string> tables = new List<string>{"flight as flight"};
+			List<string> tables = new List<string>{"flight"};
 
 			string where_ = "";
-			addJoin(tables, ref where_, "location", "location", "flight", "flight", "id", "location");
-			addJoin(tables, ref where_, "location", "location", "airport", "startAirport", "start_airport", "id");
-			addJoin(tables, ref where_, "airport", "startAirport", "country", "startCountry", "country", "id");
-			addJoin(tables, ref where_, "location", "location", "airport", "destinationAirport", "destination_airport", "id");
-			addJoin(tables, ref where_, "airport", "destinationAirport", "country", "destinationCountry", "country", "id");
+			addJoin(tables, ref where_, "location", "flight", "id", "location");
+			addJoin(tables, ref where_, "location", "airport", "start_airport", "id", alias2: "startAirport");
+			addJoin(tables, ref where_, "airport", "country", "country", "id", alias1: "startAirport", alias2: "startCountry");
+			addJoin(tables, ref where_, "location", "airport", "destination_airport", "id", alias2: "destinationAirport");
+			addJoin(tables, ref where_, "airport", "country", "country", "id", alias1: "destinationAirport", alias2: "destinationCountry");
 
 			string query = "SELECT flight.* FROM ";
 			string from_ = string.Join(", ", (tables.Select(X=>X.ToString()).ToArray()));
@@ -88,6 +97,7 @@ namespace DSLImplementation.Database
 
 			query += " startCountry.name ILIKE " + Util.parse (startCountry.name) + " AND " + " destinationCountry.name ILIKE " + Util.parse(destinationCountry.name);
 
+			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 	}
