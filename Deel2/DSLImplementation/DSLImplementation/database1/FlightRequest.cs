@@ -56,7 +56,6 @@ namespace DSLImplementation.Database
 
 		private void addJoin (List<string> tables, ref string where_, string table1, string table2, string column1, string column2, string alias1 = "", string alias2 = "")
 		{
-
 			string name1 = table1;
 			if (alias1.Length > 0) {
 				name1 += " as " + alias1;
@@ -95,7 +94,7 @@ namespace DSLImplementation.Database
 			query += where_;
 
 
-			query += " startCountry.name ILIKE " + Util.parse (startCountry.name) + " AND " + " destinationCountry.name ILIKE " + Util.parse(destinationCountry.name);
+			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
@@ -118,8 +117,9 @@ namespace DSLImplementation.Database
 			query += " WHERE ";
 			query += where_;
 
-			query += " startCity.name ILIKE " + Util.parse(startCity.name) + " AND " + " destinationCity.name ILIKE " + Util.parse(destinationCity.name);
+			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name);
 
+			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 	}
