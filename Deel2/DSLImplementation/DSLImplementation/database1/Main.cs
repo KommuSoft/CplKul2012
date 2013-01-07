@@ -273,5 +273,7 @@ public class Test
 		Airport destination = new Airport (code: "crl");
 
 		println (fr.fetchFlight (start, destination));
+
+		println (fr.fetchFlight(new Country("The Netherlands"), new Country("Belgium")));
 	}
 }
