@@ -275,5 +275,6 @@ public class Test
 		println (fr.fetchFlight (start, destination));
 
 		println (fr.fetchFlight(new Country("The Netherlands"), new Country("Belgium")));
+		println (fr.fetchFlight(new City("amsterdam"), new City("charleroi")));
 	}
 }

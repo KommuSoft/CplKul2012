@@ -91,13 +91,35 @@ namespace DSLImplementation.Database
 			string query = "SELECT flight.* FROM ";
 			string from_ = string.Join(", ", (tables.Select(X=>X.ToString()).ToArray()));
 			query += from_;
-			query += " where ";
+			query += " WHERE ";
 			query += where_;
 
 
 			query += " startCountry.name ILIKE " + Util.parse (startCountry.name) + " AND " + " destinationCountry.name ILIKE " + Util.parse(destinationCountry.name);
 
 			Console.WriteLine(query);
+			return fetchFromQuery(query);
+		}
+
+		public List<Flight> fetchFlight (City startCity, City destinationCity)
+		{
+			List<string> tables = new List<string>{"flight"};
+
+			string where_ = "";
+			addJoin(tables, ref where_, "location", "flight", "id", "location");
+			addJoin(tables, ref where_, "location", "airport", "start_airport", "id", alias2: "startAirport");
+			addJoin(tables, ref where_, "airport", "city", "city", "id", alias1: "startAirport", alias2: "startCity");
+			addJoin(tables, ref where_, "location", "airport", "destination_airport", "id",  alias2: "destinationAirport");
+			addJoin(tables, ref where_, "airport", "city", "city", "id", alias1: "destinationAirport", alias2: "destinationCity");
+
+			string query = "SELECT flight.* FROM ";
+			string from_ = string.Join(", ", (tables.Select(X => X.ToString()).ToArray()));
+			query += from_;
+			query += " WHERE ";
+			query += where_;
+
+			query += " startCity.name ILIKE " + Util.parse(startCity.name) + " AND " + " destinationCity.name ILIKE " + Util.parse(destinationCity.name);
+
 			return fetchFromQuery(query);
 		}
 	}
