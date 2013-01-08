@@ -7,7 +7,7 @@ namespace DSLImplementation.Database
 	{
 		public CountryRequest () : base() {}
 
-		public override string createBase ()
+		protected override string createBase ()
 		{
 			return "SELECT * FROM country";
 		}

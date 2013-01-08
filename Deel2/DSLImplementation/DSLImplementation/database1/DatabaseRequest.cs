@@ -35,7 +35,7 @@ namespace DSLImplementation.Database
 			return ((DatabaseTable)Activator.CreateInstance(typeof(T))).tableName();
 		}
 
-		public abstract string createBase ();
+		protected abstract string createBase ();
 		protected virtual string createQuery (List<string> columns, List<object> values)
 		{
 			return createBase() + createWhere(columns, values);

@@ -7,7 +7,7 @@ namespace DSLImplementation.Database
 	{
 		public SeatPriceRequest () : base() {}
 
-		public override string createBase ()
+		protected override string createBase ()
 		{
 			return "SELECT * FROM seat_price";
 		}

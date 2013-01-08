@@ -7,7 +7,7 @@ namespace DSLImplementation.Database
 	{
 		public PassengerRequest () : base() {}
 
-		public override string createBase ()
+		protected override string createBase ()
 		{
 			return "SELECT * FROM passenger";
 		}

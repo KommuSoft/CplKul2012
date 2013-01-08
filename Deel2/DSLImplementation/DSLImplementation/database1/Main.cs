@@ -234,6 +234,9 @@ public class Test
 		Country country1 = new Country();
 		tryCatch(country1);
 
+		Country country2 = new Country("bElGiuM");
+		tryCatch(country2);
+
 		Location location1 = new Location(start_airport: 9999, destination_airport:1, distance: 100);
 		tryCatch(location1);
 

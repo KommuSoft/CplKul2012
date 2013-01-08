@@ -7,7 +7,7 @@ namespace DSLImplementation.Database
 	{
 		public CityRequest () : base() {}
 
-		public override string createBase ()
+		protected override string createBase ()
 		{
 			return "SELECT * FROM city";
 		}

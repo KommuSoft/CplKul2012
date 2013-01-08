@@ -41,13 +41,13 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The name of the country is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The name of the country is invalid");
 			}
 
-
-			CountryRequest cr = new CountryRequest();
-
-			//TODO controleren dat er geen landen zijn met dezelfde naam
+			CountryRequest cr = new CountryRequest ();
+			if (cr.fetchCountryFromName (name).Count != 0) {
+				return makeExceptionMessage (out exceptionMessage, "The name of the country is invalid because it already exists.");
+			}
 
 			return makeExceptionMessage(out exceptionMessage);
 		}
