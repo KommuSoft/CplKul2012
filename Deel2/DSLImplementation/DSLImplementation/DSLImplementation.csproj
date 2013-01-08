@@ -143,6 +143,8 @@
     <Compile Include="UserInterface1\Pieces\KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="TilePatterns1\RequestGetCitiesTilePattern.cs" />
     <Compile Include="TilePatterns1\RequestGetAirportsTilingPattern.cs" />
+    <Compile Include="UserInterface1\Pieces\ClassPiece.cs" />
+    <Compile Include="AirlinePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

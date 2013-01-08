@@ -2,12 +2,12 @@ using System;
 
 namespace DSLImplementation.UserInterface {
 
-	[PuzzlePiece("Airport",TypeColors.Brown)]
+	[PuzzlePiece("Airport",TypeColors.Magenta)]
 	public class AirportPiece : KeyValueTableZeroArgumentPuzzlePieceBase {
 
 		public override TypeColors TypeColors {
 			get {
-				return TypeColors.Brown;
+				return TypeColors.Magenta;
 			}
 		}
 

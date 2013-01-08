@@ -2,7 +2,7 @@ using System;
 
 namespace DSLImplementation.XmlRepresentation {
 
-	public class XmlRequestBase : IXmlRequest {
+	public abstract class XmlRequestBase : IXmlRequest {
 
 	}
 }

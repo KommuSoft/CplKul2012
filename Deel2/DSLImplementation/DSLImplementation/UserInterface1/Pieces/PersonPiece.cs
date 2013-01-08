@@ -2,16 +2,16 @@ using System;
 
 namespace DSLImplementation.UserInterface {
 
-	[PuzzlePiece("Person",TypeColors.Green)]
-	public class PersonPiece : KeyValueTableZeroArgumentPuzzlePieceBase {
+	[PuzzlePiece("Passenger",TypeColors.Green)]
+	public class PassengerPiece : KeyValueTableZeroArgumentPuzzlePieceBase {
 
-		public override DSLImplementation.UserInterface.TypeColors TypeColors {
+		public override TypeColors TypeColors {
 			get {
 				return TypeColors.Green;
 			}
 		}
 
-		public PersonPiece () {
+		public PassengerPiece () {
 		}
 
 	}

@@ -7,7 +7,7 @@ namespace DSLImplementation.UserInterface {
 	[TilingPattern]
 	public class BookingRequestTilePattern : TilingPatternBase {
 
-		private static readonly Tree<TypeBind> typebind = new Tree<TypeBind>(typeof(BookingPiece),typeof(PersonPiece));
+		private static readonly Tree<TypeBind> typebind = new Tree<TypeBind>(typeof(BookingPiece),typeof(PassengerPiece));
 
 		public BookingRequestTilePattern () : base(typebind) {
 
