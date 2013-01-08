@@ -109,9 +109,7 @@ namespace DSLImplementation.Database
 
 		protected bool validTemplate (int id, out string exceptionMessage)
 		{
-			//TODO implementeer dit
-			exceptionMessage = "";
-			return true;
+			return validColumn(new FlightTemplateRequest(), id, out exceptionMessage);
 		}
 
 		protected virtual int insert (List<string> columns, List<object> values)

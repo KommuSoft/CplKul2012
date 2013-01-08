@@ -7,8 +7,11 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlRoot("RequestGetAirports")]
 	public class RequestGetAirports : XmlRequestBase
 	{
-		public RequestGetAirports (City City, Country Country){//TODO: waarom country nog eens megeven? Zit al in City
+		public RequestGetAirports (City City){
 			this.City = City;
+		}
+
+		public RequestGetAirports (Country Country){
 			this.Country = Country;
 		}
 		
@@ -23,20 +26,29 @@ namespace DSLImplementation.XmlRepresentation
 			get;
 			set;
 		}
-		
-		public override IXmlAnswer execute()
+
+		private List<Database.Airport> executeOnCountry ()
 		{
 			Database.AirportRequest ar = new Database.AirportRequest();
-			Database.AirlineRequest alr = new Database.AirlineRequest();
+			return ar.fetchAirportFromCountry(new Database.Country(this.Country.Name));
+		}
 
+		private List<Database.Airport> executeOnCity ()
+		{
+			Database.AirportRequest ar = new Database.AirportRequest();
+			return ar.fetchAirportFromCityAndCountry(new Database.City(this.City.Name),new Database.Country(this.Country.Name));
+		}
+		
+		public override IXmlAnswer execute ()
+		{
 			List<Database.Airport> airports = new List<Database.Airport>();
-			if(this.Country != null && this.City != null){
-				airports = ar.fetchAirportFromCityAndCountry(new Database.City(this.City.Name),new Database.Country(this.Country.Name));
-			} else if(this.Country != null){
-				airports = ar.fetchAirportFromCountry(new Database.Country(this.Country.Name));
-			} else if(this.City != null){
-				airports = ar.fetchAirportFromCityName(this.City.Name);
+			if (this.City != null) {
+				airports = executeOnCity();
+			} else if (this.Country != null) {
+				airports = executeOnCountry();
 			}
+
+			Database.AirlineRequest alr = new Database.AirlineRequest();
 			List<Airport> resultAirports = new List<Airport>();
 			foreach(Database.Airport a in airports){
 				Database.CityRequest cir = new Database.CityRequest();
