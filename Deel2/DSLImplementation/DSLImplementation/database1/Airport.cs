@@ -61,11 +61,17 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The name of the airport is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The name of the airport is invalid");
 			}
 
 			if (code.Length != 3 || !code.All (char.IsUpper)) {
-				return makeExceptionMessage(out exceptionMessage, "The code of the airport is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The code of the airport is invalid");
+			}
+
+			foreach (int c in company) {
+				if(!validAirline (c, out exceptionMessage)){
+					return false;
+				}
 			}
 
 			return validCity (city, out exceptionMessage) && validCountry(country, out exceptionMessage);

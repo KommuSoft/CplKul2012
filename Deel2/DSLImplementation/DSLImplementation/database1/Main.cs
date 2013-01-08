@@ -266,7 +266,6 @@ public class Test
 
 
 		//------------------------------------------------------
-		//TODO test insert booking
 		//TODO test insert flight
 		//------------------------------------------------------
 		Airport start = new Airport (code: "BRU");

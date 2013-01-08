@@ -59,6 +59,12 @@ namespace DSLImplementation.Database
 			return fetchFromQuery("SELECT * FROM airport WHERE country = " + cor.toQuery(country) + " AND city = " + cir.toQuery(city));
 		}
 
+		public List<Airport> fetchAirportFromCountry (Country country)
+		{
+			CountryRequest cor = new CountryRequest();
+			return fetchFromQuery("SELECT * FROM airport WHERE country = " + cor.toQuery(country));
+		}
+
 		public string toQuery (Airport airport)
 		{
 			string query = "(SELECT id FROM airport";
