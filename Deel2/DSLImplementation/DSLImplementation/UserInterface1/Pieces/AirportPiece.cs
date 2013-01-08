@@ -11,8 +11,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public AirportPiece ()
-		{
+		public AirportPiece () {
+			this.Table.AddKeyParserPair("name",Parsers.StringParser,Parsers.StringObjectParser);
+			this.Table.AddKeyParserPair("code",Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Z]{3}"));
 		}
 	}
 }
