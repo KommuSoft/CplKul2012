@@ -27,7 +27,9 @@ namespace DSLImplementation.Database
 			this.ID = ID;
 		}
 
-		public Airport (string name = "", string code = "", int country = -1, int city = -1, List<int> company = default(List<int>))
+		public Airport (string name = "", string code = "", int country = -1, int city = -1) : this(name, code, country, city, new List<int>()) {		}
+
+		public Airport (string name, string code, int country, int city, List<int> company)
 		{
 			this.name = name;
 			this.country = country;
