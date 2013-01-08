@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using DSLImplementation.UserInterface;
+
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("CityAnswer")]
-	public class AnswerGetCities
-	{
+	public class AnswerGetCities : IXmlAnswer {
 		
 		public AnswerGetCities(){
 		}
@@ -20,7 +20,16 @@ namespace DSLImplementation.XmlRepresentation
 		public List<City> Cities{
 			get;
 			set;
-		}	
+		}
+
+		#region IXmlAnswer implementation
+		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
+			foreach(City city in Cities) {
+				yield return new CityPiece();
+			}
+		}
+		#endregion
+	
 	}
 }
 

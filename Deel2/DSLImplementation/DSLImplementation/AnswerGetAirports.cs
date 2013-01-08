@@ -1,6 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using DSLImplementation.UserInterface;
+
 namespace DSLImplementation.XmlRepresentation
 {
 	//The answer for the request of airports
@@ -22,9 +23,10 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}	
 
-		public UserInterface.IPuzzlePiece ToPuzzlePiece(){
-			//TODO implementeer
-			return null;
+		public IEnumerable<IPuzzlePiece> ToPuzzlePieces() {
+			foreach(Airport ap in Airports) {
+				yield return new AirportPiece();
+			}
 		}
 	}
 }

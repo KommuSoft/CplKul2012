@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using DSLImplementation.XmlRepresentation;
@@ -12,8 +13,7 @@ namespace DSLImplementation.UserInterface {
 		public TilingAlgorithm () {
 		}
 
-		public static void LoadAssembly (Assembly asm)
-		{
+		public static void LoadAssembly (Assembly asm) {
 			Type[] empty = new Type[0x00];
 			object[] emptyargs = new object[0x00];
 			foreach(Type t in asm.GetTypes()) {
@@ -41,8 +41,7 @@ namespace DSLImplementation.UserInterface {
 
 		public IPuzzlePiece[] Resolve (IPuzzlePiece query) {
 			IXmlRequest ixq = Tile((RunPiece) query);
-			IXmlAnswer ixr = ixq.execute();
-			return new IPuzzlePiece[] {new TimePiece(),new AirportPiece(),new FlightPiece(),new PassengerPiece(),new PassengerPiece()};
+			return ixq.execute().ToPuzzlePieces().ToArray();
 		}
 
 	}

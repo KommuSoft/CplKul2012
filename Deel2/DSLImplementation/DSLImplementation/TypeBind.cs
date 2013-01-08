@@ -71,7 +71,7 @@ namespace DSLImplementation.UserInterface {
 						try {
 							tobind.Add(entry.Value,conv[entry.Key]);
 						}
-						catch(Exception e) {
+						catch {
 							return false;
 						}
 					}

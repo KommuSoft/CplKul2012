@@ -10,7 +10,6 @@
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
     <StartupObject>DSLImplementation.TopWindow</StartupObject>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,7 +60,9 @@
     <Compile Include="database1\Main.cs" />
     <Compile Include="database1\Util.cs" />
     <Compile Include="SeatClass.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TopWindow.cs" />
+    <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
     <Compile Include="database1\Airplane.cs" />
     <Compile Include="database1\AirplaneRequest.cs" />
     <Compile Include="database1\Airline.cs" />
@@ -115,12 +116,10 @@
     <Compile Include="RequestAddFlightTemplate.cs" />
     <Compile Include="RequestAddPassenger.cs" />
     <Compile Include="RequestAddSeatClass.cs" />
-    <Compile Include="RequestAirports.cs" />
     <Compile Include="RequestGetAirports.cs" />
     <Compile Include="RequestGetCities.cs" />
     <Compile Include="RequestGetFlights.cs" />
     <Compile Include="XmlMain.cs" />
-    <Compile Include="ZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\Pieces\AirportPiece.cs" />
     <Compile Include="UserInterface1\Pieces\BookingPiece.cs" />
     <Compile Include="UserInterface1\Pieces\CityPiece.cs" />
@@ -143,6 +142,8 @@
     <Compile Include="UserInterface1\Pieces\ClassPiece.cs" />
     <Compile Include="UserInterface1\Pieces\AirlinePiece.cs" />
     <Compile Include="RequestGetFlightsTilingPattern.cs" />
+    <Compile Include="UserInterface1\Pieces\ZeroArgumentPuzzlePieceBase.cs" />
+    <Compile Include="UserInterface1\Pieces\AddPiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -153,11 +154,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="Npgsql" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+    <Reference Include="gdk-sharp, gtk-sharp">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
-    <Reference Include="gtk-dotnet, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-dotnet-2.0</Package>
+    <Reference Include="gtk-sharp, gtk-sharp">
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -168,5 +169,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="database1\SQL_test.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
