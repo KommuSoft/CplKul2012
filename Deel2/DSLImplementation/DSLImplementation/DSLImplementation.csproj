@@ -34,8 +34,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="PuzzlePieceAttribute.cs" />
-    <Compile Include="PuzzlePieceBase.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightRequest.cs" />
     <Compile Include="Airport.cs" />
@@ -89,15 +87,12 @@
     <Compile Include="UserInterface1\TypeColors.cs" />
     <Compile Include="database1\DatabaseTable.cs" />
     <Compile Include="Tree.cs" />
-    <Compile Include="TypeBind.cs" />
     <Compile Include="ITree.cs" />
-    <Compile Include="ITilingPattern.cs" />
     <Compile Include="IXmlRequest.cs" />
     <Compile Include="IXmlAnswer.cs" />
     <Compile Include="TilePatterns1\BookingRequestTilePattern.cs" />
     <Compile Include="TilePatterns1\TilingPatternAttribute.cs" />
     <Compile Include="TilePatterns1\TilingAlgorithm.cs" />
-    <Compile Include="TilePatterns1\TilingPatternBase.cs" />
     <Compile Include="Airplane.cs" />
     <Compile Include="AnswerGetAirports.cs" />
     <Compile Include="AnswerGetCities.cs" />
@@ -144,6 +139,15 @@
     <Compile Include="RequestGetFlightsTilingPattern.cs" />
     <Compile Include="UserInterface1\Pieces\ZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\Pieces\AddPiece.cs" />
+    <Compile Include="AnswerAdd.cs" />
+    <Compile Include="TilePatterns1\AddCountryTilePattern.cs" />
+    <Compile Include="TilePatterns1\ITilePattern.cs" />
+    <Compile Include="TilePatterns1\TypeBind.cs" />
+    <Compile Include="TilePatterns1\AddCityTilePattern.cs" />
+    <Compile Include="UserInterface1\Pieces\SucceedFailPiece.cs" />
+    <Compile Include="TilePatterns1\TilePatternBase.cs" />
+    <Compile Include="UserInterface1\Pieces\PuzzlePieceBase.cs" />
+    <Compile Include="UserInterface1\Pieces\PuzzlePieceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

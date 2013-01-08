@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DSLImplementation.UserInterface;
 
 namespace DSLImplementation.XmlRepresentation
 {
@@ -20,10 +21,8 @@ namespace DSLImplementation.XmlRepresentation
 			this.message = message;
 		}
 
-		public IEnumerable<UserInterface.IPuzzlePiece> ToPuzzlePieces (){
-
-			//TODO implementeer
-			return null;
+		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
+			yield return new SucceedFailPiece();//TODO: invoke arguments
 		}
 	}
 }

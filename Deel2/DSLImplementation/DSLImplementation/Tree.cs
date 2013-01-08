@@ -1,5 +1,7 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSLImplementation {
 
@@ -30,24 +32,26 @@ namespace DSLImplementation {
 		}
 		public Tree (T data, params ITree<T>[] subtrees) : this(data,(IEnumerable<ITree<T>>) subtrees) {
 		}
-		public Tree (T data, params T[] subtrees) : this(data,(IEnumerable<T>) subtrees) {
+		public Tree (T data, params T[] items) : this(data,(IEnumerable<T>) items) {
 		}
 		public Tree (T data, IEnumerable<ITree<T>> subtrees) {
 			this.data = data;
 			this.subtrees = new List<ITree<T>>(subtrees);
 		}
-		public Tree (T data, IEnumerable<T> subtrees) {
+		public Tree (T data, IEnumerable<T> items) {
+			Console.WriteLine("Adding tree with {0} children",items.Count());
 			this.data = data;
 			this.subtrees = new List<ITree<T>>();
-			foreach(T subtree in subtrees) {
-				this.subtrees.Add(new Tree<T>(subtree));
+			foreach(T item in items) {
+				this.subtrees.Add(new Tree<T>(item));
 			}
 		}
 
 		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, out ITree<Q> swappedTree) {
+			swappedTree = null;
 			if(predicate(tree.Data,index,othertree.Data)) {
-				int nt = tree.NumberOfChildren;
 				int no = othertree.NumberOfChildren;
+				int nt = tree.NumberOfChildren;
 				ITree<Q>[] used = new ITree<Q>[no];
 				ITree<Q>[] swap = new ITree<Q>[nt];
 				ITree<Q> tmp;
@@ -55,7 +59,7 @@ namespace DSLImplementation {
 				for(int i = 0x00; i < nt; i++) {
 					found = false;
 					for(int j = 0x00; j < no; j++) {
-						if(othertree[j] != null && used[j] == null && ConjunctiveTreeSwapMatchPredicate(tree[i],i,othertree[j],predicate,out tmp)) {
+						if(othertree[j] != null && used[j] == null && ConjunctiveTreeSwapMatchPredicate(tree[i],j,othertree[j],predicate,out tmp)) {
 							used[j] = tmp;
 							swap[i] = tmp;
 							found = true;
@@ -63,7 +67,6 @@ namespace DSLImplementation {
 						}
 					}
 					if(found == false) {
-						swappedTree = null;
 						return false;
 					}
 				}
@@ -71,7 +74,6 @@ namespace DSLImplementation {
 				return true;
 			}
 			else {
-				swappedTree = null;
 				return false;
 			}
 		}
@@ -87,6 +89,20 @@ namespace DSLImplementation {
 			}
 			else {
 				return false;
+			}
+		}
+		public override string ToString ()
+		{
+			if (this.subtrees != null && this.subtrees.Count > 0x00) {
+				StringBuilder sb = new StringBuilder();
+				foreach(Tree<T> tt in this.subtrees) {
+					if(tt != null) {
+						sb.Append(tt.ToString());
+					}
+				}
+				return string.Format ("{0}({1})", Data,sb.ToString());
+			} else {
+				return Data.ToString();
 			}
 		}
 

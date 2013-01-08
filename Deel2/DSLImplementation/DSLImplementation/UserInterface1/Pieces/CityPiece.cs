@@ -11,8 +11,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public CityPiece ()
-		{
+		public CityPiece () {
+			this.Table.Add("name",null);
+			this.Table.AddParserPair(Parsers.StringParser,Parsers.StringParser);
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace DSLImplementation.UserInterface {
 
 	public class TilingAlgorithm : IPuzzleQueryResolver {
 
-		private static readonly List<ITilingPattern> patterns = new List<ITilingPattern>();
+		private static readonly List<ITilePattern> patterns = new List<ITilePattern>();
 
 		public TilingAlgorithm () {
 		}
@@ -17,10 +17,10 @@ namespace DSLImplementation.UserInterface {
 			Type[] empty = new Type[0x00];
 			object[] emptyargs = new object[0x00];
 			foreach(Type t in asm.GetTypes()) {
-				if(!t.IsAbstract && t.IsClass && typeof(ITilingPattern).IsAssignableFrom(t) && t.GetCustomAttributes(typeof(TilingPatternAttribute),false).Length > 0x00) {
+				if(!t.IsAbstract && t.IsClass && typeof(ITilePattern).IsAssignableFrom(t) && t.GetCustomAttributes(typeof(TilingPatternAttribute),false).Length > 0x00) {
 					ConstructorInfo ci = t.GetConstructor(empty);
 					if(ci != null) {
-						patterns.Add((ITilingPattern) ci.Invoke(emptyargs));
+						patterns.Add((ITilePattern) ci.Invoke(emptyargs));
 					}
 				}
 			}
@@ -30,7 +30,7 @@ namespace DSLImplementation.UserInterface {
 			return Tile(root[0x00]);
 		}
 		public IXmlRequest Tile (IPuzzlePiece ipp) {
-			foreach(ITilingPattern tp in patterns) {
+			foreach(ITilePattern tp in patterns) {
 				//Console.WriteLine("CHECKING {0}",tp);
 				if(tp.Match(ipp)) {
 					return tp.ToTransferCode(ipp);
@@ -41,6 +41,9 @@ namespace DSLImplementation.UserInterface {
 
 		public IPuzzlePiece[] Resolve (IPuzzlePiece query) {
 			IXmlRequest ixq = Tile((RunPiece) query);
+			if(ixq == null) {
+				return new IPuzzlePiece[] {new SucceedFailPiece()};//print fail message
+			}
 			return ixq.execute().ToPuzzlePieces().ToArray();
 		}
 

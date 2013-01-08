@@ -130,7 +130,7 @@ namespace DSLImplementation.Database
 			Console.WriteLine(query);
 
 			//TODO comment the following line if data can be added to the database
-			query = "SELECT * FROM country";
+			//query = "SELECT * FROM country";
 
 			Database db = new Database();
 			IDataReader reader = db.CreateCommand(query);

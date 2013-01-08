@@ -25,6 +25,7 @@ namespace DSLImplementation.Database
 
 		public IDataReader CreateCommand(string query)
 		{
+			Console.WriteLine(query);
 			dbcmd = dbcon.CreateCommand();
 			dbcmd.CommandText = query;
 			return dbcmd.ExecuteReader();

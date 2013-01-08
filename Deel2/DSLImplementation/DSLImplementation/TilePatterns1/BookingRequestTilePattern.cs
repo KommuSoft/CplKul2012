@@ -4,8 +4,8 @@ using DSLImplementation.XmlRepresentation;
 
 namespace DSLImplementation.UserInterface {
 
-	[TilingPattern]
-	public class BookingRequestTilePattern : TilingPatternBase {
+	//[TilingPattern]
+	public class BookingRequestTilePattern : TilePatternBase {
 
 		private static readonly Tree<TypeBind> typebind = new Tree<TypeBind>(typeof(BookingPiece),typeof(PassengerPiece));
 

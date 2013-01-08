@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace DSLImplementation.UserInterface {
 
 	[TilingPattern]
-	public class RequestGetAirportsTilePattern : TilingPatternBase {
+	public class RequestGetAirportsTilePattern : TilePatternBase {
 
 		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(QueryPiece),new TypeBind(typeof(AirportPiece),0x00),new TypeBind(typeof(CityPiece),"name","citynamename"),new TypeBind(typeof(CountryPiece),"name","countryname"));
 

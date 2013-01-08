@@ -4,7 +4,7 @@ using DSLImplementation.XmlRepresentation;
 
 namespace DSLImplementation.UserInterface {
 
-	public class RequestGetFlightsTilingPattern : TilingPatternBase {
+	public class RequestGetFlightsTilingPattern : TilePatternBase {
 
 		//private static readonly 
 
