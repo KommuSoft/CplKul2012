@@ -34,8 +34,6 @@ namespace DSLImplementation.XmlRepresentation
 			}
 
 			Database.Airplane airplane = new Database.Airplane (type: this.Airplane.Type, seat: seats);
-
-
 			AnswerAdd aa = new AnswerAdd ();
 			try {
 				airplane.insert();

@@ -5,10 +5,11 @@ namespace DSLImplementation.XmlRepresentation{
 		public Flight (){
 		}
 		
-		public Flight (String Name, String Code, Airline Airline){
+		public Flight (String Name, String Code, Airline Airline, DateTime StartDate){
 			this.Name = Name;
 			this.Code = Code;
 			this.Airline = Airline;
+			this.StartDate = StartDate;
 		}		
 		
 		[XmlAttribute("Name")]
@@ -28,8 +29,12 @@ namespace DSLImplementation.XmlRepresentation{
 			get;
 			set;
 		}
-		
-		
+
+		[XmlElement("StartDate")]
+		public DateTime StartDate{
+			get;
+			set;
+		}	
 	}
 }
 

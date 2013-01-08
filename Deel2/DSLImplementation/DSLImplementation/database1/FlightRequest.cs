@@ -122,6 +122,26 @@ namespace DSLImplementation.Database
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
+
+		public List<Flight> fetchFlightFromCodeAndStartDate(string code, DateTime startDate)
+		{
+			List<string> tables = new List<string>{"flight"};
+
+			string where_ = "";
+			addJoin(tables, ref where_, "flight", "flight_template", "template", "id");
+
+			string query = "SELECT flight.* FROM ";
+			string from_ = string.Join(", ", (tables.Select(X => X.ToString()).ToArray()));
+			query += from_;
+			query += " WHERE ";
+			query += where_;
+
+			query += " start_date = '" + Util.toDate(startDate) + "' AND ";
+			query += " start_time = '" + Util.toTime(startDate) + "'";
+
+			Console.WriteLine(query);
+			return fetchFromQuery(query);
+		}
 	}
 }
 

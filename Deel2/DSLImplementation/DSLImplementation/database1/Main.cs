@@ -275,5 +275,6 @@ public class Test
 
 		println (fr.fetchFlight(new Country("The Netherlands"), new Country("Belgium")));
 		println (fr.fetchFlight(new City("amsterdam"), new City("charleroi")));
+		println (fr.fetchFlightFromCodeAndStartDate("SN123", new DateTime(2012, 12, 25, 1, 30, 0)));
 	}
 }
