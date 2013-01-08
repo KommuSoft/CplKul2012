@@ -83,7 +83,6 @@
     <Compile Include="UserInterface1\SketchPadTool.cs" />
     <Compile Include="KeyValueTableEditor.cs" />
     <Compile Include="UserInterface1\CairoWidget.cs" />
-    <Compile Include="UserInterface1\DummyRun.cs" />
     <Compile Include="UserInterface1\ImageLoader.cs" />
     <Compile Include="UserInterface1\IPuzzleQueryResolver.cs" />
     <Compile Include="UserInterface1\KnownColors.cs" />
