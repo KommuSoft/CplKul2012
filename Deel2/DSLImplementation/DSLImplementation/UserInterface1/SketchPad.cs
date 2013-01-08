@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using Cairo;
-using Gtk;
 
 namespace DSLImplementation.UserInterface {
 
@@ -101,7 +100,7 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public SketchPad () : this (new DummyRun())
+		public SketchPad () : this (new TilingAlgorithm())
 		{
 		}
 		public SketchPad (IPuzzleQueryResolver resolver) {
@@ -154,8 +153,8 @@ namespace DSLImplementation.UserInterface {
 			case SketchPadTool.Modify :
 				ipp = this.GetPuzzlePiece(p);
 				if(ipp != null) {
-					if(ipp is IKeyValueTablePuzzlePiece<string,string>) {
-						KeyValueTableEditor<string,string>.RunDialog((ipp as IKeyValueTablePuzzlePiece<string,string>).Table);
+					if(ipp is IKeyValueTablePuzzlePiece<string,object>) {
+						KeyValueTableEditor<string,object>.RunDialog((ipp as IKeyValueTablePuzzlePiece<string,object>).Table);
 					}
 					else {
 						ExtensionMethods.ShowException("Cannot modify: the selected piece doesn't contain any information!");
@@ -233,7 +232,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		public void ExecuteQuery ()
 		{
-			if (this.rootpiece != null && this.rootpiece.Complete) {
+			if (this.rootpiece != null && this.rootpiece.CanExecute) {
 				QueryAnswerLocations qal = new QueryAnswerLocations (this.rootpiece, this.resolver.Resolve (this.rootpiece));
 				this.AddQueryAnswer (qal);
 				qal = new QueryAnswerLocations(new RunPiece ());
@@ -257,11 +256,26 @@ namespace DSLImplementation.UserInterface {
 			private int index;
 			public const double Margin = 10.0d;
 
+			ITree<IPuzzlePiece> ITree<IPuzzlePiece>.this [int index] {
+				get {
+					return this[index];
+				}
+			}
 			public IPuzzlePiece PieceParent {
 				get {
 					return null;
 				}
 				set {}
+			}
+			public IPuzzlePiece Data {
+				get {
+					return this;
+				}
+			}
+			public int NumberOfChildren {
+				get {
+					return this.NumberOfArguments;
+				}
 			}
 			public bool Complete {
 				get {

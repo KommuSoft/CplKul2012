@@ -3,9 +3,9 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestGetAirports")]
-	public class RequestGetAirports
+	public class RequestGetAirports : XmlRequestBase
 	{
-		public RequestGetAirports (City City, Country Country){
+		public RequestGetAirports (City City, Country Country){//TODO: waarom country nog eens megeven? Zit al in City
 			this.City = City;
 			this.Country = Country;
 		}

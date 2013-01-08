@@ -11,11 +11,17 @@ namespace DSLImplementation.UserInterface {
 			}
 			return val;
 		}
-		public static Parse<string> GenerateRegexMatchingParser (string regex) {
+		public static object StringObjectParser (string val) {
+			if(val == string.Empty) {
+				return null;
+			}
+			return val;
+		}
+		public static Parse<object> GenerateRegexMatchingParser (string regex) {
 			Regex rgx = new Regex(regex,RegexOptions.Compiled|RegexOptions.ExplicitCapture);
 			return x => RegexMatchingParser(rgx,x);
 		}
-		public static string RegexMatchingParser (Regex rgx, string text) {
+		public static object RegexMatchingParser (Regex rgx, string text) {
 			if(text == null || text == string.Empty) {
 				return null;
 			}
@@ -26,7 +32,7 @@ namespace DSLImplementation.UserInterface {
 				throw new Exception("Text doesn't match constraints!");
 			}
 		}
-		public static DateTime DateTimeParser (string val) {
+		public static object DateTimeParser (string val) {
 			return DateTime.Parse(val);
 		}
 

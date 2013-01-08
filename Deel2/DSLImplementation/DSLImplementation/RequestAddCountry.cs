@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestAddCountry")]
-	public class RequestAddCountry
+	public class RequestAddCountry : XmlRequestBase
 	{
 	
 		public RequestAddCountry ()

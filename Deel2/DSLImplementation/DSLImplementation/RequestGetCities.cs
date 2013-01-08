@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestGetCity")]
-	public class RequestGetCities
+	public class RequestGetCities : XmlRequestBase
 	{
 		public RequestGetCities ()
 		{

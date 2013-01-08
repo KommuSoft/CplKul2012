@@ -3,12 +3,12 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation{
 
 	[XmlRoot("RequestGetFlights")]
-	public class RequestGetFlights{
+	public class RequestGetFlights : XmlRequestBase {
 
 		public RequestGetFlights (){
 		}
 		
-		public RequestGetFlights(Airport Airport1, Airport Airport2, DateTime Time, Airline Airline, SeatClass SeatClass){
+		public RequestGetFlights(Airport Airport1, Airport Airport2, DateTime Time, Airline Airline, SeatClass SeatClass){//TODO: manier zoeken om verschillende types mee te geven: airports, cities, countries
 			this.Airport1 = Airport1;
 			this.Airport2 = Airport2;
 			this.Time = Time;

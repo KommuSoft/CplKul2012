@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestAirports")]
-	public class RequestAirports
+	public class RequestAirports : XmlRequestBase
 	{
 		public RequestAirports (City City, Country Country){
 			this.City = City;

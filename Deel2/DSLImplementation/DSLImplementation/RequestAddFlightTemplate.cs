@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestAddFlightTemplate")]
-	public class RequestAddFlightTemplate
+	public class RequestAddFlightTemplate : XmlRequestBase
 	{
 		
 		public RequestAddFlightTemplate (){

@@ -7,17 +7,26 @@ namespace DSLImplementation.UserInterface {
 
 
 		public const int ConstructionDelta = 0x40;
-		public static readonly Color Red	= new Color(1.0d,0.5d,0.5d);
-		public static readonly Color Green	= new Color(0.5d,1.0d,0.5d);
-		public static readonly Color Blue	= new Color(0.5d,0.5d,1.0d);
-		public static readonly Color Yellow	= new Color(1.0d,1.0d,0.5d);
-		public static readonly Color Purple	= new Color(0.75d,0.5d,0.75d);
-		public static readonly Color Orange	= new Color(1.0d,0.75d,0.5d);
-		public static readonly Color White	= new Color(1.0d,1.0d,1.0d);
-		public static readonly Color Brown	= new Color(0.48d,0.39d,0.29d);
+		public static readonly Color Blue = GenerateHTMLColor(0x0000AA);
+		public static readonly Color Green = GenerateHTMLColor(0x00AA00);
+		public static readonly Color Cyan = GenerateHTMLColor(0x00AAAA);
+		public static readonly Color Red = GenerateHTMLColor(0xAA0000);
+		public static readonly Color Magenta = GenerateHTMLColor(0xAA00AA);
+		public static readonly Color Brown = GenerateHTMLColor(0xAA5500);
+		public static readonly Color LightGray = GenerateHTMLColor(0xAAAAAA);
+		public static readonly Color DarkGray = GenerateHTMLColor(0x555555);
+		public static readonly Color BrightBlue = GenerateHTMLColor(0x5555FF);
+		public static readonly Color BrightGreen = GenerateHTMLColor(0x55FF55);
+		public static readonly Color BrightCyan = GenerateHTMLColor(0x55FFFF);
+		public static readonly Color BrightRed = GenerateHTMLColor(0xFF5555);
+		public static readonly Color BrightMagenta = GenerateHTMLColor(0xFF55FF);
+		public static readonly Color BrightYellow = GenerateHTMLColor(0xFFFF55);
+		public static readonly Color White = GenerateHTMLColor(0xFFFFFF);
+		public static readonly Color Orange = GenerateHTMLColor(0xFFA500);
+		public static readonly Color Purple = GenerateHTMLColor(0xA020F0);
 		public static readonly Color Black	= new Color(0.0d,0.0d,0.0d);
-		public static readonly Color DarkRed	= new Color(0.75d,0.0d,0.0d);
-		private static readonly Color[] colors = new Color[] {Red,Green,Blue,Yellow,Purple,Orange,White,Brown};
+		public static readonly Color LinkColor	= new Color(0.25d,0.0d,0.0d);
+		private static readonly Color[] colors = new Color[] {Blue,Green,Cyan,Red,Magenta,Brown,LightGray,DarkGray,BrightBlue,BrightGreen,BrightCyan,BrightRed,BrightMagenta,BrightYellow,White,Orange,Purple};
 		private static Pattern constructionPattern = null, shadowd = null, shadowr = null;
 
 		public static Pattern ShadowDownPattern {
@@ -32,6 +41,13 @@ namespace DSLImplementation.UserInterface {
 				}
 				return shadowd;
 			}
+		}
+		public static Color GenerateHTMLColor (int color)
+		{
+			int r = color>>0x10;
+			int g = (color>>0x08)&0xff;
+			int b = color&0xff;
+			return new Color(r/255.0d,g/255.0d,b/255.0d);
 		}
 		public static Pattern ShadowRightPattern {
 			get {

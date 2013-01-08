@@ -57,6 +57,7 @@ namespace DSLImplementation
 			Application.Init();
 			Gdk.Threads.Init();
 			Gdk.Threads.Enter();
+			TilingAlgorithm.LoadAssembly(Assembly.GetExecutingAssembly());
 			using(TopWindow mw = new TopWindow()) {
 				Application.Run();
 			}

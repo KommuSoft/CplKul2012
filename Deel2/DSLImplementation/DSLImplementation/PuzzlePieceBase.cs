@@ -17,6 +17,16 @@ namespace DSLImplementation.UserInterface {
 		private IPuzzlePiece parent;
 		private int index = -0x01;
 
+		public IPuzzlePiece Data {
+			get {
+				return this;
+			}
+		}
+		public int NumberOfChildren {
+			get {
+				return this.NumberOfArguments;
+			}
+		}
 		public event EventHandler BoundsChanged {
 			add {
 				this.boundsChanged += value;
@@ -54,6 +64,11 @@ namespace DSLImplementation.UserInterface {
 						this.index = -0x01;
 					}
 				}
+			}
+		}
+		ITree<IPuzzlePiece> ITree<IPuzzlePiece>.this [int index] {
+			get {
+				return this[index];
 			}
 		}
 		public IPuzzlePiece this [int index] {

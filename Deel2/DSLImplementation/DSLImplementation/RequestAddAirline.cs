@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestAddAirline")]
-	public class RequestAddAirline
+	public class RequestAddAirline : XmlRequestBase
 	{
 		public RequestAddAirline(){
 		}
