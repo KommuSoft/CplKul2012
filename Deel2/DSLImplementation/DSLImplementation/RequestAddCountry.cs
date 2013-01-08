@@ -22,10 +22,15 @@ namespace DSLImplementation.XmlRepresentation
 		
 		public override IXmlAnswer execute(){
 			Database.Country c = new Database.Country(this.Country.Name);
-			c.insert();
 
-			//TODO implementeer het antwoord
-			return null;
+			AnswerAdd aa = new AnswerAdd();
+			try{
+				c.insert();
+			} catch(Exception e){
+				aa = new AnswerAdd(e.Message);
+			}
+
+			return aa;
 		}
 		
 	}
