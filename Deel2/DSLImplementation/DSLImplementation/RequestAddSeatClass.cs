@@ -20,7 +20,16 @@ namespace DSLImplementation.XmlRepresentation
 
 		public override IXmlAnswer execute ()
 		{
-			throw new System.NotImplementedException ();
+			Database.Class class_ = new Database.Class(SeatClass.Name);
+			AnswerAdd aa = new AnswerAdd();
+
+			try{
+				class_.insert();
+			} catch(Exception e){
+				aa = new AnswerAdd(e.Message);
+			}
+
+			return aa;
 		}
 
 	}
