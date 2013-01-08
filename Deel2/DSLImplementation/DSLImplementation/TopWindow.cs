@@ -9,6 +9,7 @@ namespace DSLImplementation
 	{
 
 		private ListStore piecesStore;
+		private ScrolledWindow sw;
 
 		public TopWindow () : 
 				base(Gtk.WindowType.Toplevel)
@@ -26,6 +27,9 @@ namespace DSLImplementation
 			this.sketchpad.RootPiece = new RunPiece();
 			this.sketchpad.Tool = SketchPadTool.CreateNew;
 			this.invokePieces(Assembly.GetExecutingAssembly());
+			ScrolledWindow sw = new ScrolledWindow();
+			sw.Add(this.piecesView);
+			sw.SetPolicy(PolicyType.Never,PolicyType.Automatic);
 		}
 
 		private void invokePieces (Assembly assembly) {
