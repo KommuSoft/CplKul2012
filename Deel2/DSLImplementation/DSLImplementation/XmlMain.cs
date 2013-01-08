@@ -30,9 +30,9 @@ namespace DSLImplementation.XmlRepresentation{
 				List<Airport> airports = new List<Airport>();
 				//Door null te gebruiken zullen er geen airlines 
 				//zichtbaar worden in het xml-bestand
-				Airport a1 = new Airport("LendeledeAirport", "1", ci1, c, null);
-				Airport a2 = new Airport("WielsbekeAirport", "2", ci2, c, null);
-				Airport a3 = new Airport("VeurneAirport", "3", ci3, c, null);
+				Airport a1 = new Airport("LendeledeAirport", "1", ci1, null);
+				Airport a2 = new Airport("WielsbekeAirport", "2", ci2, null);
+				Airport a3 = new Airport("VeurneAirport", "3", ci3, null);
 				airports.Add(a1);
 				airports.Add(a2);
 				airports.Add(a3);

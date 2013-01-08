@@ -51,7 +51,7 @@ namespace DSLImplementation.XmlRepresentation
 					Database.Airline al = alr.fetchFromID(airline)[0];
 					airlines.Add(new Airline(al.name));
 				}
-				resultAirports.Add(new Airport(Name: a.name, Code: a.code, City: new City(ci.name, country), Country: country, Airlines: airlines));
+				resultAirports.Add(new Airport(Name: a.name, Code: a.code, City: new City(ci.name, country), Airlines: airlines));
 			}
 
 			return new AnswerGetAirports(resultAirports);

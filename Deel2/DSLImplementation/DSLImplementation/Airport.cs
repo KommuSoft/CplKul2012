@@ -10,11 +10,10 @@ namespace DSLImplementation.XmlRepresentation
 		{
 		}
 		
-		public Airport(String Name, String Code, City City, Country Country, List<Airline> Airlines){
+		public Airport(String Name, String Code, City City, List<Airline> Airlines){
 			this.Name = Name;
 			this.Code = Code;
 			this.City = City;
-			this.Country = Country;
 			this.Airlines = Airlines;
 		}
 		
@@ -32,12 +31,6 @@ namespace DSLImplementation.XmlRepresentation
 		
 		[XmlElement("City")]
 		public City City {
-			get;
-			set;
-		}
-		
-		[XmlElement("Country")]
-		public Country Country {
 			get;
 			set;
 		}

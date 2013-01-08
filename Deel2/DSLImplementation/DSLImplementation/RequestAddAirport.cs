@@ -24,7 +24,7 @@ namespace DSLImplementation.XmlRepresentation
 			Database.CountryRequest cor = new Database.CountryRequest ();
 			Database.CityRequest cir = new Database.CityRequest ();
 
-			int countryID = cor.fetchCountryFromName (this.Airport.Country.Name)[0].ID;
+			int countryID = cor.fetchCountryFromName (this.Airport.City.Country.Name)[0].ID;
 			int cityID = cir.fetchCityFromName (this.Airport.City.Name)[0].ID;
 
 			AnswerAdd aa = new AnswerAdd ();
