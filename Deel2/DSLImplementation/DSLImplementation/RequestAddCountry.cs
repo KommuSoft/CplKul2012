@@ -20,6 +20,10 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}
 		
+		public void execute(){
+			Database.CountryRequest cr = new Database.CountryRequest();
+		}
+		
 	}
 }
 
