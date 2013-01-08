@@ -1,9 +1,9 @@
-\section{User interface}
-\subsection{Overview}
+\subsection{User interface}
+\subsubsection{Overview}
 The userinterface describes the way how the user will communicate with the
 system, and thus by extend contains the domain specific language. In our case
 we've implemented a graphical language.
-\subsection{Motivation for the graphical language}
+\subsubsection{Motivation for the graphical language}
 Since most users who will use the systems are end-users and thus not
 programmers or technical people, some problems might occur with textual
 languages. Most end-users nowadays don't use any command line tools anymore and
@@ -30,19 +30,19 @@ expressive than their textual counterparts. Since we implement a domain
 specific language, we can see this as an advantage in order to prevent the
 users from making mistakes.
 \end{itemize}
-\subsection{Lexer}
+\subsubsection{Lexer}
 Most programming languages and by extend domain specific languages are parsed
 in a structure called abstract syntax trees. The source code first pases
 through a lexer who groups strings of characters together into tokens. Since we
 implemented a graphical language, the graphical ``source code'' is already
 tokenized: we simply group information into predefined graphical primitives who
 can be considered the equivalent of a token.
-\subsection{Parser}
+\subsubsection{Parser}
 When the source code is tokenized, a compiler component called the parser
 injects some structure in the token stream by converting the stream into a
 tree-structure. The parser knows how to do this since the order of the tokens
 contains some cues on how the data is structured.
-\subsection{Graphical language paradigms}
+\subsubsection{Graphical language paradigms}
 Graphical languages mainly use two paradigms: graph-based and tree-based. In a
 graph based language, the user uses two basic concepts: nodes and edges. A
 popular example is UML: the class diagram uses classes and the relations
@@ -55,8 +55,9 @@ checking if the brackets in the language are matching. Since these constraints
 are already forced at language level, it makes concepts easier for both the
 programmer in the domain specific language and the developer of the language
 itself.
-\subsection{Beyond the parser}
-\subsubsection{Abstract syntax tree}
+\subsubsection{Beyond the parser}
+%TODO: er moet nog een sub bij
+\paragraph{Abstract syntax tree}
 By working with a graphical language, we can however go beyond the parser. A
 first step after the parser is building an abstract syntax tree out of a
 concrete syntax tree: in a concrete syntax tree, the tokens are only
@@ -68,7 +69,8 @@ operator sign \verb+-+ will be the parent of the two integer leaves \verb+5+
 and \verb+3+. This step can also be enforced at language level: simply by
 making sure that the nodes in the tree contain data (independent from the fact
 that they are leaves or not).
-\subsubsection{Symbol tables}
+%TODO: er moet nog een sub bij
+\paragraph{Symbol tables}
 After the syntactical analysis, a semantical analysis is performed on a
 language. In this step, symbol tables are prepared. A symbol table contains the
 name of a variable, method,... together with information about that variable
@@ -86,38 +88,39 @@ specify implicit symbol tables. If we allow link-nodes into our language, the
 graphical language is based on a Directed Acyclic Graph.The user doesn't has to
 specify the same values a second time, but can simply introduce a link piece
 who points to a piece where the data is already specified.
-\paragraph{}
-\subsection{Proposed graphical language}
+\subparagraph{}
+\subsubsection{Proposed graphical language}
 We've implemented a graphical language following the tree paradigm. The
 graphical language is mainly based on a puzzle. In a puzzle, pieces must fit
 into the gaps other pieces provide. Since each puzzle piece fills one gap and
 provides zero or more gaps, a tree structure emerges.
-\subsubsection{Polymorphism and overloading}
+%TODO: er moet nog een sub bij
+\paragraph{Polymorphism and overloading}
 How can the graphical language hint (or even force) the use of a certain piece
 to fill a certain gap? In the physical world the gaps follow a certain pattern.
 Only pieces who are compatible with this pattern, can fit into the the gap.
-\paragraph{}
+\subparagraph{}
 The problem however with this approach is that the number of potential pieces
 is in most cases limited to one. Sometimes however, it is possible that their
 are different solutions to fill a gap. Most programming languages solve this
 problem with polymorphism. We will need a mechanism to allow polymorphism.
 Another aspect some puzzles use is graphical coherence: the resulting puzzles
 must form a picture, not a colorful ensemble of dots.
-\paragraph{}
+\subparagraph{}
 We adapted this concept to introduce polymorphism in our graphical language.
 Each gap is surrounded by a sequence of colors. Each piece is filled with a
 sequence of colors. If a puzzle piece has at least one color in common with the
 colors surrounding the gap, the user of the language is allowed to use this
-piece\footnote{It is of course possible that their are still constraints who
+piece\footnote{It is of course possible that there are still constraints who
 can't be expressed by a type system. The ``compiler'' of the domain specific
 language will have to check on these additional constraints.}.
-\paragraph{}
+\subparagraph{}
 Since the pieces only have to share one color, one can look to this relation as
 a many-to-many relation: each gap allows several types of pieces. On the the
 other hand a piece can fit into gaps with different type constraints. Therefore
 this aspect is stronger than polymorphism: also overloading is supported since
 the types of the ``parameters'' of a puzzle piece are somehow dynamic.
-\paragraph{}
+\subparagraph{}
 A constraint on the use of colors is that the number a person can distinct is
 limited. Research points out that humans with normal color perception
 (trichromatic) can distinct around 36 colors. Since domain specific languages
