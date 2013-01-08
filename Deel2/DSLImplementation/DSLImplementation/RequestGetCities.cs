@@ -31,8 +31,7 @@ namespace DSLImplementation.XmlRepresentation
 				resultCities.Add(new City(Name: c.name, Country: this.Country));
 			}
 
-			//TODO mag deze cast
-			return (IXmlAnswer) new AnswerGetCities(resultCities);
+			return new AnswerGetCities(resultCities);
 		}
 		
 	}

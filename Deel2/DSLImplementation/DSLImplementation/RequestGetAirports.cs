@@ -27,6 +27,8 @@ namespace DSLImplementation.XmlRepresentation
 		public override IXmlAnswer execute()
 		{
 			Database.AirportRequest ar = new Database.AirportRequest();
+			Database.AirlineRequest alr = new Database.AirlineRequest();
+
 			List<Database.Airport> airports = new List<Database.Airport>();
 			if(this.Country != null && this.City != null){
 				airports = ar.fetchAirportFromCityAndCountry(new Database.City(this.City.Name),new Database.Country(this.Country.Name));
@@ -43,8 +45,13 @@ namespace DSLImplementation.XmlRepresentation
 				Database.Country co = cor.fetchFromID(a.country)[0];
 
 				Country country = new Country(co.name);
-				//TODO airlines
-				resultAirports.Add(new Airport(Name: a.name, Code: a.code, City: new City(ci.name, country), Country: country, Airlines: new List<Airline>()));
+
+				List<Airline> airlines = new List<Airline>();
+				foreach(int airline in a.company){
+					Database.Airline al = alr.fetchFromID(airline)[0];
+					airlines.Add(new Airline(al.name));
+				}
+				resultAirports.Add(new Airport(Name: a.name, Code: a.code, City: new City(ci.name, country), Country: country, Airlines: airlines));
 			}
 
 			return new AnswerGetAirports(resultAirports);
