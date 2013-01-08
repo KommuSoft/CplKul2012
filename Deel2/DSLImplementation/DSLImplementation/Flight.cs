@@ -5,9 +5,8 @@ namespace DSLImplementation.XmlRepresentation{
 		public Flight (){
 		}
 		
-		public Flight (String Name, String Code, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane){
-			this.Name = Name;
-			this.Code = Code;
+		public Flight (FlightTemplate Template, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane){
+			this.Template = Template;
 			this.Airline = Airline;
 			this.StartDate = StartDate;
 			this.EndDate = EndDate;

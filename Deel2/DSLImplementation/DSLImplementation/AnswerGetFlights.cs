@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using DSLImplementation.UserInterface;
+
+
 namespace DSLImplementation.XmlRepresentation
 {
 	//The answer for the request of airports
 	[XmlRoot("FlightAnswer")]
-	public class AnswerGetFlights
+	public class AnswerGetFlights : IXmlAnswer
 	{
 		public AnswerGetFlights(){
 		}
@@ -21,6 +24,11 @@ namespace DSLImplementation.XmlRepresentation
 			get;
 			set;
 		}	
+
+
+		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
+			throw new NotImplementedException();
+		}
 		
 	}
 }
