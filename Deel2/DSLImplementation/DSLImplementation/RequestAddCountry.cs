@@ -21,7 +21,8 @@ namespace DSLImplementation.XmlRepresentation
 		}
 		
 		public void execute(){
-			Database.CountryRequest cr = new Database.CountryRequest();
+			Database.Country c = new Database.Country(this.Country.Name);
+			c.insert();
 		}
 		
 	}
