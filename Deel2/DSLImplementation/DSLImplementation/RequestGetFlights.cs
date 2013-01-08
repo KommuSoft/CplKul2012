@@ -101,40 +101,46 @@ namespace DSLImplementation.XmlRepresentation{
 			return fs;
 		}
 
-		private IXmlAnswer executeOnAirport ()
-		{
-			return null;
-		}
-
-		private IXmlAnswer executeOnCity ()
-		{
-			return null;
-		}
-
-		public override IXmlAnswer execute ()
+		private List<Database.Flight> executeOnAirport ()
 		{
 			Database.FlightRequest fr = new Database.FlightRequest ();
 			Database.AirportRequest ar = new Database.AirportRequest ();
 
-			if (Airport1 != null && Airport2 != null) {
-				
-			} else if (City1 != null && City2 != null) {
-				
-			}
-
 			int airport1ID = ar.fetchAirportFromCode(this.Airport1.Code)[0].ID;
 			int airport2ID = ar.fetchAirportFromCode(this.Airport2.Code)[0].ID;
-
+			
 			if (this.Airline == null) {
 				//TODO gebruik dit
 			}
-
+			
 			if (this.SeatClass == null) {
 				//TODO gebruik dit
 			}
+			
+			return fr.fetchFlight(airport1ID, airport2ID);
+		}
 
-			List<Database.Flight> dfs = fr.fetchFlight(airport1ID, airport2ID);
-			return new AnswerGetFlights(adapt (dfs));
+		private List<Database.Flight> executeOnCity ()
+		{
+			Database.CityRequest cr = new Database.CityRequest();
+			Database.FlightRequest fr = new Database.FlightRequest();
+
+			Database.City startCity = cr.fetchFromNameAndCountry(City1.Name, City1.Country.Name)[0];
+			Database.City endCity = cr.fetchFromNameAndCountry(City2.Name, City2.Country.Name)[0];
+
+			return fr.fetchFlight(startCity, endCity);
+		}
+
+		public override IXmlAnswer execute ()
+		{
+			List<Database.Flight> flights = new List<DSLImplementation.Database.Flight>();
+			if (Airport1 != null && Airport2 != null) {
+				flights = executeOnAirport();
+			} else if (City1 != null && City2 != null) {
+				flights = executeOnCity();
+			}
+
+			return new AnswerGetFlights(adapt (flights));
 		}
 		
 	}

@@ -28,6 +28,17 @@ namespace DSLImplementation.Database
 			return fetchFromQuery (createQuery("name", name));
 		}
 
+		public List<City> fetchFromNameAndCountry (string cityName, string countryName)
+		{
+			CountryRequest cr = new CountryRequest();
+			int countryID = cr.fetchCountryFromName(countryName)[0].ID;
+
+			List<string> columns = new List<string>{"country", "name"};
+			List<object> values = new List<object>{countryID, cityName};
+
+			return fetchFromQuery(createQuery(columns, values));
+		}
+
 		public string toQuery (City city)
 		{
 			string query = "(SELECT id FROM city ";
