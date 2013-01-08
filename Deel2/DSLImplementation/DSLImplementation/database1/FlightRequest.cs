@@ -8,7 +8,7 @@ namespace DSLImplementation.Database
 	{
 		public FlightRequest () : base(){}
 
-		protected override string createBase ()
+		public override string createBase ()
 		{
 			return "SELECT * FROM flight";
 		}

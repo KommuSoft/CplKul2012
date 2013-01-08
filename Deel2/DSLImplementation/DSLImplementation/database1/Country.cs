@@ -44,6 +44,9 @@ namespace DSLImplementation.Database
 				return makeExceptionMessage(out exceptionMessage, "The name of the country is invalid");
 			}
 
+
+			CountryRequest cr = new CountryRequest();
+
 			//TODO controleren dat er geen landen zijn met dezelfde naam
 
 			return makeExceptionMessage(out exceptionMessage);

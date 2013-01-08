@@ -7,7 +7,7 @@ namespace DSLImplementation.Database
 	{
 		public AirportRequest () : base() {}
 
-		protected override string createBase ()
+		public override string createBase ()
 		{
 			return "SELECT * FROM airport";
 		}
