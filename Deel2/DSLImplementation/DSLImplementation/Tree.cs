@@ -39,7 +39,6 @@ namespace DSLImplementation {
 			this.subtrees = new List<ITree<T>>(subtrees);
 		}
 		public Tree (T data, IEnumerable<T> items) {
-			Console.WriteLine("Adding tree with {0} children",items.Count());
 			this.data = data;
 			this.subtrees = new List<ITree<T>>();
 			foreach(T item in items) {

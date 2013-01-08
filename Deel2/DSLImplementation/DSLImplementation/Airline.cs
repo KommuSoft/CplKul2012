@@ -7,8 +7,9 @@ namespace DSLImplementation.XmlRepresentation
 		public Airline (){
 		}
 		
-		public Airline(String Name){
+		public Airline(String Name, string Code){
 			this.Name = Name;
+			this.Code = Code;
 		}
 		
 		[XmlAttribute("Name")]

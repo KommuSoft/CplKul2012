@@ -4,7 +4,7 @@ using DSLImplementation.UserInterface;
 namespace DSLImplementation.UserInterface {
 
 	[PuzzlePiece("Airline",TypeColors.Cyan)]
-	public class AirlinePiece : ZeroArgumentPuzzlePieceBase {
+	public class AirlinePiece : KeyValueTableZeroArgumentPuzzlePieceBase {
 
 		public override TypeColors TypeColors {
 			get {
@@ -13,6 +13,8 @@ namespace DSLImplementation.UserInterface {
 		}
 	
 		public AirlinePiece () {
+			this.Table.AddKeyParserPair("name",Parsers.StringParser,Parsers.StringObjectParser);
+			this.Table.AddKeyParserPair("code",Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Z]{2,3}"));
 		}
 	}
 }
