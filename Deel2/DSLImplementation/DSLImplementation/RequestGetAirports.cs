@@ -49,7 +49,7 @@ namespace DSLImplementation.XmlRepresentation
 				List<Airline> airlines = new List<Airline>();
 				foreach(int airline in a.company){
 					Database.Airline al = alr.fetchFromID(airline)[0];
-					airlines.Add(new Airline(al.name));
+					airlines.Add(new Airline(Name: al.name, Code: al.code));
 				}
 				resultAirports.Add(new Airport(Name: a.name, Code: a.code, City: new City(ci.name, country), Airlines: airlines));
 			}

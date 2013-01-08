@@ -25,7 +25,6 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}	
 
-
 		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
 			throw new NotImplementedException();
 		}
