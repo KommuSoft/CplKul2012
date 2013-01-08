@@ -3,9 +3,9 @@ using System;
 namespace DSLImplementation.UserInterface {
 
 	[AttributeUsage(AttributeTargets.Class)]
-	public class TilingPatternAttribute : Attribute {
+	public class TilePatternAttribute : Attribute {
 
-		public TilingPatternAttribute ()
+		public TilePatternAttribute ()
 		{
 		}
 

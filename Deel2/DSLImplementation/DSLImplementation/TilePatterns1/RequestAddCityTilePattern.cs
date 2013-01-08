@@ -3,12 +3,12 @@ using DSLImplementation.XmlRepresentation;
 
 namespace DSLImplementation.UserInterface {
 
-	[TilingPattern]
-	public class AddCityTilePattern : TilePatternBase {
+	[TilePatternAttribute]
+	public class RequestAddCityTilePattern : TilePatternBase {
 
 		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new TypeBind(typeof(CityPiece),0x00,"name","cityname"),new TypeBind(typeof(CountryPiece),"name","countryname"));
 
-		public AddCityTilePattern () : base(bindtree) {
+		public RequestAddCityTilePattern () : base(bindtree) {
 		}
 
 		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {

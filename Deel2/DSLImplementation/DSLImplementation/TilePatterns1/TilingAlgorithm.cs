@@ -17,7 +17,7 @@ namespace DSLImplementation.UserInterface {
 			Type[] empty = new Type[0x00];
 			object[] emptyargs = new object[0x00];
 			foreach(Type t in asm.GetTypes()) {
-				if(!t.IsAbstract && t.IsClass && typeof(ITilePattern).IsAssignableFrom(t) && t.GetCustomAttributes(typeof(TilingPatternAttribute),false).Length > 0x00) {
+				if(!t.IsAbstract && t.IsClass && typeof(ITilePattern).IsAssignableFrom(t) && t.GetCustomAttributes(typeof(TilePatternAttribute),false).Length > 0x00) {
 					ConstructorInfo ci = t.GetConstructor(empty);
 					if(ci != null) {
 						patterns.Add((ITilePattern) ci.Invoke(emptyargs));

@@ -91,7 +91,6 @@
     <Compile Include="IXmlRequest.cs" />
     <Compile Include="IXmlAnswer.cs" />
     <Compile Include="TilePatterns1\BookingRequestTilePattern.cs" />
-    <Compile Include="TilePatterns1\TilingPatternAttribute.cs" />
     <Compile Include="TilePatterns1\TilingAlgorithm.cs" />
     <Compile Include="Airplane.cs" />
     <Compile Include="AnswerGetAirports.cs" />
@@ -140,14 +139,16 @@
     <Compile Include="UserInterface1\Pieces\ZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\Pieces\AddPiece.cs" />
     <Compile Include="AnswerAdd.cs" />
-    <Compile Include="TilePatterns1\AddCountryTilePattern.cs" />
     <Compile Include="TilePatterns1\ITilePattern.cs" />
     <Compile Include="TilePatterns1\TypeBind.cs" />
-    <Compile Include="TilePatterns1\AddCityTilePattern.cs" />
     <Compile Include="UserInterface1\Pieces\SucceedFailPiece.cs" />
     <Compile Include="TilePatterns1\TilePatternBase.cs" />
     <Compile Include="UserInterface1\Pieces\PuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\Pieces\PuzzlePieceAttribute.cs" />
+    <Compile Include="TilePatterns1\RequestAddCityTilePattern.cs" />
+    <Compile Include="TilePatterns1\RequestAddCountryTilePattern.cs" />
+    <Compile Include="TilePatterns1\TilePatternAttribute.cs" />
+    <Compile Include="TilePatterns1\RequestAddAirportTilePattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
