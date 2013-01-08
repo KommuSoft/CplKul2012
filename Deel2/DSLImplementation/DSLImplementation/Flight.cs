@@ -5,11 +5,15 @@ namespace DSLImplementation.XmlRepresentation{
 		public Flight (){
 		}
 		
-		public Flight (String Name, String Code, Airline Airline, DateTime StartDate){
+		public Flight (String Name, String Code, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane){
 			this.Name = Name;
 			this.Code = Code;
 			this.Airline = Airline;
 			this.StartDate = StartDate;
+			this.EndDate = EndDate;
+			this.StartAirport = StartAirport;
+			this.DestinationAirport = DestinationAirport;
+			this.Airplane = Airplane;
 		}		
 		
 		[XmlAttribute("Name")]
@@ -30,11 +34,13 @@ namespace DSLImplementation.XmlRepresentation{
 			set;
 		}
 
-		[XmlElement("StartDate")]
-		public DateTime StartDate{
-			get;
-			set;
-		}	
+		public DateTime StartDate { get; set; }
+		public DateTime EndDate { get; set; }
+		public DateTime TravelTime { get; set; }
+		public Airport StartAirport { get; set; }
+		public Airport DestinationAirport { get; set; }
+		public Airplane Airplane { get; set; }
+		public FlightTemplate Template { get; set; }
 	}
 }
 
