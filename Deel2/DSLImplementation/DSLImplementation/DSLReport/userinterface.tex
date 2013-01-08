@@ -1,5 +1,35 @@
 \section{User interface}
 \subsection{Overview}
+The userinterface describes the way how the user will communicate with the
+system, and thus by extend contains the domain specific language. In our case
+we've implemented a graphical language.
+\subsection{Motivation for the graphical language}
+Since most users who will use the systems are end-users and thus not
+programmers or technical people, some problems might occur with textual
+languages. Most end-users nowadays don't use any command line tools anymore and
+have no proper understanding of technical textual languages. By implementing a
+graphical language, we aim to solve the following problems:
+\begin{itemize}
+ \itemit{A more semantical granularity} a problem with textual languages is
+the granularity, namely the character. Characters don't map to concepts
+directly. With graphical languages, we can foresee a primitive for each concept
+in the language. Therefore people have a better understanding of their queries.
+Furthermore one can easier debug aspects (since their are less issues with
+writing an incorrect character sequence).
+ \itemit{Giving hints to the user} A graphical language allows us to insert
+hints on how queries should be built. By adapting the primitives that only
+certain combinations will match, users won't lose time trying these
+combinations.
+\itemit{Interactive support}Most graphical languages require a tool that somehow
+tends to understand the language. These tools can offer interactive support
+with the end user in order to build correct queries. This is of course possible
+in a textual domain specific language. However these languages don't ``need''
+a tool to built them.
+\itemit{Limiting Expressiveness}Graphical languages are in general less
+expressive than their textual counterparts. Since we implement a domain
+specific language, we can see this as an advantage in order to prevent the
+users from making mistakes.
+\end{itemize}
 \subsection{Lexer}
 Most programming languages and by extend domain specific languages are parsed
 in a structure called abstract syntax trees. The source code first pases
