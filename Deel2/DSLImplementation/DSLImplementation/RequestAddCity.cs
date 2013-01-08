@@ -21,7 +21,18 @@ namespace DSLImplementation.XmlRepresentation
 
 		public override IXmlAnswer execute ()
 		{
-			throw new System.NotImplementedException ();
+			Database.CountryRequest cr = new Database.CountryRequest ();
+			int countryID = cr.fetchCountryFromName (this.City.Country)[0].ID;
+			Database.City city = new Database.City (name: this.City.Name, country: countryID);
+
+			AnswerAdd aa = new AnswerAdd();
+			try {
+				city.insert ();
+			} catch (Exception e) {
+				aa = new AnswerAdd(e.Message);
+			}
+
+			return aa;
 		}
 		
 	}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace DSLImplementation.XmlRepresentation
 {
@@ -19,7 +20,7 @@ namespace DSLImplementation.XmlRepresentation
 			this.message = message;
 		}
 
-		public UserInterface.IPuzzlePiece ToPuzzlePiece (){
+		public IEnumerable<UserInterface.IPuzzlePiece> ToPuzzlePieces (){
 
 			//TODO implementeer
 			return null;
