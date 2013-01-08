@@ -21,8 +21,18 @@ namespace DSLImplementation.XmlRepresentation
 
 		public override IXmlAnswer execute ()
 		{
-			throw new System.NotImplementedException ();
+			Database.FlightTemplate template = new Database.FlightTemplate(this.FlightTemplate.Code);
+			AnswerAdd aa = new AnswerAdd();
+
+			try{
+				template.insert();
+			} catch(Exception e){
+				aa = new AnswerAdd(e.Message);
+			}
+
+			return aa;
 		}
+
 
 	}
 }
