@@ -151,6 +151,8 @@
     <Compile Include="TilePatterns1\RequestAddAirportTilePattern.cs" />
     <Compile Include="database1\FlightTemplateRequest.cs" />
     <Compile Include="database1\FlightTemplate.cs" />
+    <Compile Include="UserInterface1\Pieces\FlightTemplatePiece.cs" />
+    <Compile Include="TilePatterns1\RequestAddFlightTemplateTilePattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

@@ -33,7 +33,7 @@ namespace DSLImplementation.XmlRepresentation
 			try {
 				airport.insert();
 			} catch (Exception e) {
-				aa = new AnswerAdd(e.Message);
+				aa = new AnswerAdd(e.ToString());
 			}
 
 			return aa;

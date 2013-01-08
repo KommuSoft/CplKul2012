@@ -5,8 +5,8 @@ namespace DSLImplementation.XmlRepresentation
 	[XmlType("FlightTemplate")]
 	public class FlightTemplate
 	{
-		public FlightTemplate ()
-		{
+		public FlightTemplate (string Code) {
+			this.Code = Code;
 		}
 		
 		[XmlAttribute("Code")]

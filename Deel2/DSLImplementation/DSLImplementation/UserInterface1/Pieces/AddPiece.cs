@@ -25,7 +25,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		public override int NumberOfOptionalArguments {
 			get {
-				return Math.Max(0x00,this.NumberOfArguments-0x02);
+				return Math.Max(0x00,this.NumberOfArguments-0x01);
 			}
 		}
 		public override bool Complete {
@@ -35,7 +35,7 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public AddPiece () {
-			this.updateArguments(0x02);
+			this.updateArguments(0x01);
 		}
 
 		private void updateArguments (int newn)
