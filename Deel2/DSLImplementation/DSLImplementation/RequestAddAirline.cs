@@ -29,7 +29,6 @@ namespace DSLImplementation.XmlRepresentation
 				aa = new AnswerAdd(e.Message);
 			}
 
-			//TODO maak op de juiste manier het antwoord
 			return aa;
 		}
 	}
