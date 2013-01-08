@@ -12,6 +12,7 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public PassengerPiece () {
+			this.Table.AddKeyParserPair("name",Parsers.StringParser,Parsers.StringObjectParser);
 		}
 
 	}
