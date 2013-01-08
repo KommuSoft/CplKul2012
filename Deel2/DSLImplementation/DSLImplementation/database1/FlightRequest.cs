@@ -77,7 +77,7 @@ namespace DSLImplementation.Database
 			where_ = where_ + ((alias1.Length > 0) ? alias1 : table1) + "." + column1 + " = " + ((alias2.Length > 0) ? alias2 : table2) + "." + column2 + " AND ";
 		}
 
-		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry){
+		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry, DateTime startDateTime = default(DateTime)){
 			List<string> tables = new List<string>{"flight"};
 
 			string where_ = "";
@@ -94,13 +94,13 @@ namespace DSLImplementation.Database
 			query += where_;
 
 
-			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name);
+			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name) + addAdditional(startDateTime: startDateTime);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 
-		public List<Flight> fetchFlight (City startCity, City destinationCity)
+		public List<Flight> fetchFlight (City startCity, City destinationCity, DateTime startDateTime = default(DateTime))
 		{
 			List<string> tables = new List<string>{"flight"};
 
@@ -117,7 +117,7 @@ namespace DSLImplementation.Database
 			query += " WHERE ";
 			query += where_;
 
-			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name);
+			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name) + addAdditional(startDateTime: startDateTime);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);

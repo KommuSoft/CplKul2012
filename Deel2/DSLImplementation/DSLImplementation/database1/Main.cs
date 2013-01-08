@@ -276,8 +276,8 @@ public class Test
 
 		println (fr.fetchFlight (start, destination));
 
-		println (fr.fetchFlight(new Country("The Netherlands"), new Country("Belgium")));
-		println (fr.fetchFlight(new City("amsterdam"), new City("charleroi")));
+		println (fr.fetchFlight(new Country("The Netherlands"), new Country("Belgium"), new DateTime(year: 2012, month: 1, day: 16)));
+		println (fr.fetchFlight(new City("amsterdam"), new City("charleroi"), new DateTime(year: 2012, month: 1, day: 16)));
 		println (fr.fetchFlightFromCodeAndStartDate("SN123", new DateTime(2012, 12, 25, 1, 30, 0)));
 	}
 }

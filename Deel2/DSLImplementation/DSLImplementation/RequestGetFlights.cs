@@ -10,11 +10,32 @@ namespace DSLImplementation.XmlRepresentation{
 
 		public RequestGetFlights (){
 		}
-		
-		public RequestGetFlights(Airport Airport1, Airport Airport2, DateTime Time, Airline Airline, SeatClass SeatClass){//TODO: manier zoeken om verschillende types mee te geven: airports, cities, countries
+
+		public RequestGetFlights (Airport Airport1, Airport Airport2, DateTime Start = default(DateTime))
+		{
 			this.Airport1 = Airport1;
 			this.Airport2 = Airport2;
-			this.Time = Time;
+			this.Start = Start;
+		}
+
+		public RequestGetFlights (City City1, City City2, DateTime Start = default(DateTime))
+		{
+			this.City1 = City1;
+			this.City2 = City2;
+			this.Start = Start;
+		}
+
+		public RequestGetFlights (Country Country1, Country Country2, DateTime Start = default(DateTime))
+		{
+			this.Country1 = Country1;
+			this.Country2 = Country2;
+			this.Start = Start;
+		}
+		
+		public RequestGetFlights(Airport Airport1, Airport Airport2, DateTime Time, Airline Airline, SeatClass SeatClass){//TODO: manier zoeken om verschillende types mee te geven: airports, cities, countries
+			//TODO: deze constructor zal volledig verdwijnen en zal vervangen door de bovenstaaande
+			this.Airport1 = Airport1;
+			this.Airport2 = Airport2;
 			this.Airline = Airline;
 			this.SeatClass = SeatClass;
 		}
@@ -30,13 +51,7 @@ namespace DSLImplementation.XmlRepresentation{
 			get;
 			set;
 		}
-		
-		[XmlElement("Time")]
-		public DateTime Time{
-			get;
-			set;
-		}
-		
+
 		[XmlElement("Airline")]
 		public Airline Airline{
 			get;
@@ -49,8 +64,11 @@ namespace DSLImplementation.XmlRepresentation{
 			set;
 		}
 
+		public DateTime Start { get; set; }
 		public City City1 { get; set; }
 		public City City2 { get; set; }
+		public Country Country1 { get; set; }
+		public Country Country2 { get; set; }
 
 		private List<Flight> adapt (List<Database.Flight> dfs)
 		{
@@ -116,28 +134,53 @@ namespace DSLImplementation.XmlRepresentation{
 			if (this.SeatClass == null) {
 				//TODO gebruik dit
 			}
+
+			if (Start != default(DateTime)) {
+				return fr.fetchFlight(airport1ID, airport2ID, startDateTime: Start);
+			} 
 			
 			return fr.fetchFlight(airport1ID, airport2ID);
 		}
 
 		private List<Database.Flight> executeOnCity ()
 		{
-			Database.CityRequest cr = new Database.CityRequest();
-			Database.FlightRequest fr = new Database.FlightRequest();
+			Database.CityRequest cr = new Database.CityRequest ();
+			Database.FlightRequest fr = new Database.FlightRequest ();
 
-			Database.City startCity = cr.fetchFromNameAndCountry(City1.Name, City1.Country.Name)[0];
-			Database.City endCity = cr.fetchFromNameAndCountry(City2.Name, City2.Country.Name)[0];
+			Database.City startCity = cr.fetchFromNameAndCountry (City1.Name, City1.Country.Name) [0];
+			Database.City endCity = cr.fetchFromNameAndCountry (City2.Name, City2.Country.Name) [0];
+
+			if (Start != default(DateTime)) {
+				return fr.fetchFlight(startCity, endCity, startDateTime: Start);
+			} 
 
 			return fr.fetchFlight(startCity, endCity);
 		}
 
+		private List<Database.Flight> executedOnCountry ()
+		{
+			Database.CountryRequest cr = new Database.CountryRequest ();
+			Database.FlightRequest fr = new Database.FlightRequest ();
+
+			Database.Country startCountry = cr.fetchCountryFromName (Country1.Name) [0];
+			Database.Country endCountry = cr.fetchCountryFromName (Country2.Name) [0];
+
+			if (Start != default(DateTime)) {
+				return fr.fetchFlight(startCountry, endCountry, startDateTime: Start);
+			}
+
+			return fr.fetchFlight(startCountry, endCountry);
+		}
+
 		public override IXmlAnswer execute ()
 		{
-			List<Database.Flight> flights = new List<DSLImplementation.Database.Flight>();
+			List<Database.Flight> flights = new List<DSLImplementation.Database.Flight> ();
 			if (Airport1 != null && Airport2 != null) {
-				flights = executeOnAirport();
+				flights = executeOnAirport ();
 			} else if (City1 != null && City2 != null) {
-				flights = executeOnCity();
+				flights = executeOnCity ();
+			} else if (Country1 != null & Country2 != null) {
+				flights = executedOnCountry();
 			}
 
 			return new AnswerGetFlights(adapt (flights));
