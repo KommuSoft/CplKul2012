@@ -4,7 +4,7 @@ namespace DSLImplementation.XmlRepresentation {
 
 	public abstract class XmlRequestBase : IXmlRequest {
 
-		abstract IXmlAnswer execute ();
+		public abstract IXmlAnswer execute ();
 
 	}
 }
