@@ -7,6 +7,7 @@ namespace DSLImplementation.UserInterface {
 
 		private readonly Type type;
 		private readonly Dictionary<string,string> bindingtable;
+		private readonly int index = -0x01;
 
 		public Type Type {
 			get {
@@ -16,6 +17,11 @@ namespace DSLImplementation.UserInterface {
 		public Dictionary<string, string> Bindingtable {
 			get {
 				return bindingtable;
+			}
+		}
+		public int Index {
+			get {
+				return index;
 			}
 		}
 
@@ -40,14 +46,14 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public static bool Match (TypeBind tb, IPuzzlePiece ipp) {
-			return (ipp != null && tb.type.IsAssignableFrom(ipp.GetType()));
+		public static bool Match (TypeBind tb, int index, IPuzzlePiece ipp) {
+			return (ipp != null && tb.type.IsAssignableFrom(ipp.GetType()) && (tb.index == -0x01 || tb.index == index));
 		}
-		public bool Match (IPuzzlePiece ipp) {
-			return Match(this,ipp);
+		public bool Match (IPuzzlePiece ipp, int index) {
+			return Match(this,index,ipp);
 		}
-		public static bool MatchAndBind (TypeBind tb, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
-			if(Match(tb,ipp)) {
+		public static bool MatchAndBind (TypeBind tb, int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
+			if(Match(tb,index,ipp)) {
 				if(tb.bindingtable != null && tb.bindingtable.Count > 0x00) {
 					if(!(ipp is IKeyValueTablePuzzlePiece<string,object>)) {
 						return false;

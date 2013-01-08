@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation {
 
-	public delegate bool TreeMatchingPredicate<T,Q> (T t, Q q);
+	public delegate bool TreeMatchingPredicate<T,Q> (T t, int index, Q q);
 
 	public class Tree<T> : ITree<T> {
 
@@ -44,18 +44,18 @@ namespace DSLImplementation {
 			}
 		}
 
-		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, out ITree<Q> swappedTree) {
-			if(predicate(tree.Data,othertree.Data)) {
+		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, out ITree<Q> swappedTree) {
+			if(predicate(tree.Data,index,othertree.Data)) {
 				int nt = tree.NumberOfChildren;
 				int no = othertree.NumberOfChildren;
 				ITree<Q>[] used = new ITree<Q>[no];
 				ITree<Q>[] swap = new ITree<Q>[nt];
 				ITree<Q> tmp;
 				bool found;
-				for(int i = 0x00; i < tree.NumberOfChildren; i++) {
+				for(int i = 0x00; i < nt; i++) {
 					found = false;
 					for(int j = 0x00; j < no; j++) {
-						if(othertree[j] != null && used[j] == null && ConjunctiveTreeSwapMatchPredicate(tree[i],othertree[j],predicate,out tmp)) {
+						if(othertree[j] != null && used[j] == null && ConjunctiveTreeSwapMatchPredicate(tree[i],i,othertree[j],predicate,out tmp)) {
 							used[j] = tmp;
 							swap[i] = tmp;
 							found = true;
@@ -75,12 +75,11 @@ namespace DSLImplementation {
 				return false;
 			}
 		}
-		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate) {
-			if(predicate(tree.Data,othertree.Data)) {
+		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree,int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate) {
+			if(predicate(tree.Data,index,othertree.Data)) {
 				int nt = tree.NumberOfChildren;
-				int no = othertree.NumberOfChildren;
-				for(int i = 0x00; i < tree.NumberOfChildren; i++) {
-					if(othertree[i] == null || !ConjunctiveTreeNonSwapMatchPredicate(tree[i],othertree[i],predicate)) {
+				for(int i = 0x00; i < nt; i++) {
+					if(othertree[i] == null || !ConjunctiveTreeNonSwapMatchPredicate(tree[i],i,othertree[i],predicate)) {
 						return false;
 					}
 				}
