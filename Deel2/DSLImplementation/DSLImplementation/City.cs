@@ -11,6 +11,7 @@ namespace DSLImplementation.XmlRepresentation
 		
 		public City(String Name, Country Country){
 			this.Name = Name;
+			this.Country = Country;
 		}
 
 		[XmlAttribute("Name")]
@@ -19,8 +20,8 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}
 		
-		[XmlAttribute("Country")]
-		public String Country{
+		[XmlElement("Country")]
+		public Country Country{
 			get;
 			set;
 		}		

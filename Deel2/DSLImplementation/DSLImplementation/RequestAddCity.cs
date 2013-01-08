@@ -22,7 +22,7 @@ namespace DSLImplementation.XmlRepresentation
 		public override IXmlAnswer execute ()
 		{
 			Database.CountryRequest cr = new Database.CountryRequest ();
-			int countryID = cr.fetchCountryFromName (this.City.Country)[0].ID;
+			int countryID = cr.fetchCountryFromName (this.City.Country.Name)[0].ID;
 			Database.City city = new Database.City (name: this.City.Name, country: countryID);
 
 			AnswerAdd aa = new AnswerAdd();
