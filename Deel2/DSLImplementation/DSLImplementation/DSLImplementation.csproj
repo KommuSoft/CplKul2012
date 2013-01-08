@@ -106,7 +106,6 @@
     <Compile Include="FlightAnswer.cs" />
     <Compile Include="FlightTemplate.cs" />
     <Compile Include="Passenger.cs" />
-    <Compile Include="PlanePiece.cs" />
     <Compile Include="RequestAddAirline.cs" />
     <Compile Include="RequestAddAirplane.cs" />
     <Compile Include="RequestAddAirport.cs" />
@@ -143,7 +142,7 @@
     <Compile Include="TilePatterns1\RequestGetCitiesTilePattern.cs" />
     <Compile Include="TilePatterns1\RequestGetAirportsTilingPattern.cs" />
     <Compile Include="UserInterface1\Pieces\ClassPiece.cs" />
-    <Compile Include="AirlinePiece.cs" />
+    <Compile Include="UserInterface1\Pieces\AirlinePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
