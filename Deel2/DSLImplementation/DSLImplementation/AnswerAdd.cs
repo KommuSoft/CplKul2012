@@ -22,6 +22,10 @@ namespace DSLImplementation.XmlRepresentation
 		}
 
 		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
+			if(!this.succesful) {
+				Console.Error.WriteLine("ERROR {0}",this.message);
+				Console.WriteLine("ERROR {0}",this.message);
+			}
 			yield return new SucceedFailPiece();//TODO: invoke arguments
 		}
 	}

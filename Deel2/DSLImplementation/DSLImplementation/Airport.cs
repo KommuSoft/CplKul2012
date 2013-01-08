@@ -10,7 +10,7 @@ namespace DSLImplementation.XmlRepresentation
 		{
 		}
 
-		public Airport (string Name, string code, City City) : this(Name, code, City, new List<Airline>()) {}
+		public Airport (string Name, string Code, City City) : this(Name, Code, City, new List<Airline>()) {}
 		
 		public Airport(String Name, String Code, City City, List<Airline> Airlines){
 			this.Name = Name;
