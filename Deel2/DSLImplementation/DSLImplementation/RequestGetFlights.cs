@@ -44,7 +44,12 @@ namespace DSLImplementation.XmlRepresentation{
 		public SeatClass SeatClass{
 			get;
 			set;
-		}		
+		}
+
+		public override IXmlAnswer execute ()
+		{
+			throw new System.NotImplementedException ();
+		}
 		
 	}
 }

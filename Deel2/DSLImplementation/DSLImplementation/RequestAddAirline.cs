@@ -16,7 +16,16 @@ namespace DSLImplementation.XmlRepresentation
 		public Airline Airline{
 			get;
 			set;
-		}		
+		}	
+
+		public override IXmlAnswer execute()
+		{
+			Database.Airline airline = new Database.Airline(code: this.Airline.Code, name: this.Airline.Name);
+			airline.insert();
+
+			//TODO maak op de juiste manier het antwoord
+			return null;
+		}
 	}
 }
 

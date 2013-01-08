@@ -5,7 +5,7 @@ namespace DSLImplementation.XmlRepresentation
 {
 	//The answer for the request of airports
 	[XmlRoot("AirportAnswer")]
-	public class AnswerGetAirports
+	public class AnswerGetAirports : IXmlAnswer
 	{
 		public AnswerGetAirports(){
 		}
@@ -21,7 +21,11 @@ namespace DSLImplementation.XmlRepresentation
 			get;
 			set;
 		}	
-		
+
+		public UserInterface.IPuzzlePiece ToPuzzlePiece(){
+			//TODO implementeer
+			return null;
+		}
 	}
 }
 

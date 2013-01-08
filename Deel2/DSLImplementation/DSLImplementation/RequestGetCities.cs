@@ -22,7 +22,7 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}
 
-		public AnswerGetCities execute()
+		public override IXmlAnswer execute()
 		{
 			Database.CityRequest cr = new Database.CityRequest();
 			List<Database.City> cities = cr.fetchCityFromCountry(new Database.Country(this.Country.Name));
@@ -31,7 +31,8 @@ namespace DSLImplementation.XmlRepresentation
 				resultCities.Add(new City(Name: c.name, Country: this.Country));
 			}
 
-			return new AnswerGetCities(resultCities);
+			//TODO mag deze cast
+			return (IXmlAnswer) new AnswerGetCities(resultCities);
 		}
 		
 	}

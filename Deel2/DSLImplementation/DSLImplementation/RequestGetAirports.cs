@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-
 namespace DSLImplementation.XmlRepresentation
 {
 	[XmlRoot("RequestGetAirports")]
@@ -25,7 +24,7 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}
 		
-		public AnswerGetAirports execute()
+		public override IXmlAnswer execute()
 		{
 			Database.AirportRequest ar = new Database.AirportRequest();
 			List<Database.Airport> airports = new List<Database.Airport>();

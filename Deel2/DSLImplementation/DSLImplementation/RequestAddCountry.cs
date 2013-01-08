@@ -20,9 +20,12 @@ namespace DSLImplementation.XmlRepresentation
 			set;
 		}
 		
-		public void execute(){
+		public override IXmlAnswer execute(){
 			Database.Country c = new Database.Country(this.Country.Name);
 			c.insert();
+
+			//TODO implementeer het antwoord
+			return null;
 		}
 		
 	}

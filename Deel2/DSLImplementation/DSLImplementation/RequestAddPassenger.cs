@@ -17,6 +17,11 @@ namespace DSLImplementation.XmlRepresentation
 			get;
 			set;
 		}	
+
+		public override IXmlAnswer execute ()
+		{
+			throw new System.NotImplementedException ();
+		}
 		
 	}
 }
