@@ -41,7 +41,7 @@ namespace DSLImplementation.UserInterface {
 
 		public IPuzzlePiece[] Resolve (IPuzzlePiece query) {
 			IXmlRequest ixq = Tile((RunPiece) query);
-			IXmlAnswer ixr = ixq.PerformAction();
+			IXmlAnswer ixr = ixq.execute();
 			return new IPuzzlePiece[] {new TimePiece(),new AirportPiece(),new FlightPiece(),new PersonPiece(),new PersonPiece()};
 		}
 

@@ -4,7 +4,7 @@ namespace DSLImplementation.XmlRepresentation {
 
 	public interface IXmlRequest {
 
-		IXmlAnswer PerformAction();
+		IXmlAnswer execute ();
 
 	}
 }

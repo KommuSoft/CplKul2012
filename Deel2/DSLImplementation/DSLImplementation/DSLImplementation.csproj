@@ -59,7 +59,6 @@
     <Compile Include="database1\LocationRequest.cs" />
     <Compile Include="database1\Main.cs" />
     <Compile Include="database1\Util.cs" />
-    <Compile Include="AirportAnswer.cs" />
     <Compile Include="SeatClass.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TopWindow.cs" />
@@ -122,7 +121,6 @@
     <Compile Include="RequestAirports.cs" />
     <Compile Include="RequestGetAirports.cs" />
     <Compile Include="RequestGetCities.cs" />
-    <Compile Include="RequestGetCity.cs" />
     <Compile Include="RequestGetFlights.cs" />
     <Compile Include="XmlMain.cs" />
     <Compile Include="ZeroArgumentPuzzlePieceBase.cs" />
