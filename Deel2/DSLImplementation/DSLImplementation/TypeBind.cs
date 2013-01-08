@@ -29,12 +29,16 @@ namespace DSLImplementation.UserInterface {
 			this.type = type;
 			this.bindingtable = null;
 		}
-		public TypeBind (Type type, Dictionary<string,string> bindingtable) {
-			this.type = type;
+		public TypeBind (Type type, int index) : this(type) {
+			this.index = index;
+		}
+		public TypeBind (Type type, Dictionary<string,string> bindingtable) : this(type) {
 			this.bindingtable = bindingtable;
 		}
-		public TypeBind (Type type, params string[] bindingtable)
-		{
+		public TypeBind (Type type, int index, Dictionary<string,string> bindingtable) : this(type,index) {
+			this.bindingtable = bindingtable;
+		}
+		public TypeBind (Type type, params string[] bindingtable) {
 			this.type = type;
 			if (bindingtable.Length > 0x00) {
 				this.bindingtable = new Dictionary<string, string> ();
@@ -44,6 +48,9 @@ namespace DSLImplementation.UserInterface {
 			} else {
 				this.bindingtable = null;
 			}
+		}
+		public TypeBind (Type type, int index, params string[] bindingtable) : this(type,bindingtable) {
+			this.index = index;
 		}
 
 		public static bool Match (TypeBind tb, int index, IPuzzlePiece ipp) {
