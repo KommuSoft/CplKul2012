@@ -23,6 +23,12 @@ namespace DSLImplementation.Database
 			string query = "SELECT * FROM class WHERE (name"+ Util.fetchOperator(name.GetType()) + Util.parse(name) + "AND id = ANY(SELECT class FROM seat WHERE id = ANY(SELECT seat FROM seat_price WHERE flight = " + flightID + ") GROUP BY class))";
 			return fetchFromQuery(query);
 		}
+
+		public List<Class> fetchClassFromName(string name)
+		{
+			string query = "SELECT * FROM class WHERE name "+ Util.fetchOperator(name.GetType()) + Util.parse(name);
+			return fetchFromQuery(query);
+		}
 	}
 }
 
