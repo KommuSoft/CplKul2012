@@ -143,6 +143,7 @@
     <Compile Include="TilePatterns1\RequestGetAirportsTilingPattern.cs" />
     <Compile Include="UserInterface1\Pieces\ClassPiece.cs" />
     <Compile Include="UserInterface1\Pieces\AirlinePiece.cs" />
+    <Compile Include="RequestGetFlightsTilingPattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
