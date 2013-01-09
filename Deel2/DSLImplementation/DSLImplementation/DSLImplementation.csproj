@@ -157,6 +157,7 @@
     <Compile Include="UserInterface1\TopWindow.cs" />
     <Compile Include="TilePatterns1\XmlRequestBase.cs" />
     <Compile Include="TilePatterns1\RequestAddAirplaneTilePattern.cs" />
+    <Compile Include="UserInterface1\Pieces\AirplanePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
