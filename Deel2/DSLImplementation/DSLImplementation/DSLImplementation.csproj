@@ -51,7 +51,6 @@
     <Compile Include="database1\Main.cs" />
     <Compile Include="database1\Util.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
     <Compile Include="database1\Airplane.cs" />
     <Compile Include="database1\AirplaneRequest.cs" />
@@ -65,12 +64,10 @@
     <Compile Include="database1\SeatPriceRequest.cs" />
     <Compile Include="database1\SeatRequest.cs" />
     <Compile Include="database1\InvalidObjectException.cs" />
-    <Compile Include="Parsers.cs" />
     <Compile Include="UserInterface1\KeyValueTable.cs" />
     <Compile Include="UserInterface1\ParsableKeyValueTable.cs" />
     <Compile Include="UserInterface1\SketchPad.cs" />
     <Compile Include="UserInterface1\SketchPadTool.cs" />
-    <Compile Include="KeyValueTableEditor.cs" />
     <Compile Include="UserInterface1\CairoWidget.cs" />
     <Compile Include="UserInterface1\ImageLoader.cs" />
     <Compile Include="UserInterface1\IPuzzleQueryResolver.cs" />
@@ -79,8 +76,6 @@
     <Compile Include="database1\DatabaseTable.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="ITree.cs" />
-    <Compile Include="IXmlRequest.cs" />
-    <Compile Include="IXmlAnswer.cs" />
     <Compile Include="TilePatterns1\BookingRequestTilePattern.cs" />
     <Compile Include="TilePatterns1\TilingAlgorithm.cs" />
     <Compile Include="XmlMain.cs" />
@@ -97,7 +92,6 @@
     <Compile Include="UserInterface1\Pieces\LinkPiece.cs" />
     <Compile Include="UserInterface1\Pieces\CountryPiece.cs" />
     <Compile Include="database1\BookingRequest.cs" />
-    <Compile Include="XmlRequestBase.cs" />
     <Compile Include="UserInterface1\Pieces\IKeyValueTablePuzzlePiece.cs" />
     <Compile Include="UserInterface1\Pieces\KeyValueTablePuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\Pieces\KeyValueTableZeroArgumentPuzzlePieceBase.cs" />
@@ -156,6 +150,12 @@
     <Compile Include="Intermediate1\SeatRequest.cs" />
     <Compile Include="TilePatterns1\RequestAddAirlineTilePattern.cs" />
     <Compile Include="TilePatterns1\RequestGetFlightsTilingPattern.cs" />
+    <Compile Include="UserInterface1\KeyValueTableEditor.cs" />
+    <Compile Include="TilePatterns1\IXmlRequest.cs" />
+    <Compile Include="TilePatterns1\IXmlAnswer.cs" />
+    <Compile Include="UserInterface1\Parsers.cs" />
+    <Compile Include="UserInterface1\TopWindow.cs" />
+    <Compile Include="TilePatterns1\XmlRequestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
