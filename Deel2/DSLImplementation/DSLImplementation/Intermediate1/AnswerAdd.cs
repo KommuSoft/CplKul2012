@@ -21,12 +21,15 @@ namespace DSLImplementation.XmlRepresentation
 			this.message = message;
 		}
 
-		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
-			if(!this.succesful) {
-				Console.Error.WriteLine("ERROR {0}",this.message);
-				Console.WriteLine("ERROR {0}",this.message);
+		public IEnumerable<IPuzzlePiece> ToPuzzlePieces ()
+		{
+			if (!this.succesful) {
+				Console.Error.WriteLine ("ERROR {0}", this.message);
+				Console.WriteLine ("ERROR {0}", this.message);
+				yield return new SucceedFailPiece ("Failed");//TODO: invoke arguments
+			} else {
+				yield return new SucceedFailPiece ();
 			}
-			yield return new SucceedFailPiece();//TODO: invoke arguments
 		}
 	}
 }

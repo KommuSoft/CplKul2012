@@ -25,7 +25,7 @@ namespace DSLImplementation.XmlRepresentation
 
 		public IEnumerable<IPuzzlePiece> ToPuzzlePieces() {
 			foreach(Airport ap in Airports) {
-				yield return new AirportPiece();
+				yield return new AirportPiece(ap.Name,ap.Code);
 			}
 		}
 	}

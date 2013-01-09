@@ -34,13 +34,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Flight.cs" />
-    <Compile Include="FlightRequest.cs" />
-    <Compile Include="Airport.cs" />
-    <Compile Include="SeatRequest.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="Seat.cs" />
     <Compile Include="database1\Airport.cs" />
     <Compile Include="database1\AirportRequest.cs" />
     <Compile Include="database1\Booking.cs" />
@@ -57,7 +50,6 @@
     <Compile Include="database1\LocationRequest.cs" />
     <Compile Include="database1\Main.cs" />
     <Compile Include="database1\Util.cs" />
-    <Compile Include="SeatClass.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
@@ -73,7 +65,6 @@
     <Compile Include="database1\SeatPriceRequest.cs" />
     <Compile Include="database1\SeatRequest.cs" />
     <Compile Include="database1\InvalidObjectException.cs" />
-    <Compile Include="Airline.cs" />
     <Compile Include="Parsers.cs" />
     <Compile Include="UserInterface1\KeyValueTable.cs" />
     <Compile Include="UserInterface1\ParsableKeyValueTable.cs" />
@@ -92,27 +83,6 @@
     <Compile Include="IXmlAnswer.cs" />
     <Compile Include="TilePatterns1\BookingRequestTilePattern.cs" />
     <Compile Include="TilePatterns1\TilingAlgorithm.cs" />
-    <Compile Include="Airplane.cs" />
-    <Compile Include="AnswerGetAirports.cs" />
-    <Compile Include="AnswerGetCities.cs" />
-    <Compile Include="Booking.cs" />
-    <Compile Include="CityAnswer.cs" />
-    <Compile Include="FlightAnswer.cs" />
-    <Compile Include="FlightTemplate.cs" />
-    <Compile Include="Passenger.cs" />
-    <Compile Include="RequestAddAirline.cs" />
-    <Compile Include="RequestAddAirplane.cs" />
-    <Compile Include="RequestAddAirport.cs" />
-    <Compile Include="RequestAddBooking.cs" />
-    <Compile Include="RequestAddCity.cs" />
-    <Compile Include="RequestAddCountry.cs" />
-    <Compile Include="RequestAddFlight.cs" />
-    <Compile Include="RequestAddFlightTemplate.cs" />
-    <Compile Include="RequestAddPassenger.cs" />
-    <Compile Include="RequestAddSeatClass.cs" />
-    <Compile Include="RequestGetAirports.cs" />
-    <Compile Include="RequestGetCities.cs" />
-    <Compile Include="RequestGetFlights.cs" />
     <Compile Include="XmlMain.cs" />
     <Compile Include="UserInterface1\Pieces\AirportPiece.cs" />
     <Compile Include="UserInterface1\Pieces\BookingPiece.cs" />
@@ -135,10 +105,8 @@
     <Compile Include="TilePatterns1\RequestGetAirportsTilingPattern.cs" />
     <Compile Include="UserInterface1\Pieces\ClassPiece.cs" />
     <Compile Include="UserInterface1\Pieces\AirlinePiece.cs" />
-    <Compile Include="RequestGetFlightsTilingPattern.cs" />
     <Compile Include="UserInterface1\Pieces\ZeroArgumentPuzzlePieceBase.cs" />
     <Compile Include="UserInterface1\Pieces\AddPiece.cs" />
-    <Compile Include="AnswerAdd.cs" />
     <Compile Include="TilePatterns1\ITilePattern.cs" />
     <Compile Include="TilePatterns1\TypeBind.cs" />
     <Compile Include="UserInterface1\Pieces\SucceedFailPiece.cs" />
@@ -154,7 +122,40 @@
     <Compile Include="UserInterface1\Pieces\FlightTemplatePiece.cs" />
     <Compile Include="TilePatterns1\RequestAddFlightTemplateTilePattern.cs" />
     <Compile Include="TilePatterns1\RequestAddPassengerTilePattern.cs" />
-    <Compile Include="RequestAddAirlineTilePattern.cs" />
+    <Compile Include="Intermediate1\Airline.cs" />
+    <Compile Include="Intermediate1\Airplane.cs" />
+    <Compile Include="Intermediate1\Airport.cs" />
+    <Compile Include="Intermediate1\AnswerAdd.cs" />
+    <Compile Include="Intermediate1\AnswerGetAirports.cs" />
+    <Compile Include="Intermediate1\AnswerGetCities.cs" />
+    <Compile Include="Intermediate1\AnswerGetFlights.cs" />
+    <Compile Include="Intermediate1\Booking.cs" />
+    <Compile Include="Intermediate1\City.cs" />
+    <Compile Include="Intermediate1\CityAnswer.cs" />
+    <Compile Include="Intermediate1\Country.cs" />
+    <Compile Include="Intermediate1\Flight.cs" />
+    <Compile Include="Intermediate1\FlightAnswer.cs" />
+    <Compile Include="Intermediate1\FlightRequest.cs" />
+    <Compile Include="Intermediate1\FlightTemplate.cs" />
+    <Compile Include="Intermediate1\Passenger.cs" />
+    <Compile Include="Intermediate1\RequestAddAirline.cs" />
+    <Compile Include="Intermediate1\RequestAddAirplane.cs" />
+    <Compile Include="Intermediate1\RequestAddAirport.cs" />
+    <Compile Include="Intermediate1\RequestAddBooking.cs" />
+    <Compile Include="Intermediate1\RequestAddCity.cs" />
+    <Compile Include="Intermediate1\RequestAddCountry.cs" />
+    <Compile Include="Intermediate1\RequestAddFlight.cs" />
+    <Compile Include="Intermediate1\RequestAddFlightTemplate.cs" />
+    <Compile Include="Intermediate1\RequestAddPassenger.cs" />
+    <Compile Include="Intermediate1\RequestAddSeatClass.cs" />
+    <Compile Include="Intermediate1\RequestGetAirports.cs" />
+    <Compile Include="Intermediate1\RequestGetCities.cs" />
+    <Compile Include="Intermediate1\RequestGetFlights.cs" />
+    <Compile Include="Intermediate1\Seat.cs" />
+    <Compile Include="Intermediate1\SeatClass.cs" />
+    <Compile Include="Intermediate1\SeatRequest.cs" />
+    <Compile Include="TilePatterns1\RequestAddAirlineTilePattern.cs" />
+    <Compile Include="TilePatterns1\RequestGetFlightsTilingPattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -177,6 +178,7 @@
     <Folder Include="UserInterface1\" />
     <Folder Include="TilePatterns1\" />
     <Folder Include="UserInterface1\Pieces\" />
+    <Folder Include="Intermediate1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database1\SQL_test.csproj" />

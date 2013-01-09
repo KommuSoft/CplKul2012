@@ -59,8 +59,11 @@ namespace DSLImplementation.UserInterface {
 			this.valparsers.Add(valparser);
 		}
 		public void AddKeyParserPair (TKey tkey, Parse<TKey> keyparser, Parse<TValue> valparser) {
+			this.AddKeyParserPair(tkey,default(TValue),keyparser,valparser);
+		}
+		public void AddKeyParserPair (TKey tkey, TValue value, Parse<TKey> keyparser, Parse<TValue> valparser) {
 			this.AddParserPair(keyparser,valparser);
-			this.Add(tkey,default(TValue));
+			this.Add(tkey,value);
 		}
 		public void SetKeyValues (IEnumerable<KeyValuePair<string,string>> keyvalues) {
 			int n = Math.Min (Math.Min (keyparsers.Count, this.Count), valparsers.Count), i = 0x00;

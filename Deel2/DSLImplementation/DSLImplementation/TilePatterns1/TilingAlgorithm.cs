@@ -31,7 +31,6 @@ namespace DSLImplementation.UserInterface {
 		}
 		public IXmlRequest Tile (IPuzzlePiece ipp) {
 			foreach(ITilePattern tp in patterns) {
-				//Console.WriteLine("CHECKING {0}",tp);
 				if(tp.Match(ipp)) {
 					return tp.ToTransferCode(ipp);
 				}
@@ -42,7 +41,7 @@ namespace DSLImplementation.UserInterface {
 		public IPuzzlePiece[] Resolve (IPuzzlePiece query) {
 			IXmlRequest ixq = Tile((RunPiece) query);
 			if(ixq == null) {
-				return new IPuzzlePiece[] {new SucceedFailPiece()};//print fail message
+				return new IPuzzlePiece[] {new SucceedFailPiece("No template")};
 			}
 			return ixq.execute().ToPuzzlePieces().ToArray();
 		}
