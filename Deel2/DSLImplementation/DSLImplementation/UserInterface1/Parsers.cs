@@ -35,6 +35,9 @@ namespace DSLImplementation.UserInterface {
 		public static object DateTimeParser (string val) {
 			return DateTime.Parse(val);
 		}
+		public static object Int32Parser (string val) {
+			return Int32.Parse(val);
+		}
 
 	}
 }

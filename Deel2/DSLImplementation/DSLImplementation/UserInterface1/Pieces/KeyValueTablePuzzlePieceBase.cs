@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Cairo;
+using DSLImplementation.Tiling;
 
 namespace DSLImplementation.UserInterface {
 
@@ -37,6 +39,22 @@ namespace DSLImplementation.UserInterface {
 			ctx.Translate(mid.X,0.0d);
 			this.table.Paint(ctx);
 			ctx.Restore();
+		}
+
+		public override bool MatchBind (TypeBind tb, Dictionary<string, object> binddictionary) {
+			if(tb.Bindingtable != null && tb.Bindingtable.Count > 0x00) {
+				foreach(KeyValuePair<string,string> entry in tb.Bindingtable) {
+					try {
+						Console.WriteLine("adding {0}",entry.Key);
+						binddictionary.Add(entry.Value,this.Table[entry.Key]);
+						Console.WriteLine("[added]");
+					}
+					catch (Exception e) {
+						Console.WriteLine("Error");
+					}
+				}
+			}
+			return true;
 		}
 
 	}

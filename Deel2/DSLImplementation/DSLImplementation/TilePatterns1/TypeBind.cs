@@ -53,33 +53,19 @@ namespace DSLImplementation.Tiling {
 		}
 
 		public static bool Match (TypeBind tb, int index, IPuzzlePiece ipp) {
-			return (ipp != null && tb.type.IsAssignableFrom(ipp.GetType()) && (tb.index == -0x01 || tb.index == index));
+			return (ipp != null && (tb.index == -0x01 || tb.index == index) && ipp.Match(tb));
 		}
 		public bool Match (IPuzzlePiece ipp, int index) {
 			return Match(this,index,ipp);
 		}
-		public static bool MatchAndBind (TypeBind tb, int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
+		public static bool MatchBind (TypeBind tb, int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
 			if(Match(tb,index,ipp)) {
-				if(tb.bindingtable != null && tb.bindingtable.Count > 0x00) {
-					Console.WriteLine("tromgeroffel2...");
-					if(!(ipp is IKeyValueTablePuzzlePiece<string,object>)) {
-						Console.WriteLine("...tadaa");
-						return false;
-					}
-					KeyValueTable<string,object> conv = ((IKeyValueTablePuzzlePiece<string,object>) ipp).Table;
-					foreach(KeyValuePair<string,string> entry in tb.bindingtable) {
-						Console.WriteLine("Bind key {0} of {1}",entry.Key,ipp);
-						try {
-							tobind.Add(entry.Value,conv[entry.Key]);
-						}
-						catch {
-							return false;
-						}
-					}
-				}
-				return true;
+				return ipp.MatchBind(tb,tobind);
 			}
 			return false;
+		}
+		public bool MatchBind (int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
+			return TypeBind.MatchBind(this,index,ipp,tobind);
 		}
 		public static implicit operator TypeBind (Type t) {
 			return new TypeBind(t);

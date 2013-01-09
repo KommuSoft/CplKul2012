@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Cairo;
+using DSLImplementation.Tiling;
 
 namespace DSLImplementation.UserInterface {
 
@@ -17,10 +19,27 @@ namespace DSLImplementation.UserInterface {
 				return this.piece;
 			}
 		}
-
+		public override int NumberOfArguments {
+			get {
+				if(this.piece != null) {
+					return this.piece.NumberOfArguments;
+				}
+				else {
+					return 0x00;
+				}
+			}
+		}
 		public override TypeColors TypeColors {
 			get {
 				return this.piece.TypeColors;
+			}
+		}
+		public override IPuzzlePiece this[int index] {
+			get {
+				return this.piece[index];
+			}
+			set {
+				this.piece[index] = value;
 			}
 		}
 
@@ -28,9 +47,12 @@ namespace DSLImplementation.UserInterface {
 			this.piece = piece;
 		}
 
+		public override PointD MeasureSize (Context ctx) {
+			return new PointD(PuzzlePieceBase.MinimumWidth,PuzzlePieceBase.MinimumHeight);
+		}
 		public override void Paint (Context ctx) {
-			base.Paint (ctx);
 			PointD siz = this.MeasureSize(ctx);
+			this.PaintContour(ctx,siz);
 			PointD l = new PointD(0.5d*siz.X,0.5d*siz.Y);
 			ctx.Arc(l.X,l.Y,2.0d,0.0d,2.0d*Math.PI);
 			ctx.Color = KnownColors.LinkColor;
@@ -53,6 +75,21 @@ namespace DSLImplementation.UserInterface {
 				base.MatchesConstraintsParent (piece);
 			} else {
 				throw new Exception("Cyclic relations are not allowed!");
+			}
+		}
+		public override bool Match (TypeBind tb)
+		{
+			if (this.Piece != null) {
+				return this.Piece.Match (tb);
+			} else {
+				return false;
+			}
+		}
+		public override bool MatchBind (TypeBind tb, Dictionary<string, object> binddictionary) {
+			if (this.Piece != null) {
+				return this.Piece.MatchBind (tb,binddictionary);
+			} else {
+				return false;
 			}
 		}
 

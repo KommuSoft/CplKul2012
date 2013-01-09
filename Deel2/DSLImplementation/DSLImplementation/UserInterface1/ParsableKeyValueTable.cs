@@ -10,7 +10,7 @@ namespace DSLImplementation.UserInterface {
 		private readonly List<Parse<TKey>> keyparsers;
 		private readonly List<Parse<TValue>> valparsers;
 
-		public string this [string key] {
+		/*public string this [string key] {
 			get {
 				int n = Math.Min (keyparsers.Count, this.Count);
 				TKey keyt;
@@ -39,7 +39,7 @@ namespace DSLImplementation.UserInterface {
 				}
 				throw new ArgumentException("Cannot find the proper key!");
 			}
-		}
+		}*/
 
 		public ParsableKeyValueTable (IEnumerable<Parse<TKey>> keyparsers, IEnumerable<Parse<TValue>> valueparsers) {
 			this.keyparsers = new List<Parse<TKey>>(keyparsers);

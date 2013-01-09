@@ -471,6 +471,12 @@ namespace DSLImplementation.UserInterface {
 			public bool IsOptional (int index) {
 				return false;
 			}
+			public bool Match (TypeBind tb) {
+				return false;
+			}
+			public bool MatchBind (TypeBind tb, Dictionary<string,object> binddictionary) {
+				return false;
+			}
 
 		}
 

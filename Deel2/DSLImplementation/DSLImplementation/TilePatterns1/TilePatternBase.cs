@@ -23,7 +23,7 @@ namespace DSLImplementation.Tiling {
 			ITree<IPuzzlePiece> tmp;
 			Tree<TypeBind>.ConjunctiveTreeSwapMatchPredicate(this.pattern,0x00,root,TypeBind.Match,out tmp);
 			Dictionary<string,object> bindings = new Dictionary<string, object>();
-			Tree<TypeBind>.ConjunctiveTreeNonSwapMatchPredicate(this.pattern,0x00,root,(x,y,z) => TypeBind.MatchAndBind(x,y,z,bindings));
+			Tree<TypeBind>.ConjunctiveTreeNonSwapMatchPredicate(this.pattern,0x00,root,(x,y,z) => TypeBind.MatchBind(x,y,z,bindings));
 			return InternalToTransferCode(root, bindings);
 		}
 		#endregion

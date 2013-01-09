@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Cairo;
+using DSLImplementation.Tiling;
 
 namespace DSLImplementation.UserInterface {
 
@@ -72,7 +73,7 @@ namespace DSLImplementation.UserInterface {
 				return this[index];
 			}
 		}
-		public IPuzzlePiece this [int index] {
+		public virtual IPuzzlePiece this [int index] {
 			get {
 				return this.arguments [index];
 			}
@@ -106,7 +107,7 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public int NumberOfArguments {
+		public virtual int NumberOfArguments {
 			get {
 				return this.TypeColorArguments.Length;
 			}
@@ -224,14 +225,17 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 		protected virtual void OnBoundsChanged (EventArgs e) {}
+		protected void PaintContour (Context ctx, PointD size) {
+			ctx.Rectangle (0.0d, 0.0d, size.X, size.Y);
+			ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern (size.X, this.TypeColors);
+			ctx.FillPreserve ();
+			ctx.Color = KnownColors.Black;
+			ctx.Stroke ();
+		}
 		#region IPuzzlePiece implementation
 		public virtual void Paint (Context ctx) {
-			PointD size = this.MeasureSize(ctx);
-			ctx.Rectangle(0.0d,0.0d,size.X,size.Y);
-			ctx.Pattern = ExtensionMethods.GenerateColorSequencePattern(size.X,this.TypeColors);
-			ctx.FillPreserve();
-			ctx.Color = KnownColors.Black;
-			ctx.Stroke();
+			PointD size = this.MeasureSize (ctx);
+			PaintContour (ctx,size);
 			KnownColors.SetFontFacePieceName(ctx);
 			TextExtents te = ctx.TextExtents(this.Name), ten;
 			double y0 = 0.5d*(size.Y-te.Width);
@@ -394,6 +398,13 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 		#endregion
+
+		public virtual bool Match (TypeBind tb) {
+			return (tb.Type.IsAssignableFrom(this.GetType()));
+		}
+		public virtual bool MatchBind (TypeBind tb, Dictionary<string,object> binddictionary) {
+			return (tb.Type.IsAssignableFrom(this.GetType()));
+		}
 
 		public override string ToString () {
 			if (this.arguments != null && this.arguments.Length > 0x00) {

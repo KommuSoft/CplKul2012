@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cairo;
+using DSLImplementation.Tiling;
 
 namespace DSLImplementation.UserInterface {
 
@@ -46,6 +47,8 @@ namespace DSLImplementation.UserInterface {
 		IPuzzlePiece GetPuzzleGap (Context ctx, PointD point, out int index);
 		IPuzzlePiece GetPuzzlePiece (Context ctx, PointD point);
 		void InvalidateSizeCache ();
+		bool Match (TypeBind tm);
+		bool MatchBind (TypeBind tm, Dictionary<string,object> bindDictionary);
 
 	}
 }

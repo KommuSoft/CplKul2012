@@ -3,7 +3,7 @@ using System;
 namespace DSLImplementation.UserInterface {
 
 	[PuzzlePiece("Class",TypeColors.LightGray)]
-	public class ClassPiece : ZeroArgumentPuzzlePieceBase {
+	public class ClassPiece : KeyValueTableZeroArgumentPuzzlePieceBase {
 
 		public override TypeColors TypeColors {
 			get {
@@ -11,7 +11,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public ClassPiece () {
+		public ClassPiece () : this(null) {}
+		public ClassPiece (string name) {
+			this.Table.AddKeyParserPair("name",name,Parsers.StringParser,Parsers.StringObjectParser);
 		}
 	}
 }
