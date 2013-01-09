@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using DSLImplementation.XmlRepresentation;
+using DSLImplementation.UserInterface;
+using DSLImplementation.IntermediateCode;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	[TilePattern]
 	public class RequestAddAirlineTilePattern : TilePatternBase {

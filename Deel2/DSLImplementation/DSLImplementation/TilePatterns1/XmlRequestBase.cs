@@ -1,6 +1,6 @@
 using System;
 
-namespace DSLImplementation.XmlRepresentation {
+namespace DSLImplementation.IntermediateCode {
 
 	public abstract class XmlRequestBase : IXmlRequest {
 

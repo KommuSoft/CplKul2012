@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-namespace DSLImplementation.XmlRepresentation
+namespace DSLImplementation.IntermediateCode
 {
 	[XmlRoot("CityAnswer")]
 	public class CityAnswer

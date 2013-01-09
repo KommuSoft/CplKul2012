@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 
-namespace DSLImplementation.XmlRepresentation{
+namespace DSLImplementation.IntermediateCode{
 	public class XmlMain{
 		public static void Main (string[] args){
 			//Testje van Jonas

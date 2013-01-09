@@ -2,9 +2,10 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
-using DSLImplementation.XmlRepresentation;
+using DSLImplementation.IntermediateCode;
+using DSLImplementation.UserInterface;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	public class TilingAlgorithm : IPuzzleQueryResolver {
 

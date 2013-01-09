@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DSLImplementation.XmlRepresentation;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	public abstract class TilingPatternBase : ITilingPattern {
 

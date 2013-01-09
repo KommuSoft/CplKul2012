@@ -1,7 +1,8 @@
 using System;
+using DSLImplementation.UserInterface;
 using System.Collections.Generic;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	public class TypeBind {
 

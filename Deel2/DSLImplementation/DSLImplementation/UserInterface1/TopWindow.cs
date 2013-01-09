@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using DSLImplementation.UserInterface;
+using DSLImplementation.Tiling;
 using Gtk;
 
 namespace DSLImplementation

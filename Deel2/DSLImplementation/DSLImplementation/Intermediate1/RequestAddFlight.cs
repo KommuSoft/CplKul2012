@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 
 
-namespace DSLImplementation.XmlRepresentation
+namespace DSLImplementation.IntermediateCode
 {
 	[XmlRoot("RequestAddFlight")]
 	public class RequestAddFlight : XmlRequestBase

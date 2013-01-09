@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using DSLImplementation.XmlRepresentation;
+using DSLImplementation.UserInterface;
+using DSLImplementation.IntermediateCode;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	public abstract class TilePatternBase : ITilePattern {
 

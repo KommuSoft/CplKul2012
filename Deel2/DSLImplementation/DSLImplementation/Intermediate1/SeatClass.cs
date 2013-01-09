@@ -1,6 +1,6 @@
 using System;
 using System.Xml.Serialization;
-namespace DSLImplementation.XmlRepresentation
+namespace DSLImplementation.IntermediateCode
 {
 	
 	[XmlType("Class")]

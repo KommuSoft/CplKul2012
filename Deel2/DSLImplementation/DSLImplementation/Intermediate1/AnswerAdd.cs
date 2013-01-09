@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DSLImplementation.UserInterface;
 
-namespace DSLImplementation.XmlRepresentation
+namespace DSLImplementation.IntermediateCode
 {
 	public class AnswerAdd : IXmlAnswer
 	{

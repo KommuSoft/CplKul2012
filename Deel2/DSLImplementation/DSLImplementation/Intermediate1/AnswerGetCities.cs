@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using DSLImplementation.UserInterface;
 
-namespace DSLImplementation.XmlRepresentation
+namespace DSLImplementation.IntermediateCode
 {
 	[XmlRoot("CityAnswer")]
 	public class AnswerGetCities : IXmlAnswer {

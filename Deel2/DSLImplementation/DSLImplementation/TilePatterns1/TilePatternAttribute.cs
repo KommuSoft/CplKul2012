@@ -1,6 +1,6 @@
 using System;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	[AttributeUsage(AttributeTargets.Class)]
 	public class TilePatternAttribute : Attribute {

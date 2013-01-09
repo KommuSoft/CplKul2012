@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using DSLImplementation.UserInterface;
 
-namespace DSLImplementation.XmlRepresentation {
+namespace DSLImplementation.IntermediateCode {
 
 	public interface IXmlAnswer {
 

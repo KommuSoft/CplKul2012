@@ -1,7 +1,8 @@
 using System;
-using DSLImplementation.XmlRepresentation;
+using DSLImplementation.UserInterface;
+using DSLImplementation.IntermediateCode;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	public interface ITilePattern {
 

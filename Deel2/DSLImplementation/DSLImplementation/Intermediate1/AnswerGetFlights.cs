@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using DSLImplementation.UserInterface;
 
 
-namespace DSLImplementation.XmlRepresentation
+namespace DSLImplementation.IntermediateCode
 {
 	//The answer for the request of airports
 	[XmlRoot("FlightAnswer")]

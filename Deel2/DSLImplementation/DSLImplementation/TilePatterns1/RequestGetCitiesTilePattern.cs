@@ -1,8 +1,8 @@
-using System;
-using DSLImplementation.XmlRepresentation;
+using DSLImplementation.UserInterface;
+using DSLImplementation.IntermediateCode;
 using System.Collections.Generic;
 
-namespace DSLImplementation.UserInterface {
+namespace DSLImplementation.Tiling {
 
 	[TilePatternAttribute]
 	public class RequestGetCitiesTilePattern : TilePatternBase {
