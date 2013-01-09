@@ -149,7 +149,6 @@
     <Compile Include="Intermediate1\SeatClass.cs" />
     <Compile Include="Intermediate1\SeatRequest.cs" />
     <Compile Include="TilePatterns1\RequestAddAirlineTilePattern.cs" />
-    <Compile Include="TilePatterns1\RequestGetFlightsTilingPattern.cs" />
     <Compile Include="UserInterface1\KeyValueTableEditor.cs" />
     <Compile Include="TilePatterns1\IXmlRequest.cs" />
     <Compile Include="TilePatterns1\IXmlAnswer.cs" />
@@ -158,7 +157,10 @@
     <Compile Include="TilePatterns1\XmlRequestBase.cs" />
     <Compile Include="TilePatterns1\RequestAddAirplaneTilePattern.cs" />
     <Compile Include="UserInterface1\Pieces\AirplanePiece.cs" />
-    <Compile Include="RequestAddSeatClassTilePattern.cs" />
+    <Compile Include="TilePatterns1\RequestAddFlightTilePattern.cs" />
+    <Compile Include="TilePatterns1\RequestAddSeatClassTilePattern.cs" />
+    <Compile Include="TilePatterns1\RequestGetFlightsTilePattern.cs" />
+    <Compile Include="UserInterface1\Pieces\ILocationPiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

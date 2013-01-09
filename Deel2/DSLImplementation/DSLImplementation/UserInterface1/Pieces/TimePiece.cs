@@ -2,12 +2,12 @@ using System;
 
 namespace DSLImplementation.UserInterface {
 
-	[PuzzlePiece("Time",TypeColors.BrightBlue)]
+	[PuzzlePiece("Time",TypeColors.BrightMagenta)]
 	public class TimePiece : KeyValueTableZeroArgumentPuzzlePieceBase {
 
 		public override TypeColors TypeColors {
 			get {
-				return TypeColors.BrightBlue;
+				return TypeColors.BrightMagenta;
 			}
 		}
 
