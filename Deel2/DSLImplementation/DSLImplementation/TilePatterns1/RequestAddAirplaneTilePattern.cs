@@ -7,7 +7,7 @@ namespace DSLImplementation.Tiling {
 	[TilePattern]
 	public class RequestAddAirplaneTilePattern : TilePatternBase {
 
-		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new TypeBind(typeof(AirplanePiece),0x00,"type","airplanetype"),typeof(SeatPiece));
+		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new TypeBind(typeof(AirplanePiece),0x00,"type","airplanetype","code","airplanecode"),typeof(SeatPiece));
 		private static readonly TypeBind bindseat = new TypeBind(typeof(SeatPiece),"number","number");
 		private static readonly TypeBind bindclass = new TypeBind(typeof(ClassPiece),"name","name");
 
@@ -35,7 +35,7 @@ namespace DSLImplementation.Tiling {
 					bind.Clear();
 				}
 			}
-			return new RequestAddAirplane(new Airplane((string) bindings["airplanetype"],seats));
+			return new RequestAddAirplane(new Airplane((string) bindings["airplanetype"],seats,(string) bindings["airplanecode"]));
 		}
 
 	}
