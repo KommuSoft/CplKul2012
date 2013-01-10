@@ -8,16 +8,18 @@ namespace DSLImplementation.Database
 	{
 		public List<int> seat { get; set; }
 		public string type { get; set; }
+		public string code { get; set; }
 
-		public Airplane (int ID, List<int> seat, string type) : this(seat, type)
+		public Airplane (int ID, List<int> seat, string type, string code) : this(seat, type, code)
 		{
 			this.ID = ID;
 		}
 
-		public Airplane (List<int> seat, string type)
+		public Airplane (List<int> seat, string type, string code)
 		{
 			this.seat = seat;
 			this.type = type;
+			this.code = code;
 		}
 
 		public Airplane (IDataReader reader)
@@ -25,6 +27,7 @@ namespace DSLImplementation.Database
 			ID = reader.GetInt32(reader.GetOrdinal("id"));
 			seat = Util.parse<int>(reader.GetString(reader.GetOrdinal("seat")));
 			type = reader.GetString(reader.GetOrdinal("type"));
+			code = reader.GetString(reader.GetOrdinal("code"));
 		}
 
 		public override string tableName ()
@@ -34,7 +37,7 @@ namespace DSLImplementation.Database
 
 		public override string ToString ()
 		{
-			return string.Format ("[Airplane: ID={0}, seat={1}, type={2}]", ID, seat, type);
+			return string.Format ("[Airplane: seat={0}, type={1}, code={2}]", seat, type, code);
 		}
 
 		protected override bool isValid (out string exceptionMessage)
@@ -53,8 +56,8 @@ namespace DSLImplementation.Database
 		}
 
 		public override int insert(){
-			List<string> columns = new List<string>{"seat", "type"};
-			List<object> values = new List<object>{seat, type};
+			List<string> columns = new List<string>{"seat", "type", "code"};
+			List<object> values = new List<object>{seat, type, code};
 
 			return base.insert(columns, values);
 		}

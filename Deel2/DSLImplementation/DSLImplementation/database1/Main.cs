@@ -139,7 +139,7 @@ public class Test
 			Airline ba = new Airline (code: "BA", name: "British Airways");
 			ba.insert ();
 			
-			Airplane a380 = new Airplane (seat: new List<int>{1, 2, 3}, type: "A380");
+			Airplane a380 = new Airplane (seat: new List<int>{1, 2, 3}, type: "A380", code: "A380-2");
 			a380.insert ();
 			
 			Airport kjk = new Airport (name: "Kortrijk-Wevelgem International Airport", code: "KJK", country: 1, city: 4, company: new List<int>{});
@@ -192,11 +192,14 @@ public class Test
 		Airline airline3 = new Airline(code: "Too long code", name: "");
 		tryCatch(airline3);
 
-		Airplane airplane1 = new Airplane(new List<int>(), "");
+		Airplane airplane1 = new Airplane(new List<int>(), "", "Code");
 		tryCatch(airplane1);
 
-		Airplane airplane2 = new Airplane(new List<int>{9999}, "Citation X");
+		Airplane airplane2 = new Airplane(new List<int>{9999}, "Citation X", "Code");
 		tryCatch(airplane2);
+
+		Airplane airplane3 = new Airplane(new List<int>(), "Fokker 70", "");
+		tryCatch(airline3);
 
 		Airport airport1 = new Airport(name: "", code: "BAL", country: 1, city: 1, company: new List<int>());
 		tryCatch(airport1);

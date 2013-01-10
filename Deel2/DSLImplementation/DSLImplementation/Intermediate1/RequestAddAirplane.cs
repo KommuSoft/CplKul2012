@@ -24,7 +24,7 @@ namespace DSLImplementation.IntermediateCode
 				seats.Add (seatID);
 			}
 
-			Database.Airplane airplane = new Database.Airplane (type: this.Airplane.Type, seat: seats);
+			Database.Airplane airplane = new Database.Airplane (type: this.Airplane.Type, seat: seats, code: this.Airplane.Code);
 			AnswerAdd aa = new AnswerAdd ();
 			try {
 				airplane.insert();

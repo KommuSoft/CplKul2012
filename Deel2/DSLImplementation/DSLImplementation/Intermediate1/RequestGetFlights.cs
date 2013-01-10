@@ -84,7 +84,7 @@ namespace DSLImplementation.IntermediateCode{
 					seats.Add(new Seat(seatClass, seat_.number));
 				}
 				
-				Airplane airplane = new Airplane(airplane_.type, seats);
+				Airplane airplane = new Airplane(airplane_.type, seats, airplane_.code);
 				
 				fs.Add(new Flight(template, airline, f.start, f.end, startAirport, destinationAirport, airplane));
 			}
