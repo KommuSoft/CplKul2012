@@ -26,8 +26,12 @@ namespace DSLImplementation.IntermediateCode
 
 				List<Database.Seat> databaseSeats = sr.fetchSeatFromClassAndNumber (class_: classID, number: s.Number);
 				if(databaseSeats.Count == 0){
-					//TODO als de seat niet bestaat dan moet deze toegevoegd worden
-					return new AnswerAdd("No seat found with number " + s.Number + " in class " + s.SeatClass.Name);
+					Database.Seat s_ = new Database.Seat(classID, s.Number);
+					try {
+						s_.insert();
+					} catch (Exception e){
+						return new AnswerAdd(e.Message);
+					}
 				}
 				int seatID =  databaseSeats[0].ID;
 				seats.Add (seatID);
