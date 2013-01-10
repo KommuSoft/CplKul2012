@@ -12,6 +12,7 @@ namespace DSLImplementation.Tiling {
 
 		protected override IXmlRequest InternalToTransferCodeBase (IPuzzlePiece root, ITree<IPuzzlePiece> matchtree, Dictionary<string, object> bindings) {
 			ILocation loca, locb;
+
 			return null;
 		}
 
