@@ -21,10 +21,9 @@ namespace DSLImplementation.IntermediateCode
 			if (countries.Count == 0) {
 				return new AnswerAdd("No country found with name " + this.City.Country.Name);
 			}
-
 			int countryID = countries[0].ID;
-			Database.City city = new Database.City (name: this.City.Name, country: countryID);
 
+			Database.City city = new Database.City (name: this.City.Name, country: countryID);
 			AnswerAdd aa = new AnswerAdd();
 			try {
 				city.insert ();

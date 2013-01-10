@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
+
 namespace DSLImplementation.IntermediateCode{
 	
 	public class RequestGetFlights : XmlRequestBase {
@@ -96,7 +99,12 @@ namespace DSLImplementation.IntermediateCode{
 			int airlineID = -1;
 			if (this.Airline != null) {
 				Database.AirlineRequest alr = new Database.AirlineRequest();
-				airlineID = alr.fetchAirlineFromCode(this.Airline.Code)[0].ID;
+
+				List<Database.Airline> airlines = alr.fetchAirlineFromCode(this.Airline.Code);
+				if(airlines.Count() == 0){
+					throw new Exception("The airline with code " + this.Airline.Code + " couldn't be found.");
+				}
+				airlineID = airlines[0].ID;
 			}
 
 			return airlineID;
@@ -107,7 +115,11 @@ namespace DSLImplementation.IntermediateCode{
 			int classID = -1;
 			if (this.SeatClass != null) {
 				Database.ClassRequest cr = new Database.ClassRequest();
-				classID = cr.fetchClassFromName(this.SeatClass.Name)[0].ID;
+				List<Database.Class> classes = cr.fetchClassFromName(this.SeatClass.Name);
+				if(classes.Count() == 0){
+					throw new Exception("The class with name " + this.SeatClass.Name + " could not be found.");
+				}
+				classID = classes[0].ID;
 			}
 
 			return classID;
@@ -138,8 +150,17 @@ namespace DSLImplementation.IntermediateCode{
 		{
 			Database.AirportRequest ar = new Database.AirportRequest ();
 
-			Database.Airport airport1 = ar.fetchAirportFromCode (this.Airport1.Code) [0];
-			Database.Airport airport2 = ar.fetchAirportFromCode (this.Airport2.Code) [0];
+			List<Database.Airport> airports = ar.fetchAirportFromCode (this.Airport1.Code);
+			if (airports.Count () == 0) {
+				throw new Exception ("The airport with code " + this.Airport1.Code + " couldn't be found");
+			}
+			Database.Airport airport1 = airports [0];
+
+			airports = ar.fetchAirportFromCode (this.Airport2.Code);
+			if (airports.Count () == 0) {
+				throw new Exception("The airport with code " + this.Airport2.Code + " couldn't be found");
+			}
+			Database.Airport airport2 = airports [0];
 
 			return doDispatch(airport1, airport2);
 		}
@@ -148,8 +169,17 @@ namespace DSLImplementation.IntermediateCode{
 		{
 			Database.CityRequest cr = new Database.CityRequest ();
 
-			Database.City startCity = cr.fetchFromNameAndCountry (City1.Name, City1.Country.Name) [0];
-			Database.City endCity = cr.fetchFromNameAndCountry (City2.Name, City2.Country.Name) [0];
+			List<Database.City> cities = cr.fetchFromNameAndCountry (City1.Name, City1.Country.Name);
+			if (cities.Count () == 0) {
+				throw new Exception ("The city with name " + City1.Name + " and country " + City1.Country.Name + " couldn't be found");
+			}
+			Database.City startCity = cities [0];
+
+			cities = cr.fetchFromNameAndCountry (City2.Name, City2.Country.Name);
+			if (cities.Count () == 0) {
+				throw new Exception("The city with name " + City2.Name + " and country " + City2.Country.Name + " couldn't be found");
+			}
+			Database.City endCity = cities [0];
 
 			return doDispatch(startCity, endCity);
 		}
@@ -158,8 +188,17 @@ namespace DSLImplementation.IntermediateCode{
 		{
 			Database.CountryRequest cr = new Database.CountryRequest ();
 
-			Database.Country startCountry = cr.fetchCountryFromName (Country1.Name) [0];
-			Database.Country endCountry = cr.fetchCountryFromName (Country2.Name) [0];
+			List<Database.Country> countries = cr.fetchCountryFromName (Country1.Name);
+			if (countries.Count () == 0) {
+				throw new Exception ("The country with name " + Country1.Name + " couldn't be found");
+			}
+			Database.Country startCountry = countries [0];
+
+			countries = cr.fetchCountryFromName (Country2.Name);
+			if (countries.Count () == 0) {
+				throw new Exception("The country with name " + Country2.Name + " couldn't be found");
+			}
+			Database.Country endCountry = countries [0];
 
 			return doDispatch(startCountry, endCountry);
 		}
