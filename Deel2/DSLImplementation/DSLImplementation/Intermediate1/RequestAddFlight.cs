@@ -29,7 +29,7 @@ namespace DSLImplementation.IntermediateCode
 				seats.Add (sr.fetchSeatFromClassAndNumber (class_: classID, number: s.Number) [0].ID);
 			}
 
-			int airplaneID = apr.fetchAirplaneFromSeatAndType (seats: seats, type: this.Flight.Airplane.Type) [0].ID;
+			int airplaneID = apr.fetchAirplaneFromCode(this.Flight.Airplane.Code)[0].ID;
 			int templateID = ftr.fetchTemplateFromCode (this.Flight.Template.Code) [0].ID;
 
 			Database.Flight flight = new Database.Flight (locationID, airlineID, this.Flight.StartDate, this.Flight.EndDate, airplaneID, templateID, this.Flight.TravelTime);
