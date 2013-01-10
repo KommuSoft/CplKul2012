@@ -15,6 +15,7 @@ namespace DSLImplementation
 		private global::Gtk.RadioAction tool_insert_linkpiece;
 		private global::Gtk.RadioAction tool_edit_information;
 		private global::Gtk.Action tool_execute_query;
+		private global::Gtk.Action missingImageAction;
 		private global::Gtk.ToggleAction menu_autorun;
 		private global::Gtk.ToggleAction tool_autorun;
 		private global::Gtk.RadioAction menu_delete_piece;
@@ -61,12 +62,15 @@ namespace DSLImplementation
 			this.tool_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.tool_insert_linkpiece, null);
 			this.tool_edit_information = new global::Gtk.RadioAction ("tool_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.tool_edit_information.Group = this.tool_insertSubpiece.Group;
+			this.tool_edit_information.Group = this.tool_insert_linkpiece.Group;
 			this.tool_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.tool_edit_information, null);
 			this.tool_execute_query = new global::Gtk.Action ("tool_execute_query", global::Mono.Unix.Catalog.GetString ("Execute Query"), global::Mono.Unix.Catalog.GetString ("Execute Query"), "gtk-execute");
 			this.tool_execute_query.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute Query");
 			w1.Add (this.tool_execute_query, null);
+			this.missingImageAction = new global::Gtk.Action ("missingImageAction", global::Mono.Unix.Catalog.GetString ("Save as pdf"), global::Mono.Unix.Catalog.GetString ("Save as pdf"), "gtk-missing-image");
+			this.missingImageAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save as pdf");
+			w1.Add (this.missingImageAction, null);
 			this.menu_autorun = new global::Gtk.ToggleAction ("menu_autorun", global::Mono.Unix.Catalog.GetString ("Execute complete queries"), global::Mono.Unix.Catalog.GetString ("Execute complete queries"), "gtk-refresh");
 			this.menu_autorun.Active = true;
 			this.menu_autorun.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute complete queries");
@@ -80,7 +84,7 @@ namespace DSLImplementation
 			this.menu_delete_piece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove piece");
 			w1.Add (this.menu_delete_piece, null);
 			this.tool_delete_piece = new global::Gtk.RadioAction ("tool_delete_piece", null, null, "gtk-delete", 0);
-			this.tool_delete_piece.Group = this.tool_insertSubpiece.Group;
+			this.tool_delete_piece.Group = this.tool_insert_linkpiece.Group;
 			w1.Add (this.tool_delete_piece, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
@@ -102,7 +106,7 @@ namespace DSLImplementation
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='tool_insertSubpiece' action='tool_insertSubpiece'/><toolitem name='tool_insert_linkpiece' action='tool_insert_linkpiece'/><toolitem name='tool_edit_information' action='tool_edit_information'/><toolitem name='tool_delete_piece' action='tool_delete_piece'/><separator/><toolitem name='tool_autorun' action='tool_autorun'/><toolitem name='tool_execute_query' action='tool_execute_query'/></toolbar></ui>");
+			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='tool_insertSubpiece' action='tool_insertSubpiece'/><toolitem name='tool_insert_linkpiece' action='tool_insert_linkpiece'/><toolitem name='tool_edit_information' action='tool_edit_information'/><toolitem name='tool_delete_piece' action='tool_delete_piece'/><separator/><toolitem name='tool_autorun' action='tool_autorun'/><toolitem name='tool_execute_query' action='tool_execute_query'/><toolitem name='missingImageAction' action='missingImageAction'/></toolbar></ui>");
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";
 			this.toolbar1.ShowArrow = false;
@@ -140,6 +144,7 @@ namespace DSLImplementation
 			this.tool_insert_linkpiece.Activated += new global::System.EventHandler (this.tool_selected);
 			this.tool_edit_information.Activated += new global::System.EventHandler (this.tool_selected);
 			this.tool_execute_query.Activated += new global::System.EventHandler (this.tool_query_exec);
+			this.missingImageAction.Activated += new global::System.EventHandler (this.tool_saveaspdf);
 			this.menu_autorun.Activated += new global::System.EventHandler (this.menu_autorun_changed);
 			this.tool_autorun.Activated += new global::System.EventHandler (this.tool_autorun_changed);
 			this.menu_delete_piece.Activated += new global::System.EventHandler (this.menu_tool_changed);

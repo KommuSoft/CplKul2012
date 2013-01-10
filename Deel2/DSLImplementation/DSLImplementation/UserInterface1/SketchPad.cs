@@ -203,7 +203,22 @@ namespace DSLImplementation.UserInterface {
 			return null;
 		}
 
-		protected override void PaintWidget (Cairo.Context ctx, int w, int h) {
+		public void PaintContext (Context ctx, int w, int h) {
+			this.PaintWidget(ctx,w,h);
+		}
+		public PointD MeasureSize () {
+			double y = Margin;
+			double x = 0.0d;
+			foreach(QueryAnswerLocations qal in this.qas) {
+				qal.Offset = new PointD(Margin,y);
+				PointD sz = qal.MeasureSize(this.subcontext);
+				y += sz.Y+Margin;
+				x = Math.Max(x,sz.X);
+			}
+			x += 2.0d*Margin;
+			return new PointD(x,y);
+		}
+		protected override void PaintWidget (Context ctx, int w, int h) {
 			base.PaintWidget(ctx, w, h);
 			ctx.Pattern = KnownColors.ConstructionPattern;
 			ctx.Paint();

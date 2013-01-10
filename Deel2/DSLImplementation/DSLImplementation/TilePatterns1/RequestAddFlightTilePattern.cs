@@ -26,7 +26,8 @@ namespace DSLImplementation.Tiling {
 			string aln = (string) bindings["airlinename"];
 			DateTime sat = (DateTime) bindings["starttime"];
 			DateTime sot = (DateTime) bindings["stoptime"];
-			return new RequestAddFlight(new Flight(new FlightTemplate(ftc),new Airline(aln),sat,sot,new Airport(sac),new Airport(soc)));
+			return null;
+			//return new RequestAddFlight(new Flight(new FlightTemplate(ftc),new Airline(aln),sat,sot,new Airport(sac),new Airport(soc)));
 		}
 
 	}

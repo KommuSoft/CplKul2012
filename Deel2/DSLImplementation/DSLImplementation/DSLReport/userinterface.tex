@@ -2,7 +2,8 @@
 \subsubsection{Overview}
 The userinterface describes the way how the user will communicate with the
 system, and thus by extend contains the domain specific language. In our case
-we've implemented a graphical language.
+we've implemented a graphical language. Furthermore we've implemented a fully
+modifiable two-stage compiler.
 \subsubsection{Motivation for the graphical language}
 Since most users who will use the systems are end-users and thus not
 programmers or technical people, some problems might occur with textual
@@ -30,6 +31,14 @@ expressive than their textual counterparts. Since we implement a domain
 specific language, we can see this as an advantage in order to prevent the
 users from making mistakes.
 \end{itemize}
+\subsubsection{Motivation for the Compiler}
+We've implemented a two-stage compiler where the first stage maintains an
+''abstract syntax tree'' consistent with the graphical expression at that
+moment. The second stage implements a tiling algorithm looking for specific
+patterns and translating them into what we call the intermediate representation.
+\paragraph{}
+Since we know all the use-cases in advance, we could simply implement
+algorithms in the nodes of the abstract syntax tree to deal with
 \subsubsection{Lexer}
 Most programming languages and by extend domain specific languages are parsed
 in a structure called abstract syntax trees. The source code first pases

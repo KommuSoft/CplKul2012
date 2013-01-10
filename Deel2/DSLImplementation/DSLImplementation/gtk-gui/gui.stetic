@@ -104,6 +104,14 @@
         <property name="Tooltip" translatable="yes">Execute Query</property>
         <signal name="Activated" handler="tool_query_exec" />
       </action>
+      <action id="missingImageAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Save as pdf</property>
+        <property name="ShortLabel" translatable="yes">Save as pdf</property>
+        <property name="StockId">gtk-missing-image</property>
+        <property name="Tooltip" translatable="yes">Save as pdf</property>
+        <signal name="Activated" handler="tool_saveaspdf" />
+      </action>
       <action id="menu_autorun">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Execute complete queries</property>
@@ -188,6 +196,7 @@
               <node type="Separator" />
               <node type="Toolitem" action="tool_autorun" />
               <node type="Toolitem" action="tool_execute_query" />
+              <node type="Toolitem" action="missingImageAction" />
             </node>
           </widget>
           <packing>

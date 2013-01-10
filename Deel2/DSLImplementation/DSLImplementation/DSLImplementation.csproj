@@ -51,7 +51,6 @@
     <Compile Include="database1\Main.cs" />
     <Compile Include="database1\Util.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
     <Compile Include="database1\Airplane.cs" />
     <Compile Include="database1\AirplaneRequest.cs" />
     <Compile Include="database1\Airline.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="TilePatterns1\IXmlRequest.cs" />
     <Compile Include="TilePatterns1\IXmlAnswer.cs" />
     <Compile Include="UserInterface1\Parsers.cs" />
-    <Compile Include="UserInterface1\TopWindow.cs" />
     <Compile Include="TilePatterns1\XmlRequestBase.cs" />
     <Compile Include="TilePatterns1\RequestAddAirplaneTilePattern.cs" />
     <Compile Include="UserInterface1\Pieces\AirplanePiece.cs" />
@@ -161,6 +159,8 @@
     <Compile Include="TilePatterns1\RequestAddSeatClassTilePattern.cs" />
     <Compile Include="TilePatterns1\RequestGetFlightsTilePattern.cs" />
     <Compile Include="UserInterface1\Pieces\ILocationPiece.cs" />
+    <Compile Include="TopWindow.cs" />
+    <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
