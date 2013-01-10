@@ -17,6 +17,10 @@ namespace DSLImplementation.IntermediateCode
 			Database.SeatRequest sr = new Database.SeatRequest ();
 			Database.ClassRequest cr = new Database.ClassRequest ();
 
+			if (this.Airplane.Seats == null) {
+				return new AnswerAdd("The seats of the airplane aren't set");
+			}
+
 			foreach (Seat s in this.Airplane.Seats) {
 				List<Database.Class> classes = cr.fetchClassFromName (s.SeatClass.Name);
 				if(classes.Count == 0){
@@ -32,6 +36,7 @@ namespace DSLImplementation.IntermediateCode
 					} catch (Exception e){
 						return new AnswerAdd(e.Message);
 					}
+					databaseSeats = sr.fetchSeatFromClassAndNumber (class_: classID, number: s.Number);
 				}
 				int seatID =  databaseSeats[0].ID;
 				seats.Add (seatID);

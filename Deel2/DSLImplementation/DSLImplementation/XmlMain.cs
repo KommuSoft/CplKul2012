@@ -165,11 +165,72 @@ namespace DSLImplementation.IntermediateCode{
 			//executedAddAiport(a6);
 		}
 
+		private static void executeAddFlightTemplate (FlightTemplate f)
+		{
+			RequestAddFlightTemplate raft = new RequestAddFlightTemplate(f);
+			printAddAnswer(raft.execute());
+		}
+
+		private static void testAddFlightTemplate ()
+		{
+			FlightTemplate f1 = new FlightTemplate("");
+			executeAddFlightTemplate(f1);
+
+			FlightTemplate f2 = new FlightTemplate("QLKFJMLKJMLJ");
+			executeAddFlightTemplate(f2);
+
+			FlightTemplate f3 = new FlightTemplate("666");
+			//executeAddFlightTemplate(f3);
+		}
+
+		private static void executeAddAirplane (Airplane a)
+		{
+			RequestAddAirplane raa = new RequestAddAirplane(a);
+			printAddAnswer(raa.execute());
+		}
+
+		private static void testAddAirplane ()
+		{
+			SeatClass seatClass = new SeatClass("economy class");
+			SeatClass newSeatClass = new SeatClass("derp class");
+
+			Seat seat = new Seat(seatClass, 1);
+			Seat newSeat1 = new Seat(newSeatClass, 666);
+			Seat newSeat2 = new Seat(seatClass, 666);
+
+			List<Seat> existingSeats = new List<Seat>{seat};
+			List<Seat> newSeats1 = new List<Seat>{seat, newSeat1};
+			List<Seat> newSeats2 = new List<Seat>{seat, newSeat2};
+
+			Airplane a1 = new Airplane("code");
+			executeAddAirplane(a1);
+
+			Airplane a2 = new Airplane("B747", new List<Seat>(), "");
+			executeAddAirplane(a2);
+
+			Airplane a3 = new Airplane("", new List<Seat>(), "code");
+			executeAddAirplane(a3);
+
+			Airplane a4 = new Airplane("CX", existingSeats, "code");
+			//executeAddAirplane(a4);
+
+			Airplane a5 = new Airplane("CX", newSeats1, "code");
+			executeAddAirplane(a5);
+
+			Airplane a6 = new Airplane("CX", newSeats2, "code");
+			//executeAddAirplane(a6);
+
+			Airplane a7 = new Airplane("Type", new List<Seat>(), "A380-1");
+			executeAddAirplane(a7);
+		}
+
 		public static void Main (string[] args){
 			//testGetters();
 			//testAddCountry();
 			//testAddCity();
 			//testAddAirport();
+			//testAddFlightTemplate();
+			testAddAirplane();
 		}
 	}
 }

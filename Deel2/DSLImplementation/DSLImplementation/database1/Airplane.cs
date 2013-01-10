@@ -43,13 +43,17 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			foreach (int s in seat) {
-				if(!validSeat(s, out exceptionMessage)){
+				if (!validSeat (s, out exceptionMessage)) {
 					return false;
 				}
 			}
 
 			if (type.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The type of the airplane is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The type of the airplane is invalid");
+			}
+
+			if (code.Length == 0) {
+				return makeExceptionMessage(out exceptionMessage, "The code of the airplane is invalid");
 			}
 
 			return makeExceptionMessage(out exceptionMessage);
