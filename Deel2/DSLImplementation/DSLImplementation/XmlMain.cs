@@ -14,8 +14,8 @@ namespace DSLImplementation.IntermediateCode{
 
 			Flight f = new Flight(template, airline, new DateTime(), new DateTime(), start, end, airplane);
 			RequestAddFlight raf = new RequestAddFlight(f);
-			AnswerAdd aad = (AnswerAdd)raf.execute();
-			Console.WriteLine(aad.message);
+			//AnswerAdd aad = (AnswerAdd)raf.execute();
+			//Console.WriteLine(aad.message);
 			return;
 
 			//Testje van Jonas
