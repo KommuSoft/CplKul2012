@@ -10,7 +10,7 @@ namespace DSLImplementation.UserInterface {
 
 		public override string[] ArgumentNames {
 			get {
-				return base.ArgumentNames;
+				return argumentNames;
 			}
 		}
 		public override TypeColors[] TypeColorArguments {

@@ -68,10 +68,8 @@ namespace DSLImplementation.UserInterface {
 				}
 			}
 		}
-		ITree<IPuzzlePiece> ITree<IPuzzlePiece>.this [int index] {
-			get {
-				return this[index];
-			}
+		public ITree<IPuzzlePiece> ChildAt (int index) {
+			return this[index];
 		}
 		public virtual IPuzzlePiece this [int index] {
 			get {

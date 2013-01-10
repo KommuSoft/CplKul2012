@@ -25,11 +25,7 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public FlightPiece () : this (null)
-		{
-		}
-		public FlightPiece (string name) {
-			this.Table.AddKeyParserPair("name",name,Parsers.StringParser,Parsers.StringParser);
+		public FlightPiece () {
 		}
 	}
 }

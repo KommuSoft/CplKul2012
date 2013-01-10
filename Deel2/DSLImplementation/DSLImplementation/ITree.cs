@@ -8,9 +8,7 @@ namespace DSLImplementation {
 			get;
 		}
 
-		ITree<T> this [int index] {
-			get;
-		}
+		ITree<T> ChildAt (int index);
 		int NumberOfChildren {
 			get;
 		}

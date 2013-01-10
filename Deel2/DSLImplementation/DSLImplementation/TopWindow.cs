@@ -11,7 +11,6 @@ namespace DSLImplementation
 	{
 
 		private ListStore piecesStore;
-		private ScrolledWindow sw;
 		private SketchPad sketchpad;
 		private IconView piecesView;
 

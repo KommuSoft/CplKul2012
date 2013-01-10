@@ -8,7 +8,7 @@ namespace DSLImplementation.Tiling {
 	[TilePattern]
 	public class RequestAddFlightTilePattern : TilePatternBase {
 
-		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new Tree<TypeBind>(new TypeBind(typeof(FlightPiece),0x00,"name","flightname"),
+		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new Tree<TypeBind>(new TypeBind(typeof(FlightPiece),0x00),
 		                                                                     new TypeBind(typeof(FlightTemplatePiece),"code","flighttemplatecode"),
 		                                                                     new TypeBind(typeof(AirlinePiece),"name","airlinename"),
 		                                                                     new TypeBind(typeof(TimePiece),"time","starttime"),

@@ -45,12 +45,10 @@ namespace DSLImplementation.UserInterface {
 			if(tb.Bindingtable != null && tb.Bindingtable.Count > 0x00) {
 				foreach(KeyValuePair<string,string> entry in tb.Bindingtable) {
 					try {
-						Console.WriteLine("adding {0}",entry.Key);
 						binddictionary.Add(entry.Value,this.Table[entry.Key]);
-						Console.WriteLine("[added]");
 					}
 					catch (Exception e) {
-						Console.WriteLine("Error");
+						Console.Error.WriteLine("Error {0}: {1}",entry.Key,e);
 					}
 				}
 			}

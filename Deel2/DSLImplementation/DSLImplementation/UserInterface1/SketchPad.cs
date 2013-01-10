@@ -274,10 +274,8 @@ namespace DSLImplementation.UserInterface {
 			private int index;
 			public const double Margin = 10.0d;
 
-			ITree<IPuzzlePiece> ITree<IPuzzlePiece>.this [int index] {
-				get {
+			public ITree<IPuzzlePiece> ChildAt (int index) {
 					return this[index];
-				}
 			}
 			public IPuzzlePiece PieceParent {
 				get {

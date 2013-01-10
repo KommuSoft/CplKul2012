@@ -15,7 +15,6 @@ namespace DSLImplementation.Tiling {
 		}
 
 		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
-			int seati = 0x00;
 			List<Seat> seats = new List<Seat>();
 			int n = root.NumberOfChildren;
 			Dictionary<string,object> bind = new Dictionary<string,object>();
