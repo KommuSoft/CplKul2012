@@ -23,8 +23,6 @@ namespace DSLImplementation
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.Toolbar toolbar1;
-		private global::Gtk.IconView piecesView;
-		private global::DSLImplementation.UserInterface.SketchPad sketchpad;
 		
 		protected virtual void Build ()
 		{
@@ -44,7 +42,7 @@ namespace DSLImplementation
 			this.menu_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.menu_insert_linkpiece, null);
 			this.menu_edit_information = new global::Gtk.RadioAction ("menu_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.menu_edit_information.Group = this.menu_insertSubpiece.Group;
+			this.menu_edit_information.Group = this.menu_insert_linkpiece.Group;
 			this.menu_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.menu_edit_information, null);
 			this.Action = new global::Gtk.Action ("Action", global::Mono.Unix.Catalog.GetString ("--"), null, null);
@@ -62,7 +60,7 @@ namespace DSLImplementation
 			this.tool_insert_linkpiece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Insert linkpiece");
 			w1.Add (this.tool_insert_linkpiece, null);
 			this.tool_edit_information = new global::Gtk.RadioAction ("tool_edit_information", global::Mono.Unix.Catalog.GetString ("Edit information"), global::Mono.Unix.Catalog.GetString ("Edit information"), "gtk-index", 0);
-			this.tool_edit_information.Group = this.tool_insertSubpiece.Group;
+			this.tool_edit_information.Group = this.tool_insert_linkpiece.Group;
 			this.tool_edit_information.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit information");
 			w1.Add (this.tool_edit_information, null);
 			this.tool_execute_query = new global::Gtk.Action ("tool_execute_query", global::Mono.Unix.Catalog.GetString ("Execute Query"), global::Mono.Unix.Catalog.GetString ("Execute Query"), "gtk-execute");
@@ -80,11 +78,11 @@ namespace DSLImplementation
 			this.tool_autorun.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute complete queries");
 			w1.Add (this.tool_autorun, null);
 			this.menu_delete_piece = new global::Gtk.RadioAction ("menu_delete_piece", global::Mono.Unix.Catalog.GetString ("Remove piece"), null, "gtk-delete", 0);
-			this.menu_delete_piece.Group = this.menu_edit_information.Group;
+			this.menu_delete_piece.Group = this.menu_insert_linkpiece.Group;
 			this.menu_delete_piece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove piece");
 			w1.Add (this.menu_delete_piece, null);
 			this.tool_delete_piece = new global::Gtk.RadioAction ("tool_delete_piece", null, null, "gtk-delete", 0);
-			this.tool_delete_piece.Group = this.tool_edit_information.Group;
+			this.tool_delete_piece.Group = this.tool_insert_linkpiece.Group;
 			w1.Add (this.tool_delete_piece, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
@@ -115,21 +113,6 @@ namespace DSLImplementation
 			w3.Position = 1;
 			w3.Expand = false;
 			w3.Fill = false;
-			// Container child vbox1.Gtk.Box+BoxChild
-			this.piecesView = new global::Gtk.IconView ();
-			this.piecesView.CanFocus = true;
-			this.piecesView.Name = "piecesView";
-			this.vbox1.Add (this.piecesView);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.piecesView]));
-			w4.Position = 2;
-			w4.Expand = false;
-			// Container child vbox1.Gtk.Box+BoxChild
-			this.sketchpad = new global::DSLImplementation.UserInterface.SketchPad ();
-			this.sketchpad.Name = "sketchpad";
-			this.sketchpad.Autorun = false;
-			this.vbox1.Add (this.sketchpad);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.sketchpad]));
-			w5.Position = 3;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -149,7 +132,6 @@ namespace DSLImplementation
 			this.tool_autorun.Activated += new global::System.EventHandler (this.tool_autorun_changed);
 			this.menu_delete_piece.Activated += new global::System.EventHandler (this.menu_tool_changed);
 			this.tool_delete_piece.Activated += new global::System.EventHandler (this.tool_selected);
-			this.piecesView.SelectionChanged += new global::System.EventHandler (this.pieces_selection_changed);
 		}
 	}
 }

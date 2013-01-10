@@ -12,6 +12,8 @@ namespace DSLImplementation
 
 		private ListStore piecesStore;
 		private ScrolledWindow sw;
+		private SketchPad sketchpad;
+		private IconView piecesView;
 
 		public TopWindow () : 
 				base(Gtk.WindowType.Toplevel)
@@ -22,15 +24,26 @@ namespace DSLImplementation
 
 		void initialize () {
 			this.piecesStore = new ListStore(typeof(string),typeof(ConstructorInfo),typeof(Gdk.Pixbuf));
+			this.piecesView = new IconView();
 			this.piecesView.Model = this.piecesStore;
 			this.piecesView.TextColumn = 0x00;
 			this.piecesView.PixbufColumn = 0x02;
+			this.piecesView.SelectionChanged += pieces_selection_changed;
+			this.sketchpad = new SketchPad();
 			this.sketchpad.RootPiece = new RunPiece();
 			this.sketchpad.Tool = SketchPadTool.CreateNew;
 			this.invokePieces(Assembly.GetExecutingAssembly());
 			ScrolledWindow sw = new ScrolledWindow();
+			ScrolledWindow sw2 = new ScrolledWindow();
 			sw.Add(this.piecesView);
-			sw.SetPolicy(PolicyType.Never,PolicyType.Automatic);
+			sw.SetPolicy(PolicyType.Never,PolicyType.Always);
+			sw.SetSizeRequest(700,100);
+			sw2.AddWithViewport(this.sketchpad);
+			sw2.SetPolicy(PolicyType.Always,PolicyType.Always);
+			sw2.SetSizeRequest(700,500);
+			this.vbox1.PackStart(sw,false,false,0x00);
+			this.vbox1.PackStart(sw2,true,true,0x00);
+			this.ShowAll();
 		}
 
 		private void invokePieces (Assembly assembly) {

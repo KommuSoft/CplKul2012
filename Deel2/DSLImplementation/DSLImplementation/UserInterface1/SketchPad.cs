@@ -241,6 +241,8 @@ namespace DSLImplementation.UserInterface {
 
 		private void handleBoundsChanged (object sender, EventArgs e) {
 			double y = Margin;
+			PointD siz = this.MeasureSize();
+			this.SetSizeRequest((int) Math.Ceiling(siz.X),(int) Math.Ceiling(siz.Y));
 			foreach(QueryAnswerLocations qal in this.qas) {
 				qal.Offset = new PointD(Margin,y);
 				y += qal.MeasureSize(this.subcontext).Y+Margin;

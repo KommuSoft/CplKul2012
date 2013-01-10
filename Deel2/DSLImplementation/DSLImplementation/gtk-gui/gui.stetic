@@ -207,26 +207,10 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.IconView" id="piecesView">
-            <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <signal name="SelectionChanged" handler="pieces_selection_changed" />
-          </widget>
-          <packing>
-            <property name="Position">2</property>
-            <property name="AutoSize">False</property>
-            <property name="Expand">False</property>
-          </packing>
+          <placeholder />
         </child>
         <child>
-          <widget class="DSLImplementation.UserInterface.SketchPad" id="sketchpad">
-            <property name="MemberName" />
-            <property name="Autorun">False</property>
-          </widget>
-          <packing>
-            <property name="Position">3</property>
-            <property name="AutoSize">False</property>
-          </packing>
+          <placeholder />
         </child>
       </widget>
     </child>
