@@ -6,6 +6,12 @@ using System.Linq;
 
 namespace DSLImplementation.IntermediateCode{
 	public class XmlMain{
+
+		private static void printFlights (RequestGetFlights rgf)
+		{
+			Console.WriteLine(((AnswerGetFlights)rgf.execute()).Flights.Count());
+		}
+
 		public static void Main (string[] args){
 			Country country1 = new Country("belgium");
 			Country country2 = new Country("onbestaand land");
@@ -29,6 +35,34 @@ namespace DSLImplementation.IntermediateCode{
 			RequestGetAirports rgaCountry2 = new RequestGetAirports(country2);
 			Console.WriteLine(((AnswerGetAirports)rgaCountry2.execute()).Airports.Count());
 
+			RequestGetCities rgcCountry1 = new RequestGetCities(country1);
+			Console.WriteLine(((AnswerGetCities)rgcCountry1.execute()).Cities.Count());
+
+			RequestGetCities rgcCountry2 = new RequestGetCities(country2);
+			Console.WriteLine(((AnswerGetCities)rgcCountry2.execute()).Cities.Count());
+
+
+			//----------------------
+			Country belgium = new Country("belgium");
+			Country netherlands = new Country("the netherlands");
+			Airline sn = new Airline("sn");
+			SeatClass economy = new SeatClass("economy class");
+
+			RequestGetFlights rgf1 = new RequestGetFlights(netherlands, belgium);
+			printFlights(rgf1);
+
+			RequestGetFlights rgf2 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 2012, month: 1, day: 16));
+			printFlights(rgf2);
+
+			RequestGetFlights rgf3 = new RequestGetFlights(netherlands, belgium, Airline: sn);
+			printFlights(rgf3);
+
+			RequestGetFlights rgf4 = new RequestGetFlights(netherlands, belgium, SeatClass: economy);
+			printFlights(rgf4);
+
+			RequestGetFlights rfg5 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 2012, month: 1, day: 16), Airline: sn, SeatClass: economy);
+			printFlights(rfg5);
+
 			return;
 
 
@@ -49,7 +83,6 @@ namespace DSLImplementation.IntermediateCode{
 			return;
 
 			//Testje van Jonas
-			Country belgium = new Country("Belgium");
 			RequestGetCities rgc = new RequestGetCities(belgium);
 			AnswerGetCities agc = (AnswerGetCities) rgc.execute();
 			XmlSerializer xr = new XmlSerializer(typeof(AnswerGetCities));

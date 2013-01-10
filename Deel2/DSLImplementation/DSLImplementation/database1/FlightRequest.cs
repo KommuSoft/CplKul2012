@@ -13,17 +13,13 @@ namespace DSLImplementation.Database
 			return "SELECT * FROM flight";
 		}
 
-		private string addAdditional(int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime)){
+		private string addAdditional(int airline = -1, DateTime startDateTime = default(DateTime)){
 			string query = "";
 
 			if (airline != -1) {
 				query += " AND airline = " + airline;
 			}
-			
-			if (class_ != -1) {
-				query += " AND id = any(select flight.id from flight,seat_price,seat where seat_price.flight=flight.id AND seat_price.seat=seat.id AND seat.class = " + class_ +  " group by flight.id)";
-			}
-			
+
 			if (startDateTime != default(DateTime)) {
 				query += " AND extract(day FROM start_date) = " + startDateTime.Day;
 				query += " AND extract(month FROM start_date) = " + startDateTime.Month;
@@ -58,22 +54,45 @@ namespace DSLImplementation.Database
 		public List<Flight> fetchFlight (Airport startAirport, Airport destinationAirport, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
 		{
 			LocationRequest lr = new LocationRequest();
-			string query = lr.queryLocationFromAirports(startAirport, destinationAirport);
-
-			query = "SELECT * FROM flight WHERE location = " + query;
-			query += addAdditional(airline, class_, startDateTime);
+			List<string> tables = new List<string>{"flight"};
+			
+			string where_ = "";
+			addClass(tables, ref where_, class_);
+			
+			string query = "SELECT DISTINCT flight.* FROM ";
+			string from_ = string.Join(", ", (tables.Select(X=>X.ToString()).ToArray()));
+			query += from_;
+			query += " WHERE ";
+			query += where_;
+			
+			query += "location = " + lr.queryLocationFromAirports(startAirport, destinationAirport);
+			query += addAdditional(airline, startDateTime);
+			
+			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 
 		public List<Flight> fetchFlight (int locationID, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
 		{
+			throw new NotImplementedException();
 			List<string> columns = new List<string> {"location"};
 			List<object> values = new List<object> {locationID};
 
 			string query = createQuery (columns, values);
-			query += addAdditional(airline, class_, startDateTime);
+
+			//TODO: code van class toevoegen
+			query += addAdditional(airline, startDateTime);
 			
 			return fetchFromQuery(query);
+		}
+
+		private void addClass (List<string> tables, ref string where_, int class_)
+		{
+			if (class_ != -1) {
+				addJoin(tables, ref where_, "seat_price", "flight", "flight", "id");
+				addJoin(tables, ref where_, "seat_price", "seat", "seat", "id");
+				where_ += "seat.class = " + class_ + " AND "; 
+			}
 		}
 
 		private void addJoin (List<string> tables, ref string where_, string table1, string table2, string column1, string column2, string alias1 = "", string alias2 = "")
@@ -99,24 +118,26 @@ namespace DSLImplementation.Database
 			where_ = where_ + ((alias1.Length > 0) ? alias1 : table1) + "." + column1 + " = " + ((alias2.Length > 0) ? alias2 : table2) + "." + column2 + " AND ";
 		}
 
-		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime)){
+		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
+		{
 			List<string> tables = new List<string>{"flight"};
 
 			string where_ = "";
-			addJoin(tables, ref where_, "location", "flight", "id", "location");
-			addJoin(tables, ref where_, "location", "airport", "start_airport", "id", alias2: "startAirport");
-			addJoin(tables, ref where_, "airport", "country", "country", "id", alias1: "startAirport", alias2: "startCountry");
-			addJoin(tables, ref where_, "location", "airport", "destination_airport", "id", alias2: "destinationAirport");
-			addJoin(tables, ref where_, "airport", "country", "country", "id", alias1: "destinationAirport", alias2: "destinationCountry");
+			addJoin (tables, ref where_, "location", "flight", "id", "location");
+			addJoin (tables, ref where_, "location", "airport", "start_airport", "id", alias2: "startAirport");
+			addJoin (tables, ref where_, "airport", "country", "country", "id", alias1: "startAirport", alias2: "startCountry");
+			addJoin (tables, ref where_, "location", "airport", "destination_airport", "id", alias2: "destinationAirport");
+			addJoin (tables, ref where_, "airport", "country", "country", "id", alias1: "destinationAirport", alias2: "destinationCountry");
 
-			string query = "SELECT flight.* FROM ";
+			addClass(tables, ref where_, class_);
+
+			string query = "SELECT DISTINCT flight.* FROM ";
 			string from_ = string.Join(", ", (tables.Select(X=>X.ToString()).ToArray()));
 			query += from_;
 			query += " WHERE ";
 			query += where_;
 
-
-			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name) + addAdditional(airline: airline, class_: class_, startDateTime: startDateTime);
+			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name) + addAdditional(airline: airline, startDateTime: startDateTime);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
@@ -133,13 +154,15 @@ namespace DSLImplementation.Database
 			addJoin(tables, ref where_, "location", "airport", "destination_airport", "id",  alias2: "destinationAirport");
 			addJoin(tables, ref where_, "airport", "city", "city", "id", alias1: "destinationAirport", alias2: "destinationCity");
 
-			string query = "SELECT flight.* FROM ";
+			addClass(tables, ref where_, class_);
+
+			string query = "SELECT DISTINCT flight.* FROM ";
 			string from_ = string.Join(", ", (tables.Select(X => X.ToString()).ToArray()));
 			query += from_;
 			query += " WHERE ";
 			query += where_;
 
-			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name) + addAdditional(airline: airline, class_: class_, startDateTime: startDateTime);
+			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name) + addAdditional(airline: airline, startDateTime: startDateTime);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
