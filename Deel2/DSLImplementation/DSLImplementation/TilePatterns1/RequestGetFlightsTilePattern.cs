@@ -11,7 +11,7 @@ namespace DSLImplementation.Tiling {
 		public RequestGetFlightsTilePattern () : base(bindtree) {}
 
 		protected override IXmlRequest InternalToTransferCodeBase (IPuzzlePiece root, ITree<IPuzzlePiece> matchtree, Dictionary<string, object> bindings) {
-			//return new RequestGetFlights();
+			ILocation loca, locb;
 			return null;
 		}
 
