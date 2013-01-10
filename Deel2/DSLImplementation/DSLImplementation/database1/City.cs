@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -42,10 +43,21 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The name of the city is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The name of the city is invalid");
 			}
 
-			return validCountry(country, out exceptionMessage);
+			if (!validCountry (country, out exceptionMessage)) {
+				return false;
+			}
+
+			CountryRequest cor = new CountryRequest ();
+			string countryName = cor.fetchFromID (country) [0].name;
+			CityRequest cr = new CityRequest ();
+			if (cr.fetchFromNameAndCountry (name, countryName).Count () != 0) {
+				return makeExceptionMessage (out exceptionMessage, "The name of the city already exists for a city in the country " + countryName);
+			}
+
+			return makeExceptionMessage(out exceptionMessage);
 		}
 
 		public override int insert ()

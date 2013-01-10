@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -43,7 +44,12 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (distance <= 0) {
-				return makeExceptionMessage(out exceptionMessage, "The distance bewteen the locations is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The distance bewteen the locations is invalid");
+			}
+
+			LocationRequest lr = new LocationRequest ();
+			if (lr.fetchLocationFromAirports (start_airport, destination_airport).Count () != 0) {
+				return makeExceptionMessage(out exceptionMessage, "There is already an traject between the given airports");
 			}
 
 			return validAirport(start_airport, out exceptionMessage) && validAirport(destination_airport, out exceptionMessage);

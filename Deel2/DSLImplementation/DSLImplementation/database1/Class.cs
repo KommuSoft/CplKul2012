@@ -42,7 +42,12 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The name of the class is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The name of the class is invalid");
+			}
+
+			ClassRequest cr = new ClassRequest ();
+			if (cr.fetchClassFromName (name).Count != 0) {
+				return makeExceptionMessage(out exceptionMessage, "The name of the class already exists");
 			}
 
 			return makeExceptionMessage(out exceptionMessage);

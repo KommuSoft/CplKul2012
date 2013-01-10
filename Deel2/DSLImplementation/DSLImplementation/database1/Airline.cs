@@ -40,11 +40,16 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (code.Length != 2 && code.Length != 3) {
-				return makeExceptionMessage(out exceptionMessage, "The code of the airline is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The code of the airline is invalid");
 			}
 
 			if (name.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The name of the airline is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The name of the airline is invalid");
+			}
+
+			AirlineRequest ar = new AirlineRequest ();
+			if (ar.fetchAirlineFromCode (code).Count != 0) {
+				return makeExceptionMessage (out exceptionMessage, "The code of the airline already exists for an airline");
 			}
 
 			return makeExceptionMessage(out exceptionMessage);

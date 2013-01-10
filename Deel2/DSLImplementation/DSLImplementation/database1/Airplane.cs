@@ -53,7 +53,12 @@ namespace DSLImplementation.Database
 			}
 
 			if (code.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The code of the airplane is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The code of the airplane is invalid");
+			}
+
+			AirplaneRequest ar = new AirplaneRequest ();
+			if (ar.fetchAirplaneFromCode (code).Count != 0) {
+				return makeExceptionMessage(out exceptionMessage, "The code of the airplane already exists for an airplane");
 			}
 
 			return makeExceptionMessage(out exceptionMessage);

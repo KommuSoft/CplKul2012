@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -42,9 +43,14 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (name.Length == 0) {
-				return makeExceptionMessage(out exceptionMessage, "The name of the passenger is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The name of the passenger is invalid");
 			}
 		
+			PassengerRequest pr = new PassengerRequest ();
+			if (pr.fetchPassengerFromName (name).Count () != 0) {
+				return makeExceptionMessage(out exceptionMessage, "There is already a passenger with the given name");
+			}
+
 			return makeExceptionMessage(out exceptionMessage);
 		}
 

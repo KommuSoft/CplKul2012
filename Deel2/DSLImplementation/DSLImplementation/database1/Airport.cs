@@ -71,9 +71,14 @@ namespace DSLImplementation.Database
 			}
 
 			foreach (int c in company) {
-				if(!validAirline (c, out exceptionMessage)){
+				if (!validAirline (c, out exceptionMessage)) {
 					return false;
 				}
+			}
+
+			AirportRequest ar = new AirportRequest ();
+			if (ar.fetchAirportFromCode (code).Count () != 0) {
+				return makeExceptionMessage(out exceptionMessage, "The code of the airport already exists for an airport");
 			}
 
 			return validCity (city, out exceptionMessage) && validCountry(country, out exceptionMessage);
