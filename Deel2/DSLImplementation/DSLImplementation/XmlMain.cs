@@ -21,36 +21,36 @@ namespace DSLImplementation.IntermediateCode{
 			}
 		}
 
-		public static void Main (string[] args){
+		private static void testGetters(){
 			Country country1 = new Country("belgium");
 			Country country2 = new Country("onbestaand land");
-
+			
 			City city1 = new City("brussels", country1);
 			City city2 = new City("onbestaande stad", country1);
 			City city3 = new City("brussels", country2);
-
+			
 			RequestGetAirports rgaCity1 = new RequestGetAirports(city1);
 			Console.WriteLine(((AnswerGetAirports)rgaCity1.execute()).Airports.Count());
-
+			
 			RequestGetAirports rgaCity2 = new RequestGetAirports(city2);
 			Console.WriteLine(((AnswerGetAirports)rgaCity2.execute()).Airports.Count());
-
+			
 			RequestGetAirports rgaCity3 = new RequestGetAirports(city3);
 			Console.WriteLine(((AnswerGetAirports)rgaCity3.execute()).Airports.Count());
-
+			
 			RequestGetAirports rgaCountry1 = new RequestGetAirports(country1);
 			Console.WriteLine(((AnswerGetAirports)rgaCountry1.execute()).Airports.Count());
-
+			
 			RequestGetAirports rgaCountry2 = new RequestGetAirports(country2);
 			Console.WriteLine(((AnswerGetAirports)rgaCountry2.execute()).Airports.Count());
-
+			
 			RequestGetCities rgcCountry1 = new RequestGetCities(country1);
 			Console.WriteLine(((AnswerGetCities)rgcCountry1.execute()).Cities.Count());
-
+			
 			RequestGetCities rgcCountry2 = new RequestGetCities(country2);
 			Console.WriteLine(((AnswerGetCities)rgcCountry2.execute()).Cities.Count());
-
-
+			
+			
 			//----------------------
 			Country belgium = new Country("belgium");
 			Country netherlands = new Country("the netherlands");
@@ -58,94 +58,118 @@ namespace DSLImplementation.IntermediateCode{
 			Airline unknownAirline = new Airline("UNK");
 			SeatClass economy = new SeatClass("economy class");
 			SeatClass unknownClass = new SeatClass("unknown class");
-
+			
 			RequestGetFlights rgf1 = new RequestGetFlights(netherlands, belgium);
 			printFlights(rgf1);
-
+			
 			RequestGetFlights rgf2 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 2012, month: 1, day: 16));
 			printFlights(rgf2);
-
+			
 			RequestGetFlights rgf3 = new RequestGetFlights(netherlands, belgium, Airline: sn);
 			printFlights(rgf3);
-
+			
 			RequestGetFlights rgf4 = new RequestGetFlights(netherlands, belgium, SeatClass: economy);
 			printFlights(rgf4);
-
+			
 			RequestGetFlights rgf5 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 2012, month: 1, day: 16), Airline: sn, SeatClass: economy);
 			printFlights(rgf5);
-
+			
 			RequestGetFlights rgf6 = new RequestGetFlights(belgium, netherlands);
 			printFlights(rgf6);
-
+			
 			RequestGetFlights rgf7 = new RequestGetFlights(netherlands, belgium, Airline: unknownAirline);
 			tryPrintFlights(rgf7);
-
+			
 			RequestGetFlights rgf8 = new RequestGetFlights(netherlands, belgium, SeatClass: unknownClass);
 			tryPrintFlights(rgf8);
-
+			
 			RequestGetFlights rgf9 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 3009, month: 3, day: 14));
 			tryPrintFlights(rgf9);
+		}
 
-			return;
+		private static void printAddAnswer (IXmlAnswer a)
+		{
+			AnswerAdd aa = (AnswerAdd) a;
+			Console.WriteLine(aa.message);
+		}
 
+		private static void testAddCountry ()
+		{
+			Country c1 = new Country("");
+			RequestAddCountry rac1 = new RequestAddCountry(c1);
+			printAddAnswer(rac1.execute());
 
+			Country c2 = new Country("Bladibla");
+			RequestAddCountry rac2 = new RequestAddCountry(c2);
+			//printAddAnswer(rac2.execute());
 
+			Country c3 = new Country("belgium");
+			RequestAddCountry rac3 = new RequestAddCountry(c3);
+			printAddAnswer(rac3.execute());
+		}
 
+		private static void executeAddCity (City c)
+		{
+			RequestAddCity rac = new RequestAddCity(c);
+			printAddAnswer(rac.execute());
+		}
 
+		private static void testAddCity ()
+		{
+			Country belgium = new Country("belgium");
+			Country unknownLand = new Country("unk");
 
-			FlightTemplate template = new FlightTemplate("CPL");
-			Airline airline = new Airline("SN");
-			Airport start = new Airport("BRU");
-			Airport end = new Airport("CRL");
-			Airplane airplane = new Airplane("B747-1");
+			City c1 = new City("", belgium);
+			executeAddCity(c1);
 
-			Flight f = new Flight(template, airline, new DateTime(), new DateTime(), start, end, airplane);
-			RequestAddFlight raf = new RequestAddFlight(f);
-			//AnswerAdd aad = (AnswerAdd)raf.execute();
-			//Console.WriteLine(aad.message);
-			return;
+			City c2 = new City("city", unknownLand);
+			executeAddCity(c2);
 
-			//Testje van Jonas
-			RequestGetCities rgc = new RequestGetCities(belgium);
-			AnswerGetCities agc = (AnswerGetCities) rgc.execute();
-			XmlSerializer xr = new XmlSerializer(typeof(AnswerGetCities));
-			FileStream fss = File.Open("citiesBelgium.xml", FileMode.Create, FileAccess.Write);
-			xr.Serialize(fss, agc);
-			fss.Close();
+			City c3 = new City("city", belgium);
+		//	executeAddCity(c3);
+		}
 
-				//File 1
-				Country c = new Country("Belgie");
-				RequestGetCities cr = new RequestGetCities(c);
-				XmlSerializer sCr = new XmlSerializer(typeof(RequestGetCities));
-				FileStream fs = File.Open("cityrequest.xml", FileMode.Create, FileAccess.Write);
-				sCr.Serialize(fs, cr);
-				fs.Close();
-			
-				//File 2
-				City ci1 = new City("Lendelede", c);
-				City ci2 = new City("Wielsbeke", c);
-				City ci3 = new City("Veurne", c);
-				List<Airport> airports = new List<Airport>();
-				//Door null te gebruiken zullen er geen airlines 
-				//zichtbaar worden in het xml-bestand
-				Airport a1 = new Airport("LendeledeAirport", "1", ci1, null);
-				Airport a2 = new Airport("WielsbekeAirport", "2", ci2, null);
-				Airport a3 = new Airport("VeurneAirport", "3", ci3, null);
-				airports.Add(a1);
-				airports.Add(a2);
-				airports.Add(a3);
-				AnswerGetAirports aa = new AnswerGetAirports(airports);
-				XmlSerializer sAa = new XmlSerializer(typeof(AnswerGetAirports));
-				fs = File.Open("airportanswer.xml", FileMode.Create, FileAccess.Write);
-				sAa.Serialize(fs, aa);
-				fs.Close();
-			
-				//File 3
-				RequestAddCountry rac = new RequestAddCountry(c);
-				XmlSerializer sRac = new XmlSerializer(typeof(RequestAddCountry));
-				fs = File.Open("requestAddCountry.xml", FileMode.Create, FileAccess.Write);
-				sRac.Serialize(fs, rac);
-				fs.Close();
+		private static void executedAddAiport (Airport a)
+		{
+			RequestAddAirport raa = new RequestAddAirport(a);
+			printAddAnswer(raa.execute());
+		}
+
+		private static void testAddAirport ()
+		{
+			Country belgium = new Country("belgium");
+			Country unknownCountry = new Country("unknown country");
+
+			City brussels = new City("brussels", belgium);
+			City unknownCity1 = new City("unknown city", belgium);
+			City unknownCity2 = new City("brussels", unknownCountry);
+
+			Airport a1 = new Airport("", "COO", brussels);
+			executedAddAiport(a1);
+
+			Airport a2 = new Airport("The name of the airport", "", brussels);
+			executedAddAiport(a2);
+
+			Airport a3 = new Airport("The name of the airport", "COO", unknownCity1);
+			executedAddAiport(a3);
+
+			Airport a4 = new Airport("The name of the airport", "COO", unknownCity2);
+			executedAddAiport(a4);
+
+			Airport a5 = new Airport("COO");
+			executedAddAiport(a5);
+
+			//TODO test airlines
+
+			Airport a6 = new Airport("The name of the airport", "COO", brussels);
+			//executedAddAiport(a6);
+		}
+
+		public static void Main (string[] args){
+			//testGetters();
+			//testAddCountry();
+			//testAddCity();
+			//testAddAirport();
 		}
 	}
 }

@@ -17,6 +17,10 @@ namespace DSLImplementation.IntermediateCode
 			Database.CountryRequest cor = new Database.CountryRequest ();
 			Database.CityRequest cir = new Database.CityRequest ();
 
+			if (this.Airport.City == null) {
+				return new AnswerAdd("The city of the airport isn't set.");
+			}
+
 			List<Database.Country> countries = cor.fetchCountryFromName (this.Airport.City.Country.Name);
 			if (countries.Count == 0) {
 				return new AnswerAdd ("No country found with name " + this.Airport.City.Country.Name);
@@ -34,6 +38,8 @@ namespace DSLImplementation.IntermediateCode
 
 			try {
 				airport.insert();
+			} catch (Database.InvalidObjectException e){
+				aa = new AnswerAdd(e.Message);
 			} catch (Exception e) {
 				aa = new AnswerAdd(e.ToString());
 			}
