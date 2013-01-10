@@ -6,6 +6,18 @@ using System.IO;
 namespace DSLImplementation.IntermediateCode{
 	public class XmlMain{
 		public static void Main (string[] args){
+			FlightTemplate template = new FlightTemplate("CPL");
+			Airline airline = new Airline("SN");
+			Airport start = new Airport("BRU");
+			Airport end = new Airport("CRL");
+			Airplane airplane = new Airplane("B747-1");
+
+			Flight f = new Flight(template, airline, new DateTime(), new DateTime(), start, end, airplane);
+			RequestAddFlight raf = new RequestAddFlight(f);
+			AnswerAdd aad = (AnswerAdd)raf.execute();
+			Console.WriteLine(aad.message);
+			return;
+
 			//Testje van Jonas
 			Country belgium = new Country("Belgium");
 			RequestGetCities rgc = new RequestGetCities(belgium);

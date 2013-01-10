@@ -19,7 +19,14 @@ namespace DSLImplementation.Database
 
 		public List<Location> fetchLocationFromAirports (Airport start, Airport destination)
 		{
-			return fetchFromQuery(queryLocationFromAirports(start, destination));
+			AirportRequest ar = new AirportRequest();
+			string startQuery = ar.toQuery(start);
+			string destinationQuery = ar.toQuery(destination);
+			
+			string query = "(SELECT * FROM location WHERE start_airport = " + startQuery + " AND destination_airport = " + destinationQuery + ")";
+
+
+			return fetchFromQuery(query);
 		}
 
 		public string queryLocationFromAirports (Airport start, Airport destination)

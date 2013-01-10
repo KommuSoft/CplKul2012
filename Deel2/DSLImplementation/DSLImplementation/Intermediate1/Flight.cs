@@ -12,6 +12,7 @@ namespace DSLImplementation.IntermediateCode
 			this.Airplane = Airplane;
 		}		
 
+		//TODO: de naam moet automatisch samengesteld worden
 		public String Name{ get; set;}
 		public Airline Airline{ get; set; }
 		public DateTime StartDate { get; set; }

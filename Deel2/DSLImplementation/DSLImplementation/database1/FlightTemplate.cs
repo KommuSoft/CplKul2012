@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace DSLImplementation.Database
 {
@@ -12,9 +13,20 @@ namespace DSLImplementation.Database
 			return "flight_template";
 		}
 
+		public FlightTemplate ()
+		{
+			this.code = "";
+		}
+
 		public FlightTemplate (string code)
 		{
 			this.code = code;
+		}
+
+		public FlightTemplate (IDataReader reader)
+		{
+			this.ID = reader.GetInt32(reader.GetOrdinal("id"));
+			this.code = reader.GetString(reader.GetOrdinal("code"));
 		}
 
 		protected override bool isValid (out string exceptionMessage)
