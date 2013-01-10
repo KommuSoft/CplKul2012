@@ -2,7 +2,7 @@ using System;
 using System.Xml.Serialization;
 namespace DSLImplementation.IntermediateCode
 {
-	public class City
+	public class City : ILocation
 	{
 		public City(String Name, Country Country){
 			this.Name = Name;

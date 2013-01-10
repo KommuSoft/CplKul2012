@@ -21,14 +21,10 @@ namespace DSLImplementation.Tiling {
 		}
 
 		public IXmlRequest ToTransferCode (IPuzzlePiece root) {
-			ITree<IPuzzlePiece> tmp;
-			Tree<TypeBind>.ConjunctiveTreeSwapMatchPredicate(this.pattern,0x00,root,TypeBind.Match,out tmp);
-			Dictionary<string,object> bindings = new Dictionary<string, object>();
-			Tree<TypeBind>.ConjunctiveTreeNonSwapMatchPredicate(this.pattern,0x00,root,(x,y,z) => TypeBind.MatchBind(x,y,z,bindings));
-			return InternalToTransferCode(root, bindings);
+			return TilingUtils.MatchBindExecute(this.pattern,root,this.InternalToTransferCodeBase);
 		}
 		#endregion
-		protected virtual IXmlRequest InternalToTransferCode (IPuzzlePiece root, ITree<IPuzzlePiece> sortedtree, Dictionary<string, object> bindings) {
+		protected virtual IXmlRequest InternalToTransferCodeBase (IPuzzlePiece root, ITree<IPuzzlePiece> sortedtree, Dictionary<string, object> bindings) {
 			return InternalToTransferCode(root,bindings);
 		}
 		protected virtual IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {

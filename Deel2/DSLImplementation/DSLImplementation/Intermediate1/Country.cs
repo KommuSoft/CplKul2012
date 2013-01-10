@@ -1,7 +1,7 @@
 using System;
 namespace DSLImplementation.IntermediateCode
 {
-	public class Country
+	public class Country : ILocation
 	{
 		public Country(String Name){
 			this.Name = Name;

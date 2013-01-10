@@ -50,7 +50,6 @@
     <Compile Include="database1\LocationRequest.cs" />
     <Compile Include="database1\Main.cs" />
     <Compile Include="database1\Util.cs" />
-    <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="database1\Airplane.cs" />
     <Compile Include="database1\AirplaneRequest.cs" />
     <Compile Include="database1\Airline.cs" />
@@ -160,9 +159,11 @@
     <Compile Include="TilePatterns1\RequestGetFlightsTilePattern.cs" />
     <Compile Include="UserInterface1\Pieces\ILocationPiece.cs" />
     <Compile Include="TopWindow.cs" />
-    <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
     <Compile Include="database1\ILocatable.cs" />
     <Compile Include="TilePatterns1\TilingUtils.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\DSLImplementation.TopWindow.cs" />
+    <Compile Include="Intermediate1\ILocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -173,10 +174,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="Npgsql" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="gdk-sharp, gtk-sharp">
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
       <Package>gtk-sharp-2.0</Package>
     </Reference>
-    <Reference Include="gtk-sharp, gtk-sharp">
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
       <Package>gtk-sharp-2.0</Package>
     </Reference>
   </ItemGroup>

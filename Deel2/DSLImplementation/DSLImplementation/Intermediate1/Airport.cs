@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace DSLImplementation.IntermediateCode
 {
-	public class Airport
+	public class Airport : ILocation
 	{
 	
 		public Airport (string code)
