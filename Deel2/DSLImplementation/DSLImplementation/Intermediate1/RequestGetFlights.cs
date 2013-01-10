@@ -4,31 +4,30 @@ namespace DSLImplementation.IntermediateCode{
 	
 	public class RequestGetFlights : XmlRequestBase {
 
-		public RequestGetFlights (Airport Airport1, Airport Airport2, DateTime Start = default(DateTime))
+		public RequestGetFlights (Airport Airport1, Airport Airport2, DateTime Start = default(DateTime), Airline Airline = null, SeatClass SeatClass = null)
 		{
 			this.Airport1 = Airport1;
 			this.Airport2 = Airport2;
-			this.Start = Start;
+			setCommon(Start, Airline, SeatClass);
 		}
 
-		public RequestGetFlights (City City1, City City2, DateTime Start = default(DateTime))
+		public RequestGetFlights (City City1, City City2, DateTime Start = default(DateTime), Airline Airline = null, SeatClass SeatClass = null)
 		{
 			this.City1 = City1;
 			this.City2 = City2;
-			this.Start = Start;
+			setCommon(Start, Airline, SeatClass);
 		}
 
-		public RequestGetFlights (Country Country1, Country Country2, DateTime Start = default(DateTime))
+		public RequestGetFlights (Country Country1, Country Country2, DateTime Start = default(DateTime), Airline Airline = null, SeatClass SeatClass = null)
 		{
 			this.Country1 = Country1;
 			this.Country2 = Country2;
-			this.Start = Start;
+			setCommon(Start, Airline, SeatClass);
 		}
-		
-		public RequestGetFlights(Airport Airport1, Airport Airport2, DateTime Time, Airline Airline, SeatClass SeatClass){//TODO: manier zoeken om verschillende types mee te geven: airports, cities, countries
-			//TODO: deze constructor zal volledig verdwijnen en zal vervangen door de bovenstaaande
-			this.Airport1 = Airport1;
-			this.Airport2 = Airport2;
+
+		private void setCommon (DateTime Start, Airline Airline, SeatClass SeatClass)
+		{
+			this.Start = Start;
 			this.Airline = Airline;
 			this.SeatClass = SeatClass;
 		}
@@ -97,8 +96,8 @@ namespace DSLImplementation.IntermediateCode{
 			Database.FlightRequest fr = new Database.FlightRequest ();
 			Database.AirportRequest ar = new Database.AirportRequest ();
 
-			int airport1ID = ar.fetchAirportFromCode(this.Airport1.Code)[0].ID;
-			int airport2ID = ar.fetchAirportFromCode(this.Airport2.Code)[0].ID;
+			Database.Airport airport1 = ar.fetchAirportFromCode(this.Airport1.Code)[0];
+			Database.Airport airport2 = ar.fetchAirportFromCode(this.Airport2.Code)[0];
 			
 			if (this.Airline == null) {
 				//TODO gebruik dit
@@ -109,10 +108,10 @@ namespace DSLImplementation.IntermediateCode{
 			}
 
 			if (Start != default(DateTime)) {
-				return fr.fetchFlight(airport1ID, airport2ID, startDateTime: Start);
+				return fr.fetchFlight(airport1, airport2, startDateTime: Start);
 			} 
 			
-			return fr.fetchFlight(airport1ID, airport2ID);
+			return fr.fetchFlight(airport1, airport2);
 		}
 
 		private List<Database.Flight> executeOnCity ()
