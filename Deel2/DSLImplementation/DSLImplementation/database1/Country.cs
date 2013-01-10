@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.Database
 {
-	public class Country : DatabaseTable
+	public class Country : DatabaseTable, ILocatable
 	{
 		public string name { get; set; }
 

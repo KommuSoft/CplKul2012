@@ -91,57 +91,77 @@ namespace DSLImplementation.IntermediateCode{
 			return fs;
 		}
 
-		private List<Database.Flight> executeOnAirport ()
+		private int getAirlineID ()
+		{
+			int airlineID = -1;
+			if (this.Airline != null) {
+				Database.AirlineRequest alr = new Database.AirlineRequest();
+				airlineID = alr.fetchAirlineFromCode(this.Airline.Code)[0].ID;
+			}
+
+			return airlineID;
+		}
+
+		private int getClassID ()
+		{
+			int classID = -1;
+			if (this.SeatClass != null) {
+				Database.ClassRequest cr = new Database.ClassRequest();
+				classID = cr.fetchClassFromName(this.SeatClass.Name)[0].ID;
+			}
+
+			return classID;
+		}
+
+		private List<Database.Flight> doDispatch (Database.ILocatable start, Database.ILocatable end)
 		{
 			Database.FlightRequest fr = new Database.FlightRequest ();
+			int airlineID = getAirlineID();
+			int classID = getClassID();
+			
+			if (this.Airline != null) {
+				if (this.SeatClass != null) {
+					return fr.fetchFlight (start, end, startDateTime: Start, class_: classID, airline: airlineID);
+				} else {
+					return fr.fetchFlight (start, end, startDateTime: Start, airline: airlineID);
+				}
+			} else {
+				if (this.SeatClass != null) {
+					return fr.fetchFlight (start, end, startDateTime: Start, class_: classID);
+				} else {
+					return fr.fetchFlight (start, end, startDateTime: Start);
+				}
+			}
+		}
+
+		private List<Database.Flight> executeOnAirport ()
+		{
 			Database.AirportRequest ar = new Database.AirportRequest ();
 
-			Database.Airport airport1 = ar.fetchAirportFromCode(this.Airport1.Code)[0];
-			Database.Airport airport2 = ar.fetchAirportFromCode(this.Airport2.Code)[0];
-			
-			if (this.Airline == null) {
-				//TODO gebruik dit
-			}
-			
-			if (this.SeatClass == null) {
-				//TODO gebruik dit
-			}
+			Database.Airport airport1 = ar.fetchAirportFromCode (this.Airport1.Code) [0];
+			Database.Airport airport2 = ar.fetchAirportFromCode (this.Airport2.Code) [0];
 
-			if (Start != default(DateTime)) {
-				return fr.fetchFlight(airport1, airport2, startDateTime: Start);
-			} 
-			
-			return fr.fetchFlight(airport1, airport2);
+			return doDispatch(airport1, airport2);
 		}
 
 		private List<Database.Flight> executeOnCity ()
 		{
 			Database.CityRequest cr = new Database.CityRequest ();
-			Database.FlightRequest fr = new Database.FlightRequest ();
 
 			Database.City startCity = cr.fetchFromNameAndCountry (City1.Name, City1.Country.Name) [0];
 			Database.City endCity = cr.fetchFromNameAndCountry (City2.Name, City2.Country.Name) [0];
 
-			if (Start != default(DateTime)) {
-				return fr.fetchFlight(startCity, endCity, startDateTime: Start);
-			} 
-
-			return fr.fetchFlight(startCity, endCity);
+			return doDispatch(startCity, endCity);
 		}
 
 		private List<Database.Flight> executedOnCountry ()
 		{
 			Database.CountryRequest cr = new Database.CountryRequest ();
-			Database.FlightRequest fr = new Database.FlightRequest ();
 
 			Database.Country startCountry = cr.fetchCountryFromName (Country1.Name) [0];
 			Database.Country endCountry = cr.fetchCountryFromName (Country2.Name) [0];
 
-			if (Start != default(DateTime)) {
-				return fr.fetchFlight(startCountry, endCountry, startDateTime: Start);
-			}
-
-			return fr.fetchFlight(startCountry, endCountry);
+			return doDispatch(startCountry, endCountry);
 		}
 
 		public override IXmlAnswer execute ()

@@ -33,6 +33,28 @@ namespace DSLImplementation.Database
 			return query;
 		}
 
+		public List<Flight> fetchFlight (ILocatable start, ILocatable destination, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
+		{
+			if (start.GetType () == typeof(Airport) && start.GetType () == typeof(Airport)) {
+				Airport startAirport = (Airport)start;
+				Airport destinationAirport = (Airport)destination;
+
+				return fetchFlight (startAirport, destinationAirport, airline, class_, startDateTime);
+			} else if (start.GetType () == typeof(Country) && destination.GetType () == typeof(Country)) {
+				Country startCountry = (Country)start;
+				Country destinationCountry = (Country)destination;
+				
+				return fetchFlight (startCountry, destinationCountry, airline, class_, startDateTime);
+			} else if (start.GetType () == typeof(City) && destination.GetType () == typeof(City)) {
+				City startCity = (City) start;
+				City destinationCity = (City) destination;
+				
+				return fetchFlight (startCity, destinationCity, airline, class_, startDateTime);
+			} else {
+				throw new InvalidObjectException("Couldn't find the type of the start or end location. Maybe they aren't of the same type.");
+			}
+		}
+
 		public List<Flight> fetchFlight (Airport startAirport, Airport destinationAirport, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
 		{
 			LocationRequest lr = new LocationRequest();
@@ -77,7 +99,7 @@ namespace DSLImplementation.Database
 			where_ = where_ + ((alias1.Length > 0) ? alias1 : table1) + "." + column1 + " = " + ((alias2.Length > 0) ? alias2 : table2) + "." + column2 + " AND ";
 		}
 
-		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry, DateTime startDateTime = default(DateTime)){
+		public List<Flight> fetchFlight (Country startCountry, Country destinationCountry, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime)){
 			List<string> tables = new List<string>{"flight"};
 
 			string where_ = "";
@@ -94,13 +116,13 @@ namespace DSLImplementation.Database
 			query += where_;
 
 
-			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name) + addAdditional(startDateTime: startDateTime);
+			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name) + addAdditional(airline: airline, class_: class_, startDateTime: startDateTime);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 
-		public List<Flight> fetchFlight (City startCity, City destinationCity, DateTime startDateTime = default(DateTime))
+		public List<Flight> fetchFlight (City startCity, City destinationCity, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
 		{
 			List<string> tables = new List<string>{"flight"};
 
@@ -117,7 +139,7 @@ namespace DSLImplementation.Database
 			query += " WHERE ";
 			query += where_;
 
-			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name) + addAdditional(startDateTime: startDateTime);
+			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name) + addAdditional(airline: airline, class_: class_, startDateTime: startDateTime);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
