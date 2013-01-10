@@ -12,6 +12,15 @@ namespace DSLImplementation.IntermediateCode{
 			Console.WriteLine(((AnswerGetFlights)rgf.execute()).Flights.Count());
 		}
 
+		private static void tryPrintFlights (RequestGetFlights rgf)
+		{
+			try {
+				printFlights(rgf);
+			} catch (Exception e) {
+				Console.WriteLine(e.Message);
+			}
+		}
+
 		public static void Main (string[] args){
 			Country country1 = new Country("belgium");
 			Country country2 = new Country("onbestaand land");
@@ -46,7 +55,9 @@ namespace DSLImplementation.IntermediateCode{
 			Country belgium = new Country("belgium");
 			Country netherlands = new Country("the netherlands");
 			Airline sn = new Airline("sn");
+			Airline unknownAirline = new Airline("UNK");
 			SeatClass economy = new SeatClass("economy class");
+			SeatClass unknownClass = new SeatClass("unknown class");
 
 			RequestGetFlights rgf1 = new RequestGetFlights(netherlands, belgium);
 			printFlights(rgf1);
@@ -60,8 +71,20 @@ namespace DSLImplementation.IntermediateCode{
 			RequestGetFlights rgf4 = new RequestGetFlights(netherlands, belgium, SeatClass: economy);
 			printFlights(rgf4);
 
-			RequestGetFlights rfg5 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 2012, month: 1, day: 16), Airline: sn, SeatClass: economy);
-			printFlights(rfg5);
+			RequestGetFlights rgf5 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 2012, month: 1, day: 16), Airline: sn, SeatClass: economy);
+			printFlights(rgf5);
+
+			RequestGetFlights rgf6 = new RequestGetFlights(belgium, netherlands);
+			printFlights(rgf6);
+
+			RequestGetFlights rgf7 = new RequestGetFlights(netherlands, belgium, Airline: unknownAirline);
+			tryPrintFlights(rgf7);
+
+			RequestGetFlights rgf8 = new RequestGetFlights(netherlands, belgium, SeatClass: unknownClass);
+			tryPrintFlights(rgf8);
+
+			RequestGetFlights rgf9 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 3009, month: 3, day: 14));
+			tryPrintFlights(rgf9);
 
 			return;
 
