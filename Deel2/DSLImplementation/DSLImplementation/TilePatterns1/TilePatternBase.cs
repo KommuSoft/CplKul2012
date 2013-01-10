@@ -28,7 +28,15 @@ namespace DSLImplementation.Tiling {
 			return InternalToTransferCode(root, bindings);
 		}
 		#endregion
-		protected abstract IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings);
+		protected virtual IXmlRequest InternalToTransferCode (IPuzzlePiece root, ITree<IPuzzlePiece> sortedtree, Dictionary<string, object> bindings) {
+			return InternalToTransferCode(root,bindings);
+		}
+		protected virtual IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+			return InternalToTransferCode(root);
+		}
+		protected virtual IXmlRequest InternalToTransferCode (IPuzzlePiece root) {
+			return null;
+		}
 
 	}
 
