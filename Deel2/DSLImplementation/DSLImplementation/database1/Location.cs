@@ -44,7 +44,7 @@ namespace DSLImplementation.Database
 		protected override bool isValid (out string exceptionMessage)
 		{
 			if (distance <= 0) {
-				return makeExceptionMessage (out exceptionMessage, "The distance bewteen the locations is invalid");
+				return makeExceptionMessage (out exceptionMessage, "The distance between the locations is invalid");
 			}
 
 			LocationRequest lr = new LocationRequest ();

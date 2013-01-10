@@ -19,7 +19,9 @@ namespace DSLImplementation.IntermediateCode
 			Database.AirplaneRequest apr = new Database.AirplaneRequest ();
 			Database.FlightTemplateRequest ftr = new Database.FlightTemplateRequest ();
 
-			Console.WriteLine ("Info of airport 1 " + this.Flight.StartAirport.Code);
+			if (this.Flight.StartAirport == null) {
+				return new AnswerAdd("The start airport of the flights isn't set");
+			}
 
 			List<Database.Location> locations = lr.fetchLocationFromAirports (new Database.Airport (code: this.Flight.StartAirport.Code), new Database.Airport (code: this.Flight.DestinationAirport.Code));
 			if (locations.Count () == 0) {
@@ -42,6 +44,7 @@ namespace DSLImplementation.IntermediateCode
 				} catch(Exception e){
 					return new AnswerAdd(e.Message);
 				}
+				locations = lr.fetchLocationFromAirports (new Database.Airport (code: this.Flight.StartAirport.Code), new Database.Airport (code: this.Flight.DestinationAirport.Code));
 			}
 			int locationID = locations [0].ID;
 

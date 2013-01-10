@@ -327,17 +327,67 @@ namespace DSLImplementation.IntermediateCode{
 			//executeAddBooking(b4);
 		}
 
+		private static void executeAddFlight (Flight f)
+		{
+			RequestAddFlight raf = new RequestAddFlight (f);
+			printAddAnswer (raf.execute ());
+		}
+
+		private static void testAddFlight ()
+		{
+			FlightTemplate template = new FlightTemplate("SN123");
+			FlightTemplate unknownTemplate = new FlightTemplate("SN999");
+			
+			DateTime start = new DateTime(year: 2012, month: 11, day: 25, hour: 1, minute: 30, second: 0);
+			DateTime end = new DateTime(year: 2012, month: 11, day: 25, hour: 3, minute: 30, second: 0);
+
+			Airline sn = new Airline("SN");
+			Airline unknownAirline = new Airline("UNK");
+
+			Airport brussels = new Airport("BRU");
+			Airport schiphol = new Airport("AMS");
+			Airport unknownAirport = new Airport("UNK");
+
+			Airplane B747 = new Airplane("B747-1");
+			Airplane unknownAirplane = new Airplane("UNK");
+
+			Flight f1 = new Flight(template, start);
+			executeAddFlight(f1);
+
+			Flight f2 = new Flight(unknownTemplate, sn, start, end, brussels, schiphol, B747);
+			executeAddFlight(f2);
+
+			Flight f3 = new Flight(unknownTemplate, sn, start, end, brussels, schiphol, B747, 200);
+			executeAddFlight(f3);
+
+			Flight f4 = new Flight(template, unknownAirline, start, end, brussels, schiphol, B747);
+			executeAddFlight(f4);
+
+			Flight f5 = new Flight(template, sn, start, end, unknownAirport, schiphol, B747);
+			executeAddFlight(f5);
+
+			Flight f6 = new Flight(template, sn, start, end, brussels, unknownAirport, B747);
+			executeAddFlight(f6);
+
+			Flight f7 = new Flight(template, sn, start, end, brussels, schiphol, unknownAirplane);
+			executeAddFlight(f7);
+
+			Flight f8 = new Flight(template, sn, start, end, brussels, schiphol, B747);
+			//executeAddFlight(f8);
+		}
+
 		public static void Main (string[] args){
-//			testGetters();
-//			testAddCountry();
-//			testAddCity();
-//			testAddAirport();
-//			testAddFlightTemplate();
-//			testAddAirplane();
-//			testAddPassenger();
-//			testAddSeatClass();
-//			testAddAirline();
-//			testAddBooking();
+			testGetters();
+			testAddCountry();
+			testAddCity();
+			testAddAirport();
+			testAddFlightTemplate();
+			testAddAirplane();
+			testAddPassenger();
+			testAddSeatClass();
+			testAddAirline();
+			testAddBooking();
+			testAddFlight();
 		}
 	}
 }
