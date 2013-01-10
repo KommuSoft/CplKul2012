@@ -77,11 +77,6 @@ namespace DSLImplementation.Database
 				values.Add(airport.code);
 			}
 
-			if(airport.name.Length != 0){
-				columns.Add("name");
-				values.Add(airport.name);
-			}
-
 			return query + createWhere(columns, values) + ")";
 		}
 	}
