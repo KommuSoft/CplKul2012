@@ -18,9 +18,17 @@ namespace DSLImplementation.IntermediateCode
 			Database.ClassRequest cr = new Database.ClassRequest ();
 
 			foreach (Seat s in this.Airplane.Seats) {
-				//TODO in plaats van hier direct het nulde element te nemen moet de size van de lijst gecontroleerd worden
-				int classID = cr.fetchClassFromName (s.SeatClass.Name) [0].ID;
-				int seatID = sr.fetchSeatFromClassAndNumber (class_: classID, number: s.Number) [0].ID;
+				List<Database.Class> classes = cr.fetchClassFromName (s.SeatClass.Name);
+				if(classes.Count == 0){
+					return new AnswerAdd("No class found with name " + s.SeatClass.Name);
+				}
+				int classID =  classes[0].ID;
+
+				List<Database.Seat> databaseSeats = sr.fetchSeatFromClassAndNumber (class_: classID, number: s.Number);
+				if(databaseSeats.Count == 0){
+					return new AnswerAdd("No seat found with number " + s.Number + " in class " + s.SeatClass.Name);
+				}
+				int seatID =  databaseSeats[0].ID;
 				seats.Add (seatID);
 			}
 

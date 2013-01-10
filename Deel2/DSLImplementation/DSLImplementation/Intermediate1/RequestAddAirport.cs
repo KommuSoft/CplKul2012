@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+
+
 namespace DSLImplementation.IntermediateCode
 {
 	public class RequestAddAirport : XmlRequestBase
@@ -14,8 +17,17 @@ namespace DSLImplementation.IntermediateCode
 			Database.CountryRequest cor = new Database.CountryRequest ();
 			Database.CityRequest cir = new Database.CityRequest ();
 
-			int countryID = cor.fetchCountryFromName (this.Airport.City.Country.Name)[0].ID;
-			int cityID = cir.fetchCityFromName (this.Airport.City.Name)[0].ID;
+			List<Database.Country> countries = cor.fetchCountryFromName (this.Airport.City.Country.Name);
+			if (countries.Count == 0) {
+				return new AnswerAdd ("No country found with name " + this.Airport.City.Country.Name);
+			}
+			int countryID = countries [0].ID;
+
+			List<Database.City> cities = cir.fetchCityFromName (this.Airport.City.Name);
+			if (cities.Count == 0) {
+				return new AnswerAdd("No city found with name " + this.Airport.City.Name);
+			}
+			int cityID = cities[0].ID;
 
 			AnswerAdd aa = new AnswerAdd ();
 			Database.Airport airport = new Database.Airport (name: this.Airport.Name, code: this.Airport.Code, country: countryID, city: cityID);

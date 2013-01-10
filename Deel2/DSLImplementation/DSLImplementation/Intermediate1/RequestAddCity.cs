@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+
+
 namespace DSLImplementation.IntermediateCode
 {
 	public class RequestAddCity : XmlRequestBase
@@ -13,7 +16,13 @@ namespace DSLImplementation.IntermediateCode
 		public override IXmlAnswer execute ()
 		{
 			Database.CountryRequest cr = new Database.CountryRequest ();
-			int countryID = cr.fetchCountryFromName (this.City.Country.Name)[0].ID;
+
+			List<Database.Country> countries = cr.fetchCountryFromName (this.City.Country.Name);
+			if (countries.Count == 0) {
+				return new AnswerAdd("No country found with name " + this.City.Country.Name);
+			}
+
+			int countryID = countries[0].ID;
 			Database.City city = new Database.City (name: this.City.Name, country: countryID);
 
 			AnswerAdd aa = new AnswerAdd();
