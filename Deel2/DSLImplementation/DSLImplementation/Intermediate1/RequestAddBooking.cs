@@ -20,7 +20,7 @@ namespace DSLImplementation.IntermediateCode
 			int seatID = sr.fetchSeatFromClassAndNumber (class_: classID, number: this.Booking.Seat.Number) [0].ID;
 
 			int passengerID = pr.fetchPassengerFromName(this.Booking.Passenger.Name)[0].ID;
-			int flightID = fr.fetchFlightFromCodeAndStartDate(code: this.Booking.Flight.Code, startDate: this.Booking.Flight.StartDate)[0].ID;
+			int flightID = fr.fetchFlightFromCodeAndStartDate(code: this.Booking.Flight.Template.Code, startDate: this.Booking.Flight.StartDate)[0].ID;
 
 			Database.Booking booking = new Database.Booking (flight: flightID, passenger: passengerID, seat: seatID);
 			AnswerAdd aa = new AnswerAdd ();

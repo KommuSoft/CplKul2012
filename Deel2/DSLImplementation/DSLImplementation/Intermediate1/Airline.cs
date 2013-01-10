@@ -5,7 +5,6 @@ namespace DSLImplementation.IntermediateCode
 		public Airline (string code)
 		{
 			this.Code = code;
-			//TODO is de parameter de code of de name?
 		}
 		
 		public Airline(String Name, string Code){

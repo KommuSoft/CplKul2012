@@ -13,7 +13,6 @@ namespace DSLImplementation.IntermediateCode
 		}		
 
 		public String Name{ get; set;}
-		public String Code{ get; set; }
 		public Airline Airline{ get; set; }
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
