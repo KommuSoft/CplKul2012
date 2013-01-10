@@ -2,10 +2,40 @@ using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DSLImplementation.IntermediateCode{
 	public class XmlMain{
 		public static void Main (string[] args){
+			Country country1 = new Country("belgium");
+			Country country2 = new Country("onbestaand land");
+
+			City city1 = new City("brussels", country1);
+			City city2 = new City("onbestaande stad", country1);
+			City city3 = new City("brussels", country2);
+
+			RequestGetAirports rgaCity1 = new RequestGetAirports(city1);
+			Console.WriteLine(((AnswerGetAirports)rgaCity1.execute()).Airports.Count());
+
+			RequestGetAirports rgaCity2 = new RequestGetAirports(city2);
+			Console.WriteLine(((AnswerGetAirports)rgaCity2.execute()).Airports.Count());
+
+			RequestGetAirports rgaCity3 = new RequestGetAirports(city3);
+			Console.WriteLine(((AnswerGetAirports)rgaCity3.execute()).Airports.Count());
+
+			RequestGetAirports rgaCountry1 = new RequestGetAirports(country1);
+			Console.WriteLine(((AnswerGetAirports)rgaCountry1.execute()).Airports.Count());
+
+			RequestGetAirports rgaCountry2 = new RequestGetAirports(country2);
+			Console.WriteLine(((AnswerGetAirports)rgaCountry2.execute()).Airports.Count());
+
+			return;
+
+
+
+
+
+
 			FlightTemplate template = new FlightTemplate("CPL");
 			Airline airline = new Airline("SN");
 			Airport start = new Airport("BRU");

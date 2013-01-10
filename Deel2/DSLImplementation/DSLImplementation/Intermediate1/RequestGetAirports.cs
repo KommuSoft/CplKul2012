@@ -25,7 +25,7 @@ namespace DSLImplementation.IntermediateCode
 		private List<Database.Airport> executeOnCity ()
 		{
 			Database.AirportRequest ar = new Database.AirportRequest();
-			return ar.fetchAirportFromCityAndCountry(new Database.City(this.City.Name),new Database.Country(this.Country.Name));
+			return ar.fetchAirportFromCityAndCountry(new Database.City(this.City.Name),new Database.Country(this.City.Country.Name));
 		}
 		
 		public override IXmlAnswer execute ()
