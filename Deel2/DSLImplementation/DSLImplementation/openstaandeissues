@@ -6,3 +6,22 @@ System.Reflection.TargetInvocationException: Exception has been thrown by the ta
   at DSLImplementation.Database.LocationRequest.queryLocationFromAirports (DSLImplementation.Database.Airport start, DSLImplementation.Database.Airport destination) [0x00006] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/LocationRequest.cs:28 
   at DSLImplementation.Database.LocationRequest.fetchLocationFromAirports (DSLImplementation.Database.Airport start, DSLImplementation.Database.Airport destination) [0x00000] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/LocationRequest.cs:22 
   at DSLImplementation.IntermediateCode.RequestAddFlight.execute () [0x00026] in /home/kommusoft/Projects/CPL/DSLImplementation/Intermediate1/RequestAddFlight.cs:23 
+
+
+
+(SELECT id FROM location WHERE start_airport = (SELECT id FROM airport WHERE ) AND destination_airport = (SELECT id FROM airport WHERE ))
+Npgsql.NpgsqlException:
+syntax error at or near ")"
+Severity: ERROR
+Code: 42601
+  at Npgsql.NpgsqlConnector.CheckErrors () [0x00000] in <filename unknown>:0 
+  at Npgsql.NpgsqlConnector.CheckErrorsAndNotifications () [0x00000] in <filename unknown>:0 
+  at Npgsql.NpgsqlCommand.ExecuteCommand () [0x00000] in <filename unknown>:0 
+  at Npgsql.NpgsqlCommand.ExecuteReader (CommandBehavior cb) [0x00000] in <filename unknown>:0 
+  at Npgsql.NpgsqlCommand.ExecuteReader () [0x00000] in <filename unknown>:0 
+  at Npgsql.NpgsqlCommand.System.Data.IDbCommand.ExecuteReader () [0x00000] in <filename unknown>:0 
+  at DSLImplementation.Database.Database.CreateCommand (System.String query) [0x00022] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/Database.cs:31 
+  at DSLImplementation.Database.DatabaseRequest`1[DSLImplementation.Database.Location].fetchFromQuery (System.String query) [0x00000] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/DatabaseRequest.cs:18 
+  at DSLImplementation.Database.LocationRequest.fetchLocationFromAirports (DSLImplementation.Database.Airport start, DSLImplementation.Database.Airport destination) [0x00000] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/LocationRequest.cs:22 
+  at DSLImplementation.IntermediateCode.RequestAddFlight.execute () [0x00026] in /home/kommusoft/Projects/CPL/DSLImplementation/Intermediate1/RequestAddFlight.cs:23 
+  at DSLImplementation.Tiling.TilingAlgorithm.Resolve (IPuzzlePiece query) [0x00027] in /home/kommusoft/Projects/CPL/DSLImplementation/TilePatterns1/TilingAlgorithm.cs:48 

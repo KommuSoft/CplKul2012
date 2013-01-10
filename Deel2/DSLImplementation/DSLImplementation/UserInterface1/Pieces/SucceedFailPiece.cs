@@ -5,10 +5,16 @@ namespace DSLImplementation.UserInterface {
 	public class SucceedFailPiece : ZeroArgumentPuzzlePieceBase {
 
 		private readonly string name;
+		private readonly string message;
 
 		public override string Name {
 			get {
 				return this.name;
+			}
+		}
+		private string Message {
+			get {
+				return this.message;
 			}
 		}
 		public override TypeColors TypeColors {
@@ -19,9 +25,12 @@ namespace DSLImplementation.UserInterface {
 
 		public SucceedFailPiece () : this("Done") {
 		}
-		public SucceedFailPiece (string name) {
+		public SucceedFailPiece (string name) : this(name,string.Empty) {}
+		public SucceedFailPiece (string name, string message) {
 			this.name = name;
+			this.message = message;
 		}
+		public SucceedFailPiece (Exception e) : this("fail",e.Message) {}
 
 	}
 

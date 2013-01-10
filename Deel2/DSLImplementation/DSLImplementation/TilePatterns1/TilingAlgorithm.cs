@@ -44,7 +44,13 @@ namespace DSLImplementation.Tiling {
 			if(ixq == null) {
 				return new IPuzzlePiece[] {new SucceedFailPiece("No template")};
 			}
-			return ixq.execute().ToPuzzlePieces().ToArray();
+			try {
+				return ixq.execute().ToPuzzlePieces().ToArray();
+			}
+			catch(Exception e) {
+				Console.Error.WriteLine(e);
+				return new IPuzzlePiece[] {new SucceedFailPiece(e)};
+			}
 		}
 
 	}
