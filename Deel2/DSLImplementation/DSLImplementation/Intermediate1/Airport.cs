@@ -6,13 +6,13 @@ namespace DSLImplementation.IntermediateCode
 	[XmlType("Airport")]
 	public class Airport
 	{
-		public Airport ()
+	
+		public Airport (string code)
 		{
+			this.Code = code;
 		}
 
-		public Airport (string Name, string Code, City City) : this(Name, Code, City, new List<Airline>()) {}
-		
-		public Airport(String Name, String Code, City City, List<Airline> Airlines){
+		public Airport(String Name, String Code, City City, List<Airline> Airlines = null){
 			this.Name = Name;
 			this.Code = Code;
 			this.City = City;

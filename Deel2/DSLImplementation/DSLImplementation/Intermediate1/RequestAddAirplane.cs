@@ -28,6 +28,7 @@ namespace DSLImplementation.IntermediateCode
 			Database.ClassRequest cr = new Database.ClassRequest ();
 
 			foreach (Seat s in this.Airplane.Seats) {
+				//TODO in plaats van hier direct het nulde element te nemen moet de size van de lijst gecontroleerd worden
 				int classID = cr.fetchClassFromName (s.SeatClass.Name) [0].ID;
 				int seatID = sr.fetchSeatFromClassAndNumber (class_: classID, number: s.Number) [0].ID;
 				seats.Add (seatID);
