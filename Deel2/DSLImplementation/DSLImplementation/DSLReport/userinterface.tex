@@ -86,7 +86,7 @@ language. In this step, symbol tables are prepared. A symbol table contains the
 name of a variable, method,... together with information about that variable
 like it's type. Since in most programming languages variables and methods have
 a certain scope, different symbol tables are created for the different scopes.
-As a result nodes in the abstract syntax tree are transformed into pointers
+As a result, nodes in the abstract syntax tree are transformed into pointers
 pointing to an entry in the symbol table. Based on the symbol tables,
 semantical analysis can perform type checks. For instance the programming
 language might force that we can only perform an addition on two integers. We
@@ -95,7 +95,7 @@ types are accepted and thus boost performance\footnote{If the language hints
 or forces certain aspects, users won't lose time by trying these aspects.}.
 Furthermore by slightly modifying the tree paradigm, the graphical language can
 specify implicit symbol tables. If we allow link-nodes into our language, the
-graphical language is based on a Directed Acyclic Graph.The user doesn't has to
+graphical language is based on a Directed Acyclic Graph.The user doesn't have to
 specify the same values a second time, but can simply introduce a link piece
 who points to a piece where the data is already specified.
 \subparagraph{}
@@ -111,7 +111,7 @@ to fill a certain gap? In the physical world the gaps follow a certain pattern.
 Only pieces who are compatible with this pattern, can fit into the the gap.
 \subparagraph{}
 The problem however with this approach is that the number of potential pieces
-is in most cases limited to one. Sometimes however, it is possible that their
+is in most cases limited to one. Sometimes however, it is possible that there
 are different solutions to fill a gap. Most programming languages solve this
 problem with polymorphism. We will need a mechanism to allow polymorphism.
 Another aspect some puzzles use is graphical coherence: the resulting puzzles

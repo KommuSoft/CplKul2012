@@ -1,5 +1,5 @@
 \documentclass[titlepage]{article}
-\usepackage{graphicx,tikz, float}
+\usepackage{graphicx,tikz}
 \title{Comparative Programming Languages: Assignment 2:\\Domain Specific
 Language}
 \author{Willem Van Onsem\\Jonas Vanthornhout\\Pieter-Jan Vuylsteke}
@@ -30,29 +30,17 @@ Language}
  \fi
 \end{itemize}
 \addtocounter{ucc}{1}}
-
 \begin{document}
 \begin{titlepage}
 \maketitle
 \end{titlepage}
 \tableofcontents
-\include{domaindescription}
 \include{domainanalysis}
-\include{designdescription}
-
-\include{implementationoverview}
-
-\include{dslimplementation}
+\include{usecases}
+\include{systemoverview}
 \include{userinterface}
-\include{adapter}
+\include{transitxml}
 \include{database}
-
-\include{exampledslprograms}
-\include{guideto_use}
-
 \appendix
 \include{assumptions}
-
-%TODO: moeten nog ergens tussengevoegd worden
-\include{usecases}
 \end{document}
