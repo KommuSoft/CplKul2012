@@ -4,6 +4,11 @@ namespace DSLImplementation.IntermediateCode
 {
 	public class Airplane
 	{	
+		public Airplane (string Code)
+		{
+			this.Code = Code;
+		}
+
 		public Airplane (String Type, List<Seat> Seats, string Code)
 		{
 			this.Type = Type;
