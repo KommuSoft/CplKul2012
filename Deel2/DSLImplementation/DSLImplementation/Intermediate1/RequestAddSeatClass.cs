@@ -1,22 +1,13 @@
 using System;
-using System.Xml.Serialization;
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("RequestAddSeatClass")]
 	public class RequestAddSeatClass : XmlRequestBase
 	{
-		public RequestAddSeatClass (){
-		}
-		
 		public RequestAddSeatClass (SeatClass SeatClass){
 			this.SeatClass = SeatClass;
 		}
-		
-		[XmlElement("SeatClass")]
-		public SeatClass SeatClass{
-			get;
-			set;
-		}	
+
+		public SeatClass SeatClass{ get; set; }	
 
 		public override IXmlAnswer execute ()
 		{

@@ -1,23 +1,14 @@
 using System;
-using System.Xml.Serialization;
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("RequestAddCity")]
 	public class RequestAddCity : XmlRequestBase
 	{
 
-		public RequestAddCity (){
-		}		
-		
 		public RequestAddCity (City City){
 			this.City = City;
 		}		
-		
-		[XmlElement("City")]
-		public City City{
-			get;
-			set;
-		}
+
+		public City City{ get; set; }
 
 		public override IXmlAnswer execute ()
 		{

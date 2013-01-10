@@ -1,25 +1,15 @@
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-
 
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("RequestAddAirplane")]
 	public class RequestAddAirplane : XmlRequestBase
-	{
-		public RequestAddAirplane (){
-		}
-		
+	{	
 		public RequestAddAirplane (Airplane Airplane){
 			this.Airplane = Airplane;
 		}		
 
-		[XmlElement("Airplane")]
-		public Airplane Airplane{
-			get;
-			set;
-		}	
+		public Airplane Airplane{ get; set; }	
 
 		public override IXmlAnswer execute ()
 		{

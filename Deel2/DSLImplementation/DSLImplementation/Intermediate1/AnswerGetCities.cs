@@ -1,26 +1,15 @@
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using DSLImplementation.UserInterface;
 
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("CityAnswer")]
-	public class AnswerGetCities : IXmlAnswer {
-		
-		public AnswerGetCities(){
-		}
-		
+	public class AnswerGetCities : IXmlAnswer {		
 		public AnswerGetCities (List<City> Cities)
 		{
 				this.Cities = Cities;
 		}
-		
-		[XmlArray("ListOfCities")]
-		[XmlArrayItem("City")]
-		public List<City> Cities{
-			get;
-			set;
-		}
+
+		public List<City> Cities{ get; set; }
 
 		#region IXmlAnswer implementation
 		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {

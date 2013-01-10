@@ -1,26 +1,15 @@
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-
 
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("RequestAddFlight")]
 	public class RequestAddFlight : XmlRequestBase
 	{
-		
-		public RequestAddFlight (){
-		}
-		
 		public RequestAddFlight (Flight Flight){
 			this.Flight = Flight;
 		}
-		
-		[XmlElement("Flight")]
-		public Flight Flight{
-			get;
-			set;
-		}
+
+		public Flight Flight{ get; set; }
 
 		public override IXmlAnswer execute ()
 		{

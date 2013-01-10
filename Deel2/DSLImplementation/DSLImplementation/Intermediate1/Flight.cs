@@ -1,10 +1,7 @@
 using System;
-using System.Xml.Serialization;
-namespace DSLImplementation.IntermediateCode{
+namespace DSLImplementation.IntermediateCode
+{
 	public class Flight{
-		public Flight (){
-		}
-		
 		public Flight (FlightTemplate Template, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane){
 			this.Template = Template;
 			this.Airline = Airline;
@@ -14,25 +11,10 @@ namespace DSLImplementation.IntermediateCode{
 			this.DestinationAirport = DestinationAirport;
 			this.Airplane = Airplane;
 		}		
-		
-		[XmlAttribute("Name")]
-		public String Name{
-			get;
-			set;
-		}
-		
-		[XmlAttribute("Code")]
-		public String Code{
-			get;
-			set;
-		}
-		
-		[XmlElement("Airline")]
-		public Airline Airline{
-			get;
-			set;
-		}
 
+		public String Name{ get; set;}
+		public String Code{ get; set; }
+		public Airline Airline{ get; set; }
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
 		public DateTime TravelTime { get; set; }

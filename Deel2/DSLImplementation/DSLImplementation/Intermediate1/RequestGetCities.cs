@@ -1,26 +1,14 @@
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-
-
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("RequestGetCity")]
 	public class RequestGetCities : XmlRequestBase
 	{
-		public RequestGetCities ()
-		{
-		}
-		
 		public RequestGetCities(Country Country){
 			this.Country = Country;
 		}
-		
-		[XmlElement("Country")]
-		public Country Country {
-			get;
-			set;
-		}
+
+		public Country Country { get; set; }
 
 		public override IXmlAnswer execute()
 		{

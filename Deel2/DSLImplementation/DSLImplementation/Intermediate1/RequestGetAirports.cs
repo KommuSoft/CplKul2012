@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace DSLImplementation.IntermediateCode
 {
-	[XmlRoot("RequestGetAirports")]
 	public class RequestGetAirports : XmlRequestBase
 	{
 		public RequestGetAirports (City City){
@@ -14,18 +12,9 @@ namespace DSLImplementation.IntermediateCode
 		public RequestGetAirports (Country Country){
 			this.Country = Country;
 		}
-		
-		[XmlElement("City")]
-		public City City{
-			get;
-			set;
-		}
-		
-		[XmlElement("Country")]
-		public Country Country{
-			get;
-			set;
-		}
+
+		public City City{ get; set; }
+		public Country Country{ get; set;}
 
 		private List<Database.Airport> executeOnCountry ()
 		{

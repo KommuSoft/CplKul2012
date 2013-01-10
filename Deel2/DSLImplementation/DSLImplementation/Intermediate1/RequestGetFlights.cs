@@ -1,15 +1,8 @@
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-
-
 namespace DSLImplementation.IntermediateCode{
-
-	[XmlRoot("RequestGetFlights")]
+	
 	public class RequestGetFlights : XmlRequestBase {
-
-		public RequestGetFlights (){
-		}
 
 		public RequestGetFlights (Airport Airport1, Airport Airport2, DateTime Start = default(DateTime))
 		{
@@ -40,30 +33,10 @@ namespace DSLImplementation.IntermediateCode{
 			this.SeatClass = SeatClass;
 		}
 
-		[XmlElement("Airport1")]
-		public Airport Airport1 {
-			get;
-			set;
-		}
-		
-		[XmlElement("Airport2")]
-		public Airport Airport2{
-			get;
-			set;
-		}
-
-		[XmlElement("Airline")]
-		public Airline Airline{
-			get;
-			set;
-		}
-		
-		[XmlElement("Class")]
-		public SeatClass SeatClass{
-			get;
-			set;
-		}
-
+		public Airport Airport1 { get; set; }
+		public Airport Airport2 { get; set;	}
+		public Airline Airline { get; set; }
+		public SeatClass SeatClass { get; set; }
 		public DateTime Start { get; set; }
 		public City City1 { get; set; }
 		public City City2 { get; set; }
