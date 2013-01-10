@@ -15,6 +15,7 @@ namespace DSLImplementation.Tiling {
 
 		#region ITilingPattern implementation
 		public bool Match (IPuzzlePiece root) {
+			Console.WriteLine("CHECKING PATTERN {0}",this);
 			ITree<IPuzzlePiece> tmp;
 			return Tree<TypeBind>.ConjunctiveTreeSwapMatchPredicate(this.pattern,0x00,root,TypeBind.Match,out tmp);
 		}

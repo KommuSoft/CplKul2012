@@ -48,6 +48,7 @@ namespace DSLImplementation {
 
 		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, out ITree<Q> swappedTree) {
 			swappedTree = null;
+			Console.WriteLine("matching {0};{1};{2}={3}",tree.Data,index,othertree.Data,predicate(tree.Data,index,othertree.Data));
 			if(predicate(tree.Data,index,othertree.Data)) {
 				int no = othertree.NumberOfChildren;
 				int nt = tree.NumberOfChildren;

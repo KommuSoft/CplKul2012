@@ -37,12 +37,13 @@ namespace DSLImplementation
 			ScrolledWindow sw2 = new ScrolledWindow();
 			sw.Add(this.piecesView);
 			sw.SetPolicy(PolicyType.Never,PolicyType.Always);
-			sw.SetSizeRequest(700,100);
+			sw.SetSizeRequest(1920,100);
 			sw2.AddWithViewport(this.sketchpad);
 			sw2.SetPolicy(PolicyType.Always,PolicyType.Always);
 			sw2.SetSizeRequest(700,500);
 			this.vbox1.PackStart(sw,false,false,0x00);
 			this.vbox1.PackStart(sw2,true,true,0x00);
+			this.Maximize();
 			this.ShowAll();
 		}
 

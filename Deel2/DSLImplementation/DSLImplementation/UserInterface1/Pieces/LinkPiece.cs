@@ -19,6 +19,26 @@ namespace DSLImplementation.UserInterface {
 				return this.piece;
 			}
 		}
+		public override bool CanExecute {
+			get {
+				if(this.Piece != null) {
+					return this.Piece.CanExecute;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		public override bool Complete {
+			get {
+				if(this.Piece != null) {
+					return this.Piece.Complete;
+				}
+				else {
+					return false;
+				}
+			}
+		}
 		public override int NumberOfArguments {
 			get {
 				if(this.piece != null) {

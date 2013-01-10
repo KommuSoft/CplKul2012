@@ -70,6 +70,9 @@ namespace DSLImplementation.Tiling {
 		public static implicit operator TypeBind (Type t) {
 			return new TypeBind(t);
 		}
+		public override string ToString () {
+			return string.Format ("[TypeBind: Type={0}, Bindingtable={1}, Index={2}]", Type, Bindingtable, Index);
+		}
 
 	}
 }

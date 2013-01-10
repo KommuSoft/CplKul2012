@@ -1,0 +1,8 @@
+Marshaling activate signal
+Exception in Gtk# callback delegate
+  Note: Applications can use GLib.ExceptionManager.UnhandledException to handle the exception.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at DSLImplementation.Database.AirportRequest.toQuery (DSLImplementation.Database.Airport airport) [0x00039] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/AirportRequest.cs:80 
+  at DSLImplementation.Database.LocationRequest.queryLocationFromAirports (DSLImplementation.Database.Airport start, DSLImplementation.Database.Airport destination) [0x00006] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/LocationRequest.cs:28 
+  at DSLImplementation.Database.LocationRequest.fetchLocationFromAirports (DSLImplementation.Database.Airport start, DSLImplementation.Database.Airport destination) [0x00000] in /home/kommusoft/Projects/CPL/DSLImplementation/database1/LocationRequest.cs:22 
+  at DSLImplementation.IntermediateCode.RequestAddFlight.execute () [0x00026] in /home/kommusoft/Projects/CPL/DSLImplementation/Intermediate1/RequestAddFlight.cs:23 

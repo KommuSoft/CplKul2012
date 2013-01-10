@@ -12,7 +12,7 @@ namespace DSLImplementation.UserInterface {
 		}
 
 		public TimePiece () {
-			this.Table.Add("Timepoint",DateTime.Now);
+			this.Table.Add("time",DateTime.Now);
 			this.Table.AddParserPair(Parsers.StringParser,Parsers.DateTimeParser);
 		}
 
