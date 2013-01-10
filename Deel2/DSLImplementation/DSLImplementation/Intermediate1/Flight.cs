@@ -3,6 +3,12 @@ namespace DSLImplementation.IntermediateCode
 {
 	public class Flight{
 
+		public Flight (FlightTemplate Template, DateTime StartDate)
+		{
+			this.Template = Template;
+			this.StartDate = StartDate;
+		}
+
 		public Flight (FlightTemplate Template, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane, int distance) :
 			this(Template, Airline, StartDate, EndDate, StartAirport, DestinationAirport, Airplane)
 		{

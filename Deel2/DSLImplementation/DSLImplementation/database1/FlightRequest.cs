@@ -182,7 +182,8 @@ namespace DSLImplementation.Database
 			query += where_;
 
 			query += " start_date = '" + Util.toDate(startDate) + "' AND ";
-			query += " start_time = '" + Util.toTime(startDate) + "'";
+			query += " start_time = '" + Util.toTime(startDate) + "' AND ";
+			query += " flight_template.code " + Util.fetchOperator(code.GetType()) + " " + Util.parse(code);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);

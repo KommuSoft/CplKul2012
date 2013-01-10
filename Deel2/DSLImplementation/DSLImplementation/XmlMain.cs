@@ -181,6 +181,9 @@ namespace DSLImplementation.IntermediateCode{
 
 			FlightTemplate f3 = new FlightTemplate("666");
 			//executeAddFlightTemplate(f3);
+
+			FlightTemplate f4 = new FlightTemplate("CPL");
+			executeAddFlightTemplate(f4);
 		}
 
 		private static void executeAddAirplane (Airplane a)
@@ -224,13 +227,117 @@ namespace DSLImplementation.IntermediateCode{
 			executeAddAirplane(a7);
 		}
 
+		private static void executeAddPassenger (Passenger p)
+		{
+			RequestAddPassenger rap = new RequestAddPassenger(p);
+			printAddAnswer(rap.execute());
+		}
+
+		private static void testAddPassenger ()
+		{
+			Passenger p1 = new Passenger("");
+			executeAddPassenger(p1);
+
+			Passenger p2 = new Passenger("alice");
+			//executeAddPassenger(p2);
+		}
+
+		private static void executeAddSeatClass (SeatClass s)
+		{
+			RequestAddSeatClass rasc = new RequestAddSeatClass(s);
+			printAddAnswer(rasc.execute());
+		}
+
+		private static void testAddSeatClass ()
+		{
+			SeatClass s1 = new SeatClass("");
+			executeAddSeatClass(s1);
+
+			SeatClass s2 = new SeatClass("Economy Class");
+			executeAddSeatClass(s2);
+
+			SeatClass s3 = new SeatClass("Presidential class");
+			//executeAddSeatClass(s3);
+		}
+
+		private static void executeAddAirline (Airline a)
+		{
+			RequestAddAirline raa = new RequestAddAirline (a);
+			printAddAnswer (raa.execute ());
+		}
+
+		private static void testAddAirline ()
+		{
+			Airline a1 = new Airline("UNK");
+			executeAddAirline(a1);
+
+			Airline a2 = new Airline("Special name", "Z");
+			executeAddAirline(a2);
+
+			Airline a3 = new Airline("Very special name", "ZZZZ");
+			executeAddAirline(a3);
+
+			Airline a4 = new Airline("Extreme special name", "987");
+			//executeAddAirline(a4);
+
+			Airline a5 = new Airline("Normal name", "");
+			executeAddAirline(a5);
+
+			Airline a6 = new Airline("", "UNK");
+			executeAddAirline(a6);
+
+			Airline a7 = new Airline("Name", "SN");
+			executeAddAirline(a7);
+		}
+
+		private static void executeAddBooking (Booking b)
+		{
+			RequestAddBooking rab = new RequestAddBooking(b);
+			printAddAnswer(rab.execute());
+		}
+
+		private static void testAddBooking ()
+		{
+			Passenger alice = new Passenger("alice");
+			Passenger unknownPassenger = new Passenger("unknown");
+
+			FlightTemplate template = new FlightTemplate("SN123");
+			FlightTemplate unknownTemplate = new FlightTemplate("SN999");
+
+			DateTime start = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 00);
+
+			Flight correctflight = new Flight(template, start);
+			Flight unknownFlight = new Flight(unknownTemplate, start);
+
+			SeatClass seatClass = new SeatClass("economy class");
+
+			Seat correctSeat = new Seat(seatClass, 1);
+			Seat unknownSeat = new Seat(seatClass, 9999);
+
+			Booking b1 = new Booking(unknownPassenger, correctflight, correctSeat);
+			executeAddBooking(b1);
+
+			Booking b2 = new Booking(alice, unknownFlight, correctSeat);
+			executeAddBooking(b2);
+
+			Booking b3 = new Booking(alice, correctflight, unknownSeat);
+			executeAddBooking(b3);
+
+			Booking b4 = new Booking(alice, correctflight, correctSeat);
+			//executeAddBooking(b4);
+		}
+
 		public static void Main (string[] args){
-			//testGetters();
-			//testAddCountry();
-			//testAddCity();
-			//testAddAirport();
-			//testAddFlightTemplate();
-			testAddAirplane();
+//			testGetters();
+//			testAddCountry();
+//			testAddCity();
+//			testAddAirport();
+//			testAddFlightTemplate();
+//			testAddAirplane();
+//			testAddPassenger();
+//			testAddSeatClass();
+//			testAddAirline();
+//			testAddBooking();
 		}
 	}
 }
