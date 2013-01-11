@@ -64,8 +64,7 @@ namespace DSLImplementation.Database
 			
 			query += "location = " + lr.queryLocationFromAirports(startAirport, destinationAirport);
 			query += addStartDateTime(startDateTime);
-			
-			Console.WriteLine(query);
+
 			return fetchFromQuery(query);
 		}
 
@@ -131,7 +130,6 @@ namespace DSLImplementation.Database
 
 			query += " startCountry.name " + Util.fetchOperator(startCountry.name.GetType()) + Util.parse (startCountry.name) + " AND " + " destinationCountry.name " + Util.fetchOperator(destinationCountry.name.GetType()) + Util.parse(destinationCountry.name) + addStartDateTime(startDateTime);
 
-			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 
@@ -157,7 +155,6 @@ namespace DSLImplementation.Database
 
 			query += " startCity.name " + Util.fetchOperator(startCity.name.GetType()) + Util.parse(startCity.name) + " AND " + " destinationCity.name " + Util.fetchOperator(destinationCity.name.GetType()) + Util.parse(destinationCity.name) + addStartDateTime(startDateTime);
 
-			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 
@@ -190,7 +187,6 @@ namespace DSLImplementation.Database
 			query += " flight_template.airline =  " + airlineID + " AND ";
 			query += " flight_template.digits " + Util.fetchOperator(digits.GetType()) + Util.parse(digits);
 
-			Console.WriteLine(query);
 			return fetchFromQuery(query);
 		}
 	}

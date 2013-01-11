@@ -25,7 +25,6 @@ namespace DSLImplementation.Database
 
 		public IDataReader CreateCommand(string query)
 		{
-			Console.WriteLine(query);
 			dbcmd = dbcon.CreateCommand();
 			dbcmd.CommandText = query;
 			return dbcmd.ExecuteReader();
@@ -44,7 +43,6 @@ namespace DSLImplementation.Database
 			}
 			--counter;
 			if (counter == 0) {
-				Console.WriteLine("I will close the database " + counter);
 				dbcon.Close();
 				dbcon = null;
 			}

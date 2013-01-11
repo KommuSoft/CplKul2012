@@ -67,7 +67,6 @@ namespace DSLImplementation.Database
 
 		public string toQuery (Airport airport)
 		{
-			Console.WriteLine("Creating query for airport " + airport.ToString());
 			string query = "(SELECT id FROM airport";
 
 			List<string> columns = new List<string>();

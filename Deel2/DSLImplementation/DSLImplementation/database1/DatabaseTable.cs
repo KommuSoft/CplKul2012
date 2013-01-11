@@ -125,7 +125,6 @@ namespace DSLImplementation.Database
 			}
 			
 			string query = createInsertQuery(tableName(), columns, values) + " RETURNING id";
-			Console.WriteLine(query);
 
 			Database db = new Database();
 			IDataReader reader = db.CreateCommand(query);
