@@ -12,7 +12,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Airport Airport{ get; set; }	
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.CountryRequest cor = new Database.CountryRequest ();
 			Database.CityRequest cir = new Database.CityRequest ();

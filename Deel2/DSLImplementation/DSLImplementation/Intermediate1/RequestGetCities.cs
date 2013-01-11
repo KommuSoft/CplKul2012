@@ -10,7 +10,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Country Country { get; set; }
 
-		public override IXmlAnswer execute()
+		public override IAnswer execute()
 		{
 			Database.CityRequest cr = new Database.CityRequest();
 			List<Database.City> cities = cr.fetchCityFromCountry(new Database.Country(this.Country.Name));

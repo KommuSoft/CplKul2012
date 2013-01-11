@@ -38,6 +38,9 @@ namespace DSLImplementation.UserInterface {
 		public static object Int32Parser (string val) {
 			return Int32.Parse(val);
 		}
+		public static object DoubleParser (string val) {
+			return Double.Parse(val);
+		}
 
 	}
 }

@@ -2,6 +2,7 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
     <widget-library name="../bin/Debug/DSLImplementation.exe" internal="true" />
@@ -172,7 +173,6 @@
                 <node type="Menuitem" action="menu_edit_information" />
                 <node type="Menuitem" action="menu_delete_piece" />
                 <node type="Separator" />
-                <node type="Menuitem" action="menu_autorun" />
                 <node type="Menuitem" action="propertiesAction" />
               </node>
             </node>
@@ -194,7 +194,6 @@
               <node type="Toolitem" action="tool_edit_information" />
               <node type="Toolitem" action="tool_delete_piece" />
               <node type="Separator" />
-              <node type="Toolitem" action="tool_autorun" />
               <node type="Toolitem" action="tool_execute_query" />
               <node type="Toolitem" action="missingImageAction" />
             </node>

@@ -7,7 +7,7 @@ namespace DSLImplementation.Tiling {
 	public interface ITilePattern {
 
 		bool Match (IPuzzlePiece root);
-		IXmlRequest ToTransferCode (IPuzzlePiece root);
+		IRequest ToTransferCode (IPuzzlePiece root);
 
 	}
 

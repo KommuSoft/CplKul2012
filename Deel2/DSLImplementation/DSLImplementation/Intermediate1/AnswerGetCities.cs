@@ -3,7 +3,7 @@ using DSLImplementation.UserInterface;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class AnswerGetCities : IXmlAnswer {		
+	public class AnswerGetCities : IAnswer {		
 		public AnswerGetCities (List<City> Cities)
 		{
 				this.Cities = Cities;

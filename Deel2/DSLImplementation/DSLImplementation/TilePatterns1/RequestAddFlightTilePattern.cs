@@ -20,7 +20,7 @@ namespace DSLImplementation.Tiling {
 		public RequestAddFlightTilePattern () : base(bindtree) {
 		}
 
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
 			string ftc = (string) bindings["flighttemplatecode"];
 			string sac = (string) bindings["startcode"];
 			string soc = (string) bindings["stopcode"];

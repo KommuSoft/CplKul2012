@@ -15,7 +15,7 @@ namespace DSLImplementation.Tiling {
 		}
 
 		#region implemented abstract members of DSLImplementation.UserInterface.TilePatternBase
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
 			return new RequestAddAirport(new Airport((string) bindings["airportname"],
 			                                         (string) bindings["airportcode"],
 			                                         new City((string) bindings["cityname"],new Country((string) bindings["countryname"]))));

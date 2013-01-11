@@ -4,7 +4,7 @@ using DSLImplementation.UserInterface;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class AnswerAdd : IXmlAnswer
+	public class AnswerAdd : IAnswer
 	{
 		public bool succesful { get; set; }
 		public string message { get; set; }

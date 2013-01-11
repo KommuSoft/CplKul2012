@@ -78,7 +78,7 @@ namespace DSLImplementation
 			this.tool_autorun.ShortLabel = global::Mono.Unix.Catalog.GetString ("Execute complete queries");
 			w1.Add (this.tool_autorun, null);
 			this.menu_delete_piece = new global::Gtk.RadioAction ("menu_delete_piece", global::Mono.Unix.Catalog.GetString ("Remove piece"), null, "gtk-delete", 0);
-			this.menu_delete_piece.Group = this.menu_insertSubpiece.Group;
+			this.menu_delete_piece.Group = this.menu_edit_information.Group;
 			this.menu_delete_piece.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove piece");
 			w1.Add (this.menu_delete_piece, null);
 			this.tool_delete_piece = new global::Gtk.RadioAction ("tool_delete_piece", null, null, "gtk-delete", 0);
@@ -95,7 +95,7 @@ namespace DSLImplementation
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='ToolsAction' action='ToolsAction'><menuitem name='menu_insertSubpiece' action='menu_insertSubpiece'/><menuitem name='menu_insert_linkpiece' action='menu_insert_linkpiece'/><menuitem name='menu_edit_information' action='menu_edit_information'/><menuitem name='menu_delete_piece' action='menu_delete_piece'/><separator/><menuitem name='menu_autorun' action='menu_autorun'/><menuitem name='propertiesAction' action='propertiesAction'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='ToolsAction' action='ToolsAction'><menuitem name='menu_insertSubpiece' action='menu_insertSubpiece'/><menuitem name='menu_insert_linkpiece' action='menu_insert_linkpiece'/><menuitem name='menu_edit_information' action='menu_edit_information'/><menuitem name='menu_delete_piece' action='menu_delete_piece'/><separator/><menuitem name='propertiesAction' action='propertiesAction'/></menu></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.vbox1.Add (this.menubar1);
@@ -104,7 +104,7 @@ namespace DSLImplementation
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='tool_insertSubpiece' action='tool_insertSubpiece'/><toolitem name='tool_insert_linkpiece' action='tool_insert_linkpiece'/><toolitem name='tool_edit_information' action='tool_edit_information'/><toolitem name='tool_delete_piece' action='tool_delete_piece'/><separator/><toolitem name='tool_autorun' action='tool_autorun'/><toolitem name='tool_execute_query' action='tool_execute_query'/><toolitem name='missingImageAction' action='missingImageAction'/></toolbar></ui>");
+			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='tool_insertSubpiece' action='tool_insertSubpiece'/><toolitem name='tool_insert_linkpiece' action='tool_insert_linkpiece'/><toolitem name='tool_edit_information' action='tool_edit_information'/><toolitem name='tool_delete_piece' action='tool_delete_piece'/><separator/><toolitem name='tool_execute_query' action='tool_execute_query'/><toolitem name='missingImageAction' action='missingImageAction'/></toolbar></ui>");
 			this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 			this.toolbar1.Name = "toolbar1";
 			this.toolbar1.ShowArrow = false;

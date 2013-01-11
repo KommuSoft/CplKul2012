@@ -49,6 +49,9 @@ namespace DSLImplementation {
 			return this[index];
 		}
 		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, out ITree<Q> swappedTree) {
+			return ConjunctiveTreeSwapMatchPredicate<Q>(tree,index,othertree,predicate,x => false, out swappedTree);
+		}
+		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, Predicate<T> optional, out ITree<Q> swappedTree) {
 			swappedTree = null;
 			Console.WriteLine("matching {0};{1};{2}={3}",tree.Data,index,othertree.Data,predicate(tree.Data,index,othertree.Data));
 			if(predicate(tree.Data,index,othertree.Data)) {
@@ -68,7 +71,7 @@ namespace DSLImplementation {
 							break;
 						}
 					}
-					if(found == false) {
+					if(found == false && !optional(tree.ChildAt(i).Data)) {
 						return false;
 					}
 				}
@@ -79,11 +82,14 @@ namespace DSLImplementation {
 				return false;
 			}
 		}
-		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree,int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate) {
+		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate) {
+			return ConjunctiveTreeNonSwapMatchPredicate(tree,index,othertree,predicate,x=>false);
+		}
+		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree,int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, Predicate<T> optional) {
 			if(predicate(tree.Data,index,othertree.Data)) {
 				int nt = tree.NumberOfChildren;
 				for(int i = 0x00; i < nt; i++) {
-					if(othertree.ChildAt(i) == null || !ConjunctiveTreeNonSwapMatchPredicate(tree.ChildAt(i),i,othertree.ChildAt(i),predicate)) {
+					if((othertree.ChildAt(i) == null || !ConjunctiveTreeNonSwapMatchPredicate(tree.ChildAt(i),i,othertree.ChildAt(i),predicate)) && !optional(tree.ChildAt(i).Data)) {
 						return false;
 					}
 				}

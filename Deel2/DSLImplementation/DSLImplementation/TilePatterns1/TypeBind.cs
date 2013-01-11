@@ -9,6 +9,7 @@ namespace DSLImplementation.Tiling {
 		private readonly Type type;
 		private readonly Dictionary<string,string> bindingtable;
 		private readonly int index = -0x01;
+		private readonly bool optional = false;
 
 		public Type Type {
 			get {
@@ -25,18 +26,36 @@ namespace DSLImplementation.Tiling {
 				return index;
 			}
 		}
+		public bool Optional {
+			get {
+				return this.optional;
+			}
+		}
 
 		public TypeBind (Type type) {
 			this.type = type;
 		}
+		public TypeBind (Type type, bool optional) : this(type) {
+			this.optional = optional;
+		}
 		public TypeBind (Type type, int index) : this(type) {
 			this.index = index;
+		}
+		public TypeBind (Type type, int index, bool optional) : this(type,index) {
+			this.index = index;
+			this.optional = optional;
 		}
 		public TypeBind (Type type, Dictionary<string,string> bindingtable) : this(type) {
 			this.bindingtable = bindingtable;
 		}
+		public TypeBind (Type type, bool optional, Dictionary<string,string> bindingtable) : this(type,optional) {
+			this.bindingtable = bindingtable;
+		}
 		public TypeBind (Type type, int index, Dictionary<string,string> bindingtable) : this(type,index) {
 			this.bindingtable = bindingtable;
+		}
+		public TypeBind (Type type, int index, bool optional, Dictionary<string,string> bindingtable) : this(type,index,bindingtable) {
+			this.optional = optional;
 		}
 		public TypeBind (Type type, params string[] bindingtable) : this(type) {
 			if (bindingtable.Length > 0x00) {
@@ -48,8 +67,14 @@ namespace DSLImplementation.Tiling {
 				this.bindingtable = null;
 			}
 		}
+		public TypeBind (Type type, bool optional, params string[] bindingtable) : this(type,bindingtable) {
+			this.optional = optional;
+		}
 		public TypeBind (Type type, int index, params string[] bindingtable) : this(type,bindingtable) {
 			this.index = index;
+		}
+		public TypeBind (Type type, int index, bool optional, params string[] bindingtable) : this(type,index,bindingtable) {
+			this.optional = optional;
 		}
 
 		public static bool Match (TypeBind tb, int index, IPuzzlePiece ipp) {

@@ -11,7 +11,7 @@ namespace DSLImplementation.Tiling {
 
 		public RequestAddSeatClassTilePattern () : base(bindtree) {}
 
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
 			return new RequestAddSeatClass(new SeatClass((string) bindings["classname"]));
 		}
 

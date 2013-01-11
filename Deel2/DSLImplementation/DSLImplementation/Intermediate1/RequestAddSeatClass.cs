@@ -9,7 +9,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public SeatClass SeatClass{ get; set; }	
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.Class class_ = new Database.Class(SeatClass.Name);
 			AnswerAdd aa = new AnswerAdd();

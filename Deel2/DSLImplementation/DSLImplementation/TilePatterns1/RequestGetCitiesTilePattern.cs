@@ -12,7 +12,7 @@ namespace DSLImplementation.Tiling {
 		public RequestGetCitiesTilePattern () : base(bindtree) {}
 
 		#region implemented abstract members of DSLImplementation.UserInterface.TilingPatternBase
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
 			return new RequestGetCities(new Country((string) bindings["countryname"]));
 		}
 		#endregion

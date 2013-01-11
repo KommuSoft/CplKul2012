@@ -13,7 +13,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public City City{ get; set; }
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.CountryRequest cr = new Database.CountryRequest ();
 

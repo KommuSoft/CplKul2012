@@ -12,7 +12,7 @@ namespace DSLImplementation.Tiling {
 		public RequestAddCountryTilePattern () : base(typetree) {
 		}
 
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string,object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string,object> bindings) {
 			return new RequestAddCountry(new Country((string) bindings["countryname"]));
 		}
 

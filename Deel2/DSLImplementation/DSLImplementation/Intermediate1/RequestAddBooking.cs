@@ -12,7 +12,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Booking Booking{ get; set; }
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.FlightRequest fr = new Database.FlightRequest ();
 			Database.PassengerRequest pr = new Database.PassengerRequest ();

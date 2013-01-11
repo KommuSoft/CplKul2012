@@ -27,10 +27,10 @@ namespace DSLImplementation.Tiling {
 			}
 		}
 
-		public IXmlRequest Tile (RunPiece root) {
+		public IRequest Tile (RunPiece root) {
 			return Tile(root[0x00]);
 		}
-		public IXmlRequest Tile (IPuzzlePiece ipp) {
+		public IRequest Tile (IPuzzlePiece ipp) {
 			foreach(ITilePattern tp in patterns) {
 				if(tp.Match(ipp)) {
 					return tp.ToTransferCode(ipp);
@@ -40,7 +40,7 @@ namespace DSLImplementation.Tiling {
 		}
 
 		public IPuzzlePiece[] Resolve (IPuzzlePiece query) {
-			IXmlRequest ixq = Tile((RunPiece) query);
+			IRequest ixq = Tile((RunPiece) query);
 			if(ixq == null) {
 				return new IPuzzlePiece[] {new SucceedFailPiece("No template")};
 			}

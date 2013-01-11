@@ -205,7 +205,7 @@ namespace DSLImplementation.IntermediateCode{
 			return doDispatch(startCountry, endCountry);
 		}
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			List<Database.Flight> flights = new List<DSLImplementation.Database.Flight> ();
 			if (Airport1 != null && Airport2 != null) {

@@ -4,7 +4,7 @@ using DSLImplementation.UserInterface;
 namespace DSLImplementation.IntermediateCode
 {
 	//The answer for the request of airports
-	public class AnswerGetAirports : IXmlAnswer
+	public class AnswerGetAirports : IAnswer
 	{
 		public AnswerGetAirports (List<Airport> Airports)
 		{

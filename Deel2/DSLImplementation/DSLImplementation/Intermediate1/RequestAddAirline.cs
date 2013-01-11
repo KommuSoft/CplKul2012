@@ -9,7 +9,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Airline Airline{ get; set; }	
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			if (this.Airline.Name == null) {
 				return new AnswerAdd("The name of the airline isn't set");

@@ -12,7 +12,7 @@ namespace DSLImplementation.Tiling {
 		public static readonly Tree<TypeBind> bindcity = new Tree<TypeBind>(new TypeBind(typeof(CityPiece),"name","cityname"),bindcoun);
 		public static readonly Tree<TypeBind> bindairp = new Tree<TypeBind>(new TypeBind(typeof(AirportPiece),"code","airportcode"));
 
-		public static ILocation MatchLocation (ILocationPiece root) {
+		public static ILocation MatchLocation (IPuzzlePiece root) {
 			ILocation iloc = MatchBindExecute(bindairp,root,MatchAirport);
 			if(iloc != null) {
 				iloc = MatchBindExecute(bindcity,root,MatchCity);
@@ -38,7 +38,7 @@ namespace DSLImplementation.Tiling {
 				return default(T);
 			}
 			Dictionary<string,object> bindings = new Dictionary<string, object>();
-			Tree<TypeBind>.ConjunctiveTreeNonSwapMatchPredicate(pattern,0x00,root,(x,y,z) => TypeBind.MatchBind(x,y,z,bindings));
+			Tree<TypeBind>.ConjunctiveTreeNonSwapMatchPredicate(pattern,0x00,root,(x,y,z) => TypeBind.MatchBind(x,y,z,bindings), x => x.Optional);
 			return pbte(root, tmp, bindings);
 		}
 

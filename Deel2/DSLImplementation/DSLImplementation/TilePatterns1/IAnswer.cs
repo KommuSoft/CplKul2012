@@ -3,7 +3,7 @@ using DSLImplementation.UserInterface;
 
 namespace DSLImplementation.IntermediateCode {
 
-	public interface IXmlAnswer {
+	public interface IAnswer {
 
 		IEnumerable<IPuzzlePiece> ToPuzzlePieces ();
 

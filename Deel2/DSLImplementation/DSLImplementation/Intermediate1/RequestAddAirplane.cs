@@ -11,7 +11,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Airplane Airplane{ get; set; }	
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			List<int> seats = new List<int> ();
 			Database.SeatRequest sr = new Database.SeatRequest ();

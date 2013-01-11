@@ -7,14 +7,14 @@ namespace DSLImplementation.Tiling {
 	[TilePattern]
 	public class RequestAddAirplaneTilePattern : TilePatternBase {
 
-		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new TypeBind(typeof(AirplanePiece),0x00,"type","airplanetype","code","airplanecode"),typeof(SeatPiece));
+		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new TypeBind(typeof(AirplanePiece),0x00,"type","airplanetype","code","airplanecode"));
 		private static readonly TypeBind bindseat = new TypeBind(typeof(SeatPiece),"number","number");
 		private static readonly TypeBind bindclass = new TypeBind(typeof(ClassPiece),"name","name");
 
 		public RequestAddAirplaneTilePattern () : base(bindtree) {
 		}
 
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
 			List<Seat> seats = new List<Seat>();
 			int n = root.NumberOfChildren;
 			Dictionary<string,object> bind = new Dictionary<string,object>();
@@ -26,9 +26,6 @@ namespace DSLImplementation.Tiling {
 						if(bindclass.MatchBind(i,seatclass,bind)) {
 							SeatClass sc = new SeatClass((string) bind["name"]);
 							seats.Add(new Seat(sc,m));
-							/*System.Console.WriteLine("{0}: {1}",sc.Name,m);
-							for(int j = 0x00; j < m; j++) {
-							}*/
 						}
 					}
 					bind.Clear();

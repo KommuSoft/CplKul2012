@@ -9,7 +9,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Country Country{ get; set;}
 		
-		public override IXmlAnswer execute(){
+		public override IAnswer execute(){
 			Database.Country c = new Database.Country(this.Country.Name);
 
 			AnswerAdd aa = new AnswerAdd();

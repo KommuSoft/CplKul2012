@@ -9,7 +9,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Passenger Passenger{ get; set; }	
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.Passenger passenger = new Database.Passenger (this.Passenger.Name);
 			AnswerAdd aa = new AnswerAdd ();

@@ -12,7 +12,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public Flight Flight{ get; set; }
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.LocationRequest lr = new Database.LocationRequest ();
 			Database.AirlineRequest ar = new Database.AirlineRequest ();

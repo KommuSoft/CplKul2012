@@ -28,7 +28,7 @@ namespace DSLImplementation.IntermediateCode
 			return ar.fetchAirportFromCityAndCountry(new Database.City(this.City.Name),new Database.Country(this.City.Country.Name));
 		}
 		
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			List<Database.Airport> airports = new List<Database.Airport>();
 			if (this.City != null) {

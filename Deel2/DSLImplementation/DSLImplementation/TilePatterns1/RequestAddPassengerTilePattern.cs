@@ -13,7 +13,7 @@ namespace DSLImplementation.Tiling {
 		{
 		}
 
-		protected override IXmlRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
+		protected override IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {
 			return new RequestAddPassenger(new Passenger((string) bindings["personname"]));
 		}
 

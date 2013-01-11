@@ -87,7 +87,7 @@ namespace DSLImplementation.IntermediateCode{
 			tryPrintFlights(rgf9);
 		}
 
-		private static void printAddAnswer (IXmlAnswer a)
+		private static void printAddAnswer (IAnswer a)
 		{
 			AnswerAdd aa = (AnswerAdd) a;
 			Console.WriteLine(aa.message);

@@ -13,7 +13,7 @@ namespace DSLImplementation.IntermediateCode
 
 		public FlightTemplate FlightTemplate{ get; set; }		
 
-		public override IXmlAnswer execute ()
+		public override IAnswer execute ()
 		{
 			Database.AirlineRequest ar = new Database.AirlineRequest ();
 			List<Database.Airline> airlines = ar.fetchAirlineFromCode (this.FlightTemplate.airline.Code);

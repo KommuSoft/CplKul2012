@@ -2,9 +2,9 @@ using System;
 
 namespace DSLImplementation.IntermediateCode {
 
-	public interface IXmlRequest {
+	public interface IRequest {
 
-		IXmlAnswer execute ();
+		IAnswer execute ();
 
 	}
 }
