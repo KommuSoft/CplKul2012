@@ -78,14 +78,12 @@ namespace DSLImplementation.Tiling {
 		}
 
 		public static bool Match (TypeBind tb, int index, IPuzzlePiece ipp) {
-			Console.WriteLine("MATCH {0}/{1}/{2}/{3}/{4}/{5}/{6}",tb,index,ipp,tb == null,ipp == null,(tb.index == -0x01 || tb.index == index),ipp.Match(tb));
 			return (ipp != null && (tb.index == -0x01 || tb.index == index) && ipp.Match(tb));
 		}
 		public bool Match (IPuzzlePiece ipp, int index) {
 			return Match(this,index,ipp);
 		}
 		public static bool MatchBind (TypeBind tb, int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
-			//Console.WriteLine("MATCHBIND {0}/{1}/{2}/{3}/{4}",tb,index,ipp,tb == null,ipp == null);
 			if(Match(tb,index,ipp)) {
 				return ipp.MatchBind(tb,tobind);
 			}

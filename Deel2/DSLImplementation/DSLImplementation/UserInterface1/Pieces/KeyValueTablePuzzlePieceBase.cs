@@ -50,7 +50,6 @@ namespace DSLImplementation.UserInterface {
 						binddictionary.Add(entry.Value,this.Table[entry.Key]);
 					}
 					catch (Exception e) {
-						Console.Error.WriteLine("Error {0}: {1}",entry.Key,e);
 						throw new UnableToBindException(entry.Key,this);
 					}
 				}

@@ -48,7 +48,6 @@ namespace DSLImplementation.Tiling {
 				return ixq.execute().ToPuzzlePieces().ToArray();
 			}
 			catch(Exception e) {
-				Console.Error.WriteLine(e);
 				return new IPuzzlePiece[] {new SucceedFailPiece(e)};
 			}
 		}

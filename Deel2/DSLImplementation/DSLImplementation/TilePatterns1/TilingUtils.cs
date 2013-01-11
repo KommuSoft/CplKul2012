@@ -13,7 +13,6 @@ namespace DSLImplementation.Tiling {
 		public static readonly Tree<TypeBind> bindairp = new Tree<TypeBind>(new TypeBind(typeof(AirportPiece),"code","airportcode"));
 
 		public static ILocation MatchLocation (IPuzzlePiece root) {
-			System.Console.WriteLine("root {0}/{1}",root,root==null);
 			ILocation iloc = MatchBindExecute(bindairp,root,MatchAirport);
 			if(iloc == null) {
 				iloc = MatchBindExecute(bindcity,root,MatchCity);

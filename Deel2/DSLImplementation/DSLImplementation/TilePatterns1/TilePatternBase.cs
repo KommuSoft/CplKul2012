@@ -25,7 +25,6 @@ namespace DSLImplementation.Tiling {
 		}
 		#endregion
 		protected virtual IRequest InternalToTransferCodeBase (IPuzzlePiece root, ITree<IPuzzlePiece> sortedtree, Dictionary<string, object> bindings) {
-			Console.WriteLine(string.Join(",",bindings));
 			return InternalToTransferCode(root,bindings);
 		}
 		protected virtual IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {

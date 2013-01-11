@@ -263,7 +263,6 @@ namespace DSLImplementation.UserInterface {
 					this.QueueDraw ();
 				}
 				catch (Exception e) {
-					Console.Error.WriteLine(e);
 					ExtensionMethods.ShowException(e);
 				}
 			} else {
