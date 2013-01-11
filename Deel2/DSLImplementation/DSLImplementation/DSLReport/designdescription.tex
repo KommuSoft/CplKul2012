@@ -8,10 +8,19 @@ If we look at the graphical editor on figure \ref{ex:DSLlayoutinDD}, we can see 
 	\caption{The graphical editor}
 	\label{ex:DSLlayoutinDD}
 \end{figure}
-\noindent On top of the figure are the puzzlepieces mentioned. There are two special ones namely \texttt{Query} and \texttt{Add}. This is because all programs have to start with one of them.  Now, we give a short description.
+\noindent On top of the figure are the puzzlepieces mentioned. There are two special ones, namely \texttt{Query} and \texttt{Add}. This is because building all programs have to start with selecting one of them.  Now, we give a short description.
 \begin{description}
  \item[Query] With the \texttt{Query} puzzlepiece, we can request information from the database.
- \item[Add] With the \texttt{add} puzzlepiece, we can put elements in the database.  
+ \item[Add] With the \texttt{Add} puzzlepiece, we can put elements in the database.  
 \end{description}
-All the other puzzlepieces represent concepts in the domain. They also have attributes than can be initialized.
-Another DSL construct are links. They can be used to copy the values of attributes from one element to another.
+The puzzlepieces that are next placed in \texttt{Query} or \texttt{Add} will decide what must be added or queried.
+All the other puzzlepieces represent concepts in the domain. They also have attributes than can be initialized by using the \texttt{Edit information} button. It is also possible that those puzzlepieces contain other puzzlepieces. 
+Another important DSL construct are links. They can be used to copy the values of attributes from one element to another. An example is given in the figure below.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/LinkPieceExample.pdf}
+	\caption{An illustration of making use of links}
+	\label{ex:linkpieceexample}
+\end{figure}
+First we have added a country Japan. After that, we wanted to add a city that is located in Japan. What we did, was putting a link from the Japan block at the bottom of figure to the place where the city Tokio request a country. In that way, you are sure to make no typing errors or other inconsistencies.
+
