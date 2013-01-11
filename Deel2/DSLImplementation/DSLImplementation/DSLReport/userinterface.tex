@@ -168,4 +168,57 @@ for instance regular expression replacement). Since the abstract syntax tree
 contains information (the name of an airline,...) we have to bind that
 information into a data structure. Therefore we use a dictionary data
 structure. Variables in the structure are represented by a string. A value is a
-simple object and can theoretically be anything.
+simple object and can theoretically be anything. The tiling algorithm looks for
+all patterns defined in the implementations. Each pattern contains a tree
+holding information about the structure of the pattern (the three of puzzle
+pieces) and data about which data should get linked to the dictionary. Besides
+information about binding data, one can also specify additional constraints
+like a specific index of a node relative to his parent. Some nodes can be
+optional (if they contain information, they slightly modify the execution of
+the query). This can be specified by the constraints of the language.
+Furthermore each pattern contains a construction method. Each time the binding
+of a certain pattern succeeds, the method is called. This method thus turns the
+tree together with bounded data into the intermediate representation.
+We conclude with a small example of one pattern:
+\begin{lstlisting}
+using System.Collections.Generic;
+using DSLImplementation.UserInterface;
+using DSLImplementation.IntermediateCode;
+
+namespace DSLImplementation.Tiling {
+
+  [TilePatternAttribute]
+  public class RequestAddCityTilePattern : TilePatternBase {
+
+    private static readonly Tree<TypeBind> bindtree = new
+      new Tree<TypeBind>(typeof(AddPiece),new Tree<TypeBind>(
+      new TypeBind(typeof(CityPiece),0,"name","cityname"),
+      new TypeBind(typeof(CountryPiece),"name","countryname")));
+
+    public RequestAddCityTilePattern () : base(bindtree) {
+    }
+
+    protected override IRequest InternalToTransferCode (IPuzzlePiece root,
+      Dictionary<string, object> bindings) {
+      return new RequestAddCity(new City(
+        (string) bindings["cityname"],
+        new Country((string) bindings["countryname"])));
+    }
+
+  }
+
+}
+\end{lstlisting}
+We use the attribute \texttt{TilePatternAttribute} to mark a tile pattern as an
+active one. This means that the program will use reflection to look for
+patterns (otherwise we should develop a bootstrap procedure to add new
+patterns to the collection, which will become complex if add a new executable
+to the project). Furthermore we define a tree-structure called
+\texttt{bindtree}. The bindtree is a tree of constraints. For instance in order
+to add a city, we will need an add piece. The first child of the add piece
+should be a city piece and one of the children of that city piece should be a
+country piece. Furthermore we will extract the name of the citypiece and add
+this to the dictionary as \texttt{``cityname''}, an analog action happens with
+the name of the country. When the pattern matches and the information has been
+added to the dictionary. We will simply compile an intermediate representation
+described in the method called \texttt{InternalToTransferCode}.
