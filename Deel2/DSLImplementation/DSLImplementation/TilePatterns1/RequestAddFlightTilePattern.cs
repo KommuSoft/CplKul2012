@@ -27,7 +27,7 @@ namespace DSLImplementation.Tiling {
 			int distance = (int) bindings["distance"];
 			DateTime sat = (DateTime) bindings["starttime"];
 			DateTime sot = (DateTime) bindings["stoptime"];
-			return new RequestAddFlight(new Flight(new FlightTemplate(ftc),sat,sot,new Airport(sac),new Airport(soc),new Airplane(apc)));
+			return new RequestAddFlight(new Flight(new FlightTemplate(ftc),sat,sot,new Airport(sac),new Airport(soc),new Airplane(apc),distance));
 		}
 
 	}
