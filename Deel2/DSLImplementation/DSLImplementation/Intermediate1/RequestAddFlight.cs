@@ -48,9 +48,9 @@ namespace DSLImplementation.IntermediateCode
 			}
 			int locationID = locations [0].ID;
 
-			List<Database.Airline> airlines = ar.fetchAirlineFromCode (this.Flight.Airline.Code);
+			List<Database.Airline> airlines = ar.fetchAirlineFromCode (this.Flight.Template.airline.Code);
 			if (airlines.Count () == 0) {
-				return new AnswerAdd ("Couldn't find the airline with code " + this.Flight.Airline.Code);
+				return new AnswerAdd ("Couldn't find the airline with code " + this.Flight.Template.airline.Code);
 			}
 			int airlineID = airlines [0].ID;
 
@@ -60,9 +60,9 @@ namespace DSLImplementation.IntermediateCode
 			}
 			int airplaneID = airplanes [0].ID;
 
-			List<Database.FlightTemplate> templates = ftr.fetchTemplateFromCode (this.Flight.Template.Code);
+			List<Database.FlightTemplate> templates = ftr.fetchTemplateFromAirlineAndDigits(airlineID, this.Flight.Template.digits);
 			if (templates.Count () == 0) {
-				return new AnswerAdd("Couldn't find the template with code " + this.Flight.Template.Code);
+				return new AnswerAdd("Couldn't find the template from airline " + airlines[0].code + " with digits " + this.Flight.Template.digits);
 			}
 			int templateID =  templates [0].ID;
 

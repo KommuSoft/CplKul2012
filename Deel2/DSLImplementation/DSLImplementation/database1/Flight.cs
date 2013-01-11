@@ -8,7 +8,6 @@ namespace DSLImplementation.Database
 	public class Flight : DatabaseTable
 	{
 		public int location { get; set; }
-		public int airline { get; set; }
 		public DateTime start { get; set; }
 		public DateTime end { get; set; }
 		public int airplane { get; set; }
@@ -18,7 +17,6 @@ namespace DSLImplementation.Database
 		public Flight ()
 		{
 			location = -1;
-			airline = -1;
 			start = default(DateTime);
 			end = default(DateTime);
 			airplane = -1;
@@ -26,15 +24,14 @@ namespace DSLImplementation.Database
 			travelTime = default(DateTime);
 		}
 
-		public Flight (int ID, int location, int airline, DateTime start, DateTime end, int airplane, int template, DateTime travelTime) : this(location, airline, start, end, airplane, template, travelTime)
+		public Flight (int ID, int location, DateTime start, DateTime end, int airplane, int template, DateTime travelTime) : this(location, start, end, airplane, template, travelTime)
 		{
 			this.ID = ID;
 		}
 
-		public Flight (int location, int airline, DateTime start, DateTime end, int airplane, int template, DateTime travelTime)
+		public Flight (int location, DateTime start, DateTime end, int airplane, int template, DateTime travelTime)
 		{
 			this.location = location;
-			this.airline = airline;
 			this.start = start;
 			this.end = end;
 			this.airplane = airplane;
@@ -46,7 +43,6 @@ namespace DSLImplementation.Database
 		{
 			ID = reader.GetInt32(reader.GetOrdinal("id"));
 			location = reader.GetInt32(reader.GetOrdinal("location"));
-			airline = reader.GetInt32(reader.GetOrdinal("airline"));
 			
 			DateTime start_time = reader.GetDateTime(reader.GetOrdinal("start_time"));
 			DateTime start_date = reader.GetDateTime(reader.GetOrdinal("start_date"));
@@ -69,31 +65,35 @@ namespace DSLImplementation.Database
 
 		public override string ToString ()
 		{
-			return string.Format ("[Flight: ID={0}, location={1}, airline={2}, start={3}, end={4}, airplane={5}, template={6}, travelTime={7}]", ID, location, airline, start, end, airplane, template, travelTime);
+			return string.Format ("[Flight: location={0}, start={1}, end={2}, airplane={3}, template={4}, travelTime={5}]", location, start, end, airplane, template, travelTime);
 		}
 
 		protected override bool isValid (out string exceptionMessage)
 		{
-			if(!validTemplate(template, out exceptionMessage)){
+			if (!validTemplate (template, out exceptionMessage)) {
 				return false;
 			}
 
-			FlightTemplateRequest ftr = new FlightTemplateRequest();
-			string code = ftr.fetchFromID(template)[0].code;
+			FlightTemplateRequest ftr = new FlightTemplateRequest ();
+			FlightTemplate flightTemplate = ftr.fetchFromID (template) [0];
+			string code = flightTemplate.code;
+
+			if (code == null) {
+				code = flightTemplate.generateCode();
+			}
 
 			FlightRequest fr = new FlightRequest ();
 			if (fr.fetchFlightFromCodeAndStartDate (code, start).Count() != 0) {
 				return makeExceptionMessage(out exceptionMessage, "There is already a flight with code " + code + " at " + start);
 			}
 
-
 			//TODO controleer de 3 tijdstippen (wss is elk tijdstip geldig, dus controleren is niet nodig)
-			return validLocation(location, out exceptionMessage) && validAirline(airline, out exceptionMessage) && validAirplane(airplane, out exceptionMessage);
+			return validLocation(location, out exceptionMessage) && validAirplane(airplane, out exceptionMessage);
 		}
 
 		public override int insert(){
-			List<string> columns = new List<string>{"location", "airline", "airplane", "template", "start_time", "start_date", "end_time", "end_date", "travel_time"};
-			List<object> values = new List<object>{location, airline, airplane, template, Util.toTime(start), Util.toDate(start), Util.toTime(end), Util.toDate(end), Util.toTime(travelTime)};
+			List<string> columns = new List<string>{"location", "airplane", "template", "start_time", "start_date", "end_time", "end_date", "travel_time"};
+			List<object> values = new List<object>{location, airplane, template, Util.toTime(start), Util.toDate(start), Util.toTime(end), Util.toDate(end), Util.toTime(travelTime)};
 			
 			return base.insert(columns, values);
 		}

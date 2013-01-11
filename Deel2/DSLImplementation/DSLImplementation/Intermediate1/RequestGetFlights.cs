@@ -59,10 +59,12 @@ namespace DSLImplementation.IntermediateCode{
 
 			List<Flight> fs = new List<Flight>();
 			foreach(Database.Flight f in dfs){
-				FlightTemplate template = new FlightTemplate(ftr.fetchFromID(f.template)[0].code);
-				Database.Airline airline_ = alr.fetchFromID(f.airline)[0];
+				Database.FlightTemplate ft = ftr.fetchFromID(f.template)[0];
+				Database.Airline airline_ = alr.fetchFromID(ft.airline)[0];
+
 				Airline airline = new Airline(Name: airline_.name, Code: airline_.code);
-				
+				FlightTemplate template = new FlightTemplate(ft.digits, airline);
+
 				Database.Location l = lr.fetchFromID(f.location)[0];
 				Database.Airport startAirport_ = ar.fetchFromID(l.start_airport)[0];
 				Database.Airport destinationAirport_ = ar.fetchFromID(l.destination_airport)[0];
@@ -88,7 +90,7 @@ namespace DSLImplementation.IntermediateCode{
 				
 				Airplane airplane = new Airplane(airplane_.type, seats, airplane_.code);
 				
-				fs.Add(new Flight(template, airline, f.start, f.end, startAirport, destinationAirport, airplane));
+				fs.Add(new Flight(template, f.start, f.end, startAirport, destinationAirport, airplane));
 			}
 
 			return fs;

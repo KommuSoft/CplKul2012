@@ -9,15 +9,14 @@ namespace DSLImplementation.IntermediateCode
 			this.StartDate = StartDate;
 		}
 
-		public Flight (FlightTemplate Template, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane, int distance) :
-			this(Template, Airline, StartDate, EndDate, StartAirport, DestinationAirport, Airplane)
+		public Flight (FlightTemplate Template, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane, int distance) :
+			this(Template, StartDate, EndDate, StartAirport, DestinationAirport, Airplane)
 		{
 			this.distance = distance;
 		}
 
-		public Flight (FlightTemplate Template, Airline Airline, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane){
+		public Flight (FlightTemplate Template, DateTime StartDate, DateTime EndDate, Airport StartAirport, Airport DestinationAirport, Airplane Airplane){
 			this.Template = Template;
-			this.Airline = Airline;
 			this.StartDate = StartDate;
 			this.EndDate = EndDate;
 			this.StartAirport = StartAirport;
@@ -28,7 +27,7 @@ namespace DSLImplementation.IntermediateCode
 		public String Name(){
 			return Template.Code + StartDate;
 		}
-		public Airline Airline{ get; set; }
+
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
 		public DateTime TravelTime { get; set; }

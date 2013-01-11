@@ -13,6 +13,7 @@ namespace DSLImplementation.Database
 			return "SELECT * FROM flight";
 		}
 
+		//TODO: overal waar er in deze klasse airline staat moet dit ontbonden worden
 		private string addAdditional(int airline = -1, DateTime startDateTime = default(DateTime)){
 			string query = "";
 
@@ -170,6 +171,18 @@ namespace DSLImplementation.Database
 
 		public List<Flight> fetchFlightFromCodeAndStartDate(string code, DateTime startDate)
 		{
+			string airlineCode = "";
+			string digits = "";
+			foreach (char c in code) {
+				if (Char.IsLetter (c)) {
+					airlineCode += c;
+				} else if (Char.IsDigit (c)) {
+					digits += c;
+				}
+			}
+			AirlineRequest ar = new AirlineRequest();
+			int airlineID = ar.fetchAirlineFromCode(airlineCode)[0].ID;
+
 			List<string> tables = new List<string>{"flight"};
 
 			string where_ = "";
@@ -183,7 +196,8 @@ namespace DSLImplementation.Database
 
 			query += " start_date = '" + Util.toDate(startDate) + "' AND ";
 			query += " start_time = '" + Util.toTime(startDate) + "' AND ";
-			query += " flight_template.code " + Util.fetchOperator(code.GetType()) + " " + Util.parse(code);
+			query += " flight_template.airline =  " + airlineID + " AND ";
+			query += " flight_template.digits " + Util.fetchOperator(digits.GetType()) + Util.parse(digits);
 
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
