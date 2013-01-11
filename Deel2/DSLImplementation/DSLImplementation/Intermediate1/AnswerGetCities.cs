@@ -14,7 +14,7 @@ namespace DSLImplementation.IntermediateCode
 		#region IXmlAnswer implementation
 		public IEnumerable<IPuzzlePiece> ToPuzzlePieces () {
 			foreach(City city in Cities) {
-				yield return new CityPiece(city.Name);
+				yield return new CityPiece(city.Name,new CountryPiece(city.Country.Name));
 			}
 		}
 		#endregion

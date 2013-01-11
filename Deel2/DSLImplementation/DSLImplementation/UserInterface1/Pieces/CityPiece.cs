@@ -24,9 +24,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public CityPiece () : this(null) {
+		public CityPiece () : this(null,null) {
 		}
-		public CityPiece (string name) {
+		public CityPiece (string name, CountryPiece cp) : base(cp) {
 			this.Table.AddKeyParserPair("name",name,Parsers.StringParser,Parsers.StringParser);
 		}
 	}

@@ -11,15 +11,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public CountryPiece () {
-			/*this.Table.Add("2-letter",null);
-			this.Table.AddParserPair(Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Za-z]{2}"));*/
-			/*this.Table.Add("3-letter",null);
-			this.Table.AddParserPair(Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Za-z]{3}"));*/
-			/*this.Table.Add("3-digit",null);
-			this.Table.AddParserPair(Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[0-9]{3}"));*/
-			this.Table.Add("name",null);
-			this.Table.AddParserPair(Parsers.StringParser,Parsers.StringParser);
+		public CountryPiece () : this(null) {}
+		public CountryPiece (string name) {
+			this.Table.AddKeyParserPair("name",name,Parsers.StringParser,Parsers.StringParser);
 		}
 
 	}

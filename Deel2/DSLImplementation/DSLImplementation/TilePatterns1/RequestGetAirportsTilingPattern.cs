@@ -7,7 +7,7 @@ namespace DSLImplementation.Tiling {
 	[TilePattern]
 	public class RequestGetAirportsTilePattern : TilePatternBase {
 
-		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(QueryPiece),new TypeBind(typeof(AirportPiece),0x00),new TypeBind(typeof(CityPiece),"name","citynamename"),new TypeBind(typeof(CountryPiece),"name","countryname"));
+		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(QueryPiece),new Tree<TypeBind>(new TypeBind(typeof(AirportPiece),0x00)),new Tree<TypeBind>(new TypeBind(typeof(CityPiece),"name","cityname"),new TypeBind(typeof(CountryPiece),"name","countryname")));
 
 		public RequestGetAirportsTilePattern () : base(bindtree) {}
 

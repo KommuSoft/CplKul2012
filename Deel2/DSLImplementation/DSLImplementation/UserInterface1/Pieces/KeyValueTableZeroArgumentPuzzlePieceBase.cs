@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 
 namespace DSLImplementation.UserInterface {
 
@@ -12,8 +12,11 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		protected KeyValueTableZeroArgumentPuzzlePieceBase () : base()
-		{
+		protected KeyValueTableZeroArgumentPuzzlePieceBase () : base() {
+		}
+		protected KeyValueTableZeroArgumentPuzzlePieceBase (IEnumerable<IPuzzlePiece> children) : base(children) {
+		}
+		protected KeyValueTableZeroArgumentPuzzlePieceBase (params IPuzzlePiece[] children) : base(children) {
 		}
 
 	}
