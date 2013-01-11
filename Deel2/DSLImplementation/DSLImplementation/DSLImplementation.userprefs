@@ -1,24 +1,36 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TilePatterns1/RequestAddFlightTilePattern.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tree.cs">
     <Files>
-      <File FileName="TilePatterns1/RequestAddBookingTilePattern.cs" Line="19" Column="125" />
-      <File FileName="UserInterface1/Pieces/FlightTemplatePiece.cs" Line="35" Column="37" />
-      <File FileName="UserInterface1/Pieces/TimePiece.cs" Line="14" Column="42" />
-      <File FileName="XmlMain.cs" Line="92" Column="54" />
-      <File FileName="UserInterface1/Pieces/LinkPiece.cs" Line="120" Column="17" />
-      <File FileName="UserInterface1/Pieces/KeyValueTablePuzzlePieceBase.cs" Line="65" Column="17" />
-      <File FileName="TilePatterns1/RequestAddFlightTilePattern.cs" Line="31" Column="31" />
+      <File FileName="TilePatterns1/RequestAddAirplaneTilePattern.cs" Line="11" Column="174" />
+      <File FileName="Tree.cs" Line="93" Column="4" />
+      <File FileName="TilePatterns1/TilingUtils.cs" Line="42" Column="140" />
+      <File FileName="UserInterface1/Pieces/FlightTemplatePiece.cs" Line="37" Column="40" />
+      <File FileName="TilePatterns1/RequestAddFlightTemplateTilePattern.cs" Line="1" Column="1" />
+      <File FileName="TilePatterns1/RequestAddFlightTilePattern.cs" Line="30" Column="135" />
+      <File FileName="UserInterface1/Pieces/FlightPiece.cs" Line="12" Column="1" />
+      <File FileName="Intermediate1/AnswerGetFlights.cs" Line="22" Column="51" />
+      <File FileName="TilePatterns1/RequestBase.cs" Line="5" Column="35" />
+      <File FileName="TilePatterns1/RequestGetCitiesTilePattern.cs" Line="15" Column="112" />
+      <File FileName="Intermediate1/AnswerGetCities.cs" Line="17" Column="76" />
+      <File FileName="UserInterface1/Pieces/CityPiece.cs" Line="6" Column="46" />
+      <File FileName="UserInterface1/Pieces/CountryPiece.cs" Line="16" Column="44" />
+      <File FileName="UserInterface1/Pieces/KeyValueTableZeroArgumentPuzzlePieceBase.cs" Line="19" Column="104" />
+      <File FileName="TilePatterns1/RequestGetAirportsTilingPattern.cs" Line="10" Column="217" />
+      <File FileName="UserInterface1/KeyValueTable.cs" Line="9" Column="22" />
+      <File FileName="UserInterface1/Pieces/IPuzzlePiece.cs" Line="53" Column="7" />
+      <File FileName="UserInterface1/SketchPad.cs" Line="150" Column="18" />
+      <File FileName="UserInterface1/Pieces/PuzzlePieceBase.cs" Line="440" Column="39" />
+      <File FileName="UserInterface1/Pieces/LinkPiece.cs" Line="72" Column="40" />
+      <File FileName="UserInterface1/Pieces/SucceedFailPiece.cs" Line="27" Column="4" />
+      <File FileName="TilePatterns1/RequestAddCityTilePattern.cs" Line="21" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="DSLImplementation" expanded="True" selected="True">
-            <Node name="Intermediate1" expanded="True" />
+          <Node name="DSLImplementation" expanded="True">
             <Node name="TilePatterns1" expanded="True" />
-            <Node name="UserInterface1" expanded="True">
-              <Node name="Pieces" expanded="True" />
-            </Node>
+            <Node name="Tree.cs" selected="True" />
           </Node>
         </State>
       </Pad>

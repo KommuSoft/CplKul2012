@@ -31,7 +31,11 @@ a tool to built them.
 \itemit{Limiting Expressiveness}Graphical languages are in general less
 expressive than their textual counterparts. Since we implement a domain
 specific language, we can see this as an advantage in order to prevent the
-users from making mistakes.
+users from making mistakes. For instance one can't write Turing complete
+programs in our language, this however allows programmers to write a more
+advanced checker (according to Rice's theorem, we can't write programs who can
+check Turing complete programs on any nontrivial property, there are however
+aspects that can be checked for non-Turing-complete languages).
 \end{itemize}
 \subsubsection{Motivation for the Compiler}
 \label{sssection:motivation_for_the_compiler}
@@ -45,7 +49,7 @@ algorithms in the nodes of the abstract syntax tree to deal with translating
 the expressions to their algorithmic counterparts. Since the database should
 contain all international cities, airports, flights,... we expect the number of
 applications to grow. Therefore our implementation can be extended in nearly
-all possible ways. Therefore writing a compiler is probably a better idea than
+all possible ways. We think writing a compiler is probably a better idea than
 writing a computer program who simply performs some syntactical hacks on the
 queries in order to convert them into code for a host language.
 \subsubsection{Lexer}

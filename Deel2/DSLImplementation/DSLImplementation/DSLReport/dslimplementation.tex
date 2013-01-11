@@ -1,7 +1,8 @@
 \section{DSL implementation}
-The system basically consists out of three parts: a user interface front-end, 
-a database back-end and an adapter layer between them. The frontend can ask to 
-execute a query on the database. Then, the appropriate adapter class can make this 
+The system basically consists out of three parts: a user interface front-end,
+a database back-end and an adapter layer between them. The frontend can ask to
+execute a query on the database. Then, the appropriate adapter class can make
+this
 request suitable for the database back-end. It is important to note that
 the user-interface only checks for language consistency. For instance it checks
 if the primitives are ordered appropriately, but it doesn't check for instance if
