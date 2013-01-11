@@ -166,7 +166,7 @@ public class Test
 			Passenger zoidberg = new Passenger("Zoidberg");
 			zoidberg.insert();
 			
-			Seat seat = new Seat(superDeluxeID, 20);
+			Seat seat = new Seat(superDeluxeID, 20, a380.ID);
 			int seatID = seat.insert();
 			
 			SeatPrice expensiveSeat = new SeatPrice(seatID, 2, 10000);
@@ -255,10 +255,10 @@ public class Test
 		Passenger passenger1 = new Passenger(name: "");
 		tryCatch(passenger1);
 
-		Seat seat1 = new Seat(class_: 9999, number: 1);
+		Seat seat1 = new Seat(class_: 9999, number: 1, airplane: 1);
 		tryCatch(seat1);
 
-		Seat seat2 = new Seat(class_: 1, number: -12);
+		Seat seat2 = new Seat(class_: 1, number: -12, airplane: 1);
 		tryCatch(seat2);
 
 		SeatPrice seatPrice1 = new SeatPrice(seat: 9999, flight: 1, price: 500);

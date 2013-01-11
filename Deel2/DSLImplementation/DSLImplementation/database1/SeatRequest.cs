@@ -32,10 +32,23 @@ namespace DSLImplementation.Database
 			return fetchFromQuery(createQuery(columns, values));
 		}
 
+		public List<Seat> fetchSeatFromClassNumberAndAirplane (int class_, int number, int airplane)
+		{
+			List<string> columns = new List<string>{"class", "number", "airplane"};
+			List<object> values = new List<object>{class_, number, airplane};
+			
+			return fetchFromQuery(createQuery(columns, values));
+		}
+
 		public List<Seat> fetchSeatFromFlightAndNumber (int flightID, int number)
 		{
 			string query = "SELECT * FROM seat WHERE (number = " + number + " AND id = any(SELECT seat FROM seat_price WHERE flight = " + flightID + "))";
 			return fetchFromQuery(query);
+		}
+
+		public void updateSeats(int airlineID){
+			string query = "UPDATE seat SET airplane = " + airlineID + " WHERE airplane = -1";
+			db.CreateCommand(query);
 		}
 	}
 }

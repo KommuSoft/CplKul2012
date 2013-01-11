@@ -496,7 +496,18 @@ namespace DSLImplementation.IntermediateCode{
 //			testAddSeatClass();
 //			testAddAirline();
 //			testAddBooking();
-			testAddFlight();
+//			testAddFlight();
+
+			Passenger alice = new Passenger("alice");
+			FlightTemplate template = new FlightTemplate("SN123");			
+			DateTime start = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 00);
+			Flight correctflight = new Flight(template, start);
+			SeatClass seatClass = new SeatClass("economy class");
+			Seat correctSeat = new Seat(seatClass, 3);
+
+			Console.WriteLine("Add booking");
+			Booking b = new Booking(alice, correctflight, correctSeat);
+			executeAddBooking(b);
 		}
 	}
 }
