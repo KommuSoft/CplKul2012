@@ -19,6 +19,10 @@ namespace DSLImplementation.IntermediateCode
 			Database.AirplaneRequest apr = new Database.AirplaneRequest ();
 			Database.FlightTemplateRequest ftr = new Database.FlightTemplateRequest ();
 
+			string airlineCode = "";
+			string digits = "";
+			Database.Util.split(this.Flight.Template.Code, ref airlineCode, ref digits);
+
 			if (this.Flight.StartAirport == null) {
 				return new AnswerAdd("The start airport of the flights isn't set");
 			}
@@ -48,9 +52,9 @@ namespace DSLImplementation.IntermediateCode
 			}
 			int locationID = locations [0].ID;
 
-			List<Database.Airline> airlines = ar.fetchAirlineFromCode (this.Flight.Template.airline.Code);
+			List<Database.Airline> airlines = ar.fetchAirlineFromCode (airlineCode);
 			if (airlines.Count () != 1) {
-				return new AnswerAdd ("Couldn't find a (unique) airline with code " + this.Flight.Template.airline.Code);
+				return new AnswerAdd ("Couldn't find a (unique) airline with code " + airlineCode);
 			}
 			int airlineID = airlines [0].ID;
 
@@ -60,7 +64,7 @@ namespace DSLImplementation.IntermediateCode
 			}
 			int airplaneID = airplanes [0].ID;
 
-			List<Database.FlightTemplate> templates = ftr.fetchTemplateFromAirlineAndDigits(airlineID, this.Flight.Template.digits);
+			List<Database.FlightTemplate> templates = ftr.fetchTemplateFromAirlineAndDigits(airlineID, digits);
 			if (templates.Count () != 1) {
 				return new AnswerAdd("Couldn't find a (unique) template from airline " + airlines[0].code + " with digits " + this.Flight.Template.digits);
 			}

@@ -424,11 +424,10 @@ namespace DSLImplementation.IntermediateCode{
 		private static void testAddFlight ()
 		{
 			Airline sn = new Airline("SN");
-			Airline unknownAirline = new Airline("UNK");
 
 			FlightTemplate template = new FlightTemplate("123", sn);
 			FlightTemplate unknownTemplate = new FlightTemplate("999", sn);
-			//TODO hier testen of het mogelijk is om een flighttemplate te geven die enkel een code heeft
+			FlightTemplate templateCode = new FlightTemplate("SN123");
 
 			DateTime start = new DateTime(year: 2012, month: 11, day: 25, hour: 1, minute: 30, second: 0);
 			DateTime end = new DateTime(year: 2012, month: 11, day: 25, hour: 3, minute: 30, second: 0);
@@ -462,7 +461,7 @@ namespace DSLImplementation.IntermediateCode{
 
 			Console.WriteLine(); Console.WriteLine("3"); 
 			Flight f3 = new Flight(unknownTemplate, start, end, brussels, schiphol, B747, 200);
-			executeAddFlight(f3); //This adds a location
+			//executeAddFlight(f3); //This adds a location
 
 			Console.WriteLine(); Console.WriteLine("7"); 
 			Flight f7 = new Flight(template, start, end, brussels, schiphol, unknownAirplane);
@@ -474,12 +473,20 @@ namespace DSLImplementation.IntermediateCode{
 			Console.WriteLine(); Console.WriteLine("9"); 
 			Flight f9 = new Flight(template, start, end, brussels, schiphol, B747);
 			executeAddFlight(f9);
+
+			Console.WriteLine(); Console.WriteLine("10"); 
+			Flight f10 = new Flight(template, startExists, end, brussels, schiphol, B747);
+			executeAddFlight(f10);
+
+			Console.WriteLine(); Console.WriteLine("11"); 
+			Flight f11 = new Flight(templateCode, start, end, brussels, schiphol, B747, 200);
+			executeAddFlight(f11);
 		}
 
 		public static void Main (string[] args){
 //			testGetters();
 //			testGetSeats();
-			testGetSeatPrice();
+//			testGetSeatPrice();
 //			testAddCountry();
 //			testAddCity();
 //			testAddAirport();
@@ -489,7 +496,7 @@ namespace DSLImplementation.IntermediateCode{
 //			testAddSeatClass();
 //			testAddAirline();
 //			testAddBooking();
-//			testAddFlight();
+			testAddFlight();
 		}
 	}
 }
