@@ -28,9 +28,10 @@ namespace DSLImplementation.Tiling {
 			string apc = (string) bindings["airplanecode"];
 			DateTime sat = (DateTime) bindings["starttime"];
 			DateTime sot = (DateTime) bindings["stoptime"];
+			DateTime stl = (DateTime) bindings["stoptimelocal"];
 			return new RequestAddFlight(new Flight(new FlightTemplate(ftc, new Airline(aln)),sat,sot,new Airport(sac),new Airport(soc),new Airplane(apc)));
 		}
 
 	}
-}
 
+}

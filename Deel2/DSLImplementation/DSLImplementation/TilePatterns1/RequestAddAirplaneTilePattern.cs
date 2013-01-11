@@ -8,8 +8,7 @@ namespace DSLImplementation.Tiling {
 	public class RequestAddAirplaneTilePattern : TilePatternBase {
 
 		private static readonly Tree<TypeBind> bindtree = new Tree<TypeBind>(typeof(AddPiece),new TypeBind(typeof(AirplanePiece),0x00,"type","airplanetype","code","airplanecode"));
-		private static readonly TypeBind bindseat = new TypeBind(typeof(SeatPiece),"number","number");
-		private static readonly TypeBind bindclass = new TypeBind(typeof(ClassPiece),"name","name");
+		private static readonly Tree<TypeBind> bindseattree = new Tree<TypeBind>(new TypeBind(typeof(SeatPiece),"number","number"),new TypeBind(typeof(ClassPiece),"name","name"));
 
 		public RequestAddAirplaneTilePattern () : base(bindtree) {
 		}
@@ -19,15 +18,13 @@ namespace DSLImplementation.Tiling {
 			int n = root.NumberOfChildren;
 			Dictionary<string,object> bind = new Dictionary<string,object>();
 			for(int i = 0x01; i < n; i++) {
-				if(bindseat.MatchBind(i,root[i],bind)) {
-					if(bind["number"] != null) {
-						int m = (int) bind["number"];
-						IPuzzlePiece seatclass = root[i][0x00];
-						if(bindclass.MatchBind(i,seatclass,bind)) {
-							SeatClass sc = new SeatClass((string) bind["name"]);
-							seats.Add(new Seat(sc,m));
-						}
-					}
+				if(Tree<TypeBind>.ConjunctiveTreeNonSwapMatchPredicate(bindseattree,0x00,root[i],(x,y,z) => TypeBind.MatchBind(x,y,z,bind),TypeBind.GetOptional)) {
+				   //(bindseat.MatchBind(i,root[i],bind))) {
+					//if(bind["number"] != null) {
+					int m = (int) bind["number"];
+					SeatClass sc = new SeatClass((string) bind["name"]);
+					seats.Add(new Seat(sc,m));
+					//}
 					bind.Clear();
 				}
 			}

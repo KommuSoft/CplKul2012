@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DSLImplementation {
 
@@ -53,6 +52,9 @@ namespace DSLImplementation {
 		}
 		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, Predicate<T> optional, out ITree<Q> swappedTree) {
 			swappedTree = null;
+			if(othertree == null) {
+				return false;
+			}
 			Console.WriteLine("matching {0};{1}",predicate,index);
 			if(predicate(tree.Data,index,othertree.Data)) {
 				int no = othertree.NumberOfChildren;
@@ -88,9 +90,10 @@ namespace DSLImplementation {
 			return ConjunctiveTreeNonSwapMatchPredicate(tree,index,othertree,predicate,x=>false);
 		}
 		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree,int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, Predicate<T> optional) {
-			bool res = predicate(tree.Data,index,othertree.Data);
-			Console.WriteLine("CTNSMP {0} <> {1} = {2}",tree,othertree,res);
-			if(res) {
+			if(othertree == null) {
+				return false;
+			}
+			if(predicate(tree.Data,index,othertree.Data)) {
 				int nt = tree.NumberOfChildren;
 				Console.WriteLine("iterating over {0} children",nt);
 				for(int i = 0x00; i < nt; i++) {
