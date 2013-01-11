@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -73,8 +74,21 @@ namespace DSLImplementation.Database
 
 		protected override bool isValid (out string exceptionMessage)
 		{
+			if(!validTemplate(template, out exceptionMessage)){
+				return false;
+			}
+
+			FlightTemplateRequest ftr = new FlightTemplateRequest();
+			string code = ftr.fetchFromID(template)[0].code;
+
+			FlightRequest fr = new FlightRequest ();
+			if (fr.fetchFlightFromCodeAndStartDate (code, start).Count() != 0) {
+				return makeExceptionMessage(out exceptionMessage, "There is already a flight with code " + code + " at " + start);
+			}
+
+
 			//TODO controleer de 3 tijdstippen (wss is elk tijdstip geldig, dus controleren is niet nodig)
-			return validLocation(location, out exceptionMessage) && validAirline(airline, out exceptionMessage) && validAirplane(airplane, out exceptionMessage) && validTemplate(template, out exceptionMessage);
+			return validLocation(location, out exceptionMessage) && validAirline(airline, out exceptionMessage) && validAirplane(airplane, out exceptionMessage);
 		}
 
 		public override int insert(){

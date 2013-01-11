@@ -296,7 +296,7 @@ namespace DSLImplementation.IntermediateCode{
 			executeAddAirline(a7);
 
 			Airline a8 = new Airline("Normal name", "ZZZ");
-			executeAddAirline(a8);
+			//executeAddAirline(a8);
 		}
 
 		private static void executeAddBooking (Booking b)
@@ -349,6 +349,7 @@ namespace DSLImplementation.IntermediateCode{
 			
 			DateTime start = new DateTime(year: 2012, month: 11, day: 25, hour: 1, minute: 30, second: 0);
 			DateTime end = new DateTime(year: 2012, month: 11, day: 25, hour: 3, minute: 30, second: 0);
+			DateTime startExists = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 0);
 
 			Airline sn = new Airline("SN");
 			Airline unknownAirline = new Airline("UNK");
@@ -383,6 +384,9 @@ namespace DSLImplementation.IntermediateCode{
 
 			Flight f8 = new Flight(template, sn, start, end, brussels, schiphol, B747);
 			//executeAddFlight(f8);
+
+			Flight f9 = new Flight(template, sn, start, end, brussels, schiphol, B747);
+			executeAddFlight(f9);
 		}
 
 		public static void Main (string[] args){
@@ -394,9 +398,9 @@ namespace DSLImplementation.IntermediateCode{
 //			testAddAirplane();
 //			testAddPassenger();
 //			testAddSeatClass();
-			testAddAirline();
+//			testAddAirline();
 //			testAddBooking();
-//			testAddFlight();
+			testAddFlight();
 		}
 	}
 }
