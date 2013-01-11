@@ -69,7 +69,7 @@ namespace DSLImplementation.IntermediateCode
 				return new AnswerAdd("Couldn't find a (unique) template from airline " + airlines[0].code + " with digits " + this.Flight.Template.digits);
 			}
 			int templateID =  templates [0].ID;
-
+		
 			Database.Flight flight = new Database.Flight (locationID, airlineID, this.Flight.StartDate, this.Flight.EndDate, airplaneID, templateID, this.Flight.TravelTime);
 			AnswerAdd aa = new AnswerAdd ();
 			try {

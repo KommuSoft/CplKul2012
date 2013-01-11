@@ -47,6 +47,20 @@ namespace DSLImplementation.Database
 			}
 		}
 
+		private static void checkIfTimespan (object o)
+		{
+			if (o.GetType () != typeof(TimeSpan)) {
+				throw new InvalidCastException("Arguement should be of type TimeSpan");
+			}
+		}
+
+		public static string toTimeSpan (object o)
+		{
+			checkIfTimespan(o);
+			TimeSpan t = (TimeSpan) o;
+			return t.Hours + ":" + t.Minutes + ":" + t.Seconds;
+		}
+
 		public static string toTime (object o)
 		{
 			checkIfDateTime(o);

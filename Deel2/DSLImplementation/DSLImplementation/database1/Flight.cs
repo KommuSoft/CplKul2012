@@ -12,7 +12,7 @@ namespace DSLImplementation.Database
 		public DateTime end { get; set; }
 		public int airplane { get; set; }
 		public int template { get; set; }
-		public DateTime travelTime { get; set; }
+		public TimeSpan travelTime { get; set; }
 
 		public Flight ()
 		{
@@ -21,15 +21,15 @@ namespace DSLImplementation.Database
 			end = default(DateTime);
 			airplane = -1;
 			template = -1;
-			travelTime = default(DateTime);
+			travelTime = default(TimeSpan);
 		}
 
-		public Flight (int ID, int location, DateTime start, DateTime end, int airplane, int template, DateTime travelTime) : this(location, start, end, airplane, template, travelTime)
+		public Flight (int ID, int location, DateTime start, DateTime end, int airplane, int template, TimeSpan travelTime) : this(location, start, end, airplane, template, travelTime)
 		{
 			this.ID = ID;
 		}
 
-		public Flight (int location, DateTime start, DateTime end, int airplane, int template, DateTime travelTime)
+		public Flight (int location, DateTime start, DateTime end, int airplane, int template, TimeSpan travelTime)
 		{
 			this.location = location;
 			this.start = start;
@@ -55,7 +55,8 @@ namespace DSLImplementation.Database
 			airplane = reader.GetInt32(reader.GetOrdinal("airplane"));
 			template = reader.GetInt32(reader.GetOrdinal("template"));
 
-			travelTime = reader.GetDateTime(reader.GetOrdinal("travel_time"));
+			DateTime travelDateTime = reader.GetDateTime(reader.GetOrdinal("travel_time"));
+			travelTime = new TimeSpan(days: travelDateTime.Day, hours: travelDateTime.Hour, minutes: travelDateTime.Minute, seconds: travelDateTime.Second);
 		}
 
 		public override string tableName ()
@@ -93,7 +94,7 @@ namespace DSLImplementation.Database
 
 		public override int insert(){
 			List<string> columns = new List<string>{"location", "airplane", "template", "start_time", "start_date", "end_time", "end_date", "travel_time"};
-			List<object> values = new List<object>{location, airplane, template, Util.toTime(start), Util.toDate(start), Util.toTime(end), Util.toDate(end), Util.toTime(travelTime)};
+			List<object> values = new List<object>{location, airplane, template, Util.toTime(start), Util.toDate(start), Util.toTime(end), Util.toDate(end), Util.toTimeSpan(travelTime)};
 			
 			return base.insert(columns, values);
 		}

@@ -26,15 +26,22 @@ namespace DSLImplementation.IntermediateCode
 
 		public String Name ()
 		{
-			if (Template.Code == null) {
-
-			}
 			return Template.Code + StartDate;
 		}
 
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
-		public DateTime TravelTime { get; set; }
+		public TimeSpan TravelTime {
+			get{
+				if(this.travelTime == default(TimeSpan)){
+					this.travelTime = EndDate.Subtract(StartDate);
+				}
+				return this.travelTime;
+			}
+			set{
+				this.travelTime = value;
+			}}
+		private TimeSpan travelTime;
 		public Airport StartAirport { get; set; }
 		public Airport DestinationAirport { get; set; }
 		public Airplane Airplane { get; set; }
