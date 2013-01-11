@@ -35,6 +35,7 @@ namespace DSLImplementation.UserInterface {
 			get;
 		}
 		event EventHandler BoundsChanged;
+		event EventHandler Killed;
 
 		void MatchesConstraintsChildren (int index, IPuzzlePiece piece);
 		void MatchesConstraintsParent (IPuzzlePiece piece);
@@ -49,6 +50,7 @@ namespace DSLImplementation.UserInterface {
 		void InvalidateSizeCache ();
 		bool Match (TypeBind tm);
 		bool MatchBind (TypeBind tm, Dictionary<string,object> bindDictionary);
+		void Kill ();
 
 	}
 }

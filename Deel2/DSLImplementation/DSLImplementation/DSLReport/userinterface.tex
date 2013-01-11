@@ -42,7 +42,12 @@ patterns and translating them into what we call the intermediate representation.
 \paragraph{}
 Since we know all the use-cases in advance, we could simply implement
 algorithms in the nodes of the abstract syntax tree to deal with translating
-the expressions to their algorithmic counterparts. Since the database
+the expressions to their algorithmic counterparts. Since the database should
+contain all international cities, airports, flights,... we expect the number of
+applications to grow. Therefore our implementation can be extended in nearly
+all possible ways. Therefore writing a compiler is probably a better idea than
+writing a computer program who simply performs some syntactical hacks on the
+queries in order to convert them into code for a host language.
 \subsubsection{Lexer}
 Most programming languages and by extend domain specific languages are parsed
 in a structure called abstract syntax trees. The source code first passes
@@ -99,8 +104,8 @@ or forces certain aspects, users won't lose time by trying these aspects.}.
 Furthermore by slightly modifying the tree paradigm, the graphical language can
 specify implicit symbol tables. If we allow link-nodes into our language, the
 graphical language is based on a Directed Acyclic Graph.The user doesn't have to
-specify the same values a second time, but can simply introduce a link piece
-who points to a piece where the data is already specified.
+specify the same values a second time, but can simply introduce a link
+piece pointing to a piece where the data is already specified.
 \subparagraph{}
 \subsubsection{Proposed graphical language}
 We've implemented a graphical language following the tree paradigm. The
@@ -139,3 +144,13 @@ limited. Research points out that humans with normal color perception
 (trichromatic) can distinct around 36 colors. Since domain specific languages
 however in general and more specific this language is limited in the amount of
 polymorphism and overloading we assume this system will be sufficient.
+Furthermore the programmer of the Domain Specific Language can of course
+introduce other constraints. In that case, the user can't rely on the visual
+hints.
+\paragraph{Implementation}
+The implementation of the graphical domain specific language is quite straight
+forward. Since we model the language as a tree, we use this paradigm to
+represent the language internally. We can of course easily put constraints on
+the structure of the tree by implementing a method in each type of node
+(flight, booking,...) who checks if his/her children are valid. A link piece is
+nothing more than a piece who maintains a reference to another piece.

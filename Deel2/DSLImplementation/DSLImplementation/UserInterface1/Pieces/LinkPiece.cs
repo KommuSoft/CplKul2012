@@ -65,6 +65,12 @@ namespace DSLImplementation.UserInterface {
 
 		public LinkPiece (IPuzzlePiece piece) {
 			this.piece = piece;
+			this.piece.Killed += HandleKilled;
+		}
+
+		void HandleKilled (object sender, EventArgs e) {
+			this.PieceParent[this.Index] = null;
+			this.Kill();
 		}
 
 		public override PointD MeasureSize (Context ctx) {

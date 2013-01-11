@@ -15,6 +15,7 @@ namespace DSLImplementation.UserInterface {
 		private IPuzzlePiece[] arguments;
 		private PointD sizeCache = new PointD(-1.0d,-1.0d);
 		private EventHandler boundsChanged;
+		private EventHandler killed;
 		private Rectangle[] subpieces;
 		private IPuzzlePiece parent;
 		private int index = -0x01;
@@ -48,6 +49,14 @@ namespace DSLImplementation.UserInterface {
 			}
 			set {
 				this.index = value;
+			}
+		}
+		public event EventHandler Killed {
+			add {
+				this.killed += value;
+			}
+			remove {
+				this.killed -= value;
 			}
 		}
 		public IPuzzlePiece PieceParent {
@@ -424,6 +433,12 @@ namespace DSLImplementation.UserInterface {
 				return false;
 			}
 			return base.Equals (obj);
+		}
+
+		public void Kill () {
+			if(this.killed != null) {
+				this.killed(this,EventArgs.Empty);
+			}
 		}
 
 		public override string ToString () {

@@ -147,6 +147,7 @@ namespace DSLImplementation.UserInterface {
 				ipp = this.GetPuzzlePiece(p);
 				if(ipp != null) {
 					if(ipp.PieceParent != null) {
+						ipp.Kill();
 						ipp.PieceParent[ipp.Index] = null;
 					}
 				}
@@ -383,6 +384,7 @@ namespace DSLImplementation.UserInterface {
 					return this.Answer.Length+0x01;
 				}
 			}
+			public event EventHandler Killed {add {} remove {}}
 
 			private QueryAnswerLocations (RunPiece query, PointD offset, IPuzzlePiece[] answer, PointD[] locations) {
 				this.query = query;
@@ -499,6 +501,7 @@ namespace DSLImplementation.UserInterface {
 			public bool MatchBind (TypeBind tb, Dictionary<string,object> binddictionary) {
 				return false;
 			}
+			public void Kill () {}
 
 		}
 
