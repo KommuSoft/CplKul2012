@@ -58,8 +58,11 @@ can be considered the equivalent of a token.
 \subsubsection{Parser}
 When the source code is tokenized, a compiler component called the parser
 injects some structure in the token stream by converting the stream into a
-tree-structure. The parser knows how to do this since the order of the tokens
-contains some cues on how the data is structured.
+tree-structure. The general tree structure is described by a context-free
+grammar (sometimes enriched with a Turing-complete specification language). The
+parser knows how to inject structure in the language since he knows the
+context-free grammar and uses hints provided by the structure of the source
+code.
 \subsubsection{Graphical language paradigms}
 Graphical languages mainly use two paradigms: graph-based and tree-based. In a
 graph based language, the user uses two basic concepts: nodes and edges. A
@@ -106,7 +109,6 @@ specify implicit symbol tables. If we allow link-nodes into our language, the
 graphical language is based on a Directed Acyclic Graph.The user doesn't have to
 specify the same values a second time, but can simply introduce a link
 piece pointing to a piece where the data is already specified.
-\subparagraph{}
 \subsubsection{Proposed graphical language}
 We've implemented a graphical language following the tree paradigm. The
 graphical language is mainly based on a puzzle. In a puzzle, pieces must fit
