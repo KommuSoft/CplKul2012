@@ -27,14 +27,14 @@ namespace DSLImplementation.IntermediateCode
 			if (locations.Count () == 0) {
 				Database.AirportRequest airportRequest = new Database.AirportRequest();
 				List<Database.Airport> airports = airportRequest.fetchAirportFromCode(this.Flight.StartAirport.Code);
-				if(airports.Count() == 0){
-					return new AnswerAdd("Couldn't find the airport with code " + this.Flight.StartAirport.Code);
+				if(airports.Count() != 1){
+					return new AnswerAdd("Couldn't find a (unique) airport with code " + this.Flight.StartAirport.Code);
 				}
 				int airport1ID = airports[0].ID;
 
 				airports = airportRequest.fetchAirportFromCode(this.Flight.DestinationAirport.Code);
-				if(airports.Count() == 0){
-					return new AnswerAdd("Couldn't find the airport with code " + this.Flight.DestinationAirport.Code);
+				if(airports.Count() != 1){
+					return new AnswerAdd("Couldn't find a (unique) airport with code " + this.Flight.DestinationAirport.Code);
 				}
 				int airport2ID = airports[0].ID;
 
@@ -49,20 +49,20 @@ namespace DSLImplementation.IntermediateCode
 			int locationID = locations [0].ID;
 
 			List<Database.Airline> airlines = ar.fetchAirlineFromCode (this.Flight.Template.airline.Code);
-			if (airlines.Count () == 0) {
-				return new AnswerAdd ("Couldn't find the airline with code " + this.Flight.Template.airline.Code);
+			if (airlines.Count () != 1) {
+				return new AnswerAdd ("Couldn't find a (unique) airline with code " + this.Flight.Template.airline.Code);
 			}
 			int airlineID = airlines [0].ID;
 
 			List<Database.Airplane> airplanes = apr.fetchAirplaneFromCode (this.Flight.Airplane.Code);
-			if (airplanes.Count () == 0) {
-				return new AnswerAdd ("Couldn't find the airplane with code " + this.Flight.Airplane.Code);
+			if (airplanes.Count () != 1) {
+				return new AnswerAdd ("Couldn't find a (unique) airplane with code " + this.Flight.Airplane.Code);
 			}
 			int airplaneID = airplanes [0].ID;
 
 			List<Database.FlightTemplate> templates = ftr.fetchTemplateFromAirlineAndDigits(airlineID, this.Flight.Template.digits);
-			if (templates.Count () == 0) {
-				return new AnswerAdd("Couldn't find the template from airline " + airlines[0].code + " with digits " + this.Flight.Template.digits);
+			if (templates.Count () != 1) {
+				return new AnswerAdd("Couldn't find a (unique) template from airline " + airlines[0].code + " with digits " + this.Flight.Template.digits);
 			}
 			int templateID =  templates [0].ID;
 

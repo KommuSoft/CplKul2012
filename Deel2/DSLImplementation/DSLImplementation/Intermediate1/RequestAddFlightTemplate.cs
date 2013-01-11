@@ -15,10 +15,14 @@ namespace DSLImplementation.IntermediateCode
 
 		public override IAnswer execute ()
 		{
+			string airlineCode = "";
+			string digits = "";
+			Database.Util.split(this.FlightTemplate.Code, ref airlineCode, ref digits);
+
 			Database.AirlineRequest ar = new Database.AirlineRequest ();
-			List<Database.Airline> airlines = ar.fetchAirlineFromCode (this.FlightTemplate.airline.Code);
-			if (airlines.Count () != 0) {
-				return new AnswerAdd("The airline with code " + this.FlightTemplate.airline.Code + " couldn't be found");
+			List<Database.Airline> airlines = ar.fetchAirlineFromCode (airlineCode);
+			if (airlines.Count () != 1) {
+				return new AnswerAdd("A (unique) airline with code " + airlineCode + " couldn't be found");
 			}
 			int airlineID = airlines[0].ID;
 

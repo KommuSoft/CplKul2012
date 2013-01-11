@@ -22,14 +22,14 @@ namespace DSLImplementation.IntermediateCode
 			}
 
 			List<Database.Country> countries = cor.fetchCountryFromName (this.Airport.City.Country.Name);
-			if (countries.Count == 0) {
-				return new AnswerAdd ("No country found with name " + this.Airport.City.Country.Name);
+			if (countries.Count != 1) {
+				return new AnswerAdd ("No (unique) country found with name " + this.Airport.City.Country.Name);
 			}
 			int countryID = countries [0].ID;
 
-			List<Database.City> cities = cir.fetchCityFromName (this.Airport.City.Name);
-			if (cities.Count == 0) {
-				return new AnswerAdd("No city found with name " + this.Airport.City.Name);
+			List<Database.City> cities = cir.fetchFromNameAndCountry(this.Airport.City.Name, this.Airport.City.Country.Name);
+			if (cities.Count != 1) {
+				return new AnswerAdd("No (unique) city found with name " + this.Airport.City.Name + " in country " + this.Airport.City.Country.Name);
 			}
 			int cityID = cities[0].ID;
 

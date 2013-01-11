@@ -21,13 +21,7 @@ namespace DSLImplementation.Database
 
 			string airlineCode = "";
 			string digits = "";
-			foreach (char c in code) {
-				if (Char.IsLetter (c)) {
-					airlineCode += c;
-				} else if (Char.IsDigit (c)) {
-					digits += c;
-				}
-			}
+			Util.split(code, ref airlineCode, ref digits);
 
 			AirlineRequest ar = new AirlineRequest ();
 			List<Airline> airlines = ar.fetchAirlineFromCode (airlineCode);

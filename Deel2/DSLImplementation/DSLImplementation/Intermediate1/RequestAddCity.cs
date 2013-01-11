@@ -18,8 +18,8 @@ namespace DSLImplementation.IntermediateCode
 			Database.CountryRequest cr = new Database.CountryRequest ();
 
 			List<Database.Country> countries = cr.fetchCountryFromName (this.City.Country.Name);
-			if (countries.Count == 0) {
-				return new AnswerAdd("No country found with name " + this.City.Country.Name);
+			if (countries.Count != 1) {
+				return new AnswerAdd("No (unique) country found with name " + this.City.Country.Name);
 			}
 			int countryID = countries[0].ID;
 

@@ -71,6 +71,17 @@ namespace DSLImplementation.Database
 				return " =";
 			}
 		}
+
+		public static void split (string code, ref string airlineCode, ref string digits)
+		{
+			foreach (char c in code) {
+				if (Char.IsLetter (c)) {
+					airlineCode += c;
+				} else if (Char.IsDigit (c)) {
+					digits += c;
+				}
+			}
+		}
 	}
 }
 

@@ -24,7 +24,11 @@ namespace DSLImplementation.IntermediateCode
 			this.Airplane = Airplane;
 		}		
 
-		public String Name(){
+		public String Name ()
+		{
+			if (Template.Code == null) {
+
+			}
 			return Template.Code + StartDate;
 		}
 

@@ -23,8 +23,8 @@ namespace DSLImplementation.IntermediateCode
 
 			foreach (Seat s in this.Airplane.Seats) {
 				List<Database.Class> classes = cr.fetchClassFromName (s.SeatClass.Name);
-				if(classes.Count == 0){
-					return new AnswerAdd("No class found with name " + s.SeatClass.Name);
+				if(classes.Count != 1){
+					return new AnswerAdd("No (unique) class found with name " + s.SeatClass.Name);
 				}
 				int classID =  classes[0].ID;
 

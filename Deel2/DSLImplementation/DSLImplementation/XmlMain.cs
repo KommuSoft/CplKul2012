@@ -398,16 +398,16 @@ namespace DSLImplementation.IntermediateCode{
 		}
 
 		public static void Main (string[] args){
-//			testGetters();
-//			testAddCountry();
-//			testAddCity();
-//			testAddAirport();
-//			testAddFlightTemplate();
-//			testAddAirplane();
-//			testAddPassenger();
-//			testAddSeatClass();
-//			testAddAirline();
-//			testAddBooking();
+			testGetters();
+			testAddCountry();
+			testAddCity();
+			testAddAirport();
+			testAddFlightTemplate();
+			testAddAirplane();
+			testAddPassenger();
+			testAddSeatClass();
+			testAddAirline();
+			testAddBooking();
 			testAddFlight();
 		}
 	}

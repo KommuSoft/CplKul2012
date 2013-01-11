@@ -15,7 +15,18 @@ namespace DSLImplementation.IntermediateCode
 
 		public string digits { get; set; }
 		public Airline airline { get; set; }
-		public String Code{ get; set; }
+		public String Code {
+			get{
+				if(code == null){
+					Code = airline.Code + digits;
+				}
+				return code;
+			}
+			set{
+				this.code = value;
+			}
+		}
+		private string code;
 	}
 }
 
