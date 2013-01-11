@@ -166,6 +166,7 @@
     <Compile Include="Intermediate1\RequestGetSeatPrice.cs" />
     <Compile Include="Intermediate1\AnswerGetSeatPrice.cs" />
     <Compile Include="Intermediate1\SeatPrice.cs" />
+    <Compile Include="Intermediate1\RequestAddSeatPrice.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
