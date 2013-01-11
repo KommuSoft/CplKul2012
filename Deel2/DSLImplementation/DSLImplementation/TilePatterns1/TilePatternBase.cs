@@ -16,14 +16,16 @@ namespace DSLImplementation.Tiling {
 		#region ITilingPattern implementation
 		public bool Match (IPuzzlePiece root) {
 			ITree<IPuzzlePiece> tmp;
-			return Tree<TypeBind>.ConjunctiveTreeSwapMatchPredicate(this.pattern,0x00,root,TypeBind.Match,x => x.Optional,out tmp);
+			bool res = Tree<TypeBind>.ConjunctiveTreeSwapMatchPredicate(this.pattern,0x00,root,TypeBind.Match,TypeBind.GetOptional,out tmp);
+			return res;
 		}
 
 		public IRequest ToTransferCode (IPuzzlePiece root) {
-			return TilingUtils.MatchBindExecute(this.pattern,root,this.InternalToTransferCodeBase);
+			return TilingUtils.MatchBindExecute (this.pattern, root, this.InternalToTransferCodeBase);
 		}
 		#endregion
 		protected virtual IRequest InternalToTransferCodeBase (IPuzzlePiece root, ITree<IPuzzlePiece> sortedtree, Dictionary<string, object> bindings) {
+			Console.WriteLine(string.Join(",",bindings));
 			return InternalToTransferCode(root,bindings);
 		}
 		protected virtual IRequest InternalToTransferCode (IPuzzlePiece root, Dictionary<string, object> bindings) {

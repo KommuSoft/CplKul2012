@@ -78,16 +78,21 @@ namespace DSLImplementation.Tiling {
 		}
 
 		public static bool Match (TypeBind tb, int index, IPuzzlePiece ipp) {
+			Console.WriteLine("MATCH {0}/{1}/{2}/{3}/{4}/{5}/{6}",tb,index,ipp,tb == null,ipp == null,(tb.index == -0x01 || tb.index == index),ipp.Match(tb));
 			return (ipp != null && (tb.index == -0x01 || tb.index == index) && ipp.Match(tb));
 		}
 		public bool Match (IPuzzlePiece ipp, int index) {
 			return Match(this,index,ipp);
 		}
 		public static bool MatchBind (TypeBind tb, int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
+			//Console.WriteLine("MATCHBIND {0}/{1}/{2}/{3}/{4}",tb,index,ipp,tb == null,ipp == null);
 			if(Match(tb,index,ipp)) {
 				return ipp.MatchBind(tb,tobind);
 			}
 			return false;
+		}
+		public static bool GetOptional (TypeBind tb) {
+			return tb != null && tb.Optional;
 		}
 		public bool MatchBind (int index, IPuzzlePiece ipp, Dictionary<string,object> tobind) {
 			return TypeBind.MatchBind(this,index,ipp,tobind);
@@ -96,7 +101,7 @@ namespace DSLImplementation.Tiling {
 			return new TypeBind(t);
 		}
 		public override string ToString () {
-			return string.Format ("[TypeBind: Type={0}, Bindingtable={1}, Index={2}]", Type, Bindingtable, Index);
+			return string.Format ("[TypeBind: Type={0}, Bindingtable={1}, Index={2}, Optional={3}]", Type, Bindingtable, Index, Optional);
 		}
 
 	}

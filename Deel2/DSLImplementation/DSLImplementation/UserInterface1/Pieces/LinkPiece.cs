@@ -112,6 +112,13 @@ namespace DSLImplementation.UserInterface {
 				return false;
 			}
 		}
+		public override bool Equals (object obj) {
+			if (base.Equals (obj)) {
+				LinkPiece lp = (LinkPiece) obj;
+				return this.Piece.Equals(lp);
+			}
+			return false;
+		}
 
 	}
 

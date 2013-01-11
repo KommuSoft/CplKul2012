@@ -11,9 +11,11 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public TimePiece () {
-			this.Table.Add("time",DateTime.Now);
-			this.Table.AddParserPair(Parsers.StringParser,Parsers.DateTimeParser);
+		public TimePiece () : this(DateTime.Now)
+		{
+		}
+		public TimePiece (DateTime datetime) {
+			this.Table.AddKeyParserPair("time",datetime,Parsers.StringParser,Parsers.DateTimeParser);
 		}
 
 	}

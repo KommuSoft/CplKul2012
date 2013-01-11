@@ -46,14 +46,14 @@ namespace DSLImplementation {
 			}
 		}
 		public ITree<T> ChildAt (int index) {
-			return this[index];
+			return this.subtrees[index];
 		}
 		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, out ITree<Q> swappedTree) {
 			return ConjunctiveTreeSwapMatchPredicate<Q>(tree,index,othertree,predicate,x => false, out swappedTree);
 		}
 		public static bool ConjunctiveTreeSwapMatchPredicate<Q> (ITree<T> tree, int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, Predicate<T> optional, out ITree<Q> swappedTree) {
 			swappedTree = null;
-			Console.WriteLine("matching {0};{1};{2}={3}",tree.Data,index,othertree.Data,predicate(tree.Data,index,othertree.Data));
+			Console.WriteLine("matching {0};{1}",predicate,index);
 			if(predicate(tree.Data,index,othertree.Data)) {
 				int no = othertree.NumberOfChildren;
 				int nt = tree.NumberOfChildren;
@@ -62,15 +62,17 @@ namespace DSLImplementation {
 				ITree<Q> tmp;
 				bool found;
 				for(int i = 0x00; i < nt; i++) {
+					Console.WriteLine("Looking for {0}",tree.ChildAt(i));
 					found = false;
 					for(int j = 0x00; j < no; j++) {
-						if(othertree.ChildAt(j) != null && used[j] == null && ConjunctiveTreeSwapMatchPredicate(tree.ChildAt(i),j,othertree.ChildAt(j),predicate,out tmp)) {
+						if(othertree.ChildAt(j) != null && used[j] == null && ConjunctiveTreeSwapMatchPredicate(tree.ChildAt(i),j,othertree.ChildAt(j),predicate,optional,out tmp)) {
 							used[j] = tmp;
 							swap[i] = tmp;
 							found = true;
 							break;
 						}
 					}
+					Console.WriteLine("subresult {0}/{2}/{1}",found,optional(tree.ChildAt(i).Data),tree.ChildAt(i).Data);
 					if(found == false && !optional(tree.ChildAt(i).Data)) {
 						return false;
 					}
@@ -86,10 +88,14 @@ namespace DSLImplementation {
 			return ConjunctiveTreeNonSwapMatchPredicate(tree,index,othertree,predicate,x=>false);
 		}
 		public static bool ConjunctiveTreeNonSwapMatchPredicate<Q> (ITree<T> tree,int index, ITree<Q> othertree, TreeMatchingPredicate<T,Q> predicate, Predicate<T> optional) {
-			if(predicate(tree.Data,index,othertree.Data)) {
+			bool res = predicate(tree.Data,index,othertree.Data);
+			Console.WriteLine("CTNSMP {0} <> {1} = {2}",tree,othertree,res);
+			if(res) {
 				int nt = tree.NumberOfChildren;
+				Console.WriteLine("iterating over {0} children",nt);
 				for(int i = 0x00; i < nt; i++) {
-					if((othertree.ChildAt(i) == null || !ConjunctiveTreeNonSwapMatchPredicate(tree.ChildAt(i),i,othertree.ChildAt(i),predicate)) && !optional(tree.ChildAt(i).Data)) {
+					Console.WriteLine("checking {0}/{2}/{1}",tree.ChildAt(i),othertree.ChildAt(i) == null,othertree.ChildAt(i));
+					if((othertree.ChildAt(i) != null && !ConjunctiveTreeNonSwapMatchPredicate(tree.ChildAt(i),i,othertree.ChildAt(i),predicate,optional)) && !optional(tree.ChildAt(i).Data)) {
 						return false;
 					}
 				}
@@ -106,6 +112,9 @@ namespace DSLImplementation {
 				foreach(Tree<T> tt in this.subtrees) {
 					if(tt != null) {
 						sb.Append(tt.ToString());
+					}
+					else {
+						sb.Append("NULL");
 					}
 				}
 				return string.Format ("{0}({1})", Data,sb.ToString());

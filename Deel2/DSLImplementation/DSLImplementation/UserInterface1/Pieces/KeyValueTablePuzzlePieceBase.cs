@@ -18,6 +18,8 @@ namespace DSLImplementation.UserInterface {
 
 		public KeyValueTablePuzzlePieceBase () {
 		}
+		public KeyValueTablePuzzlePieceBase (params IPuzzlePiece[] children) : base(children) {}
+		public KeyValueTablePuzzlePieceBase (IEnumerable<IPuzzlePiece> children) : base(children) {}
 
 		public override PointD MeasureSize (Context ctx) {
 			if(size.X < 0x00) {
@@ -49,10 +51,19 @@ namespace DSLImplementation.UserInterface {
 					}
 					catch (Exception e) {
 						Console.Error.WriteLine("Error {0}: {1}",entry.Key,e);
+						throw new UnableToBindException(entry.Key,this);
 					}
 				}
 			}
 			return true;
+		}
+
+		public override bool Equals (object obj) {
+			if (base.Equals (obj)) {
+				KeyValueTablePuzzlePieceBase kvtpb = (KeyValueTablePuzzlePieceBase) obj;
+				return this.Table.Equals(kvtpb);
+			}
+			return false;
 		}
 
 	}

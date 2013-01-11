@@ -251,13 +251,20 @@ namespace DSLImplementation.UserInterface {
 		public void ExecuteQuery ()
 		{
 			if (this.rootpiece != null && this.rootpiece.CanExecute) {
-				QueryAnswerLocations qal = new QueryAnswerLocations (this.rootpiece, this.resolver.Resolve (this.rootpiece));
-				this.AddQueryAnswer (qal);
-				qal = new QueryAnswerLocations(new RunPiece ());
-				this.qas.Push(qal);
-				qal.BoundsChanged += handleBoundsChanged;
-				this.handleBoundsChanged(this,EventArgs.Empty);
-				this.QueueDraw ();
+				try {
+					IPuzzlePiece[] ans = this.resolver.Resolve (this.rootpiece);
+					QueryAnswerLocations qal = new QueryAnswerLocations (this.rootpiece, ans);
+					this.AddQueryAnswer (qal);
+					qal = new QueryAnswerLocations(new RunPiece ());
+					this.qas.Push(qal);
+					qal.BoundsChanged += handleBoundsChanged;
+					this.handleBoundsChanged(this,EventArgs.Empty);
+					this.QueueDraw ();
+				}
+				catch (Exception e) {
+					Console.Error.WriteLine(e);
+					ExtensionMethods.ShowException(e);
+				}
 			} else {
 				ExtensionMethods.ShowException("Cannot execute the query: not all required parameters have been resolved!");
 			}

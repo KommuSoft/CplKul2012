@@ -9,27 +9,27 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
-    <StartupObject>DSLImplementation.IntermediateCode.XmlMain</StartupObject>
+    <StartupObject>DSLImplementation.TopWindow</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>False</ConsolePause>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>False</ConsolePause>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -76,7 +76,6 @@
     <Compile Include="ITree.cs" />
     <Compile Include="TilePatterns1\BookingRequestTilePattern.cs" />
     <Compile Include="TilePatterns1\TilingAlgorithm.cs" />
-    <Compile Include="XmlMain.cs" />
     <Compile Include="UserInterface1\Pieces\AirportPiece.cs" />
     <Compile Include="UserInterface1\Pieces\BookingPiece.cs" />
     <Compile Include="UserInterface1\Pieces\CityPiece.cs" />
@@ -162,11 +161,12 @@
     <Compile Include="TilePatterns1\IRequest.cs" />
     <Compile Include="TilePatterns1\IAnswer.cs" />
     <Compile Include="Intermediate1\RequestGetSeats.cs" />
-    <Compile Include="Intermediate1\AnswerGetSeats.cs" />
     <Compile Include="Intermediate1\RequestGetSeatPrice.cs" />
     <Compile Include="Intermediate1\AnswerGetSeatPrice.cs" />
     <Compile Include="Intermediate1\SeatPrice.cs" />
-    <Compile Include="Intermediate1\RequestAddSeatPrice.cs" />
+    <Compile Include="TilePatterns1\RequestAddBookingTilePattern.cs" />
+    <Compile Include="Intermediate1\AnswerGetSeats.cs" />
+    <Compile Include="TilePatterns1\UnableToBindException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
@@ -179,9 +179,11 @@
     <Reference Include="Mono.Posix" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>

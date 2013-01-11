@@ -12,9 +12,12 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 	
-		public AirlinePiece () {
-			this.Table.AddKeyParserPair("name",Parsers.StringParser,Parsers.StringObjectParser);
-			this.Table.AddKeyParserPair("code",Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Z]{2,3}"));
+		public AirlinePiece () : this(null,null) {
+		}
+		public AirlinePiece (string name, string code) {
+			this.Table.AddKeyParserPair("name",name,Parsers.StringParser,Parsers.StringObjectParser);
+			this.Table.AddKeyParserPair("code",code,Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Z]{2,3}"));
+
 		}
 	}
 }

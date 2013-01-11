@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Gtk;
 using Cairo;
 
@@ -19,7 +20,20 @@ namespace DSLImplementation.UserInterface {
 			md.HideAll ();
 			md.Dispose ();
 		}
-
+		public static T ValueOrDefault<TK,TV,T> (this Dictionary<TK,TV> dictionary, TK key) where T : TV
+		{
+			TV val;
+			if (dictionary.TryGetValue (key, out val)) {
+				if(val is T) {
+					return (T) val;
+				}
+				else {
+					return default(T);
+				}
+			} else {
+				return default(T);
+			}
+		}
 		public static void Rotate (ref double x, ref double y, double theta) {
 			double cost = Math.Cos(theta);
 			double sint = Math.Sin(theta);

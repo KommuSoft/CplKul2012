@@ -2,7 +2,7 @@ using System;
 
 namespace DSLImplementation.UserInterface {
 
-	[PuzzlePiece("Booking",TypeColors.Brown)]
+	[PuzzlePiece("Booking",TypeColors.Red)]
 	public class BookingPiece : PuzzlePieceBase {
 
 		private static string[] argnames = new string[] {"Person","Flight","Seat"};
@@ -20,7 +20,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		public override TypeColors TypeColors {
 			get {
-				return TypeColors.Brown;
+				return TypeColors.Red;
 			}
 		}
 

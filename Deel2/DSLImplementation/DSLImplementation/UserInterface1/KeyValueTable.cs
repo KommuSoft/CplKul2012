@@ -94,6 +94,23 @@ namespace DSLImplementation.UserInterface {
 			return default(T);
 		}
 
+		public override bool Equals (object obj)
+		{
+			if (obj is KeyValueTable<TKey,TValue>) {
+				KeyValueTable<TKey,TValue> kvt = (KeyValueTable<TKey,TValue>)obj;
+				if (this.Count == kvt.Count) {
+					int n = this.Count;
+					for(int i = 0x00; i < n; i++) {
+						if(!this[i].Key.Equals(kvt[i].Key) || !this[i].Value.Equals(kvt[i].Value)) {
+							return false;
+						}
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+
 	}
 }
 

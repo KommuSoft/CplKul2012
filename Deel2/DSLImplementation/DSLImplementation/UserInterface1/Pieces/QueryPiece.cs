@@ -25,7 +25,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		public override int NumberOfOptionalArguments {
 			get {
-				return Math.Max(0x00,this.NumberOfArguments-0x02);
+				return Math.Max(0x00,this.NumberOfArguments-0x01);
 			}
 		}
 		public override bool Complete {

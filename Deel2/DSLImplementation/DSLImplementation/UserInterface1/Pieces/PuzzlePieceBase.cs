@@ -201,7 +201,7 @@ namespace DSLImplementation.UserInterface {
 		public virtual void MatchesConstraintsChildren (int index, IPuzzlePiece piece)
 		{
 			if (!ExtensionMethods.IsTypeColorMatch (this.TypeColorArguments [index], piece.TypeColors)) {
-				throw new ArgumentException("The given piece doesn't match with it's parent.");
+				throw new ArgumentException(string.Format("The given piece doesn't match with it's parent: {0} versus {1}",piece.TypeColors,this.TypeColorArguments[index]));
 			}
 		}
 		public virtual void MatchesConstraintsParent (IPuzzlePiece piece) {
@@ -402,6 +402,28 @@ namespace DSLImplementation.UserInterface {
 		}
 		public virtual bool MatchBind (TypeBind tb, Dictionary<string,object> binddictionary) {
 			return (tb.Type.IsAssignableFrom(this.GetType()));
+		}
+
+		public override bool Equals (object obj) {
+			if(obj == null) {
+				return false;
+			}
+			if(this.GetType().Equals(obj.GetType())) {
+				PuzzlePieceBase ipp = (PuzzlePieceBase) obj;
+				if(this.Name == ipp.Name && this.NumberOfArguments == ipp.NumberOfArguments) {
+					for(int i = 0x00; i < this.NumberOfArguments; i++) {
+						if(this[i] != null && !this[i].Equals(ipp[i])) {
+							return false;
+						}
+						else if(ipp[i] != null) {
+							return false;
+						}
+					}
+					return true;
+				}
+				return false;
+			}
+			return base.Equals (obj);
 		}
 
 		public override string ToString () {
