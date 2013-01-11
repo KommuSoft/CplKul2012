@@ -2,7 +2,7 @@ using System;
 
 namespace DSLImplementation.UserInterface {
 
-	public class SucceedFailPiece : ZeroArgumentPuzzlePieceBase {
+	public class SucceedFailPiece : KeyValueTableZeroArgumentPuzzlePieceBase {
 
 		private readonly string name;
 		private readonly string message;
@@ -29,6 +29,7 @@ namespace DSLImplementation.UserInterface {
 		public SucceedFailPiece (string name, string message) {
 			this.name = name;
 			this.message = message;
+			this.Table.AddKeyParserPair("message",message,Parsers.StringParser,Parsers.StringObjectParser);
 		}
 		public SucceedFailPiece (Exception e) : this("fail",e.Message) {}
 

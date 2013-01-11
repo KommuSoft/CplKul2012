@@ -148,9 +148,24 @@ Furthermore the programmer of the Domain Specific Language can of course
 introduce other constraints. In that case, the user can't rely on the visual
 hints.
 \paragraph{Implementation}
+\subparagraph{Domain Specific Language}
 The implementation of the graphical domain specific language is quite straight
 forward. Since we model the language as a tree, we use this paradigm to
 represent the language internally. We can of course easily put constraints on
 the structure of the tree by implementing a method in each type of node
 (flight, booking,...) who checks if his/her children are valid. A link piece is
 nothing more than a piece who maintains a reference to another piece.
+Furthermore it adapts some of it's properties (like his children), to the
+properties of his reference (thus the children of the reference). Most nodes
+hold three types of information: their name, their subpieces, and a key-value
+table.
+\subparagraph{To Intermediate Representation}
+Turning the domain specific language into an intermediate representation (our
+equivalent to machine code), is done like real compilers: by a tiling
+algorithm. A tiling algorithm performs pattern matching on the abstract syntax
+tree and replaces this tree by a sequence of target-patterns (comparable to
+for instance regular expression replacement). Since the abstract syntax tree
+contains information (the name of an airline,...) we have to bind that
+information into a data structure. Therefore we use a dictionary data
+structure. Variables in the structure are represented by a string. A value is a
+simple object and can theoretically be anything.
