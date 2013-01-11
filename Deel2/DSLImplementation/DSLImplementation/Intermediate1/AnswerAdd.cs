@@ -26,7 +26,7 @@ namespace DSLImplementation.IntermediateCode
 			if (!this.succesful) {
 				Console.Error.WriteLine ("ERROR {0}", this.message);
 				Console.WriteLine ("ERROR {0}", this.message);
-				yield return new SucceedFailPiece ("Failed");//TODO: invoke arguments
+				yield return new SucceedFailPiece ("Failed");
 			} else {
 				yield return new SucceedFailPiece ();
 			}

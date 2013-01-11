@@ -13,7 +13,6 @@ namespace DSLImplementation.Database
 			return "SELECT * FROM flight";
 		}
 
-		//TODO: overal waar er in deze klasse airline staat moet dit ontbonden worden
 		private string addStartDateTime(DateTime startDateTime = default(DateTime)){
 			string query = "";
 
@@ -68,19 +67,6 @@ namespace DSLImplementation.Database
 			
 			Console.WriteLine(query);
 			return fetchFromQuery(query);
-		}
-
-		public List<Flight> fetchFlight (int locationID, int airline = -1, int class_ = -1, DateTime startDateTime = default(DateTime))
-		{
-			throw new NotImplementedException();
-			//List<string> columns = new List<string> {"location"};
-			//List<object> values = new List<object> {locationID};
-
-			//string query = createQuery (columns, values);
-
-			//TODO: code van class toevoegen
-			//query += addAdditional(airline, startDateTime);
-			//return fetchFromQuery(query);
 		}
 
 		private void addClass (List<string> tables, ref string where_, int class_)

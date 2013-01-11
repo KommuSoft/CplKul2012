@@ -83,34 +83,6 @@ public class Test
 		println (cnr.fetchFromID (1));
 
 		//------------------------------------------------------
-		Console.WriteLine ("Find the flight with location = 1");
-		List<Flight> flights = fr.fetchFlight (1);
-		print (flights);
-
-		Flight f0 = flights [0];
-		Location l0 = lr.fetchFromID (f0.location) [0];
-
-		Console.WriteLine ("\tFrom: " + cr.fetchFromID (l0.start_airport) [0].name + "\tTo: " + cr.fetchFromID (l0.destination_airport) [0].name);
-		List<Seat> seats = sr.fetchSeatFromFlight (f0.ID);
-
-		Console.WriteLine ("\n\tThe seats with their price");
-		foreach (Seat s in seats) {
-			List<SeatPrice> seatprices = spr.fetchSeatPriceFromSeatAndFlight (s.ID, f0.ID);
-			Console.Write ("\t" + s + " -> ");
-			print (seatprices);
-		}
-		Console.WriteLine ("\n\tThe classes of this flight");
-		println (clr.fetchClassFromFlight (f0.ID), "\t");
-
-		DateTime startDateTime = DateTime.Parse ("2012-12-25");
-		Console.WriteLine ("Find the flight with location = 1 & airline = 1 & class = 3 & startDateTime = " + startDateTime);
-		flights = fr.fetchFlight (1, 1, 3, startDateTime);
-		flights.ForEach (delegate(Flight f) {
-			Console.WriteLine (f);
-		});
-		Console.WriteLine ();
-
-		//------------------------------------------------------
 		Console.WriteLine ("Find the location with ID = 1");
 		println (lr.fetchFromID (1));
 
@@ -270,10 +242,6 @@ public class Test
 		SeatPrice seatPrice3 = new SeatPrice(seat: 1, flight: 1, price: -1000);
 		tryCatch(seatPrice3);
 
-
-		//------------------------------------------------------
-		//TODO test insert flight
-		//------------------------------------------------------
 		Airport start = new Airport (code: "BRU");
 		Airport destination = new Airport (code: "crl");
 

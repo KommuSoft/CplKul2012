@@ -18,8 +18,8 @@ namespace DSLImplementation.UserInterface {
 
 		public AirplanePiece () : this(null,null) {}
 		public AirplanePiece (string type,string code) {
-			this.Table.AddKeyParserPair("type",type,Parsers.StringParser,Parsers.StringObjectParser);//TODO: constraints op type?
-			this.Table.AddKeyParserPair("code",type,Parsers.StringParser,Parsers.StringObjectParser);//TODO: constraints op code?
+			this.Table.AddKeyParserPair("type",type,Parsers.StringParser,Parsers.StringObjectParser);
+			this.Table.AddKeyParserPair("code",type,Parsers.StringParser,Parsers.StringObjectParser);
 		}
 
 	}

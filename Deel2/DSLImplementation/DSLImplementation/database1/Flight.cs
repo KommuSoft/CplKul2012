@@ -88,7 +88,6 @@ namespace DSLImplementation.Database
 				return makeExceptionMessage(out exceptionMessage, "There is already a flight with code " + code + " at " + start);
 			}
 
-			//TODO controleer de 3 tijdstippen (wss is elk tijdstip geldig, dus controleren is niet nodig)
 			return validLocation(location, out exceptionMessage) && validAirplane(airplane, out exceptionMessage);
 		}
 

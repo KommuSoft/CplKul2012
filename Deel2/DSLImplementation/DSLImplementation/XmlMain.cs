@@ -238,8 +238,6 @@ namespace DSLImplementation.IntermediateCode{
 			Airport a5 = new Airport("COO");
 			executedAddAiport(a5);
 
-			//TODO test airlines
-
 			Airport a6 = new Airport("The name of the airport", "COO", brussels);
 			//executedAddAiport(a6);
 
@@ -498,16 +496,10 @@ namespace DSLImplementation.IntermediateCode{
 //			testAddBooking();
 //			testAddFlight();
 
-			Passenger alice = new Passenger("alice");
-			FlightTemplate template = new FlightTemplate("SN123");			
-			DateTime start = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 00);
-			Flight correctflight = new Flight(template, start);
-			SeatClass seatClass = new SeatClass("economy class");
-			Seat correctSeat = new Seat(seatClass, 3);
-
-			Console.WriteLine("Add booking");
-			Booking b = new Booking(alice, correctflight, correctSeat);
-			executeAddBooking(b);
+			Country belgium = new Country("belgium");
+			Country netherlands = new Country("the netherlands");
+			RequestGetFlights rgf = new RequestGetFlights(netherlands, belgium);
+			Console.WriteLine(((AnswerGetFlights)rgf.execute()).Flights.Count);
 		}
 	}
 }

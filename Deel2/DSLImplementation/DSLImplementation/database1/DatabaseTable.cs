@@ -127,9 +127,6 @@ namespace DSLImplementation.Database
 			string query = createInsertQuery(tableName(), columns, values) + " RETURNING id";
 			Console.WriteLine(query);
 
-			//TODO comment the following line if data can be added to the database
-			//query = "SELECT * FROM country";
-
 			Database db = new Database();
 			IDataReader reader = db.CreateCommand(query);
 
