@@ -12,9 +12,7 @@ namespace DSLImplementation.Database
 
 		public Database ()
 		{
-			//TODO Select the correct database
-			//string connectionString = "Server=localhost; Database=cpl; User ID=postgres; Password=postgres;";
-			string connectionString = "Server=localhost; Port=25432; Database=gonaz; User ID=gonaz; Password=cplPassword1;";
+			string connectionString = "Server=localhost; Database=cpl; User ID=postgres; Password=postgres;";
 
 			if (counter == 0) {
 				dbcon = new NpgsqlConnection(connectionString);
