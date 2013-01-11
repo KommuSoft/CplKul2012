@@ -145,7 +145,6 @@
     <Compile Include="TilePatterns1\RequestAddAirlineTilePattern.cs" />
     <Compile Include="UserInterface1\KeyValueTableEditor.cs" />
     <Compile Include="UserInterface1\Parsers.cs" />
-    <Compile Include="TilePatterns1\XmlRequestBase.cs" />
     <Compile Include="TilePatterns1\RequestAddAirplaneTilePattern.cs" />
     <Compile Include="UserInterface1\Pieces\AirplanePiece.cs" />
     <Compile Include="TilePatterns1\RequestAddFlightTilePattern.cs" />
@@ -167,6 +166,7 @@
     <Compile Include="TilePatterns1\RequestAddBookingTilePattern.cs" />
     <Compile Include="Intermediate1\AnswerGetSeats.cs" />
     <Compile Include="TilePatterns1\UnableToBindException.cs" />
+    <Compile Include="TilePatterns1\RequestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

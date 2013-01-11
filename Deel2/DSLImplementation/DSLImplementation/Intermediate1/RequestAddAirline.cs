@@ -1,7 +1,7 @@
 using System;
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddAirline : XmlRequestBase
+	public class RequestAddAirline : RequestBase
 	{
 		public RequestAddAirline(Airline Airline){
 			this.Airline = Airline;

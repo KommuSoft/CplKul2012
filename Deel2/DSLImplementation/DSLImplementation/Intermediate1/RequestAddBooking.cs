@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddBooking : XmlRequestBase
+	public class RequestAddBooking : RequestBase
 	{
 		public RequestAddBooking (Booking Booking){
 			this.Booking = Booking;

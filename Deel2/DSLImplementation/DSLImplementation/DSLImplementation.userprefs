@@ -1,0 +1,31 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TilePatterns1/RequestAddFlightTilePattern.cs">
+    <Files>
+      <File FileName="TilePatterns1/RequestAddBookingTilePattern.cs" Line="19" Column="125" />
+      <File FileName="UserInterface1/Pieces/FlightTemplatePiece.cs" Line="35" Column="37" />
+      <File FileName="UserInterface1/Pieces/TimePiece.cs" Line="14" Column="42" />
+      <File FileName="XmlMain.cs" Line="92" Column="54" />
+      <File FileName="UserInterface1/Pieces/LinkPiece.cs" Line="120" Column="17" />
+      <File FileName="UserInterface1/Pieces/KeyValueTablePuzzlePieceBase.cs" Line="65" Column="17" />
+      <File FileName="TilePatterns1/RequestAddFlightTilePattern.cs" Line="31" Column="31" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="DSLImplementation" expanded="True" selected="True">
+            <Node name="Intermediate1" expanded="True" />
+            <Node name="TilePatterns1" expanded="True" />
+            <Node name="UserInterface1" expanded="True">
+              <Node name="Pieces" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

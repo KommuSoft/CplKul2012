@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddAirport : XmlRequestBase
+	public class RequestAddAirport : RequestBase
 	{
 		public RequestAddAirport (Airport Airport){
 			this.Airport = Airport;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestGetCities : XmlRequestBase
+	public class RequestGetCities : RequestBase
 	{
 		public RequestGetCities(Country Country){
 			this.Country = Country;

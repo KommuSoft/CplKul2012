@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestGetAirports : XmlRequestBase
+	public class RequestGetAirports : RequestBase
 	{
 		public RequestGetAirports (City City){
 			this.City = City;

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DSLImplementation.IntermediateCode{
 	
-	public class RequestGetFlights : XmlRequestBase {
+	public class RequestGetFlights : RequestBase {
 
 		public RequestGetFlights (Airport Airport1, Airport Airport2, DateTime Start = default(DateTime), Airline Airline = null, SeatClass SeatClass = null)
 		{

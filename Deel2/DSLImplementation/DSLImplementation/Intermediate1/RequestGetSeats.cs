@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestGetSeats : XmlRequestBase
+	public class RequestGetSeats : RequestBase
 	{
 		public RequestGetSeats (Flight flight, SeatClass seatClass = null)
 		{

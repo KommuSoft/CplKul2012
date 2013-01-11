@@ -1,7 +1,7 @@
 using System;
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddCountry : XmlRequestBase
+	public class RequestAddCountry : RequestBase
 	{
 		public RequestAddCountry (Country Country){
 			this.Country = Country;

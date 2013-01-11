@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddAirplane : XmlRequestBase
+	public class RequestAddAirplane : RequestBase
 	{	
 		public RequestAddAirplane (Airplane Airplane){
 			this.Airplane = Airplane;

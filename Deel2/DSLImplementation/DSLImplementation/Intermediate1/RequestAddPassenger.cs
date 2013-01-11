@@ -1,7 +1,7 @@
 using System;
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddPassenger : XmlRequestBase
+	public class RequestAddPassenger : RequestBase
 	{
 		public RequestAddPassenger (Passenger Passenger){
 			this.Passenger = Passenger;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddCity : XmlRequestBase
+	public class RequestAddCity : RequestBase
 	{
 
 		public RequestAddCity (City City){

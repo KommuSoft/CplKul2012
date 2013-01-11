@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddFlightTemplate : XmlRequestBase
+	public class RequestAddFlightTemplate : RequestBase
 	{
 		public RequestAddFlightTemplate (FlightTemplate FlightTemplate){
 			this.FlightTemplate = FlightTemplate;

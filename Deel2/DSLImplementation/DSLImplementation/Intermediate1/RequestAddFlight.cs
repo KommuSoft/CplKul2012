@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddFlight : XmlRequestBase
+	public class RequestAddFlight : RequestBase
 	{
 		public RequestAddFlight (Flight Flight){
 			this.Flight = Flight;

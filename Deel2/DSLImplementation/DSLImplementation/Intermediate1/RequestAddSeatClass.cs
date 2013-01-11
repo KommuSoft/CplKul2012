@@ -1,7 +1,7 @@
 using System;
 namespace DSLImplementation.IntermediateCode
 {
-	public class RequestAddSeatClass : XmlRequestBase
+	public class RequestAddSeatClass : RequestBase
 	{
 		public RequestAddSeatClass (SeatClass SeatClass){
 			this.SeatClass = SeatClass;
