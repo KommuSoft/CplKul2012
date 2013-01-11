@@ -24,9 +24,7 @@ namespace DSLImplementation.IntermediateCode
 		public IEnumerable<IPuzzlePiece> ToPuzzlePieces ()
 		{
 			if (!this.succesful) {
-				Console.Error.WriteLine ("ERROR {0}", this.message);
-				Console.WriteLine ("ERROR {0}", this.message);
-				yield return new SucceedFailPiece ("Failed");
+				yield return new SucceedFailPiece ("Failed", this.message);
 			} else {
 				yield return new SucceedFailPiece ();
 			}
