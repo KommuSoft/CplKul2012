@@ -1,17 +1,52 @@
 \section{Example DSL programs}
-We have also put the example program files in the folder TODO:folder, because some example programs may be a bit unreadble in this document.
-\subsection{Adding a country to the database}
+In this section, we show some DSL example programs. We have also put the example program files in the folder TODO:folder, because some example programs may be a bit unreadble in this document.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/AddCountry.pdf}
+	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/programlayout.png}
+	\caption{The graphical editor}
+	\label{ex:DSLlayout}
+\end{figure}
+\noindent In the editor shown in figure \ref{ex:DSLlayout}, we can create our programs. This can be done by selecting the appropriate puzzlepiece and then selecting the right block in the striped area. In that way, a chain of blocks is obtained. An example of such a chain of blocks is given in the next figure.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/AddFlight.pdf}
+	\caption{The lay-out of a program}
+	\label{ex:generalexample}
+\end{figure}
+Now, we will work out an example in detail.
+
+\subsection{Adding a country to the database}
+As seen in figure 3, the color of the \texttt{run}block matches two puzzlepieces, namely \texttt{query} and \texttt{add}.
+In this example, we want to add something, so we select the \texttt{add} puzzlepiece and click on the \texttt{run}block Then, we can select the country puzzlepiece and click on the \texttt{add}block. Adding another element instead of this, is just selecting another puzzlepiece. The result of adding a country is seen below.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 0.6\textwidth]{../../../Voorbeeldprogrammas/AddCountryInitial.pdf}
 	\caption{Adding a country}
+	\label{ex:addCountryInitial}
+\end{figure}
+\noindent We can also give the country a name by using the \texttt{Edit information} button on top. When this button is selected and you click on a block in the chain, the properties can be changed. The final result is given in the next figure.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 0.6\textwidth]{../../../Voorbeeldprogrammas/AddCountry.pdf}
+	\caption{The final program for adding a country with name 'Germany'}
 	\label{ex:addCountry}
 \end{figure}
 
 \subsection{Adding a flight to the database}
+As said before, we can add several sorts of elements to the database. A bigger example is adding a flight to the database. The program is shown below.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/AddFlight.pdf}
-	\caption{Adding a flight}
+	\caption{The final program for adding a flight}
 	\label{ex:addFlight}
+\end{figure}
+
+\subsection{Fetching the cities in a country}
+It is possible to do more than only adding elements to the database. Namely, it is possible to get things from the database. For example, finding all the cities in a given country 'Belgium' can be done by the following DSL program.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 0.6\textwidth]{../../../Voorbeeldprogrammas/QueryCity.pdf}
+	\caption{The final program for finding the cities in belgium}
+	\label{ex:getCities}
 \end{figure}
