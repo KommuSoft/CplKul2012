@@ -34,9 +34,9 @@ namespace DSLImplementation.UserInterface {
 			}
 		}
 
-		public FlightTemplatePiece () : this(null,null) {
+		public FlightTemplatePiece () : this(null) {
 		}
-		public FlightTemplatePiece (AirlinePiece ap, string code) : base(ap) {
+		public FlightTemplatePiece (string code) : base() {
 			this.Table.AddKeyParserPair("code",code,Parsers.StringParser,Parsers.GenerateRegexMatchingParser(@"[A-Z]{2,3}[0-9]{3}"));
 		}
 
