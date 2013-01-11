@@ -5,8 +5,8 @@ namespace DSLImplementation.UserInterface {
 	[PuzzlePiece("FlightTemplate",TypeColors.Purple)]
 	public class FlightTemplatePiece : KeyValueTablePuzzlePieceBase {
 
-		private static readonly TypeColors[] arguments = new TypeColors[] {TypeColors.Cyan};
-		private static readonly string[] argumentNames = new string[] {"airline"};
+		private static readonly TypeColors[] arguments = new TypeColors[] {};//TypeColors.Cyan
+		private static readonly string[] argumentNames = new string[] {};//"airline"
 
 		public override string[] ArgumentNames {
 			get {
@@ -20,7 +20,7 @@ namespace DSLImplementation.UserInterface {
 		}
 		public override int NumberOfOptionalArguments {
 			get {
-				return 0x01;
+				return 0x00;
 			}
 		}
 		public override TypeColors TypeColors {
