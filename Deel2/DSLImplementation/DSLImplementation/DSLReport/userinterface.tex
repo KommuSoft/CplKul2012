@@ -1,3 +1,5 @@
+% !TEX root = dslreport.tex
+
 \subsection{User interface}
 \subsubsection{Overview}
 The userinterface describes the way how the user will communicate with the
@@ -15,7 +17,7 @@ graphical language, we aim to solve the following problems:
 the granularity, namely the character. Characters don't map to concepts
 directly. With graphical languages, we can foresee a primitive for each concept
 in the language. Therefore people have a better understanding of their queries.
-Furthermore one can easier debug aspects (since their are less issues with
+Furthermore one can easier debug aspects (since there are less issues with
 writing an incorrect character sequence).
  \itemit{Giving hints to the user} A graphical language allows us to insert
 hints on how queries should be built. By adapting the primitives that only
@@ -42,7 +44,7 @@ algorithms in the nodes of the abstract syntax tree to deal with translating
 the expressions to their algorithmic counterparts. Since the database
 \subsubsection{Lexer}
 Most programming languages and by extend domain specific languages are parsed
-in a structure called abstract syntax trees. The source code first pases
+in a structure called abstract syntax trees. The source code first passes
 through a lexer who groups strings of characters together into tokens. Since we
 implemented a graphical language, the graphical ``source code'' is already
 tokenized: we simply group information into predefined graphical primitives who
@@ -126,7 +128,7 @@ can't be expressed by a type system. The ``compiler'' of the domain specific
 language will have to check on these additional constraints.}.
 \subparagraph{}
 Since the pieces only have to share one color, one can look to this relation as
-a many-to-many relation: each gap allows several types of pieces. On the the
+a many-to-many relation: each gap allows several types of pieces. On the
 other hand a piece can fit into gaps with different type constraints. Therefore
 this aspect is stronger than polymorphism: also overloading is supported since
 the types of the ``parameters'' of a puzzle piece are somehow dynamic.
