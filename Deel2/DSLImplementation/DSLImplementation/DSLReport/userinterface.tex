@@ -118,7 +118,7 @@ provides zero or more gaps, a tree structure emerges.
 \paragraph{Polymorphism and overloading}
 How can the graphical language hint (or even force) the use of a certain piece
 to fill a certain gap? In the physical world the gaps follow a certain pattern.
-Only pieces who are compatible with this pattern, can fit into the the gap.
+Only pieces who are compatible with this pattern, can fit into the gap.
 \subparagraph{}
 The problem however with this approach is that the number of potential pieces
 is in most cases limited to one. Sometimes however, it is possible that there
@@ -161,7 +161,7 @@ Furthermore it adapts some of it's properties (like his children), to the
 properties of his reference (thus the children of the reference). Most nodes
 hold three types of information: their name, their subpieces, and a key-value
 table.
-\subparagraph{To Intermediate Representation}
+\subparagraph{The Intermediate Representation}
 Turning the domain specific language into an intermediate representation (our
 equivalent to machine code), is done like real compilers: by a tiling
 algorithm. A tiling algorithm performs pattern matching on the abstract syntax
@@ -172,7 +172,7 @@ information into a data structure. Therefore we use a dictionary data
 structure. Variables in the structure are represented by a string. A value is a
 simple object and can theoretically be anything. The tiling algorithm looks for
 all patterns defined in the implementations. Each pattern contains a tree
-holding information about the structure of the pattern (the three of puzzle
+holding information about the structure of the pattern (the tree of puzzle
 pieces) and data about which data should get linked to the dictionary. Besides
 information about binding data, one can also specify additional constraints
 like a specific index of a node relative to his parent. Some nodes can be
