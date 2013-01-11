@@ -6,8 +6,8 @@ We've chosen for a PostgreSQL as database management system. We prefered this sy
 The database contains the following tables.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth ]{../../../Databasemodel/Database.png}
-	\caption{Het overzicht van de database.}
+	\includegraphics[width=\textwidth ]{../../../Databasemodel/database.png}
+	\caption{The overview of the database.}
 	\label{fig:database_design}
 \end{figure}
 In every entity, the column \texttt{id} is the primary key of the table. There are also some other constraints, for example: the \texttt{code} of the \texttt{airline}, \texttt{airplane} and \texttt{airport} should be unique. Also some constraints to make the database consistent are present, for example: the combination of a \texttt{flight} and \texttt{seat} should be unique in a table \texttt{booking}. 
