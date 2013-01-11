@@ -1,3 +1,17 @@
 \section{Design description}
 \subsection{The semantic model}
 \subsection{DSL constructs}
+If we look at the graphical editor on figure \ref{ex:DSLlayoutinDD}, we can see almost all of the DSL constructs.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/programlayout.png}
+	\caption{The graphical editor}
+	\label{ex:DSLlayoutinDD}
+\end{figure}
+\noindent On top of the figure are the puzzlepieces mentioned. There are two special ones namely \texttt{Query} and \texttt{Add}. This is because all programs have to start with one of them.  Now, we give a short description.
+\begin{description}
+ \item[Query] With the \texttt{Query} puzzlepiece, we can request information from the database.
+ \item[Add] With the \texttt{add} puzzlepiece, we can put elements in the database.  
+\end{description}
+All the other puzzlepieces represent concepts in the domain. They also have attributes than can be initialized.
+Another DSL construct are links. They can be used to copy the values of attributes from one element to another.
