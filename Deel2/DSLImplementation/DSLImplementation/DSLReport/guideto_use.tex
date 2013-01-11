@@ -1,2 +1,7 @@
+% !TEX root = dslreport.tex
+
 \section{Guide to use}
 With the latest version of MonoDevelop (version 3.0), it is possible to open the project by opening the \texttt{DSLImplementation.sln} file. This file can be found in the top directory DSLImplementation. In that way, it is possible to build the project in MonoDevelop. It is then possible to run the DSL. Also, a file is generated, namely \texttt{DSLImplementation.exe}. That file can be found in the directory DSLImplementation/bin/Debug/. By executing \texttt{mono DSLImplementation.exe} in a terminal, the DSL can alternatively be run in that way.
+
+\subsection{Database}
+The database can be found in the file db.dumb. This file contains the commands to create a PostgreSQL database with the necessary tables and columns. The database is already populated with some information. With pgAdmin3 and a PostgreSQL server, it is possible to load this file. Just create a new server in pgAdmin3, then create a database with the name 'cpl' and owner 'postgres'. Then open the SQL editor and copy/paste the content of the file db.dumb. In the constructor of the class \texttt{Database}, which is located in the directory \texttt{database1} it is possible to set the connection information, this is useful if the password, user, ... isn't set to the default value.
