@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DSLImplementation</RootNamespace>
     <AssemblyName>DSLImplementation</AssemblyName>
-    <StartupObject>DSLImplementation.IntermediateCode.XmlMain</StartupObject>
+    <StartupObject>DSLImplementation.TopWindow</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>True</DebugSymbols>

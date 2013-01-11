@@ -1,0 +1,1188 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 8.4.14
+-- Dumped by pg_dump version 9.2.2
+-- Started on 2013-01-11 21:57:37 CET
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+--
+-- TOC entry 523 (class 2612 OID 442192)
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: postgres
+--
+
+CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
+
+
+ALTER PROCEDURAL LANGUAGE plpgsql OWNER TO postgres;
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 178 (class 1255 OID 442193)
+-- Name: plpgsql_call_handler(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION plpgsql_call_handler() RETURNS language_handler
+    LANGUAGE c
+    AS '$libdir/plpgsql', 'plpgsql_call_handler';
+
+
+ALTER FUNCTION public.plpgsql_call_handler() OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 140 (class 1259 OID 1670153)
+-- Name: city; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE city (
+    id integer NOT NULL,
+    name text,
+    country integer
+);
+
+
+ALTER TABLE public.city OWNER TO postgres;
+
+--
+-- TOC entry 141 (class 1259 OID 1670159)
+-- Name: City_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "City_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."City_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 1940 (class 0 OID 0)
+-- Dependencies: 141
+-- Name: City_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "City_id_seq" OWNED BY city.id;
+
+
+--
+-- TOC entry 142 (class 1259 OID 1670161)
+-- Name: passenger; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE passenger (
+    name text NOT NULL,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.passenger OWNER TO postgres;
+
+--
+-- TOC entry 143 (class 1259 OID 1670167)
+-- Name: Passenger_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Passenger_ID_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Passenger_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 1941 (class 0 OID 0)
+-- Dependencies: 143
+-- Name: Passenger_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Passenger_ID_seq" OWNED BY passenger.id;
+
+
+--
+-- TOC entry 161 (class 1259 OID 1672095)
+-- Name: seat; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE seat (
+    id integer NOT NULL,
+    class integer,
+    number integer,
+    airplane integer
+);
+
+
+ALTER TABLE public.seat OWNER TO postgres;
+
+--
+-- TOC entry 1942 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: COLUMN seat.id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN seat.id IS '
+';
+
+
+--
+-- TOC entry 160 (class 1259 OID 1672093)
+-- Name: Seat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Seat_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Seat_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 1943 (class 0 OID 0)
+-- Dependencies: 160
+-- Name: Seat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Seat_id_seq" OWNED BY seat.id;
+
+
+--
+-- TOC entry 144 (class 1259 OID 1670169)
+-- Name: airline; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE airline (
+    id integer NOT NULL,
+    code text NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.airline OWNER TO postgres;
+
+--
+-- TOC entry 159 (class 1259 OID 1672081)
+-- Name: airplane; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE airplane (
+    id integer NOT NULL,
+    seat integer[],
+    type text,
+    code text NOT NULL
+);
+
+
+ALTER TABLE public.airplane OWNER TO postgres;
+
+--
+-- TOC entry 158 (class 1259 OID 1672079)
+-- Name: airplane_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE airplane_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.airplane_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1944 (class 0 OID 0)
+-- Dependencies: 158
+-- Name: airplane_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE airplane_id_seq OWNED BY airplane.id;
+
+
+--
+-- TOC entry 145 (class 1259 OID 1670175)
+-- Name: airport; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE airport (
+    id integer NOT NULL,
+    country integer NOT NULL,
+    city integer NOT NULL,
+    code text NOT NULL,
+    company integer[],
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.airport OWNER TO postgres;
+
+--
+-- TOC entry 146 (class 1259 OID 1670181)
+-- Name: airport_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE airport_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.airport_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1945 (class 0 OID 0)
+-- Dependencies: 146
+-- Name: airport_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE airport_id_seq OWNED BY airport.id;
+
+
+--
+-- TOC entry 147 (class 1259 OID 1670183)
+-- Name: booking; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE booking (
+    id integer NOT NULL,
+    passenger integer,
+    flight integer,
+    seat integer
+);
+
+
+ALTER TABLE public.booking OWNER TO postgres;
+
+--
+-- TOC entry 148 (class 1259 OID 1670186)
+-- Name: booking_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE booking_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.booking_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1946 (class 0 OID 0)
+-- Dependencies: 148
+-- Name: booking_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE booking_id_seq OWNED BY booking.id;
+
+
+--
+-- TOC entry 149 (class 1259 OID 1670188)
+-- Name: class; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE class (
+    id integer NOT NULL,
+    name text
+);
+
+
+ALTER TABLE public.class OWNER TO postgres;
+
+--
+-- TOC entry 150 (class 1259 OID 1670199)
+-- Name: class_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE class_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.class_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1947 (class 0 OID 0)
+-- Dependencies: 150
+-- Name: class_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE class_id_seq OWNED BY class.id;
+
+
+--
+-- TOC entry 151 (class 1259 OID 1670201)
+-- Name: company_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE company_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.company_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1948 (class 0 OID 0)
+-- Dependencies: 151
+-- Name: company_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE company_id_seq OWNED BY airline.id;
+
+
+--
+-- TOC entry 152 (class 1259 OID 1670203)
+-- Name: country; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE country (
+    id integer NOT NULL,
+    name text
+);
+
+
+ALTER TABLE public.country OWNER TO postgres;
+
+--
+-- TOC entry 153 (class 1259 OID 1670209)
+-- Name: country_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE country_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.country_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1949 (class 0 OID 0)
+-- Dependencies: 153
+-- Name: country_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE country_id_seq OWNED BY country.id;
+
+
+--
+-- TOC entry 154 (class 1259 OID 1670211)
+-- Name: flight; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE flight (
+    id integer NOT NULL,
+    location integer,
+    start_time time without time zone,
+    end_time time without time zone,
+    start_date date,
+    end_date date,
+    airplane integer,
+    template integer NOT NULL,
+    travel_time time without time zone
+);
+
+
+ALTER TABLE public.flight OWNER TO postgres;
+
+--
+-- TOC entry 1950 (class 0 OID 0)
+-- Dependencies: 154
+-- Name: COLUMN flight.end_date; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN flight.end_date IS '
+
+';
+
+
+--
+-- TOC entry 1951 (class 0 OID 0)
+-- Dependencies: 154
+-- Name: COLUMN flight.airplane; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN flight.airplane IS '
+';
+
+
+--
+-- TOC entry 164 (class 1259 OID 1672968)
+-- Name: flight_template; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE flight_template (
+    id integer NOT NULL,
+    digits text NOT NULL,
+    airline integer NOT NULL
+);
+
+
+ALTER TABLE public.flight_template OWNER TO postgres;
+
+--
+-- TOC entry 1952 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: COLUMN flight_template.id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN flight_template.id IS '
+';
+
+
+--
+-- TOC entry 163 (class 1259 OID 1672966)
+-- Name: flight_template_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE flight_template_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.flight_template_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1953 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: flight_template_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE flight_template_id_seq OWNED BY flight_template.id;
+
+
+--
+-- TOC entry 155 (class 1259 OID 1670217)
+-- Name: flight_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE flight_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.flight_type_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1954 (class 0 OID 0)
+-- Dependencies: 155
+-- Name: flight_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE flight_type_id_seq OWNED BY flight.id;
+
+
+--
+-- TOC entry 156 (class 1259 OID 1670219)
+-- Name: location; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE location (
+    id integer NOT NULL,
+    distance integer NOT NULL,
+    start_airport integer NOT NULL,
+    destination_airport integer NOT NULL
+);
+
+
+ALTER TABLE public.location OWNER TO postgres;
+
+--
+-- TOC entry 157 (class 1259 OID 1670222)
+-- Name: location_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE location_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.location_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1955 (class 0 OID 0)
+-- Dependencies: 157
+-- Name: location_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE location_id_seq OWNED BY location.id;
+
+
+--
+-- TOC entry 162 (class 1259 OID 1672101)
+-- Name: seat_price; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE seat_price (
+    seat integer NOT NULL,
+    flight integer NOT NULL,
+    price money,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.seat_price OWNER TO postgres;
+
+--
+-- TOC entry 165 (class 1259 OID 1681095)
+-- Name: seat_price_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE seat_price_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seat_price_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1956 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: seat_price_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE seat_price_id_seq OWNED BY seat_price.id;
+
+
+--
+-- TOC entry 1856 (class 2604 OID 1670224)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY airline ALTER COLUMN id SET DEFAULT nextval('company_id_seq'::regclass);
+
+
+--
+-- TOC entry 1863 (class 2604 OID 1672084)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY airplane ALTER COLUMN id SET DEFAULT nextval('airplane_id_seq'::regclass);
+
+
+--
+-- TOC entry 1857 (class 2604 OID 1670225)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY airport ALTER COLUMN id SET DEFAULT nextval('airport_id_seq'::regclass);
+
+
+--
+-- TOC entry 1858 (class 2604 OID 1670226)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY booking ALTER COLUMN id SET DEFAULT nextval('booking_id_seq'::regclass);
+
+
+--
+-- TOC entry 1854 (class 2604 OID 1670227)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY city ALTER COLUMN id SET DEFAULT nextval('"City_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1859 (class 2604 OID 1670228)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY class ALTER COLUMN id SET DEFAULT nextval('class_id_seq'::regclass);
+
+
+--
+-- TOC entry 1860 (class 2604 OID 1670230)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY country ALTER COLUMN id SET DEFAULT nextval('country_id_seq'::regclass);
+
+
+--
+-- TOC entry 1861 (class 2604 OID 1670231)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY flight ALTER COLUMN id SET DEFAULT nextval('flight_type_id_seq'::regclass);
+
+
+--
+-- TOC entry 1866 (class 2604 OID 1672971)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY flight_template ALTER COLUMN id SET DEFAULT nextval('flight_template_id_seq'::regclass);
+
+
+--
+-- TOC entry 1862 (class 2604 OID 1670232)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY location ALTER COLUMN id SET DEFAULT nextval('location_id_seq'::regclass);
+
+
+--
+-- TOC entry 1855 (class 2604 OID 1670233)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY passenger ALTER COLUMN id SET DEFAULT nextval('"Passenger_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 1864 (class 2604 OID 1672098)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY seat ALTER COLUMN id SET DEFAULT nextval('"Seat_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1865 (class 2604 OID 1681097)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY seat_price ALTER COLUMN id SET DEFAULT nextval('seat_price_id_seq'::regclass);
+
+
+--
+-- TOC entry 1957 (class 0 OID 0)
+-- Dependencies: 141
+-- Name: City_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"City_id_seq"', 10, true);
+
+
+--
+-- TOC entry 1958 (class 0 OID 0)
+-- Dependencies: 143
+-- Name: Passenger_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Passenger_ID_seq"', 7, true);
+
+
+--
+-- TOC entry 1959 (class 0 OID 0)
+-- Dependencies: 160
+-- Name: Seat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Seat_id_seq"', 16, true);
+
+
+--
+-- TOC entry 1909 (class 0 OID 1670169)
+-- Dependencies: 144
+-- Data for Name: airline; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO airline VALUES (1, 'SN', 'Brussels Airline');
+INSERT INTO airline VALUES (2, 'KL', 'KLM');
+INSERT INTO airline VALUES (3, 'FR', 'Ryanair');
+INSERT INTO airline VALUES (4, 'AZ', 'Alitalia');
+INSERT INTO airline VALUES (11, 'BA', 'British Airways');
+
+
+--
+-- TOC entry 1924 (class 0 OID 1672081)
+-- Dependencies: 159
+-- Data for Name: airplane; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO airplane VALUES (1, '{1,2,3,4,5,6,7}', 'B747', 'B747-1');
+INSERT INTO airplane VALUES (2, '{8,9,10,11}', 'B787', 'B787-1');
+
+
+--
+-- TOC entry 1960 (class 0 OID 0)
+-- Dependencies: 158
+-- Name: airplane_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('airplane_id_seq', 17, true);
+
+
+--
+-- TOC entry 1910 (class 0 OID 1670175)
+-- Dependencies: 145
+-- Data for Name: airport; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO airport VALUES (1, 1, 1, 'BRU', '{1,3}', 'Brussels Airport');
+INSERT INTO airport VALUES (2, 2, 2, 'AMS', '{1,2,3}', 'Amsterdam Airport Schiphol');
+INSERT INTO airport VALUES (3, 1, 3, 'CRL', '{3}', 'Brussels South Charleroi Airport');
+
+
+--
+-- TOC entry 1961 (class 0 OID 0)
+-- Dependencies: 146
+-- Name: airport_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('airport_id_seq', 9, true);
+
+
+--
+-- TOC entry 1912 (class 0 OID 1670183)
+-- Dependencies: 147
+-- Data for Name: booking; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO booking VALUES (33, 3, 1, 2);
+INSERT INTO booking VALUES (30, 1, 1, 1);
+INSERT INTO booking VALUES (2, 2, 1, 3);
+
+
+--
+-- TOC entry 1962 (class 0 OID 0)
+-- Dependencies: 148
+-- Name: booking_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('booking_id_seq', 38, true);
+
+
+--
+-- TOC entry 1905 (class 0 OID 1670153)
+-- Dependencies: 140
+-- Data for Name: city; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO city VALUES (1, 'Brussels', 1);
+INSERT INTO city VALUES (2, 'Amsterdam', 2);
+INSERT INTO city VALUES (3, 'Charleroi', 1);
+
+
+--
+-- TOC entry 1914 (class 0 OID 1670188)
+-- Dependencies: 149
+-- Data for Name: class; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO class VALUES (1, 'Economy Class');
+INSERT INTO class VALUES (2, 'Business Class');
+INSERT INTO class VALUES (3, 'First Class');
+
+
+--
+-- TOC entry 1963 (class 0 OID 0)
+-- Dependencies: 150
+-- Name: class_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('class_id_seq', 12, true);
+
+
+--
+-- TOC entry 1964 (class 0 OID 0)
+-- Dependencies: 151
+-- Name: company_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('company_id_seq', 31, true);
+
+
+--
+-- TOC entry 1917 (class 0 OID 1670203)
+-- Dependencies: 152
+-- Data for Name: country; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO country VALUES (1, 'Belgium');
+INSERT INTO country VALUES (2, 'The Netherlands');
+INSERT INTO country VALUES (3, 'France');
+INSERT INTO country VALUES (4, 'Germany');
+
+
+--
+-- TOC entry 1965 (class 0 OID 0)
+-- Dependencies: 153
+-- Name: country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('country_id_seq', 15, true);
+
+
+--
+-- TOC entry 1919 (class 0 OID 1670211)
+-- Dependencies: 154
+-- Data for Name: flight; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO flight VALUES (1, 1, '01:30:00', '02:30:00', '2012-12-25', '2012-12-25', 1, 1, '01:00:00');
+INSERT INTO flight VALUES (2, 2, '15:00:00', '17:00:00', '2012-01-16', '2012-01-16', 2, 2, '02:00:00');
+INSERT INTO flight VALUES (3, 2, '01:50:00', '02:50:00', '2012-04-12', '2012-04-12', 2, 3, '01:00:00');
+
+
+--
+-- TOC entry 1929 (class 0 OID 1672968)
+-- Dependencies: 164
+-- Data for Name: flight_template; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO flight_template VALUES (1, '123', 1);
+INSERT INTO flight_template VALUES (2, '234', 1);
+INSERT INTO flight_template VALUES (3, '345', 1);
+INSERT INTO flight_template VALUES (4, '123', 2);
+
+
+--
+-- TOC entry 1966 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: flight_template_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('flight_template_id_seq', 13, true);
+
+
+--
+-- TOC entry 1967 (class 0 OID 0)
+-- Dependencies: 155
+-- Name: flight_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('flight_type_id_seq', 7, true);
+
+
+--
+-- TOC entry 1921 (class 0 OID 1670219)
+-- Dependencies: 156
+-- Data for Name: location; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO location VALUES (1, 50, 1, 3);
+INSERT INTO location VALUES (2, 220, 2, 3);
+INSERT INTO location VALUES (10, 200, 1, 2);
+
+
+--
+-- TOC entry 1968 (class 0 OID 0)
+-- Dependencies: 157
+-- Name: location_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('location_id_seq', 12, true);
+
+
+--
+-- TOC entry 1907 (class 0 OID 1670161)
+-- Dependencies: 142
+-- Data for Name: passenger; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO passenger VALUES ('Alice', 1);
+INSERT INTO passenger VALUES ('Bob', 2);
+INSERT INTO passenger VALUES ('Carol', 3);
+
+
+--
+-- TOC entry 1926 (class 0 OID 1672095)
+-- Dependencies: 161
+-- Data for Name: seat; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO seat VALUES (1, 1, 1, 1);
+INSERT INTO seat VALUES (2, 1, 2, 1);
+INSERT INTO seat VALUES (3, 1, 3, 1);
+INSERT INTO seat VALUES (4, 1, 4, 1);
+INSERT INTO seat VALUES (5, 2, 5, 1);
+INSERT INTO seat VALUES (6, 2, 6, 1);
+INSERT INTO seat VALUES (7, 3, 7, 1);
+INSERT INTO seat VALUES (8, 1, 1, 2);
+INSERT INTO seat VALUES (9, 1, 2, 2);
+INSERT INTO seat VALUES (10, 1, 3, 2);
+INSERT INTO seat VALUES (11, 1, 4, 2);
+
+
+--
+-- TOC entry 1927 (class 0 OID 1672101)
+-- Dependencies: 162
+-- Data for Name: seat_price; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO seat_price VALUES (1, 1, '$200.00', 1);
+INSERT INTO seat_price VALUES (2, 1, '$205.00', 2);
+INSERT INTO seat_price VALUES (3, 1, '$210.00', 3);
+INSERT INTO seat_price VALUES (4, 1, '$215.00', 4);
+INSERT INTO seat_price VALUES (5, 1, '$250.00', 5);
+INSERT INTO seat_price VALUES (6, 1, '$255.00', 6);
+INSERT INTO seat_price VALUES (7, 1, '$300.00', 7);
+INSERT INTO seat_price VALUES (9, 2, '$130.00', 8);
+INSERT INTO seat_price VALUES (10, 2, '$135.00', 9);
+INSERT INTO seat_price VALUES (11, 2, '$135.00', 10);
+INSERT INTO seat_price VALUES (8, 2, '$130.00', 11);
+INSERT INTO seat_price VALUES (8, 3, '$50.00', 18);
+INSERT INTO seat_price VALUES (9, 3, '$50.00', 19);
+INSERT INTO seat_price VALUES (10, 3, '$50.00', 20);
+INSERT INTO seat_price VALUES (11, 3, '$50.00', 12);
+
+
+--
+-- TOC entry 1969 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: seat_price_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('seat_price_id_seq', 20, true);
+
+
+--
+-- TOC entry 1868 (class 2606 OID 1670235)
+-- Name: City_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY city
+    ADD CONSTRAINT "City_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1870 (class 2606 OID 1670237)
+-- Name: Passenger_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY passenger
+    ADD CONSTRAINT "Passenger_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1900 (class 2606 OID 1672100)
+-- Name: Seat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY seat
+    ADD CONSTRAINT "Seat_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1874 (class 2606 OID 1683807)
+-- Name: airline_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY airline
+    ADD CONSTRAINT airline_code_key UNIQUE (code);
+
+
+--
+-- TOC entry 1896 (class 2606 OID 1685597)
+-- Name: airplane_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY airplane
+    ADD CONSTRAINT airplane_code_key UNIQUE (code);
+
+
+--
+-- TOC entry 1898 (class 2606 OID 1672089)
+-- Name: airplane_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY airplane
+    ADD CONSTRAINT airplane_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1878 (class 2606 OID 1683809)
+-- Name: airport_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY airport
+    ADD CONSTRAINT airport_code_key UNIQUE (code);
+
+
+--
+-- TOC entry 1880 (class 2606 OID 1670239)
+-- Name: airport_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY airport
+    ADD CONSTRAINT airport_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1882 (class 2606 OID 1684725)
+-- Name: booking_flight_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY booking
+    ADD CONSTRAINT booking_flight_key UNIQUE (flight, seat);
+
+
+--
+-- TOC entry 1884 (class 2606 OID 1670241)
+-- Name: booking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY booking
+    ADD CONSTRAINT booking_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1886 (class 2606 OID 1686518)
+-- Name: class_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY class
+    ADD CONSTRAINT class_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 1888 (class 2606 OID 1670245)
+-- Name: class_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY class
+    ADD CONSTRAINT class_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1876 (class 2606 OID 1670247)
+-- Name: company_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY airline
+    ADD CONSTRAINT company_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1890 (class 2606 OID 1670249)
+-- Name: country_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT country_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1904 (class 2606 OID 1672976)
+-- Name: flight_template_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY flight_template
+    ADD CONSTRAINT flight_template_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1892 (class 2606 OID 1670251)
+-- Name: flight_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY flight
+    ADD CONSTRAINT flight_type_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1894 (class 2606 OID 1670253)
+-- Name: location_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY location
+    ADD CONSTRAINT location_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1872 (class 2606 OID 1685633)
+-- Name: passenger_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY passenger
+    ADD CONSTRAINT passenger_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 1902 (class 2606 OID 1681103)
+-- Name: seat_price_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY seat_price
+    ADD CONSTRAINT seat_price_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1937 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- TOC entry 1938 (class 0 OID 0)
+-- Dependencies: 523
+-- Name: plpgsql; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON LANGUAGE plpgsql FROM PUBLIC;
+REVOKE ALL ON LANGUAGE plpgsql FROM postgres;
+GRANT ALL ON LANGUAGE plpgsql TO postgres;
+GRANT ALL ON LANGUAGE plpgsql TO PUBLIC;
+
+
+--
+-- TOC entry 1939 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: plpgsql_call_handler(); Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON FUNCTION plpgsql_call_handler() FROM PUBLIC;
+REVOKE ALL ON FUNCTION plpgsql_call_handler() FROM postgres;
+GRANT ALL ON FUNCTION plpgsql_call_handler() TO PUBLIC;
+
+
+-- Completed on 2013-01-11 21:57:41 CET
+
+--
+-- PostgreSQL database dump complete
+--
+

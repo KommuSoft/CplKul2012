@@ -168,7 +168,7 @@ namespace DSLImplementation.UserInterface {
 					this[i] = pieces[i];
 				}
 				catch (Exception e) {
-					Console.Error.WriteLine(e);
+
 				}
 			}
 		}
@@ -180,7 +180,7 @@ namespace DSLImplementation.UserInterface {
 					index++;
 				}
 				catch (Exception e) {
-					Console.Error.WriteLine(e);
+
 				}
 				if(index >= this.NumberOfArguments) {
 					break;
