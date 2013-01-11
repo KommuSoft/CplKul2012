@@ -1,5 +1,4 @@
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -85,6 +84,47 @@ namespace DSLImplementation.IntermediateCode{
 			
 			RequestGetFlights rgf9 = new RequestGetFlights(netherlands, belgium, new DateTime(year: 3009, month: 3, day: 14));
 			tryPrintFlights(rgf9);
+		}
+
+		private static void printSeats (RequestGetSeats rgs)
+		{
+			try {
+				Console.WriteLine (((AnswerGetSeats)rgs.execute ()).seats.Count);
+			} catch (Exception e) {
+				Console.WriteLine(e.Message);
+			}
+		}
+
+		private static void testGetSeats ()
+		{
+			FlightTemplate template = new FlightTemplate("SN123");
+			FlightTemplate unknownTemplate = new FlightTemplate("SN999");
+
+			DateTime startDate = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 00);
+
+			Flight knownFlight = new Flight(template, startDate);
+			Flight unknownFlight = new Flight(unknownTemplate, startDate);
+
+			SeatClass knownSeatClass = new SeatClass("economy class");
+			SeatClass unknownSeatClass = new SeatClass("unknown class");
+
+			RequestGetSeats rgs1 = new RequestGetSeats(knownFlight, knownSeatClass);
+			printSeats(rgs1);
+
+			RequestGetSeats rgs2 = new RequestGetSeats(knownFlight, unknownSeatClass);
+			printSeats(rgs2);
+
+			RequestGetSeats rgs3 = new RequestGetSeats(unknownFlight, knownSeatClass);
+			printSeats(rgs3);
+
+			RequestGetSeats rgs4 = new RequestGetSeats(unknownFlight, unknownSeatClass);
+			printSeats(rgs4);
+
+			RequestGetSeats rgs5 = new RequestGetSeats(knownFlight);
+			printSeats(rgs5);
+
+			RequestGetSeats rgs6 = new RequestGetSeats(unknownFlight);
+			printSeats(rgs6);
 		}
 
 		private static void printAddAnswer (IAnswer a)
@@ -398,17 +438,18 @@ namespace DSLImplementation.IntermediateCode{
 		}
 
 		public static void Main (string[] args){
-			testGetters();
-			testAddCountry();
-			testAddCity();
-			testAddAirport();
-			testAddFlightTemplate();
-			testAddAirplane();
-			testAddPassenger();
-			testAddSeatClass();
-			testAddAirline();
-			testAddBooking();
-			testAddFlight();
+//			testGetters();
+			testGetSeats();
+//			testAddCountry();
+//			testAddCity();
+//			testAddAirport();
+//			testAddFlightTemplate();
+//			testAddAirplane();
+//			testAddPassenger();
+//			testAddSeatClass();
+//			testAddAirline();
+//			testAddBooking();
+//			testAddFlight();
 		}
 	}
 }

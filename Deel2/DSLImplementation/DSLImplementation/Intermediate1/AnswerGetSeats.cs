@@ -4,7 +4,7 @@ using DSLImplementation.UserInterface;
 
 namespace DSLImplementation.IntermediateCode
 {
-	public class AnswerGetSeats : IXmlAnswer
+	public class AnswerGetSeats : IAnswer
 	{
 		public AnswerGetSeats (List<Seat> seats)
 		{
