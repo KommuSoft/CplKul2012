@@ -1,12 +1,19 @@
 \section{Design description}
 \subsection{The semantic model}
+In the figure below, the semantic model is shown.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = \textwidth]{../../../Domeinmodel/Semanticmodel.png}
+	\caption{The semantic model}
+	\label{Semanticmodel}
+\end{figure}
 \subsection{DSL constructs}
-If we look at the graphical editor on figure \ref{ex:DSLlayoutinDD}, we can see almost all of the DSL constructs.
+If we look at the graphical editor on figure \ref{fig:DSLlayoutinconstructs}, we can see almost all of the DSL constructs.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/programlayout.png}
 	\caption{The graphical editor}
-	\label{ex:DSLlayoutinDD}
+	\label{fig:DSLlayoutinconstructs}
 \end{figure}
 \noindent On top of the figure are the puzzlepieces mentioned. There are two special ones, namely \texttt{Query} and \texttt{Add}. This is because building all programs have to start with selecting one of them.  Now, we give a short description.
 \begin{description}
@@ -20,7 +27,7 @@ Another important DSL construct are links. They can be used to copy the values o
 	\centering
 	\includegraphics[width = \textwidth]{../../../Voorbeeldprogrammas/LinkPieceExample.pdf}
 	\caption{An illustration of making use of links}
-	\label{ex:linkpieceexample}
+	\label{linkpieceexample}
 \end{figure}
 First we have added a country Japan. After that, we wanted to add a city that is located in Japan. What we did, was putting a link from the Japan block at the bottom of figure to the place where the city Tokio request a country. In that way, you are sure to make no typing errors or other inconsistencies.
 
