@@ -344,15 +344,16 @@ namespace DSLImplementation.IntermediateCode{
 
 		private static void testAddFlight ()
 		{
-			FlightTemplate template = new FlightTemplate("SN123");
-			FlightTemplate unknownTemplate = new FlightTemplate("SN999");
-			
+			Airline sn = new Airline("SN");
+			Airline unknownAirline = new Airline("UNK");
+
+			FlightTemplate template = new FlightTemplate("123", sn);
+			FlightTemplate unknownTemplate = new FlightTemplate("999", sn);
+			//TODO hier testen of het mogelijk is om een flighttemplate te geven die enkel een code heeft
+
 			DateTime start = new DateTime(year: 2012, month: 11, day: 25, hour: 1, minute: 30, second: 0);
 			DateTime end = new DateTime(year: 2012, month: 11, day: 25, hour: 3, minute: 30, second: 0);
 			DateTime startExists = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 0);
-
-			Airline sn = new Airline("SN");
-			Airline unknownAirline = new Airline("UNK");
 
 			Airport brussels = new Airport("BRU");
 			Airport schiphol = new Airport("AMS");
@@ -364,28 +365,35 @@ namespace DSLImplementation.IntermediateCode{
 			Flight f1 = new Flight(template, start);
 			executeAddFlight(f1);
 
-			Flight f2 = new Flight(unknownTemplate, sn, start, end, brussels, schiphol, B747);
-			executeAddFlight(f2);
+			Console.WriteLine(); Console.WriteLine("2");
+			Flight f2 = new Flight(unknownTemplate, start, end, brussels, schiphol, B747);
+			executeAddFlight(f2); 
 
-			Flight f3 = new Flight(unknownTemplate, sn, start, end, brussels, schiphol, B747, 200);
-			executeAddFlight(f3);
-
-			Flight f4 = new Flight(template, unknownAirline, start, end, brussels, schiphol, B747);
+			Console.WriteLine(); Console.WriteLine("4"); 
+			Flight f4 = new Flight(template, start, end, brussels, schiphol, B747);
 			executeAddFlight(f4);
 
-			Flight f5 = new Flight(template, sn, start, end, unknownAirport, schiphol, B747);
+			Console.WriteLine(); Console.WriteLine("5"); 
+			Flight f5 = new Flight(template, start, end, unknownAirport, schiphol, B747);
 			executeAddFlight(f5);
 
-			Flight f6 = new Flight(template, sn, start, end, brussels, unknownAirport, B747);
+			Console.WriteLine(); Console.WriteLine("6"); 
+			Flight f6 = new Flight(template, start, end, brussels, unknownAirport, B747);
 			executeAddFlight(f6);
 
-			Flight f7 = new Flight(template, sn, start, end, brussels, schiphol, unknownAirplane);
+			Console.WriteLine(); Console.WriteLine("3"); 
+			Flight f3 = new Flight(unknownTemplate, start, end, brussels, schiphol, B747, 200);
+			executeAddFlight(f3); //This adds a location
+
+			Console.WriteLine(); Console.WriteLine("7"); 
+			Flight f7 = new Flight(template, start, end, brussels, schiphol, unknownAirplane);
 			executeAddFlight(f7);
 
-			Flight f8 = new Flight(template, sn, start, end, brussels, schiphol, B747);
+			Flight f8 = new Flight(template, start, end, brussels, schiphol, B747);
 			//executeAddFlight(f8);
 
-			Flight f9 = new Flight(template, sn, start, end, brussels, schiphol, B747);
+			Console.WriteLine(); Console.WriteLine("9"); 
+			Flight f9 = new Flight(template, start, end, brussels, schiphol, B747);
 			executeAddFlight(f9);
 		}
 
