@@ -13,7 +13,7 @@ namespace DSLImplementation.IntermediateCode
 		}
 
 		public String Name { get; set; }
-		public String Code { get; set;}
+		public String Code { get; set; }
 	}
 }
 

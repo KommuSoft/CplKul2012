@@ -177,12 +177,6 @@ namespace DSLImplementation.Database
 
 		public List<Flight> fetchFlightFromCodeAndStartDate (string code, DateTime startDate)
 		{
-			Console.WriteLine();
-			Console.WriteLine();
-			Console.WriteLine("The code is " + code);
-			Console.WriteLine();
-			Console.WriteLine();
-
 			string airlineCode = "";
 			string digits = "";
 			Util.split (code, ref airlineCode, ref digits);

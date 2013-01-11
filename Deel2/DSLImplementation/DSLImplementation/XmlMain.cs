@@ -127,6 +127,45 @@ namespace DSLImplementation.IntermediateCode{
 			printSeats(rgs6);
 		}
 
+		private static void printSeatPrice (RequestGetSeatPrice rgsp)
+		{
+			try {
+				Console.WriteLine (((AnswerGetSeatPrice)rgsp.execute ()).seatPrice.price);
+			} catch (Exception e) {
+				Console.WriteLine(e.Message);
+			}
+		}
+
+		private static void testGetSeatPrice ()
+		{
+			FlightTemplate template = new FlightTemplate("SN123");
+			FlightTemplate unknownTemplate = new FlightTemplate("SN999");
+			
+			DateTime startDate = new DateTime(year: 2012, month: 12, day: 25, hour: 1, minute: 30, second: 00);
+			
+			Flight knownFlight = new Flight(template, startDate);
+			Flight unknownFlight = new Flight(unknownTemplate, startDate);
+
+			SeatClass economySeatClass = new SeatClass("economy class");
+			SeatClass businessSeatClass = new SeatClass("business class");
+
+			Seat unknownSeat = new Seat(economySeatClass, 999);
+			Seat economySeat = new Seat(economySeatClass, 1);
+			Seat businessSeat = new Seat(businessSeatClass, 5);
+
+			RequestGetSeatPrice rgsp1 = new RequestGetSeatPrice(knownFlight, economySeat);
+			printSeatPrice(rgsp1);
+
+			RequestGetSeatPrice rgsp2 = new RequestGetSeatPrice(knownFlight, businessSeat);
+			printSeatPrice(rgsp2);
+
+			RequestGetSeatPrice rgsp3 = new RequestGetSeatPrice(unknownFlight, economySeat);
+			printSeatPrice(rgsp3);
+
+			RequestGetSeatPrice rgsp4 = new RequestGetSeatPrice(knownFlight, unknownSeat);
+			printSeatPrice(rgsp4);
+		}
+
 		private static void printAddAnswer (IAnswer a)
 		{
 			AnswerAdd aa = (AnswerAdd) a;
@@ -439,7 +478,8 @@ namespace DSLImplementation.IntermediateCode{
 
 		public static void Main (string[] args){
 //			testGetters();
-			testGetSeats();
+//			testGetSeats();
+			testGetSeatPrice();
 //			testAddCountry();
 //			testAddCity();
 //			testAddAirport();

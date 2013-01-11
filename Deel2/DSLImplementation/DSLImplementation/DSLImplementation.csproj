@@ -163,6 +163,9 @@
     <Compile Include="TilePatterns1\IAnswer.cs" />
     <Compile Include="Intermediate1\RequestGetSeats.cs" />
     <Compile Include="Intermediate1\AnswerGetSeats.cs" />
+    <Compile Include="Intermediate1\RequestGetSeatPrice.cs" />
+    <Compile Include="Intermediate1\AnswerGetSeatPrice.cs" />
+    <Compile Include="Intermediate1\SeatPrice.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Cairo" />

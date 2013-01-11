@@ -31,6 +31,12 @@ namespace DSLImplementation.Database
 
 			return fetchFromQuery(createQuery(columns, values));
 		}
+
+		public List<Seat> fetchSeatFromFlightAndNumber (int flightID, int number)
+		{
+			string query = "SELECT * FROM seat WHERE (number = " + number + " AND id = any(SELECT seat FROM seat_price WHERE flight = " + flightID + "))";
+			return fetchFromQuery(query);
+		}
 	}
 }
 
