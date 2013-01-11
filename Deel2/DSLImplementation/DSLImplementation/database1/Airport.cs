@@ -66,7 +66,7 @@ namespace DSLImplementation.Database
 				return makeExceptionMessage (out exceptionMessage, "The name of the airport is invalid");
 			}
 
-			if (code.Length != 3 || !code.All (char.IsUpper)) {
+			if (code.Length != 3 || !code.All (char.IsUpper) || !code.All(char.IsLetter)) {
 				return makeExceptionMessage (out exceptionMessage, "The code of the airport is invalid");
 			}
 

@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSLImplementation.Database
 {
@@ -41,6 +42,10 @@ namespace DSLImplementation.Database
 		{
 			if (code.Length != 2 && code.Length != 3) {
 				return makeExceptionMessage (out exceptionMessage, "The code of the airline is invalid");
+			}
+
+			if (!code.All (char.IsUpper) || !code.All (char.IsLetter)) {
+				return makeExceptionMessage(out exceptionMessage, "The code of the airline is invalid (the code isn't a capital letter coder)");
 			}
 
 			if (name.Length == 0) {

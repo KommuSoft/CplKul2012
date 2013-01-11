@@ -163,6 +163,12 @@ namespace DSLImplementation.IntermediateCode{
 
 			Airport a6 = new Airport("The name of the airport", "COO", brussels);
 			//executedAddAiport(a6);
+
+			Airport a7 = new Airport("The name of the airport", "878", brussels);
+			executedAddAiport(a7);
+
+			Airport a8 = new Airport("The name of the airport", "B78", brussels);
+			executedAddAiport(a8);
 		}
 
 		private static void executeAddFlightTemplate (FlightTemplate f)
@@ -278,7 +284,7 @@ namespace DSLImplementation.IntermediateCode{
 			executeAddAirline(a3);
 
 			Airline a4 = new Airline("Extreme special name", "987");
-			//executeAddAirline(a4);
+			executeAddAirline(a4);
 
 			Airline a5 = new Airline("Normal name", "");
 			executeAddAirline(a5);
@@ -288,6 +294,9 @@ namespace DSLImplementation.IntermediateCode{
 
 			Airline a7 = new Airline("Name", "SN");
 			executeAddAirline(a7);
+
+			Airline a8 = new Airline("Normal name", "ZZZ");
+			executeAddAirline(a8);
 		}
 
 		private static void executeAddBooking (Booking b)
@@ -377,17 +386,17 @@ namespace DSLImplementation.IntermediateCode{
 		}
 
 		public static void Main (string[] args){
-			testGetters();
-			testAddCountry();
-			testAddCity();
-			testAddAirport();
-			testAddFlightTemplate();
-			testAddAirplane();
-			testAddPassenger();
-			testAddSeatClass();
+//			testGetters();
+//			testAddCountry();
+//			testAddCity();
+//			testAddAirport();
+//			testAddFlightTemplate();
+//			testAddAirplane();
+//			testAddPassenger();
+//			testAddSeatClass();
 			testAddAirline();
-			testAddBooking();
-			testAddFlight();
+//			testAddBooking();
+//			testAddFlight();
 		}
 	}
 }
